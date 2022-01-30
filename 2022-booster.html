@@ -1,0 +1,891 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Booster 2022 - Grand Harbor Tour of Machine Learning</title>
+
+    <link rel="stylesheet" href="reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+    <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+    <link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+    <style>
+        .right-img {
+            margin-left: 10px !important;
+            float: right;
+            height: 500px;
+        }
+
+        .todo:before {
+            content: 'TODO: ';
+        }
+
+        .todo {
+            color: red !important;
+        }
+
+        code span.line-number {
+            color: lightcoral;
+        }
+
+        .reveal pre code {
+            max-height: 1000px !important;
+        }
+
+        img {
+            border: 0 !important;
+            box-shadow: 0 0 0 0 !important;
+            height: 450px;
+        }
+
+        .reveal {
+            -ms-touch-action: auto !important;
+            touch-action: auto !important;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            /* letter-spacing: 2px; */
+            font-family: 'Calibri', sans-serif;
+            /* font-family: 'Times New Roman', Times, serif; */
+            /* font-weight: bold; */
+            color: black;
+            /* font-style: italic; */
+            /* letter-spacing: -2px; */
+            text-transform: none !important;
+        }
+
+        .reveal em {
+            font-weight: bold;
+        }
+
+        .reveal section img {
+            background: none;
+        }
+
+        .reveal img.with-border {
+            border: 1px solid #586e75 !important;
+            box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .reveal li {
+            margin-bottom: 8px;
+        }
+
+        /* For li's that use FontAwesome icons as bullet-point */
+        .reveal ul.fa-ul li {
+            list-style-type: none;
+        }
+
+        .reveal {
+            /* font-family: 'Work Sans', 'Calibri'; */
+            font-family: 'Calibri';
+            color: black !important;
+            font-size: xx-large;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .col,
+        col-1 {
+            flex: 1;
+        }
+
+        .col-2 {
+            flex: 2;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: whitesmoke;">
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 
+
+Booster Conf
+
+https://2022.boosterconf.no/
+
+3 Stunden
+The Grand Harbor Tour of Machine Learning 
+
+Machine learning is still not seen as the integral part of software development that it actually is. Certain parts of a
+software system can actually be implemented much better by a trained model than by a classical development. This creates
+challenges in the implementation, but also in the definition of the roles and in the integration of the different parts.
+
+On this tour we look less at technical details, but take the conceptual architecture perspective. We will give a broad
+overview of how machine learning works, how its approach and process is different from classic development and where it
+might fit in into your project. All topics are sided by interactive and visual exercises that are either done in groups
+or on a laptop or even tablet or smartphone. We assume no previous knowledge of machine learning, but this workshop is
+for all levels. More advanced participants can use this workshop for a deeper dive or a more in detail discussion.
+-->
+
+            <section data-markdown>
+                <textarea data-template>
+# The Grand Harbor Tour of Machine Learning
+
+Kim Nena Duggen
+
+Oliver Zeigermann
+
+https://2022.boosterconf.no/
+
+Slides: https://bit.ly/ml-booster-2022
+
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Departure
+
+<img src='img/booster/abfahrt.jpg'>
+
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Brücke zwischen zwei Welten
+
+<img src='img/booster/koehlbrand.jpg'>
+
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Wie bekommt man das Modell aufs Schiff?
+
+<img src='img/booster/ladebruecke.jpg'>
+
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Was macht das denn hier?
+
+<img src='img/booster/insel.jpg'>
+
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### 2020 waren das die größten Schiffe der Welt
+
+HMM Algeciras und GPT-3
+
+<img src='img/booster/hmm_algeciras.jpg' style="height: 450px;">
+
+<small>
+
+https://de.wikipedia.org/wiki/HMM_Megamax-Klasse
+<br>
+https://en.m.wikipedia.org/wiki/List_of_largest_container_ships
+</small>
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### 2020 ist vorbei, jetzt ist 2021
+
+<img src='img/booster/ever_ace_hidden.jpg'>
+
+https://www.ndr.de/nachrichten/hamburg/Groesstes-Containerschiff-der-Welt-im-Hamburger-Hafen,containerschiff476.html
+
+</textarea>
+            </section>
+
+
+
+            <section data-markdown class="todo">
+                ## Kleinkram
+                * bit.ly
+                * links to playgrounds
+                * Wrap-Ups schreiben
+                * Letzte Folie, Link, Contact, vielen Dank
+                * Hafenbilder aussuchen und an die richtige Stelle tun (sind alle schon hier drin)
+
+            </section>
+
+
+            <section data-markdown class="todo">
+                ## am 4.3.2022
+                ### 1 Stunden Version von Kims Mural erstellen
+
+                * Alles Aufwändige weg lassen und nur nehmen, was man leicht auf Englisch bringen kann
+                *
+                https://app.mural.co/t/embarcagila3904/m/embarcagila3904/1633335145103/65d3bde76e9c455f4a58cc24bdd97b4c1007835b?sender=oliverzeigermann6333
+                * Welche Grafiken müssen Englisch sein?
+                * Direkt machen
+            </section>
+
+
+            <section data-markdown style="font-size: xx-large;" id='agenda'>
+                <textarea data-template>
+## Schedule
+
+* Block 1: <a href='#bl1'>Introduction (1h, Olli)</a>
+* Block 2: <a href='#bl2'>Navigating the world of ML (1h, Kim/Olli)</a>
+* Block 3: <a href='#bl3'>Applying in the real world (1h, Kim)</a>
+
+<a href='#playgrounds'>All Playgrounds</a>
+
+</textarea>
+            </section>
+
+            <section data-markdown style="font-size: xx-large;" id='bl1'>
+                <textarea data-template>
+## Schedule
+
+* Block 1: <a href='#bl1'>_Introduction_</a>
+* Block 2: <a href='#bl2'>Navigating the world of ML</a>
+* Block 3: <a href='#bl3'>Applying in the real world</a>
+
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+<img src='img/booster/classic-development.jpg' style="height: 600px;">
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+<img src='img/booster/software-1-0.png' style="height: 550px;">
+
+<small>
+Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
+
+https://vimeo.com/272696002
+
+</small>
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Supervised Learning
+
+_recover an unknown function from possibly noisy measurements_
+
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+<img src='img/booster/supervised-ml.jpg' style="height: 600px;">
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+<img src='img/sketch/ml-taxonomy-small.jpg'>
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Data for ML Type - Supervised Learning        
+<img src='img/data_for_ml_types/supervised.jpg'>
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Provide Matching Samples
+
+<img src='img/sketch/imitation.jpg' style="height: 500px;">
+    </textarea>
+            </section>
+
+            <section data-markdown class="fragments">
+
+                ### Traditional Machine Learning vs Deep Learning
+
+                * **Traditional Machine Learning**
+                * e.g. regressions, decision trees, nearest neighbors, support vector machines.
+                * needs selection and preprocessing of features
+                * can be used with few examples in some cases
+                * usually needs little computing power for training
+                * **Deep Learning**
+                * can learn which features are relevant and pre-process them by successively connected layers
+                * is typically implemented with neural networks
+                * Can have several billion parameters
+                * usually needs GPUs at least for training
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+
+<img src='img/booster/software-2-0.png' style="height: 550px;">
+
+<small>
+Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
+
+https://vimeo.com/272696002
+
+</small>
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Formulating an optimization problem instead of writing code
+
+<img src='img/booster/software-complexity.png'>
+
+<small>
+Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
+
+https://vimeo.com/272696002
+
+</small>
+</textarea>
+            </section>
+
+
+            <section data-markdown>
+                <textarea data-template>
+### You state your problem as an optimization
+
+* arbitrary input and output
+* freely choose hidden complexity
+* auto derivation libraries find gradients
+* loss function determines what you are after
+* based on gradients and loss they tune the parameters of your model
+        
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Understand Deep Learning
+
+<a href='https://playground.tensorflow.org/'>
+<img src='img/booster/tf-playground.png' height="500px">
+</a>
+
+<small>
+
+https://playground.tensorflow.org/
+</small>
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Wrap Up: Classification using a single neuron
+
+<img src="img/booster/log-reg.jpg">
+
+https://twitter.com/ChelseaParlett/status/1389317454669565954
+</textarea>
+            </section>
+
+            <section>
+                <h3>A more complex example of Supervised Learning</em></h3>
+                <a href="https://transcranial.github.io/keras-js/#/mnist-cnn" target="_blank">
+                    <img src="img/booster/keras-browser.png" height="350px">
+                </a>
+                <p><small>
+                        <a href="https://transcranial.github.io/keras-js/#/mnist-cnn"
+                            target="_blank">https://transcranial.github.io/keras-js/#/mnist-cnn</a>
+                    </small></p>
+            </section>
+
+
+            <section data-markdown>
+                <textarea data-template>
+
+### Classification vs Regression
+
+_Regressions predict a quantity, and classifications predict a label_
+
+<img src="img/booster/classification.jpg" style="height: 400px;">
+
+1. Regression: Fitting a curve (often a line) through data points
+2. Classification: What category can be derived from data
+
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Regression using a single neuron
+
+<img src="img/booster/lin-reg.jpg">
+
+https://twitter.com/ChelseaParlett/status/1389317454669565954
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Oops, no big O notation in predictions with deep learning?
+
+<div style="display: flex;">
+    <div style="flex: 50%;">
+        <img src='img/booster/kites_detections_output.jpg'>
+    </div>
+    <div style="flex: 50%;">
+        <img src='img/booster/sw2-constant-runtime-detection.png'>
+    </div>
+</div>
+
+<small>
+
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
+    
+</small>
+</textarea>
+            </section>
+
+            <section data-markdown>
+                ### A neural network can be modeled as a directed graph of constant operations
+
+                ```
+                node_def {
+                name: "sequential/hidden1/MatMul"
+                op: "MatMul"
+                input: "input"
+                input: "sequential/hidden1/MatMul/ReadVariableOp:value:0"
+                attr {
+                key: "T"
+                value {
+                type: DT_FLOAT
+                }
+                }
+                attr {
+                key: "transpose_a"
+                value {
+                b: false
+                }
+                }
+                attr {
+                key: "transpose_b"
+                value {
+                b: false
+                }
+                }
+                experimental_debug_info {
+                original_node_names: "sequential/hidden1/MatMul"
+                }
+                }
+                ```
+
+                http://web.stanford.edu/class/cs245/slides/TFGraphOptimizationsStanford.pdf
+            </section>
+
+            <section data-markdown class="fragments">
+
+                ### Deep Learning has very interesting properties for production
+
+                1. parallelizable
+                1. abstract from hardware
+                1. constant runtime and memory requirements
+                1. automatic tradeoff resources vs error metrics
+                1. Superhuman performance
+
+            </section>
+
+            <section data-markdown class="fragments">
+                ### Challenges
+
+                * Networks are black boxes
+                * Debugging
+                * Emotionally draining
+                * Explainability
+                * Attack vectors
+                * Programming
+                * Deep Learning is (...) mostly constraint-driven software development
+                (https://twitter.com/karpathy/status/1439676583690715140)
+                * Modeling choices encode strong assumptions about the data ...
+                (https://twitter.com/fchollet/status/1439799099176357894)
+                * Neural net training fails silently (https://karpathy.github.io/2019/04/25/recipe/)
+                * Standard Tool chain does not exist
+            </section>
+
+            <section data-markdown class="fragments">
+
+                ### Limitations of Software 2.0
+
+                * no loops possible
+                * no halting problem
+                * but also not computational complete
+                * not suitable for all tasks
+                * sometimes there are clear rules
+                * most tasks are not of algorithmic nature
+            </section>
+
+            <section data-markdown class="fragments">
+                ### Wrap-Up
+
+                *
+
+            </section>
+
+            <section data-markdown style="font-size: xx-large;" id='bl2'>
+                <textarea data-template>
+## Schedule
+
+* Block 1: <a href='#bl1'>Introduction</a>
+* Block 2: <a href='#bl2'>_Navigating the world of ML_</a>
+* Block 3: <a href='#bl3'>Applying ML in the real world</a>
+
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Navigating the world of ML        
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+<img src='img/sketch/ml-taxonomy-small.jpg'>
+    </textarea>
+            </section>
+
+            <section data-markdown class="fragments">
+                ### Machine Learning has data as its core
+
+                * Supervised Machine Learning: Learn to imitate relation between input and output
+                * Time Series data already is special in that respect as we are only constructing pairs of input and
+                output
+                * sometimes called self-supervised training
+
+                * Unsupervised Machine Learning: Objective needs to be described in more detail as we are not only
+                having a simple immitation
+
+                * Reinforcement Learning: objective even more abstract, given as a reward in a given environment
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Data for ML Type - Supervised Learning        
+<img src='img/data_for_ml_types/supervised.jpg'>
+    </textarea>
+            </section>
+
+            <section data-markdown class="todo">
+                Hierfür hatten wir ja schon das Beispiel
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Data for ML Type - Self-Supervised Learning        
+<img src='img/data_for_ml_types/self_supervised.jpg'>
+    </textarea>
+            </section>
+
+            <section data-markdown class="fragments">
+                ### Foundation Models: Transformer Core ideas
+
+                1. have a generalized language model
+                1. train on a very large corpus
+                1. zero- or one-shot learning
+                1. self-attention for encoding long range dependencies
+                1. self-supervision for leverating large unlabeled datasets (aka unsupervised pre-training)
+                1. additional supervised training for downstream tasks, e.g.
+                - translation (lang1 & lang2 pairs)
+                - question answering (Q&A pairs)
+                - sentiment analysis (text & mood pairs)
+                - etc.
+
+                <!-- https://www.youtube.com/watch?v=iFhYwEi03Ew -->
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Example
+
+<img src='img/booster/deepl-example.png'>
+
+<small>
+
+https://www.deepl.com/translator#de/en/Transformer%20sind%20das%20Schweizer%20Messer%20der%20Sprachverarbeitung
+</small>
+        </textarea>
+            </section>
+
+
+<section data-markdown>
+    ### Training T5
+
+    pretraining includes both self-supervised and supervised learning
+    * self-supervised training randomly removes a fraction of the tokens and replacing them with individual
+    sentinel tokens
+    * input of the encoder is the corrupted sentence
+    * input of the decoder is the original sentence
+    * target is then the dropped out tokens delimited by their sentinel tokens
+    * supervised training on downstream tasks provided by the GLUE and SuperGLUE benchmarks
+    * converting them into text-to-text tasks as explained in previous slide
+
+    https://huggingface.co/transformers/model_summary.html#t5
+</section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Demo / Hands-On - T0pp
+
+T5 for zero-shot
+
+<img src='img/booster/t0pp.png' style="height: 400px;">      
+
+https://huggingface.co/bigscience/T0pp
+</textarea>
+            </section>
+
+
+            <section data-markdown>
+                <textarea data-template>
+## Data for ML Type - Unsupervised Learning        
+<img src='img/data_for_ml_types/unsupervised.jpg'>
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Demo: Anomagram 
+<a href='https://victordibia.github.io/anomagram/#/'>
+<img src='img/booster/anomagram-inference.gif' height="450">
+</a>
+<br>
+<small>
+
+https://github.com/victordibia/anomagram        
+https://victordibia.github.io/anomagram/#/
+    
+</small>
+</textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+## Data for ML Type - Reinforcement Learning        
+<img src='img/data_for_ml_types/reinforcement.jpg'>
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### AI Learns to Park - Deep Reinforcement Learning 
+
+* simulated world in Unity
+* agent learns by experiment
+* neural network learns policy
+  * input eight depth sensors, current speed and position, relative position to the target
+  * outputs engine force, braking force and turning force 
+
+<br>
+<br>
+<div class="container" style="align-items: center;">
+    <div class="col">
+<a href='https://youtu.be/VMp6pq6_QjI'>        
+<img src='img/booster/rl-park.png' style="height: 200px;">
+</a>
+</div>
+<div class="col">
+<small>
+
+* Setting: https://youtu.be/VMp6pq6_QjI
+* 20k trials, first success: https://youtu.be/VMp6pq6_QjI?t=140
+* 300k trials, starts looking good: https://youtu.be/VMp6pq6_QjI?t=572
+
+</small>
+</div>
+</div>
+</textarea>
+            </section>
+
+
+            <section data-markdown>
+                <textarea data-template>
+### More fun parking
+
+* two AI Agents fighting for the same parking spot: https://twitter.com/SamuelArzt/status/1175738904055562240
+* AI Learns to parallel park: https://twitter.com/SamuelArzt/status/1248642920875528194
+* bits of code: https://twitter.com/SamuelArzt/status/1176487746195603457
+
+</textarea>
+            </section>
+
+
+            <section data-markdown>
+                <textarea data-template>
+<img src='img/sketch/ml-taxonomy.jpg' style="height: 650px;">
+
+    </textarea>
+            </section>
+
+
+            <section data-markdown class="fragments">
+                <textarea data-template>
+### Joint exercise: Which learning strategy?    
+
+<div style="display: flex;">
+    <div style="flex: 50%;">
+        <img src='img/sketch/ml-taxonomy-small.jpg' style="height: 100%;">
+    </div>
+    <div style="flex: 50%; font-size: x-large;">
+
+1. detecting tuberculosis on x-ray images 
+1. teaching a robot to pick up objects
+1. finding a good set of hyperparameters in deep learning
+1. optimal pricing of airline tickets
+1. deciding on the risk class of potential customers for an insurance policy
+1. detection of credit card fraud 
+1. which soccer players are similar?
+1. recommendation for news
+1. when does a machine need maintenance?
+                
+
+</div>
+</div>
+</textarea>
+            </section>
+
+            <section data-markdown class="fragments">
+                ### Wrap-Up
+
+                *
+
+            </section>
+
+            <section data-markdown style="font-size: xx-large;" id='bl3'>
+                <textarea data-template>
+## Schedule
+
+* Block 1: <a href='#bl1'>Introduction</a>
+* Block 2: <a href='#bl2'>Navigating the world of ML</a>
+* Block 3: <a href='#bl3'>_Applying ML in the real world_</a>
+
+</textarea>
+            </section>
+
+            <section data-markdown class="todo">
+                # HIER KOMMT KIMS MURAL
+
+            </section>
+
+            <section data-markdown class="fragments">
+                ### Wrap-Up
+
+                *
+
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+# Vielen Dank
+## Zeit für Fragen und Diskussion
+
+Die große Hafenrundfahrt durch Machine Learning
+
+SAS 2021, Berlin, https://software-architecture-summit.de/softwarearchitektur/die-grosse-hafenrundfahrt-durch-machine-learning/
+
+Diese Folien: https://bit.ly/2021-sas-ml
+
+Bleibt gern im Kontakt
+
+<a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
+
+https://www.embarc.de/oliver-zeigermann/
+
+
+    </textarea>
+            </section>
+
+        </div>
+    </div>
+
+
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+			width: 1100,
+			slideNumber: true,
+			hideInactiveCursor: false,
+
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+	<script src="lib/jquery.js"></script>
+
+	<script>
+		const printMode = window.location.search.match(/print-pdf/gi);
+		const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+			window.location.hostname.indexOf('127.0.0.1') !== -1;
+		const isPresentation = isLocal && !printMode;
+		const isPublic = !isPresentation;
+
+		$('.hide').remove();
+
+		if (isPresentation) {
+		} else {
+			// only applies to public version
+			$('.todo').remove();
+			$('.preparation').remove();
+			$('.local').remove();
+		}
+
+		Reveal.addEventListener('ready', function (event) {
+			// applies to all versions
+			$('code').addClass('line-numbers');
+
+			$('.fragments li').addClass('fragment')
+
+			// make all links open in new tab
+			$('a').attr('target', '_blank')
+
+			if (isPresentation) {
+				// only applies to presentation version
+				Reveal.configure({ controls: false });
+			} else {
+				// only applies to public version
+				$('.fragment').removeClass('fragment');
+			}
+
+			// we do not like fragments
+			// $('.fragment').removeClass('fragment');
+
+		});
+
+	</script>
+
+</body>
+
+</html>
