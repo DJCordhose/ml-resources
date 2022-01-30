@@ -1,0 +1,327 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>OOP - Machine Learning betrachtet als ein Engineering Problem</title>
+
+		<link rel="stylesheet" href="reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+		<!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+		<link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+		<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+		<style>
+			.right-img {
+				margin-left: 10px !important;
+				float: right;
+				height: 500px;
+			}
+			.todo:before {
+				content: 'TODO: ';
+			}
+			.todo {
+				color: red !important;
+			}
+			code span.line-number {
+				color: lightcoral;
+			}
+			.reveal pre code {
+				max-height: 1000px !important;
+			}
+	
+			img {
+				border: 0 !important;
+				box-shadow:0 0 0 0 !important;
+				height: 450px;
+			}
+	
+			.reveal {
+				-ms-touch-action: auto !important;
+				touch-action: auto !important;
+					}
+
+			  .reveal h1,
+			  .reveal h2,
+			  .reveal h3,
+			  .reveal h4  {
+					  /* letter-spacing: 2px; */
+					  font-family: 'Calibri', sans-serif;
+						/* font-family: 'Times New Roman', Times, serif; */
+						/* font-weight: bold; */
+						color: black;
+						/* font-style: italic; */
+						/* letter-spacing: -2px; */
+						text-transform: none !important;
+					}
+	
+					.reveal em {
+						font-weight: bold;
+					}
+	
+			.reveal section img {
+			  background: none;
+			}
+	
+					.reveal img.with-border {
+						border: 1px solid #586e75 !important;
+						box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+					}
+	
+					.reveal li {
+						margin-bottom: 8px;
+					}
+	
+					/* For li's that use FontAwesome icons as bullet-point */
+				.reveal ul.fa-ul li {
+					list-style-type: none;
+				}
+
+		  .reveal {
+			  /* font-family: 'Work Sans', 'Calibri'; */
+			  font-family: 'Calibri';
+			  color: black !important;
+			  font-size: xx-large;
+		   }
+
+		   .container {
+			  display: flex;
+		  }
+		  .col, col-1 {
+			  flex: 1;
+		  }
+
+		  .col-2 {
+			  flex: 2;
+		  }
+
+		</style>
+
+	</head>
+	<body style="background-color: whitesmoke;">
+		<div class="reveal">
+			<div class="slides">
+<!-- 
+https://www.oop-konferenz.de/oop-2022/programm/speaker/sprecherdetails/oliver-zeigermann-10306
+https://colab.research.google.com/drive/1hDUO1-EzMVtVt6snmgrR1I1A36oPp4J9#scrollTo=V4ldP8_-cuZ9
+Everybody gangsta until real-world deployment in production. (OH in a chat somewhere a while ago :D (https://twitter.com/karpathy/status/1486215976559398915?t=KcS4d9S39WOF7dZuicXyWA&s=03)
+Schon in ML Ressourcen tun das alles
+Bisschen Folien als Rahmen
+Ein Folie Vorstellung, Videokurs, Buch wie in oose Kurs
+2 Artefakte, Code und Modell
+Beides muss in Prod gebracht werden
+Daten und Modell muss extern gehalten, aber zusammen mit Code versioniert werden
+Modell beschreibt einen Ausschnitt der Realität. Wie finde ich heraus wie gut es das tut uns vor allem für relevante Teile der Welt und was mache ich wenn sich das ändert
+Richtung: Benchmark und Monitoring der Lösung in Produktion
+Prod geht auf Code und Modell Binaries, Modell Graph überall ausführen
+Abwechselnd Malen und Insurance Code zeigen und entwickeln (könnten auch Folien sein)
+Insurance in Notebook
+Kopie machen für andere Parameter bei der Regularisierung
+Wir enkoppeln falsch
+Wir kopieren aber alles, auch die Teile, die die beiden Notebooks teilen
+Solange wir nicht wissen was die relevant gemeinsamen Teile sind müssen wir weiter machen
+Am Ende zeigen wie Prod und shift simulierten
+Kein TFX aber von da nehmen
+ -->
+
+
+<section>
+
+	<p>Machine Learning wird häufig immer noch als eine mathematische Herausforderung angesehen und an den Universitäten
+		meist ebenso gelehrt. Es regt sich aber auch im akademischen Umfeld Widerstand und selbst Stars wie Andrew Ng
+		bieten neuerdings Kurse mit Inhalten an, die uns Softwareentwickeln eher vertraut sind.<br> In diesem Talk werde
+		ich beleuchten, wie viel man wirklich wissen muss, um als Softwareentwickler Machine Learning sinnvoll
+		einzusetzen.</p>
+	<p><strong>Zielpublikum:</strong> Jede Rolle im Bereich Softwareentwicklung<br><strong>Voraussetzungen:</strong>
+		Verständnis von Softwareentwicklung, kein Verständnis von ML notwendig<br><strong>Schwierigkeitsgrad:</strong>
+		Anfänger</p>
+	<p><strong>Extended Abstract</strong><br> Machine Learning Verfahren im allgemeinen und Neuronale Netzwerke im
+		speziellen erfordern für ihr tiefes Verständnis Kenntnisse im Bereich der Linearen Algebra, der Analysis und der
+		Statistik.<br> Aber: Als Softwareentwickler implementiert man Neuronale Netzwerke typischerweise nicht auf der
+		grünen Wiese und kommt auch nicht in die Verlegenheit, komplexe Netzwerke selbst aufzubauen. Viel häufiger
+		kommen Frameworks wie TensorFlow und sogar komplett aufgebaute und zum Teil schon trainierte Neuronale Netzwerke
+		zum Einsatz.<br> Das verschiebt die Problematik des Machine Learnings in die Richtung des Engineerings:</p>
+	<ul>
+		<li>Wie baut man eine Trainings-Pipeline auf?</li>
+		<li>Wie bekommt man das trainierte Modell in Produktion und sorgt dann dafür, dass das Modell weiterhin aktuell
+			bleibt?</li>
+	</ul>
+</section>
+<!-- 
+Plan:
+
+* Notebooks: nur lokal, kein Colab,
+* Prod dazu
+ -->
+<section data-markdown>
+    <textarea data-template>
+# Machine Learning betrachtet als ein Engineering Problem                
+
+https://www.oop-konferenz.de/oop-2022/programm/speaker/sprecherdetails/oliver-zeigermann-10306
+https://www.oop-konferenz.de/oop-2022/programm/konferenzprogramm#item-3307
+
+oliver@zeigermann.de
+
+Folien: https://bit.ly/xxx
+
+    </textarea>
+</section>
+
+<section data-markdown class="todo">
+
+David Krueger (@DavidSKrueger) twitterte um 0:45 PM on Sa., Jan. 29, 2022:
+Machine Learning lives in an uncanny valley btw Science and Engineering.
+
+It's the worst of both worlds.
+
+We don't care about understanding, just making things "work" (bad science).
+
+We don't care if things work in the real world, just on  contrived benchmarks (bad engineering).
+(https://twitter.com/DavidSKrueger/status/1487391569028296710?t=cmgiSKFld_ZnJenHYlsEmQ&s=03) 
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+### Was muss man für ML können?	
+
+<img src='img/role-ml-engineer.png' style="height: 400px">
+
+Da steht nichts von Mathematik oder Verständnis wie ein neuronales Netz funktioniert.
+
+https://boards.greenhouse.io/openai/jobs/4050138004
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+### Vorgehen: Abwechselnd Malen und Insurance Code zeigen und entwickeln (könnten auch Folien sein)
+
+1. Insurance wie bei TFX Talk motivieren
+1. Insurance in Notebook
+1. Kopie machen für andere Parameter bei der Regularisierung
+1. Skizze: decoupling-notebooks.jpg
+1. Wir enkoppeln falsch
+  1. Wir kopieren aber alles, auch die Teile, die die beiden Notebooks teilen
+  1. Solange wir nicht wissen was die relevant gemeinsamen Teile sind müssen wir weiter machen
+1. Am Ende zeigen wie Prod und shift simulierten
+1. Kein TFX aber von da nehmen
+
+</section>
+
+<section data-markdown class="todo">
+### Von hier übernehmen besonders ab 6monts later	
+
+C:\Users\olive\Development\ml-concepts\2021-wjax-mlops.html
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+<img src='img/sketch/decoupling-notebooks.jpg'>
+    </textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+<img src='img/sketch/python-ml-workflow-2.png'>
+    </textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Wer ist Olli
+
+<div style="display: flex;">
+    <div style="flex: 50%;">
+        <a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+        <img src='img/ml-buch-v2.jpg' height="400">
+        </a>
+    </div>
+    <div style="flex: 50%; font-size: x-large;">
+        <img src='img/olli-opa.jpeg'>
+    </div>
+</div>
+<p>
+    <a target="_blank" href="mailto:OliverZeigermann@gmail.com">Oliver Zeigermann</a>:
+Entwickler, Architekt, Berater und Coach für Machine Learning
+</p>    
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Wieso dieser Talk und wieso so?
+* Was kann man schon machen in einem Talk?
+* Einblick in meine Welt zwischen ML und Dev
+* Möglichst realistisch und anschaulich	
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Module in Colab nutzen
+
+https://colab.research.google.com/drive/1hDUO1-EzMVtVt6snmgrR1I1A36oPp4J9#scrollTo=V4ldP8_-cuZ9
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+<img src='img/everybody-gansta.png'>
+
+https://twitter.com/karpathy/status/1486215976559398915
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Eine ML Lösung hat 2 Artefakte: Code und Modell		
+
+* Beides muss in Prod gebracht werden
+* Daten und Modell muss extern gehalten, aber zusammen mit Code versioniert werden
+* Modell beschreibt einen Ausschnitt der Realität. Wie finde ich heraus wie gut es das tut uns vor allem für relevante Teile der Welt und was mache ich wenn sich das ändert
+* Richtung: Benchmark und Monitoring der Lösung in Produktion
+* Prod geht auf Code und Modell Binaries, Modell Graph überall ausführen
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Nicht aller Code ist für Produktion gedacht		
+
+* Was geht in Produktion
+  * Vorhersage
+  * Monitoring
+
+* Was geht nicht in Produktion
+ * Training
+ * Analytics
+ * Visualisierung
+
+
+</textarea>
+</section>
+
+			</div>
+		</div>
+
+		<script src="reveal.js/dist/reveal.js"></script>
+		<script src="reveal.js/plugin/notes/notes.js"></script>
+		<script src="reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="reveal.js/plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
