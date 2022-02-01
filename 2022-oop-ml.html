@@ -201,6 +201,8 @@ Entwickler, Architekt, Berater und Coach für Machine Learning
 * Was kann man schon machen in einem Talk?
 * Einblick in meine Welt zwischen ML und Dev
 * Möglichst realistisch und anschaulich	
+* Skizzen illustrieren die Vorläufigkeit aller dieser Ideen
+* Jede SKizze erlebt bei jeder Iteration eine Veränderung oder Verfeinerung 
 	</textarea>
 			</section>
 
@@ -294,12 +296,12 @@ funktionsfähiges Modell entwickelt.
 * Scripting passt hier besser als Programmieren als Ausdruck für die Tätigkeit
 * das Ziel ist eine schnelle Entwicklung
 * Phase 1 endet entweder mit
-* einem funktionsfähigen Modell mit dem man in Phase II übergeht oder
-* dem verwerfen des Ansatzes
+  * einem funktionsfähigen Modell mit dem man in Phase II übergeht oder
+  * dem Verwerfen des Ansatzes
 
 			</section>
 
-			<section data-markdown>
+			<!-- <section data-markdown>
 				<textarea data-template>
 ### Man muss sein Problem so formulieren, dass es für ML greifbar wird
 
@@ -312,7 +314,7 @@ https://vimeo.com/272696002
 
 </small>
 				</textarea>
-			</section>
+			</section> -->
 
 			<!-- <section data-markdown>
     <textarea data-template>
@@ -339,7 +341,8 @@ _Idee implemented in so called "notebooks"_
 
 ### Wie fühlt sich Arbeit in Notebooks an?
 
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/mlops/1_mlops_train.ipynb
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/process/1_all.ipynb
+
 </textarea>
 			</section>
 
@@ -349,14 +352,7 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 
 ### Wir bringen unser Modell in Produktion
 
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/mlops/2_mlops_serve.ipynb
-</textarea>
-			</section>
-
-			<section data-markdown>
-				<textarea data-template>
-# Fertig!
-
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/process/3_serve.ipynb
 </textarea>
 			</section>
 
@@ -371,6 +367,14 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 
 			<section data-markdown>
 				<textarea data-template>
+# Fertig!
+
+</textarea>
+			</section>
+
+
+			<section data-markdown>
+				<textarea data-template>
 # Oder?
 
 </textarea>
@@ -380,27 +384,37 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 				<textarea data-template>
 ### Kann man sinnvoll direkt in Produktion gehen?
 
-<img src='img/sketch/phases.png'>
+<img src='img/sketch/ml-phasen.png' style="height: 600px;">
     </textarea>
 			</section>
+
 
 			<section data-markdown>
 				<textarea data-template>
 ### Phase I hinterlässt gern einen Wust an Notebooks
 
-<img src='img/sketch/decoupling-notebooks.jpg'>
+<img src='img/sketch/decoupling-notebooks-2.png'  style="height: 600px;">
+
+    </textarea>
+			</section>
+
+			<section data-markdown class="fragments">
+				<textarea data-template>
+### Ist ein Wust an Notebooks ein Problem?
 
 * das ist kein Zeichen von einem unprofessionellen Vorgehen
 * ergibt sich aus der Arbeitsweise und Zielsetzung
 * jeder Experimentator, erprobte ML Ansatz und jede Iteration kann eine neue, komplett entkoppelte Kopie eines Notebooks rechtfertigen
+  * "Das Wichtigste in dieser Phase ist die schnelle Iteration" https://twitter.com/marktenenholtz/status/1488134981985583105
+  * "Machen Sie ein einfaches Experiment nach dem anderen" https://karpathy.github.io/2019/04/25/recipe/
 * natürlich wird dabei teilweise falsch entkoppelt
   * Wir kopieren alles, auch die Teile, die die beiden Notebooks größtenteils unverändert teilen
   * Solange wir aber nicht wissen was die relevant gemeinsamen Teile sind müssen wir damit weiter machen
-* ob ein bestimmter Ansatz mehr Liebe verdient wird erst am Ende dieser Phase klar
+* welcher Ansatz mehr Liebe verdient wird erst am Ende dieser Phase klar
     </textarea>
 			</section>
 
-<section data-markdown style="font-size: xx-large">
+<!-- <section data-markdown>
     <textarea data-template>
 ### Warum so viele unterschiedliche Experimente?
 
@@ -411,6 +425,26 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 https://twitter.com/marktenenholtz/status/1488134981985583105
 ### "Machen Sie ein einfaches Experiment nach dem anderen" 
 https://karpathy.github.io/2019/04/25/recipe/
+
+</textarea>
+</section> -->
+
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+## Was will man da denn in Produktion bringen?
+
+_ein Modell steht nicht für sich allein_
+* es braucht Code für Vor- und Nachbearbeitung
+* es ist eingebettet in andere Systeme
+
+_wer will Scripte in Produktion?_
+* Notebooks sind interaktive Scripte
+* Wie ruft man das denn auf?
+* Welches bringen wir in Produktion?
+* Wie versionieren wir das? 
+* Tests/Dokumentation?
+* Debugging/Show References/Refactor/Autocomplete/Quick Fix/etc.?
 
 </textarea>
 </section>
@@ -428,28 +462,27 @@ https://karpathy.github.io/2019/04/25/recipe/
 			</section>
 
 			<section data-markdown class="fragments">
-				### Phase 2: Professionalisierung
+### Phase 2: Professionalisierung
 
-				* in der zweiten Phase wird die skizzierte Lösung in ein langlebiges Projekt umgewandelt
-				* alle Regeln einer guten Software-Entwicklung gelten von nun an
-				* Stabilität und Funktionalität wird gewährleistet
-				* Die Rahmenbedingungen der Produktionsumgebung müssen erfüllt werden
-				* Art des Deployments, Sprache, Latenz, Speicher, Bandbreite, etc.
-				* Phase II endet entweder mit
-				* reifem Code und Modell mit dem man in Phase III übergeht oder
-				* dem iterieren zurück in Phase I mit neu gewonnenen Erkenntnissen oder falls Anforderungen nicht
-				erfüllt werden
+* in der zweiten Phase wird die skizzierte Lösung in ein langlebiges Projekt umgewandelt
+* alle Regeln einer guten Software-Entwicklung gelten von nun an
+* Stabilität und Funktionalität wird gewährleistet
+* Die Rahmenbedingungen der Produktionsumgebung müssen erfüllt werden
+* Art des Deployments, Sprache, Latenz, Speicher, Bandbreite, etc.
+* Phase II endet entweder mit
+  * reifem Code und Modell mit dem man in Phase III übergeht oder
+  * dem iterieren zurück in Phase I mit neu gewonnenen Erkenntnissen oder falls Rahmenbedingungen nicht erfüllt werden
 
 			</section>
 
 
-			<section data-markdown class="todo">
+			<section data-markdown>
 				<textarea data-template>
-<img src='img/sketch/python-ml-workflow-2.png'>
+<img src='img/sketch/python-ml-workflow-2.png' style="height: 700px;">
     </textarea>
 			</section>
 
-			<section data-markdown>
+			<section data-markdown class="fragments">
 				<textarea data-template>
 ### Was gehört in Bibliotheken ausgelagert?
 
@@ -461,6 +494,17 @@ https://karpathy.github.io/2019/04/25/recipe/
   * diese Teile sollten auch wie solche behandelt werden  
     </textarea>
 			</section>
+
+			<section data-markdown style="font-size: x-large;">
+				<textarea data-template>
+## Schritt \#3 - Live Coding
+
+### Entscheidende Teile in Bibliotheken auslagern
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/process/2_train.ipynb
+</textarea>
+			</section>
+
 
 			<section data-markdown>
 				<textarea data-template>
@@ -487,7 +531,7 @@ https://twitter.com/karpathy/status/1486215976559398915
 
 			<section data-markdown>
 				<textarea data-template>
-<img src='img/twitter-taylor-ml-deployment.png' style="height: 600px">
+<img src='img/twitter-taylor-ml-deployment.png'>
 
 <small>
 
@@ -498,26 +542,28 @@ https://twitter.com/SamuelDataT/status/1488150832742899718
 			</section>
 
 			<section data-markdown class="fragments">
-				### Phase 3: Produktion
+### Phase 3: Produktion / Betrieb
 
-				* in der dritten Phase wird die Lösung in Betrieb genommen
-				* alle Regeln des produktiven Einsatzes von Software gelten auch hier
-				* Monitoring hat zusätzliche Herausforderungen
-				* Natur und Verteilung der Anfragen und auch Vorhersagen muss permanent überwacht werden
-				* Phase III endet entweder mit
-				* der Abschaltung
-				* dem iterieren zurück in Phase II mit neu gewonnenen Erkenntnissen
-				* dem iterieren zurück in Phase I mit neu gewonnenen Erkenntnissen oder einem Neuansatz
+* in der dritten Phase wird die Lösung in Betrieb genommen
+* alle Regeln des produktiven Einsatzes von Software gelten auch hier
+* Monitoring hat zusätzliche Herausforderungen
+  * Natur und Verteilung der Anfragen und auch Vorhersagen muss permanent überwacht werden
+* Phase III endet entweder mit
+  * der Abschaltung 
+    * entweder bald weil nutzlos oder
+    * später weil durch neues System ersetzt
+  * dem iterieren zurück in Phase II mit neu gewonnenen Erkenntnissen
+  * dem iterieren zurück in Phase I mit neu gewonnenen Erkenntnissen oder einem Neuansatz (häufig ebenfalls ein Zeichen für einen Fehlschlag)
 
 			</section>
 
-			<section data-markdown>
+			<!-- <section data-markdown>
 				### Was ist MLOps?
 
 				_MLOps is a set of practices used to deploy and maintain machine learning models in production._
 
-				<!-- In layman terms, MLOps covers everything that comes after model building. After a model is trained and evaluated, it is
-ready for end-use. It can then make predictions on new user data entering the system. -->
+				In layman terms, MLOps covers everything that comes after model building. After a model is trained and evaluated, it is
+ready for end-use. It can then make predictions on new user data entering the system.
 
 
 				https://towardsdatascience.com/the-mlops-engineer-role-a-gentle-introduction-8d94cdc73904
@@ -527,13 +573,13 @@ ready for end-use. It can then make predictions on new user data entering the sy
 				### Warum MLOps?
 
 				* im akademischen Leben zählt für einen Wettbewerb häufig nur der Score (Güte) des Modells
-				<!-- * dieser Ansatz hat sich im Bereich des Data Science auch in der Praxis breit gemacht -->
+				* dieser Ansatz hat sich im Bereich des Data Science auch in der Praxis breit gemacht
 				* die Praxis ist aber keine Kaggle Competition
 				* In-Sample Evaluation (auch wenn wir die vorher abgetrennt haben) sagt nur bedingt etwas für Eignung in
 				einer praktsichen Anwendung aus
 				* Out-Of-Sample Evaluation häufig erst im produktiven Betrieb möglich (evtl nur mitlaufen lassen)
 			</section>
-
+ -->
 			<section data-markdown>
 				<textarea data-template>
 ### Eine ML Lösung hat 2 Artefakte: Code und Modell		
@@ -556,15 +602,15 @@ ready for end-use. It can then make predictions on new user data entering the sy
   * Monitoring
 
 * Was geht nicht in Produktion
- * Training
- * Analytics
- * Visualisierung
+  * Training
+  * Analytics
+  * Visualisierung
 
 
 </textarea>
 			</section>
 
-			<section data-markdown class="fragments todo">
+			<section data-markdown class="fragments">
 				<textarea data-template>
 ### Probleme: Selection/Survivor Bias
 
@@ -578,46 +624,38 @@ https://en.wikipedia.org/wiki/Survivorship_bias
 </textarea>
 			</section>
 
-			<section data-markdown class="fragments todo" style="font-size: x-large;">
-				### Phase 3: Betrieb
+			<!-- <section data-markdown class="fragments todo" style="font-size: x-large;">
+### Phase 3: Betrieb
 
-				* Schwierigkeit:
-				* Müssen wir wieder zurück ins Experiment?
-				* Wie finden wir heraus, ob unser Modell gut funktioniert?
+* Schwierigkeit:
+	* Müssen wir wieder zurück ins Experiment?
+	* Wie finden wir heraus, ob unser Modell gut funktioniert?
 
-				* Monitoring
-				* Alles was man auch sonst monitort
-				* Plus Anfragen sammeln und Vorhersagen mitschreiben
+* Monitoring
+	* Alles was man auch sonst monitort
+	* Plus Anfragen sammeln und Vorhersagen mitschreiben
 
-				* Achtung Bias
-				* Wenn wir nur die vermeintlich guten Kunden annehmen, wie können wir dann einen schlechten erkenen?
-				* wir haben ja gar keinen oder nur wenige als Kunden
-				* Einen gewissen Prozentsatz mit schlechter Hypothese ein sehr gutes Angebot machen
+* Achtung Bias
+	* Wenn wir nur die vermeintlich guten Kunden annehmen, wie können wir dann einen schlechten erkenen?
+	* wir haben ja gar keinen oder nur wenige als Kunden
+	* Einen gewissen Prozentsatz mit schlechter Hypothese ein sehr gutes Angebot machen
 
+			</section> -->
+
+			<!-- <section data-markdown class="todo">
+
+- Information über Schadensfälle neuer Kunden kommen nur verzögert
+- Aber neue Meldungen über Schandensmeldungen kommen permanent
+- wie oft neu trainieren?
+- mit welchen Daten? Aktualität vs Datenmenge?
+- wie schnell ändert sich die Welt? wie schnell die Menschen die bei uns Kunden sein wollen?
+- Datensätze schnell statistisch vergleichen mit describe
 			</section>
-
-			<section data-markdown class="todo">
-
-				- Information über Schadensfälle neuer Kunden kommen nur verzögert
-				- Aber neue Meldungen über Schandensmeldungen kommen permanent
-				- wie oft neu trainieren?
-				- mit welchen Daten? Aktualität vs Datenmenge?
-				- wie schnell ändert sich die Welt? wie schnell die Menschen die bei uns Kunden sein wollen?
-				- Datensätze schnell statistisch vergleichen mit describe
-			</section>
-
-
-			<section data-markdown>
-				<textarea data-template>
-
-<img src='img/6monts-later.jpg' height="600px">
-
-</textarea>
-			</section>
+ -->
 
 			<section data-markdown class="fragments">
 				<textarea data-template>
-### Wir haben das System ein bisschen in Produktion laufen lassen
+### Wir lassen das System ein bisschen in Produktion laufen
 
 Mal sehen wie sich das System macht
 
@@ -637,6 +675,15 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 
 			<section data-markdown>
 				<textarea data-template>
+
+<img src='img/6monts-later.jpg' height="600px">
+
+</textarea>
+			</section>
+
+
+			<section data-markdown data-transition="none">
+				<textarea data-template>
 ## Ergebnis des Modells nach einem halben Jahr
 
 <img src='img/insurance-new/insurance-after-shift.png' class="fragment">
@@ -645,7 +692,7 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 			</section>
 
 
-			<section data-markdown>
+			<section data-markdown data-transition="none">
 				<textarea data-template>
 ## Ursprüngliche Daten zum direkten Vergleich
 
@@ -672,7 +719,7 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 </textarea>
 			</section>
 
-			<section data-markdown>
+			<!-- <section data-markdown>
 				<textarea data-template>
 ### Prozess eines ML-Projekts
 
@@ -703,11 +750,11 @@ https://twitter.com/chipro/status/1313921889061015557
 
 </small>
     </textarea>
-			</section>
+			</section> -->
 
 			<section data-markdown class="fragments">
 				<textarea data-template>
-### Woher weiß man, dass das Modell neu trainiert werden sollte?
+### Woher weiß man, dass man ein neues Modell in Produktion braucht?
 
 1. Mindestens einmal im Jahr, damit man überhaupt noch weiß wie es geht
 1. Wenn die Metrik des Modells nachlässt in Produktion
@@ -721,26 +768,30 @@ https://twitter.com/chipro/status/1313921889061015557
 
 			<section data-markdown class="fragments">
 				<textarea data-template>
-### Wie gehen wir zurück in die Phasen I und II
+### Wir gehen zurück in die Phasen I und II
 
 * hier wird wieder in Notebooks gearbeitet
 * die Bibliotheken werden inkludiert und bei jeder Änderung neu geladen
 * Jupyter Lab bietet eine gemeine Oberfläche für Notebooks und Bibliotheken
 * Eine Kombination von Visual Studio Code und Jupyer Notebooks ist ebenso möglich
 * Selbst Colab erlaubt das Arbeiten auf einer Kombination von Notebooks und Bibliotheken
+  * Referenz: Module in Colab nutzen: https://colab.research.google.com/drive/1hDUO1-EzMVtVt6snmgrR1I1A36oPp4J9
+* Rückker in Phase I muss nicht radikal sein
+  * wenn Ansatz vergleichbar kann Phase II so erhalten bleiben
+  * neue Ergebnisse fliesen dann iterativ in die Professionalisierung
 
 </textarea>
 			</section>
 
 
-			<section data-markdown>
+			<!-- <section data-markdown>
 				<textarea data-template>
 ### Referenz: Module in Colab nutzen
 
 https://colab.research.google.com/drive/1hDUO1-EzMVtVt6snmgrR1I1A36oPp4J9
 </textarea>
 			</section>
-
+ -->
 			<section data-markdown>
 				<textarea data-template>
 # Vielen Dank
