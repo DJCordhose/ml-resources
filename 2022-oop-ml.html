@@ -148,6 +148,11 @@
 				</ul>
 			</section>
 
+<section data-markdown class="local preparation">
+- Jupyter Notebook in richtigem Environment
+- Jupyter lab als Alternative zeigen	
+</section>
+
 			<section data-markdown>
 				<textarea data-template>
 ## Machine Learning betrachtet als ein Engineering Problem                
@@ -187,6 +192,19 @@ Entwickler, Architekt, Berater und Coach für Machine Learning
 
 			<section data-markdown>
 				<textarea data-template>
+<img src='img/freud-lecturing.png'>					
+
+<small>
+
+https://twitter.com/cedric_p/status/1486743144163155974
+</small>
+
+				</textarea>
+			</section>
+
+
+			<section data-markdown>
+				<textarea data-template>
 ### Wieso dieser Talk und wieso so?
 
 * Was kann man schon machen in einem Talk?
@@ -195,19 +213,6 @@ Entwickler, Architekt, Berater und Coach für Machine Learning
 * Skizzen illustrieren die Vorläufigkeit aller dieser Ideen
 * Jede SKizze erlebt bei jeder Iteration eine Veränderung oder Verfeinerung 
 	</textarea>
-			</section>
-
-			<section data-markdown class="todo">
-
-				David Krueger (@DavidSKrueger) twitterte um 0:45 PM on Sa., Jan. 29, 2022:
-				Machine Learning lives in an uncanny valley btw Science and Engineering.
-
-				It's the worst of both worlds.
-
-				We don't care about understanding, just making things "work" (bad science).
-
-				We don't care if things work in the real world, just on contrived benchmarks (bad engineering).
-				(https://twitter.com/DavidSKrueger/status/1487391569028296710?t=cmgiSKFld_ZnJenHYlsEmQ&s=03)
 			</section>
 
 			<section data-markdown>
@@ -261,7 +266,7 @@ https://boards.greenhouse.io/openai/jobs/4050138004
 </a>
 <p><small>
 <a href='html/calculator.html' target="_blank">
-https://embarced.github.io/ml-concepts/html/calculator.html</a></small>
+https://djcordhose.github.io/ml-resources/html/calculator.html</a></small>
 </small></p>
 </textarea>
 			</section>
@@ -452,6 +457,18 @@ _wer will Scripte in Produktion?_
 	</textarea>
 			</section>
 
+			<section data-markdown>
+				<textarea data-template>
+<img src='img/ml-bad.png'>					
+
+<small>
+
+https://twitter.com/DavidSKrueger/status/1487391569028296710
+</small>
+
+				</textarea>
+			</section>
+
 			<section data-markdown class="fragments">
 ### Phase 2: Professionalisierung
 
@@ -548,6 +565,21 @@ https://twitter.com/SamuelDataT/status/1488150832742899718
 
 			</section>
 
+			<section data-markdown class="fragments">
+### Technische Umsetzung des Betriebs in Produktion
+
+* haben wir bereits vorhin gesehen
+* Ein TensorFlow Graph lässt sich in unterschiedlichsten Szenarien einzusetzen
+  * Als Server
+     * local
+	 * GCP
+  * Von C++
+  * Von JavaScript
+  * Von Java
+   
+			</section>
+
+
 			<!-- <section data-markdown>
 				### Was ist MLOps?
 
@@ -571,7 +603,7 @@ ready for end-use. It can then make predictions on new user data entering the sy
 				* Out-Of-Sample Evaluation häufig erst im produktiven Betrieb möglich (evtl nur mitlaufen lassen)
 			</section>
  -->
-			<section data-markdown>
+			<!-- <section data-markdown>
 				<textarea data-template>
 ### Eine ML Lösung hat 2 Artefakte: Code und Modell		
 
@@ -613,7 +645,7 @@ ready for end-use. It can then make predictions on new user data entering the sy
 
 https://en.wikipedia.org/wiki/Survivorship_bias
 </textarea>
-			</section>
+			</section> -->
 
 			<!-- <section data-markdown class="fragments todo" style="font-size: x-large;">
 ### Phase 3: Betrieb
@@ -667,7 +699,8 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 			<section data-markdown>
 				<textarea data-template>
 
-<img src='img/6monts-later.jpg' height="600px">
+<!-- <img src='img/6monts-later.jpg' height="600px"> -->
+<img src='img/2year-later.jpg' height="600px">
 
 </textarea>
 			</section>
@@ -675,7 +708,7 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 
 			<section data-markdown data-transition="none">
 				<textarea data-template>
-## Ergebnis des Modells nach einem halben Jahr
+## Ergebnis des Modells nach zwei Jahren
 
 <img src='img/insurance-new/insurance-after-shift.png' class="fragment">
 
@@ -741,8 +774,7 @@ https://twitter.com/chipro/status/1313921889061015557
 
 </small>
     </textarea>
-			</section> -->
-
+			</section> -->			
 			<section data-markdown class="fragments">
 				<textarea data-template>
 ### Woher weiß man, dass man ein neues Modell in Produktion braucht?
@@ -756,6 +788,7 @@ https://twitter.com/chipro/status/1313921889061015557
 
 </textarea>
 			</section>
+
 
 			<section data-markdown class="fragments">
 				<textarea data-template>
@@ -774,6 +807,36 @@ https://twitter.com/chipro/status/1313921889061015557
 </textarea>
 			</section>
 
+<section data-markdown>
+### Der ganze Prozess ist auch als MLOps bekannt
+
+_MLOps is a set of practices used to deploy and maintain machine learning models in production._
+
+In layman terms, MLOps covers everything that comes after model building. After a model is trained and evaluated, it is
+ready for end-use. It can then make predictions on new user data entering the system.
+
+
+https://towardsdatascience.com/the-mlops-engineer-role-a-gentle-introduction-8d94cdc73904
+			</section>
+
+<section data-markdown>
+    <textarea data-template>
+## MLOps mit TFX
+_TFX als ein Beispiel für MLOps mit TensorFlow_
+
+<a href='https://www.tensorflow.org/tfx'><img src='img/mlops/tfx-übersicht.jpg' style="height: 400px;"></a>
+<small>
+https://www.tensorflow.org/tfx
+<br>
+https://www.tensorflow.org/tfx/guide#tfx_standard_components
+<br>
+https://github.com/tensorflow/tfx
+<br>
+https://blog.tensorflow.org/2020/09/brief-history-of-tensorflow-extended-tfx.html
+</small>
+
+</textarea>
+    </section>
 
 			<!-- <section data-markdown>
 				<textarea data-template>
