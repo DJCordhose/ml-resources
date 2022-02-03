@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Image Recognition with Python</title>
+    <title>JAX</title>
 
     <link rel="stylesheet" href="reveal.js/dist/reset.css">
     <link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -113,111 +113,33 @@
     <div class="reveal">
         <div class="slides">
 
-            <!-- 
-
-Version mit OpenCV
-
-Image Recognition using OpenCV
----
-
-It does not always have to be deep learning. While deep learning has definitely earned its place, we should not forget,
-that classic image processing and recognition techniques can still have their place in your pipeline. OpenCV is one of
-the leading libraries in that area and comes with a Python interface.
-
-We will also investigate where classic image processing has reached its end and where deep learning is without
-competition. But, as it turns out, this actually a smooth transition and a lot of concepts from low level image
-processing are also found in convolutional neural networks.
-
-The purpose of this workshop is to enable the scientific world to use state of the art image recognition techniques
-based on the work Oliver has done in industry.
-
-As a participant you should have an interest in the application of image recognition (maybe from video), and a basic
-knowledge of Python and its scientific packages. Objective of the workshop is to have an overview of what can be done
-with classic image recognition. We will not rush through the topics, but give you enough time to experiment.
-
-Tutorial Description
----
-
-It does not always have to be deep learning. While deep learning has definitely earned its place, we should not forget,
-that classic image processing and recognition techniques can still have their place in your pipeline. OpenCV is one of
-the leading libraries in that area and comes with a Python interface.
-
-We will also investigate where classic image processing has reached its end and where deep learning is without
-competition. But, as it turns out, this actually a smooth transition and a lot of concepts from low level image
-processing are also found in convolutional neural networks.
-
-The purpose of this workshop is to enable the scientific world to use state of the art image recognition techniques
-based on the work Oliver has done in industry.
-
-As a participant you should have an interest in the application of image recognition (maybe from video), and a basic
-knowledge of Python and its scientific packages. Objective of the workshop is to have an overview of what can be done
-with classic image recognition. We will not rush through the topics, but give you enough time to experiment.
-
-Outline
----
-
-- Getting started (30 min)
-  - Scope of the library
-  - Preparing hands-on: Setting it up on Colab or local machine (repo ready to be cloned)
-- Basics (30 min)
-  - internal structures of images
-  - Regions of interest (ROI)
-  - filtering and detection
-  - hands-on notebook prepared on Colab or on local machine 
-- Background removal from video (30 min)
-  - hands-on: use prepared or your own static viewport video to remove background (or foreground)
-- Finding contours in images and merge them to polygons (30 min)
-   - hands-on: based on extracted foreground find contours and connect them to objects
-- Drawing bounding boxes (30 min)
-  - hands-on: based on polygons of contours draw bounding boxes and extract as ROIs
-- Object Tracking (30 min)
-  - hands-on: use camshift or overlap of ROIs to track objects
-- Path to Deep Learning (60 min)
-  - when do we need deep learning
-  - from filters to convolutional networks
-  - using neural networks to classify ROIs
-
-Oliver is a computer science professional working on industrial projects in the area of computer vision. He is also an
-instructor who has written a number of books and is author of the video course "Deep Learning Crash Course" for manning
-(https://www.manning.com/livevideo/deep-learning-crash-course). More at https://zeigermann.eu/
-
--->
 
             <section data-markdown>
                 <textarea data-template>
-# Image Recognition with Python
-
-Oliver Zeigermann
+# JAX
 
     </textarea>
             </section>
 
-
             <section data-markdown>
                 <textarea data-template>
-### Abstract                    
-- Our focus will be on applications, so we will not go into how things work internally, but rather how to make use of them.
-- use prebuilt and pretrained networks for image recognition and object detection
-- Applications for Autorencoder for Images
-  - Denoising
-  - Outlier/Error Detection
-  - Visualization
-  - Extract Embeddings
+### Links
+
+* This is an example of why I think JAX is so exciting from a pedagogical standpoint.
+
+Here is just ~30 lines of code showing the relationship between log-likelihood, the Hessian, Fisher Information and Laplace Approximation, ending in up in a working function. https://t.co/7SrqnKG4ZG
+(https://twitter.com/willkurt/status/1489104127368085507?t=EBPSLepXrJKZ75OjFLVcLQ&s=03) 
 
     </textarea>
             </section>
-
-
             <section data-markdown>
                 <textarea data-template>
-### Notebooks
-- OpenCV: https://github.com/DJCordhose/object-tracking-playground
-- 
-
-    </textarea>
+### GPUs
+                     
+* https://twitter.com/marktenenholtz/status/1489222150384848900
+</textarea>
             </section>
-
-
+            
 
         </div>
     </div>
