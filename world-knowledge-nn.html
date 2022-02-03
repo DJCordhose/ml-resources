@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Links to Resources</title>
+    <title>World Knowledge Priors</title>
 
     <link rel="stylesheet" href="reveal.js/dist/reset.css">
     <link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -113,56 +113,68 @@
     <div class="reveal">
         <div class="slides">
 
+<!-- Title: How to teach our world knowledge to a neural network?
+
+Neural networks are powerful approximators for any function. However they do not have the slightest idea of common knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by training data.
+
+We, as human beings have that knowledge about the world and our domains of expertise, allowing deep learning models to become much more robust and even to extrapolate. But how do we encode this?
+
+This talk is a survey on known methods including choosing the right loss, forcing sparsity, choose good dimensions, lattices, types of network layers, and - last but not least - augmented training data. 
+
+There will also be a critique of too much trust in auto tuning libraries. They might win you a Kaggle competition, but might spoil your real-world applicability.
+
+I will show actual code on different examples and share the code for you to take home as a starting point.
+
+None of the techniques shown are new and you might already know a good chunk of them (probably not all of them, though), but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the world knowledge you have.
+
+Pitch: Deep Learning models are notorious for not being able to extrapolate from their area of training data. However, by encoding your world knowledge as priors you can at least push it in the right direction. It might even be the most important skill of a deep learning engineer to know how to do that.
+
+Workshop:
+
+Neural networks are powerful approximators for any function. However they do not have the slightest idea of common knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by training data.
+
+We, as human beings have that knowledge about the world and our domains of expertise, allowing deep learning models to become much more robust and even to extrapolate. But how do we encode this?
+
+Based on code examples we will go through the known methods including choosing the right loss, forcing sparsity, choose good dimensions, lattices, types of network layers, and - last but not least - augmented training data. 
+
+None of the techniques shown are new and you might already know a good chunk of them (probably not all of them, though), but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the world knowledge you have.
+
+
+Format: Workshop oder Talk
+
+Level: Intermediate
+
+Konferenzen:
+-  ODSC Europe / West: https://odsc.com/europe/call-for-speakers-europe/
+- M3
+- Scipy
+
+Inhalte:
+- Sparsity
+- CNN
+- RNN
+- Lattice
+- Losses (xent vs mse)
+- Why auto tuning might not be such a good idea (overfits on val data), but real priors might not even be obeyed
+- Beispiel mit Lattice, Extrapolation und Tweet von Fchollet
+- Daten-Beispiele selbst gemalte Bilder oder Sinus -->
+
+
             <section data-markdown>
                 <textarea data-template>
-# Structured and commented links to ML resources
+# World Knowledge Priors
 
     </textarea>
             </section>
 
             <section data-markdown>
                 <textarea data-template>
-### Dev Workflow                    
+### Links
 
-#### py module vs Notebook
-* Rule of thumb when py when ipynb (too simple): https://twitter.com/eprosenthal/status/1488932302075879425
-  * https://twitter.com/rasbt/status/1488969176022667264
-    </textarea>
-            </section>
-            
-
-            <section data-markdown>
-                <textarea data-template>
-### Foundation Models                    
-* AlphaCode
-  * https://twitter.com/DeepMind/status/1488907829276725252
-    * https://deepmind.com/blog/article/Competitive-programming-with-AlphaCode
-  * Performance Evaluation: https://twitter.com/DBahdanau/status/1489009994007674881
-
-* GPT3-Embeddings
-  * Critique, high cost, low performance: https://twitter.com/Nils_Reimers/status/1487014195568775173
+* Why Do Better Loss Functions Lead to Less Transferable Features?" https://twitter.com/skornblith/status/1469132061579620355
 
     </textarea>
             </section>
-
-
-            <section data-markdown>
-                <textarea data-template>
-### Model Validation                    
-* https://arxiv.org/abs/1811.12808
-  * https://twitter.com/marktenenholtz/status/1482855599817822213
-    </textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Recipes for Training Models
-                     
-* https://karpathy.github.io/2019/04/25/recipe/
-* https://twitter.com/marktenenholtz/status/1488134981985583105    
-</textarea>
-            </section>
-
             
 
         </div>
