@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>User Experience for Machine Learning / Human Centered ML</title>
+
+    <link rel="stylesheet" href="reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+    <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+    <link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+    <style>
+        .right-img {
+            margin-left: 10px !important;
+            float: right;
+            height: 500px;
+        }
+
+        .todo:before {
+            content: 'TODO: ';
+        }
+
+        .todo {
+            color: red !important;
+        }
+
+        code span.line-number {
+            color: lightcoral;
+        }
+
+        .reveal pre code {
+            max-height: 1000px !important;
+        }
+
+        img {
+            border: 0 !important;
+            box-shadow: 0 0 0 0 !important;
+            height: 450px;
+        }
+
+        .reveal {
+            -ms-touch-action: auto !important;
+            touch-action: auto !important;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            /* letter-spacing: 2px; */
+            font-family: 'Calibri', sans-serif;
+            /* font-family: 'Times New Roman', Times, serif; */
+            /* font-weight: bold; */
+            color: black;
+            /* font-style: italic; */
+            /* letter-spacing: -2px; */
+            text-transform: none !important;
+        }
+
+        .reveal em {
+            font-weight: bold;
+        }
+
+        .reveal section img {
+            background: none;
+        }
+
+        .reveal img.with-border {
+            border: 1px solid #586e75 !important;
+            box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .reveal li {
+            margin-bottom: 8px;
+        }
+
+        /* For li's that use FontAwesome icons as bullet-point */
+        .reveal ul.fa-ul li {
+            list-style-type: none;
+        }
+
+        .reveal {
+            /* font-family: 'Work Sans', 'Calibri'; */
+            font-family: 'Calibri';
+            color: black !important;
+            font-size: xx-large;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .col,
+        col-1 {
+            flex: 1;
+        }
+
+        .col-2 {
+            flex: 2;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: whitesmoke;">
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 
+
+Title: We are all just blue - racial biases in image recognition
+Title: We are all just smurfs - racial biases in image recognition
+Subtitle: Why we all basically have the same skin color and even lightness of skin is an acquired sensation and other racial biases in image recognition
+
+This talk is a series of demonstrations and shared interactive experiments. Among those lines I will turn the audience into smurfs, show h 
+
+- Green Screen, Blue Screen
+- Papa Schlumpf ist auch blau
+- Kunstprojekt mit Surface
+- Histogram von Hue für Hand Erkennung
+  - Unfortunately, we only have the main color in common, there are certain variations, though
+- How did I find out? OpenCV swaps color channels
+
+actionable takeaways
+- how image recognition works 
+- why certain detectors fail (and why this is hard to fix)
+- user experience and machine learning
+- 
+
+Learn how image recognition works in general. Why certain detectors fail (and why this is hard to fix). User experience and machine learning.
+- 
+
+Talk
+- ODSC Europe
+- ODSC West 
+- QCONSF (bereits vorgeschlagen, aber bei denen muss man so ne komisch Anfrage machen)
+
+Interaktive  
+-->
+
+
+
+
+            <section data-markdown>
+                <textarea data-template>
+# Human Centered Machine Learning
+
+User Experience and Machine Learning in the context  
+
+    </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+        </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Links
+
+    </textarea>
+            </section>
+
+
+        </div>
+    </div>
+
+
+    <script src="reveal.js/dist/reveal.js"></script>
+    <script src="reveal.js/plugin/notes/notes.js"></script>
+    <script src="reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="reveal.js/plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            width: 1100,
+            slideNumber: true,
+            hideInactiveCursor: false,
+
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+    </script>
+
+    <script src="lib/jquery.js"></script>
+
+    <script>
+        const printMode = window.location.search.match(/print-pdf/gi);
+        const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+            window.location.hostname.indexOf('127.0.0.1') !== -1;
+        const isPresentation = isLocal && !printMode;
+        const isPublic = !isPresentation;
+
+        $('.hide').remove();
+
+        if (isPresentation) {
+        } else {
+            // only applies to public version
+            $('.todo').remove();
+            $('.preparation').remove();
+            $('.local').remove();
+        }
+
+        Reveal.addEventListener('ready', function (event) {
+            // applies to all versions
+            $('code').addClass('line-numbers');
+
+            $('.fragments li').addClass('fragment')
+
+            // make all links open in new tab
+            $('a').attr('target', '_blank')
+
+            if (isPresentation) {
+                // only applies to presentation version
+                Reveal.configure({ controls: false });
+            } else {
+                // only applies to public version
+                $('.fragment').removeClass('fragment');
+            }
+
+            // we do not like fragments
+            // $('.fragment').removeClass('fragment');
+
+        });
+
+    </script>
+
+</body>
+
+</html>

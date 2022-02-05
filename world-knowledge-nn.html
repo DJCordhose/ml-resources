@@ -113,7 +113,7 @@
     <div class="reveal">
         <div class="slides">
 
-<!-- 
+            <!-- 
 Welt- und Domänenwissen für neuronalen Netze
 
 Neuronale Netze können jede Funktion approximieren. Sie haben jedoch nicht die geringste Ahnung von allgemeinen
@@ -126,7 +126,7 @@ Extrapolation erlauben könnte. Aber wie kodieren wir dieses Wissen?
 Dieser Vortrag ist ein Überblick über bekannte Methoden, einschließlich der Wahl des richtigen Losses, der Erzwingung von Sparsity, 
 der Wahl guter Dimensionen, Lattices, Arten von Netzwerkschichten und - nicht zuletzt - augmentierte Trainingsdaten.
  -->
-<!-- Title: How to teach our world knowledge to a neural network?
+            <!-- Title: How to teach our world knowledge to a neural network?
 
 Neural networks are powerful approximators for any function. However they do not have the slightest idea of common knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by training data.
 
@@ -174,7 +174,63 @@ Inhalte:
 - Losses (xent vs mse)
 - Why auto tuning might not be such a good idea (overfits on val data), but real priors might not even be obeyed
 - Beispiel mit Lattice, Extrapolation und Tweet von Fchollet
-- Daten-Beispiele selbst gemalte Bilder oder Sinus -->
+- Daten-Beispiele selbst gemalte Bilder oder Sinus
+
+Weltwissen hauptsächlich Frage der Architektur
+- Traditionelle Systeme instrumentieren viele kleine Modelle als Pattern matcher viel besser als
+- Großes System als Blackbox
+
+Großes System als Blackbox
+Eigener Talk
+- die wichtigste Architektur Frage im Machine Learning
+- Ein großes Modell oder viele kleine traditionell instrumentiert
+
+---
+
+Talk: ODSC Europe
+
+Why you should prefer many small models over a single large one
+
+When designing a solution using machine learning one of the central architectural questions is whether you
+should use a set of small models orchestrated by traditional code or a single big one that just figures out
+things from beginning to end.
+
+In this talk I take the standpoint that a single large one should be avoided for many reasons. The main
+reason for choosing small ones is to keep being in control as the human domain expert. This applies to
+training as well as putting in domain knowledge your models can not possibly have.
+
+While this might also be of interest in the academic world in context of whether deep learning is the
+solution to all in this talk we will look at it from a practical perspective.
+
+Of course this is an over-generalization, but I found this to be true in all the projects I have
+participated in and in many other common ones.
+
+
+---
+
+Talk: QCon
+
+Title: The most important architectural decision in machine learning: many small models over a single large one?
+
+actionable takeaways
+
+What are the most important architectural questions in machine learning? 
+Why architecture for machine learning has a special place in the world of software engineering. 
+Among the important decisions you need to make early which are the ones that are especially hard to change. 
+Why such a seemingly harmless question has so much emotional potential.
+
+While sounding harmless at first sight, there is also a lot of emotional potential in this question.
+
+
+
+
+what is by far the most important and hardly correctable architectural decision in retrospect
+
+As another teaser: doesn't look important at first, and requires much explanation why it is so
+
+-->
+
+
 
 
             <section data-markdown>
@@ -191,7 +247,7 @@ Inhalte:
 - https://raschka-research-group.github.io/coral-pytorch/
 - Ok, aber die Tatsache dass man weiss dass da eine Ordnung ist ist vielleicht eine Art Prior. Aber das ist sehr weitgegriffen vielleicht
         </textarea>
-    </section>
+            </section>
 
             <section data-markdown>
                 <textarea data-template>
@@ -202,7 +258,7 @@ Inhalte:
 (https://twitter.com/Rainmaker1973/status/1489209455489212416?t=gxzQxv4J1yKQWVNnVkQ6bA&s=03) 
     </textarea>
             </section>
-            
+
 
         </div>
     </div>
