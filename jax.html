@@ -114,6 +114,42 @@
         <div class="slides">
 
 
+<!-- 
+- [ ] Jax für die Jax: Deep Neural Networks from Scratch
+
+Neuronale Netzwerke werden immer noch mit viel Ehrfurcht betrachtet und manche Menschen haben sogar ein bisschen Angst, weil scheinbar Magie in ihnen vorgeht. Dennoch ist ein Grundverständnis Voraussetzung für ihren sinnvollen Einsatz.
+
+Es stellt sich aber heraus, dass neuronale Netzwerke unter der Haube gar nicht so komplex sind und wir es luxuriös innerhalb einer Stunde schaffen können, ein neuronales Netzwerk aus simplen mathematischen Operationen zusammenzubauen, auf einer GPU zum laufen zu bringen und auf ein realistisches Problem zur Anwendung zu bringen.
+
+Dazu werden wir das Jax Framework verwenden, das natürlich nur zufällig genauso heißt wie die Jax.
+
+Als Bonus sehen wir uns an, wie man etwas ähnliches direkt in Java machen könnte und warum das noch keine gute Idee ist, aber bald eine sein könnte.
+
+Mathieu Blondel (@mblondel_ml) twitterte um 4:05 PM on Mo., Jan. 31, 2022:
+JAXopt v0.3 has been released! New features: LBFGS, nonlinear conjugate gradient, and Gauss-Newton algorithm! https://t.co/PyHX081tMe
+(https://twitter.com/mblondel_ml/status/1488166454662946820?t=ftCJsstoff-_qW50PJfNUw&s=03)
+
+François Chollet (@fchollet) twitterte um 4:18 AM on So., Jan. 16, 2022:
+Did you know you could use JAX to write Keras layers? It's as simple as a call to `jax2tf.convert()`.
+
+XLA is the shared language that makes this works. https://t.co/pwFgXsLtvK
+(https://twitter.com/fchollet/status/1482552760478306307?t=eeEevPqbNw0BhbisJ2td4w&s=03) 
+
+- [ ] JAX Intro als Grundlage: https://youtu.be/WdTeDXsOSj4 
+- [ ] Dann bisschen neues Java Binding 
+        - Warum keine gute Idee
+            - Umständliche Sprachmittel
+            - Noch in Alpha
+            - generell keine Stability Garantie
+        - Neue (stand heute nicht Stable) Version auf Basis von JavaCPP: https://github.com/tensorflow/java
+            - https://github.com/tensorflow/java/releases/tag/v0.4.0
+            - https://github.com/tensorflow/java-ndarray
+        - Wird nicht nur Core, sondern auch volle API haben: https://github.com/tensorflow/java/blob/master/tensorflow-framework/tensorflow-data.md
+        - Alte Version auf Basis von JNI, nur Core für die Ausführung von Modellen
+            - https://www.tensorflow.org/api_docs/java/org/tensorflow/package-summary
+        - Pytorch hat wohl schon vernünftiges Binding
+            - https://github.com/bytedeco/javacpp-presets/issues/1038             -->
+            
             <section data-markdown>
                 <textarea data-template>
 # JAX
@@ -129,6 +165,8 @@
 
 Here is just ~30 lines of code showing the relationship between log-likelihood, the Hessian, Fisher Information and Laplace Approximation, ending in up in a working function. https://t.co/7SrqnKG4ZG
 (https://twitter.com/willkurt/status/1489104127368085507?t=EBPSLepXrJKZ75OjFLVcLQ&s=03) 
+
+* https://colab.research.google.com/github/deepmind/educational/blob/master/colabs/summer_schools/intro_to_graph_nets_tutorial_with_jraph.ipynb
 
     </textarea>
             </section>
