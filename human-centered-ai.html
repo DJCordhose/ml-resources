@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>JAX</title>
+    <title>Human Centered AI</title>
 
     <link rel="stylesheet" href="reveal.js/dist/reset.css">
     <link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -113,77 +113,129 @@
     <div class="reveal">
         <div class="slides">
 
+            <!-- 
 
-<!-- 
-- [ ] Jax für die Jax: Deep Neural Networks from Scratch
 
-Neuronale Netzwerke werden immer noch mit viel Ehrfurcht betrachtet und manche Menschen haben sogar ein bisschen Angst, weil scheinbar Magie in ihnen vorgeht. Dennoch ist ein Grundverständnis Voraussetzung für ihren sinnvollen Einsatz.
+NUR MATERIAL
+Title: We are all just martians and other biases in image recognition
 
-Es stellt sich aber heraus, dass neuronale Netzwerke unter der Haube gar nicht so komplex sind und wir es luxuriös innerhalb einer Stunde schaffen können, ein neuronales Netzwerk aus simplen mathematischen Operationen zusammenzubauen, auf einer GPU zum laufen zu bringen und auf ein realistisches Problem zur Anwendung zu bringen.
+This talk is a series of demonstrations and shared interactive experiments. 
+Among those lines I will turn the audience into martians, show h 
 
-Dazu werden wir das Jax Framework verwenden, das natürlich nur zufällig genauso heißt wie die Jax.
 
-Als Bonus sehen wir uns an, wie man etwas ähnliches direkt in Java machen könnte und warum das noch keine gute Idee ist, aber bald eine sein könnte.
 
-Mathieu Blondel (@mblondel_ml) twitterte um 4:05 PM on Mo., Jan. 31, 2022:
-JAXopt v0.3 has been released! New features: LBFGS, nonlinear conjugate gradient, and Gauss-Newton algorithm! https://t.co/PyHX081tMe
-(https://twitter.com/mblondel_ml/status/1488166454662946820?t=ftCJsstoff-_qW50PJfNUw&s=03)
 
-François Chollet (@fchollet) twitterte um 4:18 AM on So., Jan. 16, 2022:
-Did you know you could use JAX to write Keras layers? It's as simple as a call to `jax2tf.convert()`.
+Title: We are all just smurfs and other biases in image recognition
 
-XLA is the shared language that makes this works. https://t.co/pwFgXsLtvK
-(https://twitter.com/fchollet/status/1482552760478306307?t=eeEevPqbNw0BhbisJ2td4w&s=03) 
+Title: We are all just blue - racial biases in image recognition
+Title: We are all just smurfs - racial biases in image recognition
+Subtitle: Why we all basically have the same skin color and even lightness of skin is an acquired sensation and other racial biases in image recognition
 
-- [ ] JAX Intro als Grundlage: https://youtu.be/WdTeDXsOSj4 
-- [ ] Dann bisschen neues Java Binding 
-        - Warum keine gute Idee
-            - Umständliche Sprachmittel
-            - Noch in Alpha
-            - generell keine Stability Garantie
-        - Neue (stand heute nicht Stable) Version auf Basis von JavaCPP: https://github.com/tensorflow/java
-            - https://github.com/tensorflow/java/releases/tag/v0.4.0
-            - https://github.com/tensorflow/java-ndarray
-        - Wird nicht nur Core, sondern auch volle API haben: https://github.com/tensorflow/java/blob/master/tensorflow-framework/tensorflow-data.md
-        - Alte Version auf Basis von JNI, nur Core für die Ausführung von Modellen
-            - https://www.tensorflow.org/api_docs/java/org/tensorflow/package-summary
-        - Pytorch hat wohl schon vernünftiges Binding
-            - https://github.com/bytedeco/javacpp-presets/issues/1038             -->
-            
+This talk is a series of demonstrations and shared interactive experiments. Among those lines I will turn the audience into smurfs, show h 
+
+- Green Screen, Blue Screen
+- Papa Schlumpf ist auch blau
+- Kunstprojekt mit Surface
+- Histogram von Hue für Hand Erkennung
+  - Unfortunately, we only have the main color in common, there are certain variations, though
+- How did I find out? OpenCV swaps color channels
+- SB: wie sehen Menschen aus? Wie die 4 Inginneure. Keine langen Haare, keine Hochsteckfrisuren, keine Mützen/Kappen, keine Riesen, keine Zwerge, keine Dicken 
+
+actionable takeaways
+- how image recognition works 
+- why certain detectors fail (and why this is hard to fix)
+- user experience and machine learning
+- 
+
+Learn how image recognition works in general. Why certain detectors fail (and why this is hard to fix). User experience and machine learning.
+- 
+
+Talk
+- ODSC Europe
+- ODSC West 
+- QCONSF (bereits vorgeschlagen, aber bei denen muss man so ne komisch Anfrage machen)
+
+Interaktive  
+-->
+
+
+
+
             <section data-markdown>
                 <textarea data-template>
-# JAX
+# Human Centered Machine Learning
+
+User Experience and Machine Learning in the context   
 
     </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Talk
+
+Title: Human Centered Artificial Intelligence
+
+We, seen as humans, are the center of most applications of machine learning. We either serve as the input for the system 
+or are the ones who have to deal with its outputs. In either case humans are an important factor. 
+
+This workshop is composed of two parts each addressing one of the two sides mentioned above. In the first part we will talk about humans as providers of input to an AI system. As it turns out biases brought into the 
+system by the engineers has an impact independent of whether the system is machine learned or rule based. 
+This often happens unconsciously. We will do a series of demonstrations and shared interactive experiments, 
+among them turning the audience into martians. 
+
+In the second part of the workshop we will talk about the biases that humans bring into the system.
+
+The second part of the workshop is about user experience in Machine Learning systems
+
+
+Title: We are all just martians and other biases in image recognition
+
+
+
+Footnote: When using the term "artificial intelligence" we do not mean the marketing term, but something more technical abstract level than machine learning. 
+
+---
+
+        </textarea>
             </section>
 
             <section data-markdown>
                 <textarea data-template>
 ### Links
 
-* This is an example of why I think JAX is so exciting from a pedagogical standpoint.
-
-Here is just ~30 lines of code showing the relationship between log-likelihood, the Hessian, Fisher Information and Laplace Approximation, ending in up in a working function. https://t.co/7SrqnKG4ZG
-(https://twitter.com/willkurt/status/1489104127368085507?t=EBPSLepXrJKZ75OjFLVcLQ&s=03) 
-
-* https://colab.research.google.com/github/deepmind/educational/blob/master/colabs/summer_schools/intro_to_graph_nets_tutorial_with_jraph.ipynb
-
     </textarea>
             </section>
-            <section data-markdown>
-                <textarea data-template>
-### GPUs
-                     
-* https://twitter.com/marktenenholtz/status/1489222150384848900
-</textarea>
-            </section>
-            
+
 
         </div>
     </div>
 
 
     <script src="reveal.js/dist/reveal.js"></script>
+    <script src="reveal.js/plugin/notes/notes.js"></script>
+    <script src="reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="reveal.js/plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            width: 1100,
+            slideNumber: true,
+            hideInactiveCursor: false,
+
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+    </script>
+
     <script src="lib/jquery.js"></script>
 
     <script>
@@ -226,30 +278,6 @@ Here is just ~30 lines of code showing the relationship between log-likelihood, 
         });
 
     </script>
-
-    <script src="reveal.js/plugin/notes/notes.js"></script>
-    <script src="reveal.js/plugin/markdown/markdown.js"></script>
-    <script src="reveal.js/plugin/highlight/highlight.js"></script>
-    <script>
-        // More info about initialization & config:
-        // - https://revealjs.com/initialization/
-        // - https://revealjs.com/config/
-        Reveal.initialize({
-            hash: true,
-            controls: true,
-            progress: true,
-            history: true,
-            center: true,
-            width: 1100,
-            slideNumber: true,
-            hideInactiveCursor: false,
-
-
-            // Learn about plugins: https://revealjs.com/plugins/
-            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
-        });
-    </script>
-
 
 </body>
 

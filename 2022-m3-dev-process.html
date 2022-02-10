@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
 
-	<title>OOP - Machine Learning betrachtet als ein Engineering Problem</title>
+	<title>Entwicklungsprozess</title>
 
 	<link rel="stylesheet" href="reveal.js/dist/reset.css">
 	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -112,42 +112,6 @@
 	<div class="reveal">
 		<div class="slides">
 
-			<section class="local hide">
-
-				<p>Machine Learning wird häufig immer noch als eine mathematische Herausforderung angesehen und an den
-					Universitäten
-					meist ebenso gelehrt. Es regt sich aber auch im akademischen Umfeld Widerstand und selbst Stars wie
-					Andrew Ng
-					bieten neuerdings Kurse mit Inhalten an, die uns Softwareentwickeln eher vertraut sind.<br> In
-					diesem Talk werde
-					ich beleuchten, wie viel man wirklich wissen muss, um als Softwareentwickler Machine Learning
-					sinnvoll
-					einzusetzen.</p>
-				<p><strong>Zielpublikum:</strong> Jede Rolle im Bereich
-					Softwareentwicklung<br><strong>Voraussetzungen:</strong>
-					Verständnis von Softwareentwicklung, kein Verständnis von ML
-					notwendig<br><strong>Schwierigkeitsgrad:</strong>
-					Anfänger</p>
-				<p><strong>Extended Abstract</strong><br> Machine Learning Verfahren im allgemeinen und Neuronale
-					Netzwerke im
-					speziellen erfordern für ihr tiefes Verständnis Kenntnisse im Bereich der Linearen Algebra, der
-					Analysis und der
-					Statistik.<br> Aber: Als Softwareentwickler implementiert man Neuronale Netzwerke typischerweise
-					nicht auf der
-					grünen Wiese und kommt auch nicht in die Verlegenheit, komplexe Netzwerke selbst aufzubauen. Viel
-					häufiger
-					kommen Frameworks wie TensorFlow und sogar komplett aufgebaute und zum Teil schon trainierte
-					Neuronale Netzwerke
-					zum Einsatz.<br> Das verschiebt die Problematik des Machine Learnings in die Richtung des
-					Engineerings:</p>
-				<ul>
-					<li>Wie baut man eine Trainings-Pipeline auf?</li>
-					<li>Wie bekommt man das trainierte Modell in Produktion und sorgt dann dafür, dass das Modell
-						weiterhin aktuell
-						bleibt?</li>
-				</ul>
-			</section>
-
 <section data-markdown class="local preparation hide">
 - Jupyter Notebook in richtigem Environment
 - Jupyter lab als Alternative zeigen	
@@ -169,8 +133,57 @@ Folien: https://bit.ly/2022-oop-ml
     </textarea>
 			</section>
 
-<!-- <section data-markdown class="todo">
-</section> -->
+<section data-markdown class="todo">
+### Professionalisierung muss gut abhängen
+  - Erste Version der exrahierten Module mit Sicherheit nicht endgültig
+  - Unit Tests können dabei helfen
+
+</section>
+<!-- 
+Titel: Der Entwicklungsprozess eines Machine Learning Projekts
+
+Ein Tutorial aus dem Internet zu programmieren oder an einem Kaggle-Wettbewerb teilzunehmen, ist etwas ganz anderes als
+die Entwicklung eines maschinellen Lernmodells, das als Teil eines Software-Stacks in Produktion gehen kann. Hierfür
+benötigen Sie Fähigkeiten sowohl aus der Welt der Softwareentwicklung als auch aus der Welt der Datenwissenschaft.
+
+ALTERNATIV
+
+Machine Learning Verfahren erfordern für ihr tiefes Verständnis Kenntnisse im Bereich der Linearen Algebra, der Analysis
+und der Statistik.
+Für den Anwender dieser Verfahren spielt dieses Wissen aber keine wichtige Rolle.
+Meist kommen Frameworks wie Scikit-Learn oder TensorFlow und sogar komplett aufgebaute und zum Teil schon trainierte
+Neuronale Netzwerke zum Einsatz.
+Das verschiebt die Problematik des Machine Learnings in die Richtung des Engineerings.
+
+In diesem Talk beschreiben wir ein Modell für die unterschiedlichen Phasen eines Machine Learning Projekts und
+zeigen im technischen Detail, welche Artefakte in welcher Phase entstehen und wie sie in andere Phasen übergehen. Dabei
+werden wir Jupyter Notebooks, Jupyter Lab, Colab und Visual Studio Code als Entwicklungsumgebungen verwenden.
+
+M3 Kurzversion:
+
+Ein Tutorial aus dem Internet zu programmieren oder an einem Kaggle-Wettbewerb teilzunehmen, ist etwas ganz anderes als
+die Entwicklung eines Machine Learning Modells, das als Teil eines Software-Stacks in Produktion gehen kann. Eine der wesentlichen Herausforderungen ist, dass man einerseits interaktiv und explorativ vorgehen möchte, aber gleichzeitig robust und wartbare Software schreiben muss. 
+ 
+In diesem Talk beschreiben wir ein Modell für die unterschiedlichen Phasen eines Machine Learning Projekts und zeigen im technischen Detail, welche Artefakte in welcher Phase entstehen und wie diese in andere Phasen übergehen.
+
+
+Vorkenntnisse:
+
+Entweder eine grundlegende Idee von der Arbeit im Bereich Data Science oder Software-Entwicklung.
+
+Lernziele:
+
+Teilnehmer verstehen die besondere Herausforderung der professionellen Entwicklung einer Machine Learning Modells und dazu einen passenden Ansatz.
+
+-->
+<section data-markdown class="todo">
+### Für M3
+* Prod raus lassen
+* Mehr technische Details, 
+  * auch Colab, Git, Drive, Tools
+  * Unit Tests
+  	
+</section>
 
 <section data-markdown>
 	<textarea data-template>
