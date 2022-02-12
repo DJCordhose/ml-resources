@@ -188,6 +188,10 @@ Inhalte:
 - Why auto tuning might not be such a good idea (overfits on val data), but real priors might not even be obeyed
 - Beispiel mit Lattice, Extrapolation und Tweet von Fchollet
 - Daten-Beispiele selbst gemalte Bilder oder Sinus
+- Hidden Markov Models
+  * https://en.wikipedia.org/wiki/Markov_chain
+- Kalman Filter
+  * https://en.wikipedia.org/wiki/Kalman_filter
 
 Weltwissen hauptsächlich Frage der Architektur
 - Traditionelle Systeme instrumentieren viele kleine Modelle als Pattern matcher viel besser als
@@ -279,29 +283,6 @@ As another teaser: doesn't look important at first, and requires much explanatio
 
 
     <script src="reveal.js/dist/reveal.js"></script>
-    <script src="reveal.js/plugin/notes/notes.js"></script>
-    <script src="reveal.js/plugin/markdown/markdown.js"></script>
-    <script src="reveal.js/plugin/highlight/highlight.js"></script>
-    <script>
-        // More info about initialization & config:
-        // - https://revealjs.com/initialization/
-        // - https://revealjs.com/config/
-        Reveal.initialize({
-            hash: true,
-            controls: true,
-            progress: true,
-            history: true,
-            center: true,
-            width: 1100,
-            slideNumber: true,
-            hideInactiveCursor: false,
-
-
-            // Learn about plugins: https://revealjs.com/plugins/
-            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
-        });
-    </script>
-
     <script src="lib/jquery.js"></script>
 
     <script>
@@ -344,6 +325,30 @@ As another teaser: doesn't look important at first, and requires much explanatio
         });
 
     </script>
+
+    <script src="reveal.js/plugin/notes/notes.js"></script>
+    <script src="reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="reveal.js/plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            width: 1100,
+            slideNumber: true,
+            hideInactiveCursor: false,
+
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+    </script>
+
 
 </body>
 

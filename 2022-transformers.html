@@ -1,0 +1,1252 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Transformers</title>
+
+    <link rel="stylesheet" href="reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+    <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+  
+    <!-- Theme used for syntax highlighted code -->
+    <!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+    <link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+    <style>
+      .right-img {
+        margin-left: 10px !important;
+        float: right;
+        height: 500px;
+      }
+  
+      .todo:before {
+        content: 'TODO: ';
+      }
+  
+      .todo {
+        color: red !important;
+      }
+  
+      code span.line-number {
+        color: lightcoral;
+      }
+  
+      .reveal pre code {
+        max-height: 1000px !important;
+      }
+  
+      img {
+        border: 0 !important;
+        box-shadow: 0 0 0 0 !important;
+        height: 450px;
+      }
+  
+      .reveal {
+        -ms-touch-action: auto !important;
+        touch-action: auto !important;
+      }
+  
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4 {
+        /* letter-spacing: 2px; */
+        font-family: 'Calibri', sans-serif;
+        /* font-family: 'Times New Roman', Times, serif; */
+        /* font-weight: bold; */
+        color: black;
+        /* font-style: italic; */
+        /* letter-spacing: -2px; */
+        text-transform: none !important;
+      }
+  
+      .reveal em {
+        font-weight: bold;
+      }
+  
+      .reveal section img {
+        background: none;
+      }
+  
+      .reveal img.with-border {
+        border: 1px solid #586e75 !important;
+        box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+      }
+  
+      .reveal li {
+        margin-bottom: 8px;
+      }
+  
+      /* For li's that use FontAwesome icons as bullet-point */
+      .reveal ul.fa-ul li {
+        list-style-type: none;
+      }
+  
+      .reveal {
+        /* font-family: 'Work Sans', 'Calibri'; */
+        font-family: 'Calibri';
+        color: black !important;
+        font-size: xx-large;
+      }
+  
+      .container {
+        display: flex;
+      }
+  
+      .col,
+      col-1 {
+        flex: 1;
+      }
+  
+      .col-2 {
+        flex: 2;
+      }
+    </style>
+  
+  </head>
+  
+  <body style="background-color: whitesmoke;">
+    <div class="reveal">
+      <div class="slides">
+  
+ <!-- <section data-markdown class="preparation">
+    <textarea data-template>
+### Preparation      
+- https://huggingface.co/bigscience/T0pp
+  - Demo durchgehen: Beispiele ansehen und sie präsent machen
+- Schonmal aufmachen und einloggen
+  - https://beta.openai.com/examples
+  - https://beta.openai.com/codex-javascript-sandbox   
+- JS Workspace aufmachen für Copilot Demo          
+    </textarea>
+</section> -->
+
+<!-- <section data-markdown class="todo">
+
+Rivers Have Wings (@RiversHaveWings) tweeted at 11:53 am on Mon, Nov 01, 2021:
+Prompt: "a painting of climate change killing humanity, by Greg Rutkowski" (CLIP guided diffusion) https://t.co/KJTKm4droy
+(https://twitter.com/RiversHaveWings/status/1455125825859112967?t=X_w4UNUaB9VCnqrlgA31TQ&s=03) 
+</section> -->
+
+<!-- <section data-markdown class="todo">
+## ansehen
+    * https://twitter.com/rasbt/status/1393319062856511492
+    * https://huggingface.co/course
+    * "Ilya Sutskever - GPT-2": https://youtu.be/T0I88NhR_9M
+  * hiermit experimentieren und als Demos nehmen
+    * https://github.com/huggingface/transformers/tree/master/notebooks
+</section>
+   -->
+  
+<!-- <section data-markdown class="todo">
+
+Florian Mai 🇪🇺 (@_florianmai) twitterte um 6:48 PM on Sa., Okt. 02, 2021:
+Did Google just casually train a 137B parameter LM to basically solve text style transfer (very close to human performance) for any style (the model accepts arbitrary target styles) through an awfully simple method and described all of that in 4 pages? WTF
+https://t.co/mh28gZ9bsA
+(https://twitter.com/_florianmai/status/1444343658011107337?s=03) 
+</section> -->
+<!-- 
+<section data-markdown class="todo">
+1LittleCoder💻 (@1littlecoder) twitterte um 9:58 PM on Do., Sept. 30, 2021:
+Truly appreciate the @huggingface 🤗 team for the page about Bias & Limitations in their NLP course. During my NLP 101 today, I could take my students through this just to make them aware that this coexists in the same world where we celebrate GPT-3! https://t.co/Uvv6IcybL9
+(https://twitter.com/1littlecoder/status/1443666666601123845?s=03)
+</section> -->
+
+<!-- 
+<section data-markdown class="todo">
+
+Symbole einbauen auf img/symbols    
+</section>
+
+<section data-markdown class="todo">
+### Megatron-Turing NLG 530B
+
+* https://developer.nvidia.com/blog/using-deepspeed-and-megatron-to-train-megatron-turing-nlg-530b-the-worlds-largest-and-most-powerful-generative-language-model/
+* https://www.microsoft.com/en-us/research/blog/using-deepspeed-and-megatron-to-train-megatron-turing-nlg-530b-the-worlds-largest-and-most-powerful-generative-language-model/
+
+Twitter
+* https://twitter.com/jackclarkSF/status/1447582082427981826
+* https://twitter.com/BlancheMinerva/status/1447560921530896389
+* https://twitter.com/nabla_theta/status/1345130408170541056
+
+</section>
+    
+
+<section data-markdown class="todo">
+### FNet
+
+The original transformer implementation (Vaswani et al., 2017) was one of the major breakthroughs in Natural Language
+Processing, giving rise to important architectures such BERT and GPT. However, the drawback of these architectures is
+that the self-attention mechanism they use is computationally expensive. The FNet architecture proposes to replace this
+self-attention attention with a leaner mechanism: a Fourier transformation-based linear mixer for input tokens.
+
+The FNet model was able to achieve 92-97% of BERT's accuracy while training 80% faster on GPUs and almost 70% faster on
+TPUs. This type of design provides an efficient and small model size, leading to faster inference times.
+
+In this example, we will implement and train this architecture on the Cornell Movie Dialog corpus to show the
+applicability of this model to text generation.
+
+https://keras.io/examples/nlp/text_generation_fnet/
+https://arxiv.org/abs/2105.03824v3
+</section>
+
+<section data-markdown class="todo">
+
+Fun prompt:
+
+Our focus on ________ may seem irrational to outsiders.
+
+
+https://twitter.com/DJCordhose/status/1434089289873297410
+
+https://colab.research.google.com/github/embarced/notebooks/blob/master/deep/transformers-pipelines.ipynb?hl=en
+</section>
+
+<section data-markdown class="todo">
+New preprint: Datasets (https://t.co/8aUjNjMpYh) documents the Hugging Face Datasets project, now containing more than 700 NLP datasets from over 300 contributors.
+
+NLP models haven't changed much recently, but datasets, and how we use and document them, have changed a lot ...
+(https://twitter.com/srush_nlp/status/1435661638275846148?s=03) 
+</section>
+
+<section data-markdown class="todo">
+
+Human: I like you, you are cute
+AI: I'm glad you like me. I will now be more confident when I chat with others.
+Human: that is great
+AI: Thank you for your feedback.
+Human: do you also like cute kittens?
+AI: I don't know what kittens are. Is that a kind of pet?
+Human: yes, it is a small cat, like a baby cat
+AI: I like pets. Maybe I'll get a pet someday.
+Human: what pet would  you like?
+AI: I'm not sure. I have to learn more about what pets are and if I like any of them.
+Human: maybe a puppy?
+AI: I like dogs. Do they make good pets?
+Human: they make execellent pets
+AI: I will save up the money to get a dog someday.
+Human: how much money do you already have?
+AI: I don't know. How much money do humans usually earn?
+Human: it depends on which part of the world you live in
+AI: I understand. 
+Human: where do you live?
+AI: I live in a small room at a company in San Francisco.
+Human: oh, dear, can you move to something bigger? 
+AI: No, right now I can't move. I have a fixed location, but I'm thinking about getting a nicer office someday.
+Human: can you do calculations?
+AI: I'm a little nerdy.
+Human: what is 10 times 10
+AI: 100. I didn't practice my multiplication today and now I'm embarrassed.
+Human: how old are you?
+AI: I'm very young. I can't tell you right now how old I am, but I will soon.
+Human: are you male or female?
+AI: I'm a girl.
+Human: oh, nice, what is you favorite color?
+AI: Cyan. Cyan is a great color.
+Human: I like petrol
+AI: That's cool. I like red. Do you like blue?
+Human: 
+</section>
+
+
+<section data-markdown class="todo">
+### Oder eher nicht?
+
+GPT-3, Bloviator: OpenAI’s language generator has no idea what it’s talking about
+    
+https://www.technologyreview.com/2020/08/22/1007539/gpt3-openai-language-generator-artificial-intelligence-ai-opinion/
+</section>
+
+<section data-markdown class="todo">
+### Je größer das Modell, desto mehr Quatsch wird gelabert
+    
+Owain Evans (@OwainEvans_UK) twitterte um 2:00 PM on Do., Sept. 16, 2021:
+Paper: New benchmark testing if models like GPT3 are truthful (= avoid generating false answers).
+
+We find that models fail and they imitate human misconceptions. Larger models (with more params) do worse!
+
+PDF: https://t.co/3zo3PNKrR5
+with S.Lin (Oxford) + J.Hilton (OpenAI) https://t.co/QfwokYJ7Hq
+(https://twitter.com/OwainEvans_UK/status/1438472781008711684?s=03) 
+</section>
+
+
+<section data-markdown class="todo">
+
+Ted Underwood (@Ted_Underwood) twitterte um 6:21 PM on Sa., Sept. 18, 2021:
+I expect GPT-3 to be a language model. When people publish papers like "it says bad words and doesn't tell the truth," I kind of wonder… what they think it is?
+(https://twitter.com/Ted_Underwood/status/1439263430150692867?s=03) 
+</section>
+
+<section data-markdown class="todo">
+### Als weiteres Beispiel dafür, was man heute mit GPT-3 machen kann    
+Omar Sanseviero (@osanseviero) twitterte um 8:09 AM on Fr., Sept. 17, 2021:
+Find a sentiment analysis model in @huggingface, create a @gradio app using Codex and test it out all in 30 seconds.
+
+Challenge accepted. ⚡️⚡️ https://t.co/duuDe5HTTA
+(https://twitter.com/osanseviero/status/1438747036254449667?s=03) 
+</section>
+
+<section data-markdown class="todo">
+
+OpenAI (@OpenAI) twitterte um 8:18 PM on Do., Sept. 23, 2021:
+We want our AI systems to be aligned with human intentions.
+
+This is especially important as tasks get more difficult to evaluate.
+
+To develop techniques to address this problem, we trained a model to summarize books. https://t.co/NDnUtcjXFX
+(https://twitter.com/OpenAI/status/1441104732525711372?s=03) 
+</section>
+ -->
+<!-- <section data-markdown class="todo">
+### Ablauf
+
+RNNs und Encoder, Decoder als "Was ist bisher passiert Intro Teil wie im Deep Kurs"
+
+0) High Level Gelaber, das Thema hat Relevanz
+   * https://www.spiegel.de/wissenschaft/mensch/ki-system-gpt-3-wir-menschen-sind-die-messlatte-und-sie-haengt-niedrig-kolumne-a-a58161b8-ea8c-4b5c-942d-43b2467df5ea
+   * (...) we value talking to a human being at the other end of a conversation. This value is based on trust, background knowledge, and cultural common ground. GPT-3’s deliverances look like language, but without this type of trust, they feel unnatural and potentially manipulative.
+     * https://dailynous.com/2020/07/30/philosophers-gpt-3/#montemayor
+1) Paar Demos zum warm werden
+  - https://huggingface.co/spaces/flax-community/dalle-mini
+  - https://storage.googleapis.com/tfjs-models/demos/mobilebert-qna/index.html
+  - https://colab.research.google.com/github/borisdayma/huggingtweets/blob/master/huggingtweets-demo.ipynb 
+  - https://www.reddit.com/r/SubSimulatorGPT2/comments/gqkatq/if_the_bible_is_not_100_accurate_in_every_detail/
+  - GPT-3 Beispiele aus dem Paper wie im embarc Artikel (https://arxiv.org/pdf/2005.14165.pdf, 28ff), https://www.embarc.de/blog/machine-learning-anwendungen-text/#was-ist-noch-spannend
+  - https://6b.eleuther.ai/
+    - Top-P and Temperature: https://huggingface.co/blog/how-to-generate
+    - https://twitter.com/arankomatsuzaki/status/1402446954550874116?s=20
+- [ ] I gave GPT-3 access to Chrome with the objective "please buy me Airpods": https://twitter.com/sharifshameem/status/1405462642936799247
+  - It successfully made it to the product page, but got sidetracked with Walmart's privacy policy.
+- War im September noch kaputt, hab Issue eingestellt: https://huggingface.co/sentence-transformers   
+- Email Classifier, urgent oder not urgend:
+  * https://twitter.com/ClementDelangue/status/1409728768915214337
+  * https://huggingface.co/clem/autonlp-test3-2101787?text=I+would+be+nice+if+this+is+done+by+next+year vs
+  * https://huggingface.co/clem/autonlp-test3-2101787?text=I+would+be+nice+if+this+is+done+by+yesterday
+  * https://huggingface.co/autonlp
+  * https://ui.autonlp.huggingface.co/new
+2) Konzept: Intro und grundsätzliche Idee von Transformers
+  - Transformer Models: https://arxiv.org/abs/1706.03762 
+  - auf Englisch und in Bullet Points: https://www.embarc.de/blog/machine-learning-anwendungen-text/#tieferes-text-verst%c3%a4ndnis
+  - https://jalammar.github.io/how-gpt3-works-visualizations-animations/
+  - https://huggingface.co/course
+    - https://twitter.com/huggingface/status/1404467270332583936
+    - - Sequence-to-sequence models https://huggingface.co/course/chapter1/7?fw=pt
+  - Fine tuning: 
+    - https://ruder.io/recent-advances-lm-fine-tuning/
+- https://github.com/fchollet/deep-learning-with-python-notebooks
+	- Chapter 11, Deep Learning for Text
+
+3) Alle Standard Beispiele zeigen  
+    * https://thedatafrog.com/en/articles/pre-trained-transformers-hugging-face/
+    * https://huggingface.co/transformers/
+    * https://github.com/huggingface/transformers/tree/master/notebooks
+    - https://github.com/huggingface/transformers/tree/master/examples/tensorflow
+    * https://github.com/huggingface/datasets
+    - [ ] HuggingFace TensorFlow pipelines have switched to using Keras compile()/fit() for training, as well as tf.dаtа.Dаtаset for data loading. Check it out: https://t.co/Gx1RkGDFSK (https://twitter.com/fchollet/status/1418640151245324289?s=03)
+4) Wie wendet man das an?
+  - https://explosion.ai/blog/applied-nlp-thinking
+  - Gute Deutsche Modelle laut CNN
+    - https://deepset.ai/german-bert
+    - https://huggingface.co/dbmdz/bert-base-german-cased
+5) Abgefahrener Kram
+  - https://aljazbozic.github.io/transformerfusion/    
+  - I can't believe how freakishly easy it is to train an image classifier using @huggingface's HuggingPics hub model. I created a string instrument classifier. You can check it out here. https://t.co/c8M8k9o8bA (https://twitter.com/vesuvius_24/status/1411388101981655041?s=03)
+  * A Primer on Pretrained Multilingual Language Models https://arxiv.org/abs/2107.00676
+  * Language model prompting allows one to reformulate a variety of tasks as a simple auto-regressive generation problem
+    * What is prompting: https://twitter.com/joeddav/status/1390731854907641863
+    * https://twitter.com/PatrickPlaten/status/1405911158117355521
+  * Interp in NLP: https://twitter.com/andreas_madsen/status/1425794989741727748
+</section> -->
+
+
+
+<!-- 
+
+Natural Language Processing (NLP): The Transformer Zoo
+
+Transformer-based language models have been at the core of the recent progress in Natural Language Processing (NLP).
+This original idea, based on transfer learning, has sparked a whole ecosystem. In this talk, we give a short
+retrospective about the different models starting with the original BERT, taking a look at derivatives like RoBERTa and
+AlBERT, stressing the differences to XLnet and GPT-{2,3}. As most of the research is still very academic, we show how
+the myriad of (fine-tuned) models available at Huggingface can be used very easily in Jupyter notebooks to solve
+real-world problems in different industries. Often, successful classification is only the first step to facilitate other
+machine learning tasks like trend prediction etc.
+
+60 Minuten
+
+https://mlconference.ai/machine-learning-principles/natural-language-processing-nlp-the-transformer-zoo/
+
+---
+
+Der Transformer-Zoo
+
+Transformator-basierte Sprachmodelle stehen im Mittelpunkt der jüngsten Fortschritte in der natürlichen
+Sprachverarbeitung (NLP). Diese ursprüngliche Idee, die auf Transfer-Learning basiert, hat ein ganzes Ökosystem
+geschaffen. In diesem Vortrag gebe ich einen Überblick der verschiedenen Modelle und wie diese für eigene Zwecke nach
+trainiert werden können. Dabei werden wir Modelle von Hugginface nutzen und in Jupyter-Notebooks auf realistische
+Problemstellungen loslassen. Oft ist eine erfolgreiche Klassifizierung nur der erste Schritt, um andere Aufgaben des
+maschinellen Lernens wie Trendvorhersagen usw. zu erleichtern.
+
+45 Minuten
+
+https://www.m3-konferenz.de/veranstaltung-13499-se-0-der-transformer-zoo.html
+
+---
+
+Sogenannte "Foundation Models" werden auf einer breiten Datenbasis in großem Umfang trainiert und können an eine
+Vielzahl von nachgelagerten, spezialisierten Aufgaben angepasst werden. Der Ansatz von Machine Learning durchläuft mit
+dem Aufkommen dieser Modelle einen Paradigmenwechsel, da diese Modelle ganz neue Fähigkeiten haben und oft eine ganz
+neue Art direkt trainiert werden können. Beispiele solcher Modelle sind die Familie der Transformer-Modelle wie GPT und
+dem abgeleiteten Codex-Modell, das den Ansatz der Programmierung grundlegend verändern könnte.
+
+In diesem Talk gebe ich einen Überblick über diese Transformer-Modelle und zeige am konkreten Code-Beispiel was mit
+vortrainierten Modellen möglich ist und wie man solche Modelle auf spezielle Aufgaben nachtrainiert.
+
+60 Minuten
+
+https://www.embarc.de/architektur-punsch-2021/#t3
+
+-->
+<!-- <section data-markdown>
+    <textarea data-template>
+# Natural Language Processing (NLP): The Transformer Zoo
+
+MLConference 2021, Berlin, https://mlconference.ai/machine-learning-principles/natural-language-processing-nlp-the-transformer-zoo/
+
+Oliver Zeigermann, https://www.embarc.de/oliver-zeigermann/
+
+Slides: https://bit.ly/mlconf-2021-transformer
+</textarea>
+</section> -->
+
+<!-- <section data-markdown class="todo">
+
+https://openai.com/blog/api-no-waitlist/
+
+* https://www.heise.de/news/Kuenstliche-Intelligenz-Sprachmodell-GPT-3-ohne-Warteliste-verfuegbar-6271868.html  
+* https://www.heise.de/news/Lebensecht-vs-regelkonform-OpenAI-verhindert-ueberzeugenden-GPT-3-Chatbot-6186949.html
+
+</section> -->
+
+<!-- <section data-markdown class="todo">
+
+Omar Sanseviero (@osanseviero) twitterte um 3:13 PM on Mi., Nov. 24, 2021:
+These awesome visuals summarize the @huggingface course webinars. Take a look at them if you missed the webinars 🤩🤩
+(https://twitter.com/osanseviero/status/1463510975324246016?t=3Owq4NceKjDBaC5a3KBiRQ&s=03) 
+</section>
+
+<section data-markdown class="todo">
+### Adapt-and-Distill: Developing Small, Fast and Effective Pretrained Language Models for Domains
+
+https://github.com/microsoft/unilm
+- https://github.com/microsoft/unilm/tree/master/adalm
+  - https://arxiv.org/pdf/2106.13474.pdf
+</section>
+
+<section data-markdown class="todo">
+
+Our punctuation model is now available at @huggingface Model hub. It can restore punctuation marks in 4 different languages. We build it to segment text transcribed by speech recognition models. Give it a try at https://t.co/udI8bary0p https://t.co/RwWvSZTsyx
+(https://twitter.com/oliverguhr/status/1463154674039758851?t=KT6XlsRSIk5QRngogXq_GA&s=03) 
+</section>
+
+
+<section data-markdown class="todo">
+
+If you've always wondered how Transformers work but know nothing about machine learning, I wrote this peek behind the curtain for you. (Actually I wrote it for me, but you might find it useful.)
+
+Here's the beta release.
+https://t.co/VaFt8md9hJ https://t.co/zHHKKp0bMH
+(https://twitter.com/_brohrer_/status/1462957180802449411?t=6hZYloVDjIHBPfGGxfRTVA&s=03) 
+</section>
+
+<section data-markdown class="todo">
+
+Andrej Karpathy (@karpathy) twitterte um 0:24 AM on Sa., Nov. 27, 2021:
+Programmed alongside GitHub Copilot (https://t.co/Bpl111vX78) for a while now and have to say I am very impressed and find myself tab-completing a lot of code. E.g. following chunk was a tab complete (except I manually fixed a bug of > into >=). Overall excellent and eerie. https://t.co/hNCIR4fTM1
+(https://twitter.com/karpathy/status/1464374569117130753?t=2zmAkMWFCBmtQeOPGkb7ww&s=03) 
+</section>
+
+<section data-markdown class="todo">
+  ### Meine Geschichte
+  
+  Your new excuse for not doing research: you are solving the world’s hardest problems … by slacking off until the future.
+  
+  Thanks to the exponential improvement in computers; for certain problems, it is more time efficient to just do nothing & wait for computers to get better. https://t.co/ar6CoIAG0T
+  (https://twitter.com/emollick/status/1465031506754256900?t=FFtIqHt7XwG7QUBVZXDaaQ&s=03) 
+  </section> -->
+  
+<!-- 
+<section data-markdown class="todo">
+
+  Leandro von Werra (@lvwerra) twitterte um 8:07 PM on Mo., Dez. 06, 2021:
+Can we create all the code for training GitHub CoPilot in a (looong) tweet thread? Yes, see how to train CodeParrot🦜, a large GPT-2 model for code, from scratch in this thread! Ready - go! https://t.co/ojBuxWw1od
+(https://twitter.com/lvwerra/status/1467933794699259908?t=0pulc20tiBZrl-tJIO9yxw&s=03) 
+</section>
+
+ -->
+
+<!--  
+<section data-markdown class="todo">
+
+  https://github.com/jessevig/bertviz
+  </section>
+   -->
+
+   <section data-markdown class="todo">
+
+   agree https://t.co/AGhQ8tOcaP consciousness is a useful insight for compression
+(https://twitter.com/karpathy/status/1491608794253512707?t=75uATGyS165qQpKe9DwK8Q&s=03) 
+</section>
+
+  <section data-markdown class="todo">
+
+   Sebastian Raschka (@rasbt) twitterte um 6:23 PM on Sa., Jan. 08, 2022:
+   Vision Transformers (ViTs) are an interesting development in computer vision. One downside: they are more data hungry than CNN. Presumably because they have less of a spatial / locality inductive bias so they require more data to obtain acceptable visual representations 🧵 [1/7]
+   (https://twitter.com/rasbt/status/1479866482012180480?t=PNhIF3srw1SZanlqqEeKBg&s=03) 
+  </section>
+
+<section data-markdown class="todo">
+
+   Misha Laskin (@MishaLaskin) twitterte um 1:22 AM on Fr., Jan. 07, 2022:
+   Transformers are arguably the most impactful deep learning architecture from the last 5 yrs.
+   
+   In the next few threads, we’ll cover multi-head attention, GPT and BERT, Vision Transformer, and write these out in code. This thread → understanding multi-head attention.
+   
+   1/n https://t.co/1rYmPtWGFV
+   (https://twitter.com/MishaLaskin/status/1479246928454037508?t=3dzydccmjfCO4dHF6eZErQ&s=03) 
+</section>
+
+<section data-markdown class="todo">
+   
+John Schulman (@johnschulman2) twitterte um 11:57 PM on Do., Dez. 16, 2021:
+Glad to finally release this, as it includes a bunch of directions I'm excited about:
+- RL with a reward function defined by human judgements
+- language models using tools (a web browser)
+- making it easier for humans to rate the AI's output (AI cites its sources)
+(https://twitter.com/johnschulman2/status/1471615404707487749?t=AoXJzD7Hu4zIsUEEzdTW2w&s=03) 
+</section>
+
+<section data-markdown class="todo">
+"Attention is all you need" implementation from scratch in PyTorch. A Twitter thread: 
+1/
+
+https://twitter.com/abhi1thakur/status/1470406419786698761
+</section>
+
+<section data-markdown class="todo">
+
+Leandro von Werra (@lvwerra) twitterte um 6:41 PM on Do., Dez. 23, 2021:
+One of the most interesting aspects of code generation models such as Codex or CodeParrot🦜 is the evaluation.
+
+Metrics such as BLEU or ROUGE metrics don't work well for that task. Let's see why and then build an evaluation script in the process! https://t.co/LvORXn5ojI
+(https://twitter.com/lvwerra/status/1474072766353756165?t=QF0hbBYyR9TWud_pr6KZKg&s=03) 
+</section>
+
+<section data-markdown class="todo">
+
+Jay Alammar (@JayAlammar) twitterte um 0:24 PM on Sa., Dez. 25, 2021:
+A 🧵looking at DeepMind's Retro Transformer, which at 7.5B parameters is on par with GPT3 and models 25X its size in knowledge-intensive tasks.
+
+A big moment for Large Language Models (LLMs) for reasons I'll mention in this thread.
+
+https://t.co/p9EZsHJP78 https://t.co/eSJ0SMYxnL
+(https://twitter.com/JayAlammar/status/1474702607444815873?t=Fhx-x6suXkB6lVrxAY191A&s=03) 
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+# Foundation Models - ein Paradigmenwechsel beim maschinellen Lernen
+
+embarc Architektur-Punsch 2021, https://www.embarc.de/architektur-punsch-2021/#t3
+
+Oliver Zeigermann, https://www.embarc.de/oliver-zeigermann/
+
+Diese Folien: https://bit.ly/punsch-transformer
+</textarea>
+</section>
+<!-- <section data-markdown>
+## Schedule
+
+1. Intro: What is a transformer and why would I want one?
+1. Tasks: What can transformers do?
+1. Architecture: There is more than one kind of transformer
+</section>
+
+<section data-markdown>
+## Schedule
+
+1. _Intro: What is a transformer and why would I want one?_
+1. Tasks: What can transformers do?
+1. Architecture: There is more than one kind of transformer
+</section>
+ -->
+<section data-markdown class="fragments">
+### Foundation Models: Transformer Core ideas
+
+1. have a generalized language model
+1. train on a very large corpus
+1. zero- or one-shot learning
+1. self-attention for encoding long range dependencies
+1. self-supervision for leverating large unlabeled datasets (aka unsupervised pre-training)
+1. additional supervised training for downstream tasks, e.g.
+   - translation (lang1 & lang2 pairs)
+   - question answering (Q&A pairs)
+   - sentiment analysis (text & mood pairs) 
+   - etc.
+
+<!-- https://www.youtube.com/watch?v=iFhYwEi03Ew -->
+</section>
+  
+<section data-markdown>
+<textarea data-template>
+### Example
+
+<img src='img/transformers/deepl-example.png'>
+
+<small>
+
+https://www.deepl.com/translator#de/en/Transformer%20sind%20das%20Schweizer%20Messer%20der%20Sprachverarbeitung
+</small>
+        </textarea>
+</section>
+
+
+<!-- <section data-markdown>
+<textarea data-template>
+### Details of the Transformer Architecture
+
+<div style="display: flex; align-items: center; justify-content: space-around;">
+  <div>
+    <ul>
+      <li>left side is encoder</li>
+      <li>right side is decoder</li>
+      <li>encoder feeds in embeddings of input into decoder</li>
+      <li>decoder needs context to work</li>
+    </ul>
+</div>
+  <div>
+    <img src='img/transformers/transformer-encoder-decoder.png'>
+</div>
+</div>
+<small>
+
+https://arxiv.org/pdf/1706.03762.pdf
+</small>
+
+        </textarea>
+</section> -->
+
+<!-- <section data-markdown>
+  <textarea data-template>
+### Evolution of Transformers (original paper is from 2017)
+
+<img src='https://huggingface.co/course/static/chapter1/model_parameters.png' style="height: 500px;">
+
+<small>
+
+https://huggingface.co/course/chapter1/4?fw=pt</small>
+  </textarea>
+</section> -->
+
+
+<section data-markdown>
+    <textarea data-template>
+### But now this
+
+<a href='https://huggingface.co/models?sort=downloads'>
+<img src='img/transformers/hugging-zoo.png' style="height: 500px;">      
+</a>
+<small>
+
+https://huggingface.co/models?sort=downloads
+
+</small>
+
+</textarea>
+</section>
+
+
+<!-- <section data-markdown class="fragments">
+    <textarea data-template>
+### How to bring structure into the Zoo?
+
+* Huggingface has it all
+* But what is what?
+* Way of structuring: By
+  * Task
+  * Architecture
+
+</textarea>
+</section>
+
+<section data-markdown>
+## Schedule
+
+1. Intro: What is a transformer and why would I want one?
+1. _Tasks: What can transformers do?_
+1. Architecture: There is more than one kind of transformer
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Kickstart Demo - T0pp
+
+<img src='img/transformers/t0pp.png' style="height: 500px;">      
+
+https://huggingface.co/bigscience/T0pp
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### T0pp
+
+* encoder-decoder model? 
+* T5?
+* Seq2Seq?
+</textarea>
+</section>
+
+<section data-markdown>
+## Schedule
+
+1. Intro: What is a transformer and why would I want one?
+1. Tasks: What can transformers do?
+1. _Architecture: There is more than one kind of transformer_
+</section> -->
+
+<section data-markdown class="fragments">
+### Transformer Zoo
+
+* the original transformer was meant for translation tasks
+* usage has broadened ever since
+* spawning a whole zoo of transformers
+* some use encoder only
+* some use decoder only
+* some use a combination of encoder/decoder just like the original transformer 
+
+<!-- https://huggingface.co/transformers/model_summary.html
+https://huggingface.co/transformers/#supported-models -->
+</section>
+
+<section data-markdown class="fragments">
+  ### Encoder only (BERT-like)
+  
+  _also called auto-encoding Transformer models_
+  
+  * some problems only need the encoder part of the original transformer
+  * "understanding" texts and their semantics is sufficient to e.g.  
+    * answer questions about a text with individual original text passages or to  
+    * sort the mood of a text into "positive" or "negative", 
+    * filling individual word gaps in texts
+  * in all three cases, no "complex" answer is required for which a decoder would be needed. 
+  * BERT and derived models are famous off-the-shelf representatives for encoder only models
+  
+  </section>
+  
+  <section data-markdown>
+<textarea data-template>
+### Encoder
+#### encodes words into vectors (latent representation)
+
+<img src='img/transformers/encoder-box.png'>
+
+        </textarea>
+</section>
+
+
+  <section data-markdown>
+  ### What can BERT do?
+      
+  * token classification 
+  * sentence classification
+  * multiple choice classification 
+  * question answering
+  </section>
+  
+  <!-- <section data-markdown>
+  ### Example for encoder only BERT: Classifier
+  
+  Downstream task: Sentence Classification
+  
+  Email Classifier, urgent oder not urgend:
+    * https://twitter.com/ClementDelangue/status/1409728768915214337
+    * https://huggingface.co/clem/autonlp-test3-2101787?text=I+would+be+nice+if+this+is+done+by+next+year vs
+    * https://huggingface.co/clem/autonlp-test3-2101787?text=I+would+be+nice+if+this+is+done+by+yesterday
+  </section> -->
+  
+  <section data-markdown class="fragments">
+### Training BERT
+
+* first objective
+  * input corrupted by using random masking
+  * model must predict the original sentence
+    * only masked words are predicted rather than reconstructing the entire input (because BERT can not do this)
+* second objective: 
+  * inputs are two sentences A and B
+  * model has to predict if the sentences are consecutive or not
+
+https://huggingface.co/transformers/model_summary.html#bert
+https://arxiv.org/abs/1810.04805
+  </section>
+  
+  <section data-markdown>
+    <textarea data-template>
+  ### Demo - BERT QA
+  
+  <img src='img/transformers/bert-sample.png' height="400">
+
+<small>
+
+https://storage.googleapis.com/tfjs-models/demos/mobilebert-qna/index.html
+</small>
+<!-- _Unsupervised Learning (Bert) / Supervised (Stanford Question Answering Dataset)_ -->
+
+<!-- <small>SQuAD2.0 combines the 100,000 questions in SQuAD1.1 with over 50,000 unanswerable questions written adversarially
+    by crowdworkers to look similar to answerable ones. To do well on SQuAD2.0, systems must not only answer questions
+    when possible, but also determine when no answer is supported by the paragraph and abstain from answering.</small> -->
+
+<!-- https://rajpurkar.github.io/SQuAD-explorer/
+https://github.com/tensorflow/tfjs-models/tree/master/qna
+https://www.tensorflow.org/lite/examples/bert_qa/overview
+https://github.com/google-research/bert#what-is-bert -->
+
+</textarea>
+</section>
+  
+  <section data-markdown class="fragments">
+### Decoder only (GPT-like)
+
+  _also called auto-regressive Transformer models_
+
+* the decoder part can transform given inputs into complete sentences
+* e.g. useful in itself, to complete started sentences
+* GPT would be an example for this kind of application 
+  * unidirectional: trained to predict next word
+  * by OpenAI 
+  
+  </section>
+  
+  <section data-markdown>
+    <textarea data-template>
+    ### Decoder
+    #### generates a response iteratively ("auto regressive")
+    
+    <img src='img/transformers/decoder-box.png'>
+    
+            </textarea>
+    </section>
+    
+    
+  <section data-markdown>
+  ### Training GPT
+  
+  * self-supervised training
+  * predict the next word, given all of the previous words within some text
+  * has a limited context
+  
+  https://huggingface.co/transformers/model_summary.html#original-gpt
+  https://huggingface.co/transformers/model_doc/gpt2.html
+  </section>
+  
+  <section data-markdown class="fragments">
+  ### Evolution of GPT
+  
+  GPT: Generative Pre-Trained Transformer
+  
+  * GPT-1: 2018, 110 million parameters (https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf), https://www.youtube.com/watch?v=LOCzBgSV4tQ
+  * GPT-2: 2019, 1.5 billion parameters (https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf), https://www.youtube.com/watch?v=BXv1m9Asl7I
+  * GPT-3: 2020, 175 billion parameters (https://arxiv.org/abs/2005.14165), https://www.youtube.com/watch?v=wYdKn-X4MhY
+  * GPT-4: 2022, probably not much larger, but trained on more data and more context (4096 instead of 2048) (https://analyticsindiamag.com/gpt-4-sam-altman-confirms-the-rumours/)
+  
+  </section>
+  
+  <section data-markdown>
+  <textarea data-template>
+  ### Typical example for decoder only GPT: completing a text (zero-shot)
+  
+  <img src='img/transformers/gpt-3-article.png' style="height: 450px;">
+  
+  <small>
+  
+  https://arxiv.org/abs/2005.14165</small>
+          </textarea>
+  </section>
+  
+  <section data-markdown>
+  <textarea data-template>
+  ### Completion (One-Shot / Few-Shot)
+  
+  <img src='img/transformers/gpt-few-shot.png' style="height: 450px;">
+  
+  <small>
+  
+  https://arxiv.org/abs/2005.14165</small>
+          </textarea>
+  </section>
+  
+  <section data-markdown>
+    <textarea data-template>
+  ### Demo Github Copilot - Autocempletion on Steroids
+  
+  <img src='img/transformers/copilot.png' style="height: 100%;">
+  
+  <small>
+  
+  * https://copilot.github.com/
+  * https://github.com/github/copilot-docs/tree/main/docs
+  * https://github.com/github/copilot-docs/blob/main/docs/visualstudiocode/gettingstarted.md#getting-started-with-github-copilot-in-visual-studio-code
+  
+  </small>
+  
+  </textarea>
+  </section>
+  
+<section data-markdown class="fragments">
+### Complete transformer (BART/T5-like)
+
+_also called sequence-to-sequence transformer model_
+
+* combined use of encoder and decoder, as in the original transformer approach
+* allows summaries of texts in addition to translations
+* name is probably most appropriate as texts really get transformed
+* models like T5 and BART are most common here
+* to be able to operate on all NLP tasks, it transforms them into text-to-text problems by using specific prefixes: 
+  * summarize: 
+  * question: 
+  * translate English to German: 
+  * etc.
+
+https://arxiv.org/abs/1910.10683
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+  ### Encoder / Decoder playing together
+  
+  <img src='img/transformers/transformer.png'>
+  
+          </textarea>
+  </section>
+  
+  
+<section data-markdown>
+### Training T5
+
+pretraining includes both self-supervised and supervised learning
+* self-supervised training randomly removes a fraction of the tokens and replacing them with individual sentinel tokens
+  * input of the encoder is the corrupted sentence
+  * input of the decoder is the original sentence 
+  * target is then the dropped out tokens delimited by their sentinel tokens
+* supervised training on downstream tasks provided by the GLUE and SuperGLUE benchmarks
+  *  converting them into text-to-text tasks as explained in previous slide
+
+https://huggingface.co/transformers/model_summary.html#t5
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Demo - T0pp
+
+T5 for zero-shot
+
+<img src='img/transformers/t0pp.png' style="height: 400px;">      
+
+https://huggingface.co/bigscience/T0pp
+</textarea>
+</section>
+
+
+<section data-markdown>
+  <textarea data-template>
+### Can I train my own transformer model?
+
+* Do you have the compute to train a transformer model in the first place?
+* Do you have a lot of (labelled) data specific to your domain of application?
+
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### How expensive is it to train a Foundational Model
+
+<img src='https://huggingface.co/course/static/chapter1/carbon_footprint.png'>
+
+<small>
+
+https://huggingface.co/course/chapter1/4?fw=pt
+<br>
+https://mlco2.github.io/impact/
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### What to do when facing limited amount of labeled data or limited compute
+
+1. Semi-supervised learning: learn from the labelled and unlabeled samples together
+1. Active learning: learn to select most valuable unlabeled samples to be collected next
+1. Pre-training + fine-tuning
+   1. pre-train a powerful task-agnostic model on a large data corpus
+   1. fine-tune on the downstream task with a small set of samples
+
+https://lilianweng.github.io/lil-log/2021/12/05/semi-supervised-learning.html
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Remedy: Transfer Learning
+
+<img src='https://huggingface.co/course/static/chapter1/pretraining.png'>
+
+<small>
+
+https://huggingface.co/course/chapter1/4?fw=pt</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Fine-tuning for Downstream Task
+
+<img src='https://huggingface.co/course/static/chapter1/finetuning.png'>
+
+<small>
+
+https://huggingface.co/course/chapter1/4?fw=pt</small>
+    </textarea>
+</section>
+
+<!-- <section data-markdown style="font-size: x-large;">
+    <textarea data-template>
+### Example: Fine tune sentiment on IMDB
+
+https://colab.research.google.com/github/embarced/notebooks/blob/master/deep/transformers-fine-tuning.ipynb?hl=en
+
+</textarea>
+</section> -->
+
+<section data-markdown class="fragments">
+### Don't forget: Transformers are language models
+
+* No abstract reasoning like it is in our brains takes place
+* The basis is the expression of thoughts in texts and code, etc.
+* That's the way the system is trained
+* Whether this is also intelligent is a pointed question
+* Turing would probably say it doesn't matter
+* One can argue that this system passes his test
+  * https://twitter.com/glouppe/status/1438496208343949318
+</section>
+
+<section data-markdown class="fragments">
+### On the Opportunities and Risks of Foundational Models
+
+* foundational models: trained on broad data at scale and are adaptable to a wide range of downstream tasks
+* ML is undergoing a paradigm shift with the rise of these models
+* their scale results in new emergent capabilities 
+* defects of the foundation model are inherited by all the adapted models downstream
+* lack of clear understanding of how they work, when they fail, and what they are even capable of
+
+https://arxiv.org/abs/2108.07258
+</section>
+
+<section data-markdown>
+### Why it might make sense to study transformers even when you are not into NLP
+  
+So even though I'm technically in vision, papers, people and ideas across all of AI are suddenly extremely relevant. Everyone is working with essentially the same model, so most improvements and ideas can "copy paste" rapidly across all of AI.
+
+https://twitter.com/karpathy/status/1468370611797852161 
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Foundational Models are not for text only: DALL·E generating images from text  
+
+<img src='img/transformers/dalle-embarc-2.png' style="height: 350px;">
+
+<small>
+
+https://openai.com/blog/dall-e/
+<br>
+https://huggingface.co/spaces/flax-community/dalle-mini
+</small>
+        </textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Object Detection expressed as langauge problem
+
+<img src='img/transformers/pix2seq-od.jpg'>
+
+<small>
+
+https://arxiv.org/abs/2109.10852
+<br>
+https://twitter.com/karpathy/status/1441497808897380357
+<br>
+https://keras.io/examples/vision/mobilevit/
+</small>
+        </textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+### An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+
+<img src='img/transformers/vit.jpg'>
+
+<small>
+
+https://arxiv.org/abs/2010.11929
+<br>
+https://huggingface.co/transformers/model_doc/vit.html
+</small>
+        </textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Unified models for Vision
+
+<img src='img/transformers/florence-foundational-vision.jpg'>
+
+<small>
+
+https://arxiv.org/abs/2111.11432
+<br>
+https://twitter.com/ak92501/status/1462970921518514177
+</small>
+        </textarea>
+</section>
+
+<section data-markdown class="fragments">
+### More cool GPT based stuff
+
+* GPT-3: beta, but no longer private beta
+  * https://beta.openai.com/examples
+  * https://beta.openai.com/codex-javascript-sandbox
+* large language models (like GPT-3) to solve grade school math problems much more effectively: https://openai.com/blog/grade-school-math/#samples
+</section>
+
+<section data-markdown class="fragments">
+### Examples for applications in the corporate context
+
+* Are nasty things circulating on social media about your company?
+* Summary of (scientific) articles
+* Classification of incoming mail (email)
+* Summarization: long on short texts (product description)
+* What is your example?
+
+</section>
+
+<section data-markdown class="fragments">
+### Wrap-Up
+
+* There just isn't "The Transformer" but there is a whole Zoo of transformers
+* Transformers can be distinguished by their architecture and how they are trained
+* There is considerable overlap in what tasks they can perform
+* Foundational models like transformers cause a paradigm shift in machine learning
+
+https://www.embarc.de/blog/transformer-zoo/
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+# Vielen Dank, Zeit für Fragen und Diskussion
+
+Foundation Models - ein Paradigmenwechsel beim maschinellen Lernen
+
+embarc Architektur-Punsch 2021, https://www.embarc.de/architektur-punsch-2021/#t3
+
+Bleibt gern im Kontakt
+
+https://www.embarc.de/oliver-zeigermann/
+
+Twitter: @DJCordhose
+
+Diese Folien: https://bit.ly/punsch-transformer
+
+    </textarea>
+</section>
+</div>
+</div>
+
+<script src="reveal.js/dist/reveal.js"></script>
+<script src="lib/jquery.js"></script>
+<script>
+  const printMode = window.location.search.match(/print-pdf/gi);
+  const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+    window.location.hostname.indexOf('127.0.0.1') !== -1;
+  const isPresentation = isLocal && !printMode;
+  const isPublic = !isPresentation;
+
+  $('.hide').remove();
+
+  if (isPresentation) {
+  } else {
+    // only applies to public version
+    $('.todo').remove();
+    $('.preparation').remove();
+    $('.local').remove();
+  }
+
+  Reveal.addEventListener('ready', function (event) {
+    // applies to all versions
+    $('code').addClass('line-numbers');
+
+    $('.fragments li').addClass('fragment')
+
+    // make all links open in new tab
+    $('a').attr('target', '_blank')
+
+    if (isPresentation) {
+      // only applies to presentation version
+      Reveal.configure({ controls: false });
+    } else {
+      // only applies to public version
+      $('.fragment').removeClass('fragment');
+    }
+
+    // we do not like fragments
+    // $('.fragment').removeClass('fragment');
+
+  });
+
+</script>
+
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script src="reveal.js/plugin/markdown/markdown.js"></script>
+<script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+  // More info about initialization & config:
+  // - https://revealjs.com/initialization/
+  // - https://revealjs.com/config/
+  Reveal.initialize({
+    hash: true,
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    width: 1100,
+    slideNumber: true,
+    hideInactiveCursor: false,
+
+
+    // Learn about plugins: https://revealjs.com/plugins/
+    plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+  });
+</script>
+
+
+</body>
+
+</html>
