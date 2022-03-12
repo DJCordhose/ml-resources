@@ -133,6 +133,32 @@ or on a laptop or even tablet or smartphone. We assume no previous knowledge of 
 for all levels. More advanced participants can use this workshop for a deeper dive or a more in detail discussion.
 -->
 
+<section data-markdown class="preparation">
+## TODO Kim
+
+* Philosophie abstimmen
+* Teachable Machine Kim vs Olli ausprobieren
+* 1 Stunden Version von Kims Mural erstellen
+  * Was ist die Übung auf die wir zusteuern?
+  * Alles Aufwändige weg lassen und nur nehmen, was man leicht auf Englisch bringen kann
+  * https://app.mural.co/t/embarcagila3904/m/embarcagila3904/1633335145103/65d3bde76e9c455f4a58cc24bdd97b4c1007835b?sender=oliverzeigermann6333
+  * Welche Grafiken müssen Englisch sein?
+    * Direkt machen
+</section>
+
+<section data-markdown class="preparation">
+    <textarea data-template>
+# Philosophie für den Talk
+
+1. Wir sind extrem kompetent und haben sehr viel zu sagen
+1. Wir müssen niemandem beweisen, wie viel Ahnung wir haben
+1. Daher fassen wir uns in allen Bereichen kurz
+1. Ein großer Erfolg wäre, wenn die Teilnehmer einen ähnlich hohen Redeanteil hätten wie wir
+1. Alles was wir machen oder sagen führt auf einem möglichst direkten Weg zu einer praktischen Übung oder Diskussion
+
+    </textarea>
+</section>
+
             <section data-markdown>
                 <textarea data-template>
 # The Grand Harbor Tour of Machine Learning
@@ -148,43 +174,6 @@ Slides: https://bit.ly/ml-booster-2022
     </textarea>
             </section>
 
-
-            <section data-markdown>
-                <textarea data-template>
-
-### Style
-
-* Harbor Trip
-* No code, rather visual exercises
-* Alle möglichen Demos auspacken und Hafenbilder als Rahmen. Daran orientieren.
-
-### Ablauf:
-What is important?
-
-Some tasks are hard
-
-How to find the right set of rules and then the right set of parameters?
-
-Insurance as a set of rules
-
-Accuracy
-
-Parameter tweaking
-
-Loop over parameters, find best set by measuring accuracy
-
-Also 2d plot?
-
-This already is ML
-
-Special parametric model
-
-Do in Colab
-
-Next: do this with a dt, plot tree etc.
-</textarea>
-</section>
-
             <section data-markdown>
                 <textarea data-template>
 ### Departure
@@ -194,40 +183,416 @@ Next: do this with a dt, plot tree etc.
     </textarea>
             </section>
 
+
+
+<section data-markdown>
+    <textarea data-template>
+# Schedule
+
+1. Navigating the world of ML
+1. What to bring back from the trip
+
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Part I        
+## Navigating the world of ML
+
+<img src='img/booster/sailor.png'>
+
+https://twitter.com/opa_cojones
+</textarea>
+</section>
+
             <section data-markdown>
                 <textarea data-template>
-### Brücke zwischen zwei Welten
+<img src='img/booster/classic-development.jpg' style="height: 600px;">
+</textarea>
+            </section>
 
-<img src='img/booster/koehlbrand.jpg'>
+            <section data-markdown>
+                <textarea data-template>
+<img src='img/booster/supervised-ml.jpg' style="height: 600px;">
+</textarea>
+            </section>
 
+<section data-markdown class="fragments">
+
+### Traditional Machine Learning vs Deep Learning
+
+* **Traditional Machine Learning**
+    * e.g. regressions, decision trees, nearest neighbors, support vector machines.
+    * needs selection and preprocessing of features
+    * can be used with few examples in some cases
+    * usually needs little computing power for training
+* **Deep Learning**
+    * can learn which features are relevant and pre-process them by successively connected layers
+    * is typically implemented with neural networks
+    * Can have several billion parameters
+    * usually needs GPUs at least for training
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Formulating an optimization problem instead of writing code
+
+<img src='img/booster/software-complexity.png'>
+
+<small>
+Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
+
+https://vimeo.com/272696002
+
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## What's inside?    
+
+<img src='img/booster/container-ship-cut-in-half.jpg'>
+
+https://twitter.com/CutInHalfPic/status/1498601900081483779 
+</textarea>
+</section>
+    
+    
+            <section data-markdown>
+                <textarea data-template>
+## Types of Machine Learning                    
+<img src='img/sketch/ml-taxonomy-small.jpg'>
     </textarea>
             </section>
 
             <section data-markdown>
                 <textarea data-template>
-### Wie bekommt man das Modell aufs Schiff?
+## Data for ML Type - Supervised Learning        
+<img src='img/data_for_ml_types/supervised.jpg'>
+    </textarea>
+            </section>
 
+<section data-markdown>
+    <textarea data-template>
+## Hands-On        
+### Teach, don't program!
+
+Assignment: Pair up in teams of 2-3 people and teach the machine to tell which one is which 
+
+<a href='https://teachablemachine.withgoogle.com/'>
+    <img src='img/teachable-machine.png' style="height: 300px;">
+</a>
+
+<small>
+
+https://teachablemachine.withgoogle.com/
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### When to apply Supervised Learning
+
+_classify categories or predict values_
+
+* you have matching pairs of input and output and want the model to generate output for unknown input
+* the solution to the problem at hand is unknown or hard to specify
+* solving the problem can tolerate some error or uncertainty
+* there is a clear, simple input and output
+* there are patterns in your input that can be used to predict the output
+
+_what we see applied most of the time_
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Data for ML Type - Self-Supervised Learning        
+<img src='img/data_for_ml_types/self_supervised.jpg'>
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Foundation Models: Transformer Core ideas
+
+1. have a generalized language model
+1. train on a very large corpus
+1. self-supervision for leveraging large unlabeled datasets (aka unsupervised pre-training)
+1. self-supervised training randomly removes a fraction of the words and replacing them with individual
+sentinel tokens
+1. train model to predict missing words
+1. additional supervised training possible for downstream tasks, e.g.
+    - translation (lang1 & lang2 pairs)
+    - question answering (Q&A pairs)
+    - sentiment analysis (text & mood pairs)
+    - etc.
+
+    <!-- https://www.youtube.com/watch?v=iFhYwEi03Ew -->
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Example: One-Shot / Few-Shot learning using GPT-3
+
+<img src='img/transformers/gpt-few-shot.png' style="height: 450px;">
+
+<small>
+
+https://arxiv.org/abs/2005.14165</small>
+        </textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## Hands-On        
+
+### T0pp zero-shot language model
+
+Assignment: Find at least one weakness of the model and one thing that impresses you
+
+<img src='img/booster/t0pp.png' style="height: 350px;">      
+
+https://huggingface.co/bigscience/T0pp
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## Data for ML Type - Unsupervised Learning        
+<img src='img/data_for_ml_types/unsupervised.jpg'>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Hands-On: Anomagram 
+<a href='https://victordibia.github.io/anomagram/#/'>
+<img src='img/booster/anomagram-inference.gif' height="450">
+</a>
+<br>
+<small>
+
+https://github.com/victordibia/anomagram        
+https://victordibia.github.io/anomagram/#/
+
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Data for ML Type - Reinforcement Learning        
+<img src='img/data_for_ml_types/reinforcement.jpg'>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Learning to park by making experiments
+
+<br>
+<br>
+<div class="container" style="align-items: center;">
+    <div class="col">
+<img src='img/rl2/rl-park.png' style="height: 300px;">
+</div>
+<div class="col">
+
+* Setting: https://youtu.be/VMp6pq6_QjI
+* 20k trials, first success: https://youtu.be/VMp6pq6_QjI?t=140
+* 300k trials, starts looking good: https://youtu.be/VMp6pq6_QjI?t=572
+
+</div>
+</div>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Real challenge is to model the problem for RL
+
+<div class="container">
+<div class="col">
+    <img src='img/rl2/rl.png' style="height: 300px;">
+
+</div>    
+<div class="col">
+    <br>
+<ol>
+    <li>Based on <em>Observations</em> an <em>Agent</em> executes </li>
+<li> <em>Actions</em> within a given  
+<li><em>Environment</em> which lead to positive or negative 
+<li><em>Rewards</em>.
+</ol>
+</div>    
+</div>
+The Agent’s job is to maximize the cumulative Reward
+
+http://gym.openai.com/docs/
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Modelling of parking problem
+
+* input eight depth sensors, current speed and position, relative position to the target
+* outputs engine force, braking force and turning force 
+* Policy as NN with 3 hidden layers of 128 neurons each
+* learning algorithm PPO
+* small reward for getting closer, large reward for hitting the spot
+* small penalty for driven away, large penalty for crashing
+
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### More fun parking
+
+* two AI Agents fighting for the same parking spot: https://twitter.com/SamuelArzt/status/1175738904055562240
+* AI Learns to parallel park: https://twitter.com/SamuelArzt/status/1248642920875528194
+* bits of code: https://twitter.com/SamuelArzt/status/1176487746195603457
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Structure of Observation and Reward are crucial
+
+agents can learn short cuts and unexpected behavior
+</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large;" class="fragments">
+    <textarea data-template>
+### What machines learned as opposed what the designers intended them to learn
+
+* `Reward shaping a soccer robot for touching the ball caused it to learn to get to the ball and vibrate touching it as fast as possible`
+* `Robot hand pretending to grasp an object by moving between the camera and the object`
+* `Simulated pancake making robot learned to throw the pancake as high in the air as possible in order to maximize time away from the ground`
+* `Agent pauses the game indefinitely to avoid losing`
+* `In an artificial life simulation where survival required energy but giving birth had no energy cost, one species evolved a sedentary lifestyle that consisted mostly of mating in order to produce new children which could be eaten (or used as mates to produce more edible children).`
+* `Agent kills itself at the end of level 1 to avoid losing in level 2`
+</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large;" class="fragments">
+    <textarea data-template>
+### What machines learned as opposed what the designers intended them to learn - cont'd
+
+* `Evolved player makes invalid moves far away in the board, causing opponent players to run out of memory and crash`
+* `Creatures exploited physics simulation bugs by twitching, which accumulated simulator errors and allowed them to travel at unrealistic speeds`
+* `Reward-shaping a bicycle agent for not falling over & making progress towards a goal point (but not punishing for moving away) leads it to learn to circle around the goal in a physically stable loop.`
+* `... algorithm learns to bait an opponent into following it off a cliff, which gives it enough points for an extra life, which it does forever in an infinite loop.`
+* `The PPO algorithm discovers that it can slip through the walls of a level to move right and attain a higher score.`
+
+<small>
+
+https://vkrakovna.wordpress.com/2018/04/02/specification-gaming-examples-in-ai/
+<br>
+https://arxiv.org/abs/1803.03453 
+<br>
+https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vRPiprOaC3HsCf5Tuum8bRfzYUiKLRqJmbOoC-32JorNdfyTiRRsR7Ea5eWtvsWzuxo8bjOxCG84dAg/pubhtml
+https://twitter.com/mogwai_poet/status/1060286856493813760
+
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+<img src='img/sketch/ml-taxonomy.jpg' style="height: 650px;">
+
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Joint exercise: Which learning strategy?    
+
+<div style="display: flex;">
+<div style="flex: 50%;">
+<img src='img/sketch/ml-taxonomy-small.jpg' style="height: 100%;">
+</div>
+<div style="flex: 50%; font-size: x-large;">
+
+1. detecting tuberculosis on x-ray images 
+1. teaching a robot to pick up objects
+1. finding a good set of hyperparameters in deep learning
+1. optimal pricing of airline tickets
+1. deciding on the risk class of potential customers for an insurance policy
+1. detection of credit card fraud 
+1. which soccer players are similar?
+1. recommendation for news
+1. when does a machine need maintenance?
+    
+
+</div>
+</div>
+</textarea>
+</section>
+<section data-markdown>
+    <textarea data-template>
+### Part II        
+## What to bring back from the trip
+
+<!-- <img src='img/booster/koehlbrand.jpg'> -->
 <img src='img/booster/ladebruecke.jpg'>
 
-    </textarea>
-            </section>
 
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+    # HIER KOMMT KIMS MURAL
+
+</section>
+
+<section data-markdown class="fragments">
+    ### Wrap-Up
+
+    *
+
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Thanks for attending        
+# The Grand Harbor Tour of Machine Learning
+
+### Stay in Contact if you like
+
+Kim Nena Duggen
+
+Oliver Zeigermann, <a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
+
+Slides: https://bit.ly/ml-booster-2022
+
+</textarea>
+</section>
+
+
+<!-- 
+            <section data-markdown>
+                <textarea data-template>
+# MATERIAL                    
+                </textarea>
+            </section>
             <section data-markdown>
                 <textarea data-template>
 ### Was macht das denn hier?
 
 <img src='img/booster/insel.jpg'>
 
-    </textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### XXX
-
-<img src='img/booster/sailor.png'>
-
-https://twitter.com/opa_cojones
     </textarea>
             </section>
 
@@ -278,34 +643,6 @@ I'm more exited by the "small" ML successes that solve concrete problems. Hidden
 </section>
 
 <section data-markdown class="todo">
-## TODO
-* Hafenrundfahrt als Menschen zentriert zeigen
-* Entweder Abnehmer oder Fahrer
-* OOP Vortrag in den Booster Workshop einfließen lassen
-
-</section>
-
-
-<section data-markdown class="todo">
-## Kleinkram
-* bit.ly
-* links to playgrounds
-* Wrap-Ups schreiben
-* Letzte Folie, Link, Contact, vielen Dank
-* Hafenbilder aussuchen und an die richtige Stelle tun (sind alle schon hier drin)
-* Dev-Process
-* Biases: We are all just martians
-
-</section>
-
-<section data-markdown class="todo">
-
-Things Cut In Half (@CutInHalfPic) twitterte um 11:11 AM on Di., März 01, 2022:
-Container ship https://t.co/geu620Pjfd
-(https://twitter.com/CutInHalfPic/status/1498601900081483779?t=vWCMUSRYC1YKk5ARWUQzfA&s=03) 
-</section>
-
-<section data-markdown class="todo">
     ### High Level Strategy ist wie ML Prozess
     
     John Cutler (@johncutlefish) twitterte um 5:12 PM on Sa., Feb. 19, 2022:
@@ -342,594 +679,56 @@ Container ship https://t.co/geu620Pjfd
 </section>
 
 <section data-markdown class="todo">
-## am 4.3.2022
-### 1 Stunden Version von Kims Mural erstellen
+    <textarea data-template>
 
-* Alles Aufwändige weg lassen und nur nehmen, was man leicht auf Englisch bringen kann
-*
-https://app.mural.co/t/embarcagila3904/m/embarcagila3904/1633335145103/65d3bde76e9c455f4a58cc24bdd97b4c1007835b?sender=oliverzeigermann6333
-* Welche Grafiken müssen Englisch sein?
-* Direkt machen
+### Roles
+- Users
+- User Experience
+- Engineers
+- What should ML model communicate?
+- What a complete system
+- Stakeholders
+- How do communicate performance of systems to stakeholders
+
+</textarea>
 </section>
 
 
-            <section data-markdown style="font-size: xx-large;" id='agenda'>
-                <textarea data-template>
-## Schedule
+<section data-markdown class="todo">
+    <textarea data-template>
+### Interpretabilty / Explainability
 
-* Block 1: <a href='#bl1'>Introduction (1h, Olli)</a>
-* Block 2: <a href='#bl2'>Navigating the world of ML (1h, Kim/Olli)</a>
-* Block 3: <a href='#bl3'>Applying in the real world (1h, Kim)</a>
-
-<a href='#playgrounds'>All Playgrounds</a>
-
+* https://queue.acm.org/detail.cfm?id=3511299
+* Everyone racking their brains about explainable AI should have a look at the cognitive science literature on how people explain their own behavior. People have very detailed explanations. The only problem is that these explanations can be very wrong!
+  * https://twitter.com/gershbrain/status/1490696366405914626
+  * The social aspects can play a large role as well, ie. who the explanation is for. https://t.co/slfEgGtcFi (https://twitter.com/mptouzel/status/1490721279825088513?t=t6Zl_LUMb8Wo1kNJDLxjRg&s=03) 
 </textarea>
-            </section>
-
-            <section data-markdown style="font-size: xx-large;" id='bl1'>
-                <textarea data-template>
-## Schedule
-
-* Block 1: <a href='#bl1'>_Introduction_</a>
-* Block 2: <a href='#bl2'>Navigating the world of ML</a>
-* Block 3: <a href='#bl3'>Applying in the real world</a>
-
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-<img src='img/booster/classic-development.jpg' style="height: 600px;">
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-<img src='img/booster/software-1-0.png' style="height: 550px;">
-
-<small>
-Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
-
-https://vimeo.com/272696002
-
-</small>
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-## Supervised Learning
-
-_recover an unknown function from possibly noisy measurements_
-
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-<img src='img/booster/supervised-ml.jpg' style="height: 600px;">
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-<img src='img/sketch/ml-taxonomy-small.jpg'>
-    </textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-## Data for ML Type - Supervised Learning        
-<img src='img/data_for_ml_types/supervised.jpg'>
-    </textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Provide Matching Samples
-
-<img src='img/sketch/imitation.jpg' style="height: 500px;">
-    </textarea>
-            </section>
-
-            <section data-markdown class="fragments">
-
-                ### Traditional Machine Learning vs Deep Learning
-
-                * **Traditional Machine Learning**
-                * e.g. regressions, decision trees, nearest neighbors, support vector machines.
-                * needs selection and preprocessing of features
-                * can be used with few examples in some cases
-                * usually needs little computing power for training
-                * **Deep Learning**
-                * can learn which features are relevant and pre-process them by successively connected layers
-                * is typically implemented with neural networks
-                * Can have several billion parameters
-                * usually needs GPUs at least for training
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-
-<img src='img/booster/software-2-0.png' style="height: 550px;">
-
-<small>
-Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
-
-https://vimeo.com/272696002
-
-</small>
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Formulating an optimization problem instead of writing code
-
-<img src='img/booster/software-complexity.png'>
-
-<small>
-Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
-
-https://vimeo.com/272696002
-
-</small>
-</textarea>
-            </section>
-
-
-            <section data-markdown>
-                <textarea data-template>
-### You state your problem as an optimization
-
-* arbitrary input and output
-* freely choose hidden complexity
-* auto derivation libraries find gradients
-* loss function determines what you are after
-* based on gradients and loss they tune the parameters of your model
-        
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Understand Deep Learning
-
-<a href='https://playground.tensorflow.org/'>
-<img src='img/booster/tf-playground.png' height="500px">
-</a>
-
-<small>
-
-https://playground.tensorflow.org/
-</small>
-    </textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Wrap Up: Classification using a single neuron
-
-<img src="img/booster/log-reg.jpg">
-
-https://twitter.com/ChelseaParlett/status/1389317454669565954
-</textarea>
-            </section>
-
-            <section>
-                <h3>A more complex example of Supervised Learning</em></h3>
-                <a href="https://transcranial.github.io/keras-js/#/mnist-cnn" target="_blank">
-                    <img src="img/booster/keras-browser.png" height="350px">
-                </a>
-                <p><small>
-                        <a href="https://transcranial.github.io/keras-js/#/mnist-cnn"
-                            target="_blank">https://transcranial.github.io/keras-js/#/mnist-cnn</a>
-                    </small></p>
-            </section>
-
-
-            <section data-markdown>
-                <textarea data-template>
-
-### Classification vs Regression
-
-_Regressions predict a quantity, and classifications predict a label_
-
-<img src="img/booster/classification.jpg" style="height: 400px;">
-
-1. Regression: Fitting a curve (often a line) through data points
-2. Classification: What category can be derived from data
-
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Regression using a single neuron
-
-<img src="img/booster/lin-reg.jpg">
-
-https://twitter.com/ChelseaParlett/status/1389317454669565954
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Oops, no big O notation in predictions with deep learning?
-
-<div style="display: flex;">
-    <div style="flex: 50%;">
-        <img src='img/booster/kites_detections_output.jpg'>
-    </div>
-    <div style="flex: 50%;">
-        <img src='img/booster/sw2-constant-runtime-detection.png'>
-    </div>
-</div>
-
-<small>
-
-https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
-    
-</small>
-</textarea>
-            </section>
-
-            <section data-markdown>
-                ### A neural network can be modeled as a directed graph of constant operations
-
-                ```
-                node_def {
-                name: "sequential/hidden1/MatMul"
-                op: "MatMul"
-                input: "input"
-                input: "sequential/hidden1/MatMul/ReadVariableOp:value:0"
-                attr {
-                key: "T"
-                value {
-                type: DT_FLOAT
-                }
-                }
-                attr {
-                key: "transpose_a"
-                value {
-                b: false
-                }
-                }
-                attr {
-                key: "transpose_b"
-                value {
-                b: false
-                }
-                }
-                experimental_debug_info {
-                original_node_names: "sequential/hidden1/MatMul"
-                }
-                }
-                ```
-
-                http://web.stanford.edu/class/cs245/slides/TFGraphOptimizationsStanford.pdf
-            </section>
-
-            <section data-markdown class="fragments">
-
-                ### Deep Learning has very interesting properties for production
-
-                1. parallelizable
-                1. abstract from hardware
-                1. constant runtime and memory requirements
-                1. automatic tradeoff resources vs error metrics
-                1. Superhuman performance
-
-            </section>
-
-            <section data-markdown class="fragments">
-                ### Challenges
-
-                * Networks are black boxes
-                * Debugging
-                * Emotionally draining
-                * Explainability
-                * Attack vectors
-                * Programming
-                * Deep Learning is (...) mostly constraint-driven software development
-                (https://twitter.com/karpathy/status/1439676583690715140)
-                * Modeling choices encode strong assumptions about the data ...
-                (https://twitter.com/fchollet/status/1439799099176357894)
-                * Neural net training fails silently (https://karpathy.github.io/2019/04/25/recipe/)
-                * Standard Tool chain does not exist
-            </section>
-
-            <section data-markdown class="fragments">
-
-                ### Limitations of Software 2.0
-
-                * no loops possible
-                * no halting problem
-                * but also not computational complete
-                * not suitable for all tasks
-                * sometimes there are clear rules
-                * most tasks are not of algorithmic nature
-            </section>
-
-            <section data-markdown class="fragments">
-                ### Wrap-Up
-
-                *
-
-            </section>
-
-            <section data-markdown style="font-size: xx-large;" id='bl2'>
-                <textarea data-template>
-## Schedule
-
-* Block 1: <a href='#bl1'>Introduction</a>
-* Block 2: <a href='#bl2'>_Navigating the world of ML_</a>
-* Block 3: <a href='#bl3'>Applying ML in the real world</a>
-
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-## Navigating the world of ML        
-    </textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-<img src='img/sketch/ml-taxonomy-small.jpg'>
-    </textarea>
-            </section>
-
-            <section data-markdown class="fragments">
-                ### Machine Learning has data as its core
-
-                * Supervised Machine Learning: Learn to imitate relation between input and output
-                * Time Series data already is special in that respect as we are only constructing pairs of input and
-                output
-                * sometimes called self-supervised training
-
-                * Unsupervised Machine Learning: Objective needs to be described in more detail as we are not only
-                having a simple immitation
-
-                * Reinforcement Learning: objective even more abstract, given as a reward in a given environment
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-## Data for ML Type - Supervised Learning        
-<img src='img/data_for_ml_types/supervised.jpg'>
-    </textarea>
-            </section>
-
-            <section data-markdown class="todo">
-                Hierfür hatten wir ja schon das Beispiel
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-## Data for ML Type - Self-Supervised Learning        
-<img src='img/data_for_ml_types/self_supervised.jpg'>
-    </textarea>
-            </section>
-
-            <section data-markdown class="fragments">
-                ### Foundation Models: Transformer Core ideas
-
-                1. have a generalized language model
-                1. train on a very large corpus
-                1. zero- or one-shot learning
-                1. self-attention for encoding long range dependencies
-                1. self-supervision for leverating large unlabeled datasets (aka unsupervised pre-training)
-                1. additional supervised training for downstream tasks, e.g.
-                - translation (lang1 & lang2 pairs)
-                - question answering (Q&A pairs)
-                - sentiment analysis (text & mood pairs)
-                - etc.
-
-                <!-- https://www.youtube.com/watch?v=iFhYwEi03Ew -->
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Example
-
-<img src='img/booster/deepl-example.png'>
-
-<small>
-
-https://www.deepl.com/translator#de/en/Transformer%20sind%20das%20Schweizer%20Messer%20der%20Sprachverarbeitung
-</small>
-        </textarea>
-            </section>
-
-
-<section data-markdown>
-    ### Training T5
-
-    pretraining includes both self-supervised and supervised learning
-    * self-supervised training randomly removes a fraction of the tokens and replacing them with individual
-    sentinel tokens
-    * input of the encoder is the corrupted sentence
-    * input of the decoder is the original sentence
-    * target is then the dropped out tokens delimited by their sentinel tokens
-    * supervised training on downstream tasks provided by the GLUE and SuperGLUE benchmarks
-    * converting them into text-to-text tasks as explained in previous slide
-
-    https://huggingface.co/transformers/model_summary.html#t5
 </section>
 
-            <section data-markdown>
-                <textarea data-template>
-### Demo / Hands-On - T0pp
+<section data-markdown class="todo">
+    <textarea data-template>
+### Ux and ML
 
-T5 for zero-shot
-
-<img src='img/booster/t0pp.png' style="height: 400px;">      
-
-https://huggingface.co/bigscience/T0pp
+[ ] Often humans come in direct contact with Machine Learning
+[ ] Requires special attention as it enters the domain of human intelligence
+[ ] This is not always the case, often other systems are in between
+[ ] https://developers.google.com/machine-learning/guides/rules-of-ml
+[ ] http://martin.zinkevich.org/rules_of_ml/
+[ ] For end users
+[ ] Does a door open?
+[ ] Does the laptop log you in?
+[ ] Need to be sutble: all these changes and what has become possible in the lifetime of a person
+[ ] For professional users
+[ ] Recommendation
+[ ] How certain is the model?
+[ ] How good does it have to be?
+[ ] Shall not get on your nerves
+[ ] Only make a proposal when you wait for a while
+[ ] The longer you wait the lower the certainty has to be
 </textarea>
-            </section>
+</section>
 
-
-            <section data-markdown>
-                <textarea data-template>
-## Data for ML Type - Unsupervised Learning        
-<img src='img/data_for_ml_types/unsupervised.jpg'>
-    </textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Demo: Anomagram 
-<a href='https://victordibia.github.io/anomagram/#/'>
-<img src='img/booster/anomagram-inference.gif' height="450">
-</a>
-<br>
-<small>
-
-https://github.com/victordibia/anomagram        
-https://victordibia.github.io/anomagram/#/
-    
-</small>
-</textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-## Data for ML Type - Reinforcement Learning        
-<img src='img/data_for_ml_types/reinforcement.jpg'>
-    </textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### AI Learns to Park - Deep Reinforcement Learning 
-
-* simulated world in Unity
-* agent learns by experiment
-* neural network learns policy
-  * input eight depth sensors, current speed and position, relative position to the target
-  * outputs engine force, braking force and turning force 
-
-<br>
-<br>
-<div class="container" style="align-items: center;">
-    <div class="col">
-<a href='https://youtu.be/VMp6pq6_QjI'>        
-<img src='img/booster/rl-park.png' style="height: 200px;">
-</a>
-</div>
-<div class="col">
-<small>
-
-* Setting: https://youtu.be/VMp6pq6_QjI
-* 20k trials, first success: https://youtu.be/VMp6pq6_QjI?t=140
-* 300k trials, starts looking good: https://youtu.be/VMp6pq6_QjI?t=572
-
-</small>
-</div>
-</div>
-</textarea>
-            </section>
-
-
-            <section data-markdown>
-                <textarea data-template>
-### More fun parking
-
-* two AI Agents fighting for the same parking spot: https://twitter.com/SamuelArzt/status/1175738904055562240
-* AI Learns to parallel park: https://twitter.com/SamuelArzt/status/1248642920875528194
-* bits of code: https://twitter.com/SamuelArzt/status/1176487746195603457
-
-</textarea>
-            </section>
-
-
-            <section data-markdown>
-                <textarea data-template>
-<img src='img/sketch/ml-taxonomy.jpg' style="height: 650px;">
-
-    </textarea>
-            </section>
-
-
-            <section data-markdown class="fragments">
-                <textarea data-template>
-### Joint exercise: Which learning strategy?    
-
-<div style="display: flex;">
-    <div style="flex: 50%;">
-        <img src='img/sketch/ml-taxonomy-small.jpg' style="height: 100%;">
-    </div>
-    <div style="flex: 50%; font-size: x-large;">
-
-1. detecting tuberculosis on x-ray images 
-1. teaching a robot to pick up objects
-1. finding a good set of hyperparameters in deep learning
-1. optimal pricing of airline tickets
-1. deciding on the risk class of potential customers for an insurance policy
-1. detection of credit card fraud 
-1. which soccer players are similar?
-1. recommendation for news
-1. when does a machine need maintenance?
-                
-
-</div>
-</div>
-</textarea>
-            </section>
-
-            <section data-markdown class="fragments">
-                ### Wrap-Up
-
-                *
-
-            </section>
-
-            <section data-markdown style="font-size: xx-large;" id='bl3'>
-                <textarea data-template>
-## Schedule
-
-* Block 1: <a href='#bl1'>Introduction</a>
-* Block 2: <a href='#bl2'>Navigating the world of ML</a>
-* Block 3: <a href='#bl3'>_Applying ML in the real world_</a>
-
-</textarea>
-            </section>
-
-            <section data-markdown class="todo">
-                # HIER KOMMT KIMS MURAL
-
-            </section>
-
-            <section data-markdown class="fragments">
-                ### Wrap-Up
-
-                *
-
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-# Vielen Dank
-## Zeit für Fragen und Diskussion
-
-Die große Hafenrundfahrt durch Machine Learning
-
-SAS 2021, Berlin, https://software-architecture-summit.de/softwarearchitektur/die-grosse-hafenrundfahrt-durch-machine-learning/
-
-Diese Folien: https://bit.ly/2021-sas-ml
-
-Bleibt gern im Kontakt
-
-<a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
-
-https://www.embarc.de/oliver-zeigermann/
-
-
-    </textarea>
-            </section>
+ -->
 
         </div>
     </div>
@@ -950,9 +749,9 @@ https://www.embarc.de/oliver-zeigermann/
 		if (isPresentation) {
 		} else {
 			// only applies to public version
-//			$('.todo').remove();
-//			$('.preparation').remove();
-//			$('.local').remove();
+			$('.todo').remove();
+			$('.preparation').remove();
+			$('.local').remove();
 		}
 
 		Reveal.addEventListener('ready', function (event) {
