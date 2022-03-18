@@ -182,6 +182,60 @@ die Professionalisierung zu einem stabilen Stück Software bis in den produktive
 Entwicklungsprozess und weniger um die konkret eingesetzte Technik und
 die Bibliotheken.
 
+Vorbereitung
+
+Dieser Workshop geht davon aus, dass du bereits eine Entwicklungsumgebung mit IDE, Python Distribution und Git auf eurem Rechner lauffähig hast. 
+Sollte das nicht der Fall sein und du nicht sicher bist, welche Software passt, installiere bitte:
+1. Anaconda: https://www.anaconda.com/products/individual
+2. Visual Studio Code: https://code.visualstudio.com/
+3. Git: https://git-scm.com/downloads
+
+Wir werden auf einem Beispielprojekt arbeiten. Habt bitte bereits vor dem Workshop
+1. Das Projekt geklont: https://github.com/DJCordhose/insurance-ml
+2. ein neues Environment erzeugt, mit Anaconda ginge das mit (https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html): 
+  * conda create --name insurance-ml --clone base
+  * conda activate insurance-ml
+3. TensorFlow in diesem Environment installieren: https://www.tensorflow.org/install/  
+3. weitere Abhängigkeiten installiert mittels: pip install -r requirements.txt
+
+Agenda
+
+09:00 Uhr: Beginn
+
+Einführung in das Projekt und Überblick
+* Grundlagen von ML
+* Phasen eines ML Projekts
+* Unser Beispiel erkunden
+
+10:45 - 11:00 Uhr: Kaffeepause
+
+Phase I: Exploration
+* Was ist der Sinn dieser Phase, was sind die Ziele
+* Wieso bauen wir hier keine "richtige" Software?
+* Arbeit mit Notebooks
+* Übergang zu Phase II 
+
+12:30 - 13:30 Uhr: Mittagspause
+
+Phase II: Professionalisierung
+* Vom Notebook zum Modul
+* Vom Notebook zum Script
+* Testing
+* Was muss man dokumentieren?
+* Arbeit in der IDE
+* Übergang zu Phase III oder I
+
+15:00 - 15:15 Uhr: Kaffeepause
+
+Phase III: Produktion
+* Optionen für Produktivsetzung und Integration
+* Drifts und Monitoring
+* Übergang zu Phase II oder I
+
+ca. 17:00 Uhr: Ende
+
+
+
 			<section data-markdown>
 				<textarea data-template>
 # Vielen Dank
