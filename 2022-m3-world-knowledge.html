@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>World Knowledge Priors</title>
+
+    <link rel="stylesheet" href="reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+    <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+    <link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+    <style>
+        .right-img {
+            margin-left: 10px !important;
+            float: right;
+            height: 500px;
+        }
+
+        .todo:before {
+            content: 'TODO: ';
+        }
+
+        .todo {
+            color: red !important;
+        }
+
+        code span.line-number {
+            color: lightcoral;
+        }
+
+        .reveal pre code {
+            max-height: 1000px !important;
+        }
+
+        img {
+            border: 0 !important;
+            box-shadow: 0 0 0 0 !important;
+            height: 450px;
+        }
+
+        .reveal {
+            -ms-touch-action: auto !important;
+            touch-action: auto !important;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            /* letter-spacing: 2px; */
+            font-family: 'Calibri', sans-serif;
+            /* font-family: 'Times New Roman', Times, serif; */
+            /* font-weight: bold; */
+            color: black;
+            /* font-style: italic; */
+            /* letter-spacing: -2px; */
+            text-transform: none !important;
+        }
+
+        .reveal em {
+            font-weight: bold;
+        }
+
+        .reveal section img {
+            background: none;
+        }
+
+        .reveal img.with-border {
+            border: 1px solid #586e75 !important;
+            box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .reveal li {
+            margin-bottom: 8px;
+        }
+
+        /* For li's that use FontAwesome icons as bullet-point */
+        .reveal ul.fa-ul li {
+            list-style-type: none;
+        }
+
+        .reveal {
+            /* font-family: 'Work Sans', 'Calibri'; */
+            font-family: 'Calibri';
+            color: black !important;
+            font-size: xx-large;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .col,
+        col-1 {
+            flex: 1;
+        }
+
+        .col-2 {
+            flex: 2;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: whitesmoke;">
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 
+https://www.m3-konferenz.de/veranstaltung-14113-0-wie-kann-man-weltwissen-ins-machine-learning-einbringen.html
+3.6.2022: 10:15 - 11:00
+45 Minuten
+
+Wie kann man Weltwissen ins Machine Learning einbringen?
+
+Machine-Learning-Modelle verfügen a priori nicht über allgemeines Weltwissen. Dieser Mangel lässt sie oft kläglich
+scheitern, vor allem, wenn sie auf Bereiche extrapolieren, die nicht durch Trainingsdaten abgedeckt sind.
+
+Es gibt viele Beispiele für Dinge, die wir Menschen wissen, aber einem ML-System erst einmal beigebracht werden müssen.
+Dazu zählen bestimmte Invarianten in der Bilderkennung wie, z.B. die Tatsache, dass ein Objekt im Wesentlichen gleich
+aussieht, egal wo es sich befindet. Weitere Beispiele sind das Wissen, dass kein Mensch über 150 Jahre alt ist und Autos
+typischerweise nicht die Schallgeschwindigkeit erreichen.
+
+Dieser Vortrag ist ein Überblick über bekannte Methoden, dieses Wissen in einen Machine-Learning-Prozess einzubringen:
+die Wahl des richtigen Losses, die Erzwingung von Sparsity, die Wahl guter Dimensionen, Lattices, Arten von
+Netzwerkschichten und – nicht zuletzt – augmentierte Trainingsdaten.
+            -->
+
+<section data-markdown>
+    <textarea data-template>
+### Where did the Smurf go?
+
+<video src="img/smurf/smurf-short.mp4" controls>
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+## This isn't so much about whether this is a great trick, but rather...
+
+* **object permanence** https://en.wikipedia.org/wiki/Object_permanence
+* is a knowledge about the world we are so certain of
+* we get stressed when it is challenged
+* and immediately start thinking: where did it go?
+* basis for a large number of magical tricks
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Did it go here?
+
+<img src="img/smurf/smurf-fallen.jpg">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### No, it is really gone
+
+<video src="img/smurf/smurf-full.mp4" controls>
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Wie kann man Weltwissen ins Machine Learning einbringen?                
+
+M3 2022, https://www.m3-konferenz.de/veranstaltung-14113-0-wie-kann-man-weltwissen-ins-machine-learning-einbringen.html
+
+Oliver Zeigermann / oliver.zeigermann@openknowledge.de
+
+
+<!-- Folien: https://bit.ly/2022-oop-ml -->
+
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+### Augmentation
+
+Comic auf (unterschiedliche) echte Hintergrund als Weltwissen
+
+</section>
+
+
+<section data-markdown class="todo">
+### Bayesian Model, Weltwissen ist Prior
+</section>
+
+            <section data-markdown class="todo">
+### Fancy stuff, including AlphaZero
+
+Gary Marcus (@GaryMarcus) twitterte um 2:39 AM on Do., März 10, 2022:
+Deep Learning Is Hitting a Wall. What would it take for artificial intelligence to make real progress?
+
+#longread in ⁦@NautilusMag⁩ on one of the key technical questions in AI. https://t.co/ze8DtZuHwR
+(https://twitter.com/GaryMarcus/status/1501734523628707845?t=wrMHHutT-voIXJ7HJ96HlA&s=03) 
+        </textarea>
+    </section>
+
+<section data-markdown class="todo">
+### Markov Chains as Matrices
+
+Tivadar Danka 🇺🇦 (@TivadarDanka) twitterte um 10:30 AM on Fr., März 11, 2022:
+The single most undervalued fact of linear algebra: matrices are graphs, and graphs are matrices.
+
+Encoding matrices as graphs is a cheat code, making complex behavior simple to study.
+
+Let me show you how! https://t.co/8rBIkA8ZbZ
+(https://twitter.com/TivadarDanka/status/1502215264544296962?t=gMcg-3niXfPHyXfw4wx8_g&s=03) 
+
+</section>
+
+<section data-markdown class="todo">
+### Parametric Solutions    
+
+We assume certain properties of the model, like being normally distributed, and just learn the parameters of such properties, like mean and std.
+
+</section>
+
+
+<section data-markdown class="todo">
+### causality    
+
+Dan Roberts (@danintheory) twitterte um 4:41 PM on So., Feb. 20, 2022:
+I respectfully disagree w/ this and @ylecun's perspectives on causality: (a) causality is an essential part of microscopic physics and (b) even at the effective level of Newtonian physics, F=ma is *not* symmetric since it's a differential equation, not an algebraic equality.
+
+1/
+(https://twitter.com/danintheory/status/1495423336519770112?t=hbKV7pkdpDDK6oCgdNKktg&s=03) 
+</section>
+
+<section data-markdown class="todo">
+
+https://www.heise.de/hintergrund/Missing-Link-Was-wir-ueber-die-Fairness-der-Welt-von-moderner-KI-lernen-koennen-6351026.html
+</section>
+             
+            <section data-markdown class="todo">
+                <textarea data-template>
+### What can we expect from modern AI?
+
+Amanda Askell (@AmandaAskell) twitterte um 5:55 AM on Mo., Feb. 14, 2022:
+Phenomenal consciousness = Does it have an inner cinema?
+Self-consciousness = Is it aware of itself?
+Sentience = Can it have positive or negative experiences?
+Moral patienthood = Should we care about what we do to it?
+Moral agency = Should we hold it accountable for what it does?
+(https://twitter.com/AmandaAskell/status/1493086389549862915?t=T42_Nd0Vx-qxzuugx34GRg&s=03) 
+        </textarea>
+    </section>
+
+<section data-markdown class="todo">
+# consciousness
+
+* Andy Jones (@andy_l_jones) twitterte um 0:05 AM on Di., Feb. 22, 2022:
+    you can expect to see me repeating these very good opinions as my own
+    (https://twitter.com/andy_l_jones/status/1495897492831227908?t=AOkHCeN0OUOXv2w4sf7vIQ&s=03)
+* https://www.heise.de/hintergrund/Hat-KI-bereits-eine-Art-Bewusstsein-entwickelt-Forscher-streiten-darueber-6522868.html         
+</section>
+
+
+    <section data-markdown class="todo">
+        <textarea data-template>
+### Im Anschluss daran auch über Foundation Models sprechen            
+        </textarea>
+    </section>
+
+            
+            <section data-markdown class="todo">
+                <textarea data-template>
+### RL
+
+Indirektes Domainwissen in RL über Observation und Reward und Action Modellierung
+        </textarea>
+    </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Case: Order
+
+- https://raschka-research-group.github.io/coral-pytorch/
+- Ok, aber die Tatsache dass man weiss dass da eine Ordnung ist ist vielleicht eine Art Prior. Aber das ist sehr weitgegriffen vielleicht
+        </textarea>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
+### Links
+
+* Why Do Better Loss Functions Lead to Less Transferable Features?" https://twitter.com/skornblith/status/1469132061579620355
+* Implicit inference of 3D vision: This short paper in the journal i-Perception presents a disconcerting visual illusion spotted “in the wild”: how stackable chairs, viewed from a certain angle, mess with your head [read more, paper: https://t.co/ppu9j0pyIs] https://t.co/r2Sdie3UdF
+(https://twitter.com/Rainmaker1973/status/1489209455489212416?t=gxzQxv4J1yKQWVNnVkQ6bA&s=03)
+* What I’ve learned about making synthetic data work for training ML models: (https://twitter.com/russelljkaplan/status/1490303023267999744?t=QHQ_IkP8zs8LEzzr6bWmQQ&s=03)  
+    </textarea>
+            </section>
+
+
+        </div>
+    </div>
+
+
+    <script src="reveal.js/dist/reveal.js"></script>
+    <script src="lib/jquery.js"></script>
+
+    <script>
+        const printMode = window.location.search.match(/print-pdf/gi);
+        const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+            window.location.hostname.indexOf('127.0.0.1') !== -1;
+        const isPresentation = isLocal && !printMode;
+        const isPublic = !isPresentation;
+
+        $('.hide').remove();
+
+        if (isPresentation) {
+        } else {
+            // only applies to public version
+            $('.todo').remove();
+            $('.preparation').remove();
+            $('.local').remove();
+        }
+
+        Reveal.addEventListener('ready', function (event) {
+            // applies to all versions
+            $('code').addClass('line-numbers');
+
+            $('.fragments li').addClass('fragment')
+
+            // make all links open in new tab
+            $('a').attr('target', '_blank')
+
+            if (isPresentation) {
+                // only applies to presentation version
+                Reveal.configure({ controls: false });
+            } else {
+                // only applies to public version
+                $('.fragment').removeClass('fragment');
+            }
+
+            // we do not like fragments
+            // $('.fragment').removeClass('fragment');
+
+        });
+
+    </script>
+
+    <script src="reveal.js/plugin/notes/notes.js"></script>
+    <script src="reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="reveal.js/plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            width: 1100,
+            slideNumber: true,
+            hideInactiveCursor: false,
+
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+    </script>
+
+
+</body>
+
+</html>
