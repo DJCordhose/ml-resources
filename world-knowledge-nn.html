@@ -152,11 +152,37 @@ Wir Menschen verfügen über dieses Welt- und Domänenwissen, das Machine Learni
 Extrapolation erlauben könnte. So sind z.B. Objekte in der Bilderkennung häufig invariant zu einer bestimmten Reihe von Parametern, 
 wie zum Beispiel der Position im Raum, oder man weiß, dass niemand über 150 Jahre alt ist oder Autos typischerweise nicht die Schallgeschwindigkeit erreichen.
 
-Dieser Vortrag ist ein Überblick über bekannte Methoden dieses wissen in einen Machine Learning Prozess einzubringen. 
+Dieser Vortrag ist ein Überblick über bekannte Methoden, dieses wissen in einen Machine Learning Prozess einzubringen. 
 
 
 
 -->
+<!-- 
+
+Pydata London:
+
+Teaching world knowledge to a machine learning model
+
+Abstract
+
+Machine learning models do not have a priori general knowledge of the world. 
+This lack often causes them to fail miserably, especially when they extrapolate to domains not covered by training data. 
+
+We humans have this world and domain knowledge that could make machine learning models much more robust and even allow for extrapolation. 
+
+Give give some examples: Objects in image recognition are often invariant to their relative position. 
+It is known that human is over 150 years old. Cars typically do not reach the speed of sound. 
+
+This talk is an overview of known methods to incorporate this knowledge into a machine learning process. 
+
+Description
+
+We will have general overview and focus a bit more on neural networks.
+Topics will include: data augmentation, Bayesian priors, parametric vs non-parametric models, regularization, Markov chains, and more.
+
+You will need a basic understanding of how machine learning works, but no knowledge about libraries, as this talk will be more conceptual than code driven. 
+ -->
+
             <!-- Title: How to teach our world knowledge to a neural network?
 
 Neural networks are powerful approximators for any function. However they do not have the slightest idea of common knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by training data.
@@ -175,13 +201,19 @@ Pitch: Deep Learning models are notorious for not being able to extrapolate from
 
 Workshop:
 
-Neural networks are powerful approximators for any function. However they do not have the slightest idea of common knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by training data.
+Neural networks are powerful approximators for any function. However they do not have the slightest idea of common
+knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by
+training data.
 
-We, as human beings have that knowledge about the world and our domains of expertise, allowing deep learning models to become much more robust and even to extrapolate. But how do we encode this?
+We, as human beings have that knowledge about the world and our domains of expertise, allowing deep learning models to
+become much more robust and even to extrapolate. But how do we encode this?
 
-Based on code examples we will go through the known methods including choosing the right loss, forcing sparsity, choose good dimensions, lattices, types of network layers, and - last but not least - augmented training data. 
+Based on code examples we will go through the known methods including choosing the right loss, forcing sparsity, choose
+good dimensions, lattices, types of network layers, and - last but not least - augmented training data.
 
-None of the techniques shown are new and you might already know a good chunk of them (probably not all of them, though), but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the world knowledge you have.
+None of the techniques shown are new and you might already know a good chunk of them (probably not all of them, though),
+but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the
+world knowledge you have.
 
 
 Format: Workshop oder Talk
