@@ -657,14 +657,25 @@ Diese Folien: https://bit.ly/punsch-transformer
 1. Architecture: There is more than one kind of transformer
 </section>
  -->
+
+<section data-markdown class="class">
+### Embeddings
+
+* turn a word into a vector
+* maybe turn a sentence into a vector
+* contextual embeddings: turn a word into a vector, but also take the context into account
+* visualizing embeddings: https://github.com/koaning/whatlies
+</section>
+
 <section data-markdown class="fragments">
 ### Foundation Models: Transformer Core ideas
 
 1. have a generalized language model
+1. predict probabilities of sequences of words
 1. train on a very large corpus
 1. zero- or one-shot learning
 1. self-attention for encoding long range dependencies
-1. self-supervision for leverating large unlabeled datasets (aka unsupervised pre-training)
+1. self-supervision for leveraging large unlabeled datasets (aka unsupervised pre-training)
 1. additional supervised training for downstream tasks, e.g.
    - translation (lang1 & lang2 pairs)
    - question answering (Q&A pairs)
@@ -1130,6 +1141,34 @@ https://colab.research.google.com/github/embarced/notebooks/blob/master/deep/tra
 
 https://arxiv.org/abs/2108.07258
 </section>
+
+<section data-markdown>
+### Biases
+
+* bias: a tendency to favor one class over another
+* a model will be biased if it is trained on a biased data set
+* if you train a model on a biased data set, it will be biased
+* now you train on all data from the English speaking Internet the model will represent our biases as well
+* you will always have biases in your data
+* some are desired, some are undesired
+* predominant unwanted biases
+  * racial  
+  * gender
+    * male: doctor
+    * female: mother
+
+</section>
+
+<section data-markdown>
+### Addressing Biases
+
+* can not do do much to change the biases of the pre-trained model
+* but: you can at least be aware
+* still hard to do, testing on suspected biases using a set of hand crafted texts 
+* when training a downstream model make sure to exclude unwanted biases
+    
+</section>
+  
 
 <section data-markdown>
 ### Why it might make sense to study transformers even when you are not into NLP
