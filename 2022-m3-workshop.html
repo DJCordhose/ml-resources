@@ -142,6 +142,10 @@ Folien: https://bit.ly/xxx
     </textarea>
 			</section>
 
+<section data-markdown class="todo">
+
+https://developers.google.com/machine-learning/guides/rules-of-ml			
+</section>
 
 <section data-markdown class="todo">
 ###	Hauptarbeit, Metric Server mit Grafana etc. bauen
@@ -150,42 +154,6 @@ Folien: https://bit.ly/xxx
   * https://evidentlyai.com/
 
 </section>
-
-<section data-markdown>
-## Drift Detection
-</section>
-
-<section data-markdown style="font-size: x-large;">
-	<textarea data-template>
-## Drift erfordert Interpretation
-
-Wenn die Welt sich ändert, ist Drift zu erwarten und damit ok
-
-|   | Positive Interpretation, keine Maßnahme erforderlich  | Negative Interpretation, Maßnahme erforderlich  |
-|---|---|---|
-| Data und Prediction Drift: wichtige Features haben geändert  | Modell kommt klar und extrapoliert gut, z.B.: Höheres Alter, mehr Risiko  |  Modell extrapoliert nicht sinnvoll |
-| Data aber kein Prediction Drift  | keine wichtigen Features geändert, das Modell ist robust genug für den Drift  | wichtige Features geändert, Modell extrapoliert nicht sinnvoll |
-|   |   |   |
-
-</textarea>
-</section>
-
-<section data-markdown>
-## Maßnahmen bei Drift
-* Neue Daten aufnehmen (und labeln)
-* Neue Version des Modells trainieren
-* Schnelle Maßnahme
-  * Pre-/Post-Processing des Modells neu kalibrieren
-  * Schwellwerte für Anwendung anpassen
-  * Bestimmte Bereiche ausklammern 
-  * Modell Architektur ändern (oder fixen) und neu trainieren
-* Sehr schnelle Maßnahme: Fallback
-  * Manuell
-  * Heuristik / Baseline
-
-
-</section>
-
 	
 <section data-markdown class="todo">
 
@@ -336,8 +304,42 @@ ca. 17:00 Uhr: Ende
 </section>
 
 <section data-markdown>
+## Welche Metriken kann man in ML Systemen überwachen?
+
+Entscheidend ist die Performance des Systems
+
+* Technische Metriken
+  * ohnehin verfügbar, weil für das Training erforderlich
+  * accuracy, precision/recall 
+* Business Metriken
+  * z.B.
+	* Umsatz / Gewinn
+	* Umfang Schadensmeldungen
+    * allgemeiner Käufe, Views, Clicks, etc.
+  * oft sinnvoller, aber schwerer zu messen oder schwerer zu quantifizieren
+
+</section>
+
+<section data-markdown>
+## Das reicht meist nicht
+
+* Ground Truth liegt erst sehr spät vor
+  * Ob jemand ein guter Kunde ist wissen wir oft erst nach Jahren
+* Manchmal liegt die Ground Truth überhaupt nicht vor
+* Filter Bubble: es werden nur bestimmte Daten gesammelt
+  * wir sammeln nur Daten von Leuten, die auch unsere Kunden werden   
+* Unterschiedliche Teilbereiche können eine unterschiedliche Performanz haben
+  * Während ein Bereich besser wird, kann ein anderer, evtl. kleinerer Bereich deutlich schlechter werden, bei gleichbleibenden Performance
+* Performance kann stark über die Zeit variieren
+  * anhängig von der Art der Anfragen
+  * manchmal mit Regelmäßigkeiten innerhalb eines Tages
+  * Trend in Abweichungen manchmal schwer zu bestimmen   
+</section>
+
+
+<section data-markdown>
 	<textarea data-template>
-### Traditionelles Monitoring ist nicht ausreichend für ML
+### Monitoring für ML muss komplexer sein
 
 <img src="img/google-ml-monitoring.png">
 
@@ -346,6 +348,84 @@ Long: https://static.googleusercontent.com/media/research.google.com/en//pubs/ar
 Short: https://storage.googleapis.com/pub-tools-public-publication-data/pdf/45742.pdf
 </textarea>
 </section>
+
+<section data-markdown>
+## Was kann man machen: Frühes Monitoring
+
+* Qualität der Daten
+  * wie verändern sich fehlende oder falsche Felder
+  * Plausibilität
+* Daten Drift
+  * Verteilung der Eingabedaten
+* Prediction Drift   
+  * Was gibt das Modell aus?
+</section>
+
+<section data-markdown>
+## Datenqualität
+
+* Felder
+  * fehlen
+  * ungültig
+  * falsch / unplausibel / Wertebereich verlassen
+* Features 
+  * konstante (die (meisten) Eingaben haben (fast) denselben Wert)
+  * leere
+  * fast leer
+  * Korrelationen zwischen Features
+</section>
+	
+<section data-markdown>
+## Drift Detection
+</section>
+
+<section data-markdown>
+## Metriken für Drift 
+
+* Wie viele Predictions sind gültig bzw. werden als gut genug angesehen?
+* Art der Verteilung (z.B. Normal)
+* Parameter einer angenommenen Normalverteilung
+  * Mean
+  * Std Dev
+  * Percentile
+  * min-max
+* Statistische Tests für Konfidenzintervalle
+  * KL Divergence
+  * Kolmogorow-Smirnow-Test  	
+</section>
+
+
+<section data-markdown >
+	<textarea data-template>
+## Drift erfordert Interpretation
+
+Wenn die Welt sich ändert, ist Drift zu erwarten und damit ok
+
+|   | Positive Interpretation, keine Maßnahme erforderlich  | Negative Interpretation, Maßnahme erforderlich  |
+|---|---|---|
+| *Data und Prediction Drift*  | wichtige Features haben geändert, Modell kommt klar und extrapoliert gut, z.B.: Höheres Alter, mehr Risiko  |  wichtige Features haben geändert, Modell extrapoliert nicht sinnvoll |
+| *Data aber kein Prediction Drift*  | keine wichtigen Features geändert, das Modell ist robust genug für den Drift  | wichtige Features geändert, Modell extrapoliert nicht sinnvoll |
+|   |   |   |
+
+</textarea>
+</section>
+
+<section data-markdown>
+## Maßnahmen bei Drift
+* Neue Daten aufnehmen (und labeln)
+* Neue Version des Modells trainieren
+* Schnelle Maßnahme
+  * Pre-/Post-Processing des Modells neu kalibrieren
+  * Schwellwerte für Anwendung anpassen
+  * Bestimmte Bereiche ausklammern 
+  * Modell Architektur ändern (oder fixen) und neu trainieren
+* Sehr schnelle Maßnahme: Fallback
+  * Manuell
+  * Heuristik / Baseline
+
+
+</section>
+
 
 
 <section data-markdown class="todo">
