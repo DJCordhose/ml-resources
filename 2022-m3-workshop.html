@@ -142,6 +142,51 @@ Folien: https://bit.ly/xxx
     </textarea>
 			</section>
 
+
+<section data-markdown class="todo">
+###	Hauptarbeit, Metric Server mit Grafana etc. bauen
+
+* Können wir damit Alerts triggern?
+  * https://evidentlyai.com/
+
+</section>
+
+<section data-markdown>
+## Drift Detection
+</section>
+
+<section data-markdown style="font-size: x-large;">
+	<textarea data-template>
+## Drift erfordert Interpretation
+
+Wenn die Welt sich ändert, ist Drift zu erwarten und damit ok
+
+|   | Positive Interpretation, keine Maßnahme erforderlich  | Negative Interpretation, Maßnahme erforderlich  |
+|---|---|---|
+| Data und Prediction Drift: wichtige Features haben geändert  | Modell kommt klar und extrapoliert gut, z.B.: Höheres Alter, mehr Risiko  |  Modell extrapoliert nicht sinnvoll |
+| Data aber kein Prediction Drift  | keine wichtigen Features geändert, das Modell ist robust genug für den Drift  | wichtige Features geändert, Modell extrapoliert nicht sinnvoll |
+|   |   |   |
+
+</textarea>
+</section>
+
+<section data-markdown>
+## Maßnahmen bei Drift
+* Neue Daten aufnehmen (und labeln)
+* Neue Version des Modells trainieren
+* Schnelle Maßnahme
+  * Pre-/Post-Processing des Modells neu kalibrieren
+  * Schwellwerte für Anwendung anpassen
+  * Bestimmte Bereiche ausklammern 
+  * Modell Architektur ändern (oder fixen) und neu trainieren
+* Sehr schnelle Maßnahme: Fallback
+  * Manuell
+  * Heuristik / Baseline
+
+
+</section>
+
+	
 <section data-markdown class="todo">
 
 
