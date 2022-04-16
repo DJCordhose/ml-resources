@@ -116,15 +116,17 @@
 </section>
 
 <section data-markdown class="todo">
-	### The world is messy
-		 
-	 Statisticians that believe that doing the statistics is the hard part reveal they have no sense how messy real world data collection is.
-	
-	Hardest part is having a dataset that reflects reality. Time delays, simple dismissals, incentives, clerical errors, term ambiguity, on and on
-	(https://twitter.com/normonics/status/1511021293969235975?t=spHs38A9j38gdGASJMt1AA&s=03) 
+### The world is messy
+		
+	Statisticians that believe that doing the statistics is the hard part reveal they have no sense how messy real world data collection is.
+
+Hardest part is having a dataset that reflects reality. Time delays, simple dismissals, incentives, clerical errors, term ambiguity, on and on
+(https://twitter.com/normonics/status/1511021293969235975?t=spHs38A9j38gdGASJMt1AA&s=03) 
 </section>
 	
-	
+<section data-markdown class="todo">
+Aus 2021-wjax-mlops.html Notebooks und Struktur übernehmen 	
+</section>
 
 			<section data-markdown>
 				<textarea data-template>
@@ -142,9 +144,61 @@ Folien: https://bit.ly/xxx
     </textarea>
 			</section>
 
+<section data-markdown>
+### Was ist MLOps?
+
+* MLOps ist abgeleitet von DevOps
+* Durch MLOps kommt ML in Produktion und wird in Betrieb gehalten
+* Dazu kommen eine Reihe von Werkzeugen und Praktiken zum Einsatz
+* Überschneidung aus
+  * Softwareentwicklung
+  * Operations
+  * Data Science
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### ML Modelle brauchen permanente Wartung
+
+<img src='img/mlops/modell-vergammelt.jpg'>
+
+Das gilt nicht nur für ML Modelle, aber bei diesen ist es offensichtlicher
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## Die Tool-Landschaft ist divers und meist (noch) Inhouse
+
+<img src='img/mlops/mltools-ih.jpg' style="height: 400px;">
+
+<small>
+
+* https://towardsdatascience.com/lessons-on-ml-platforms-from-netflix-doordash-spotify-and-more-f455400115c7
+* Diskussion: 
+  * https://twitter.com/adamlaiacano/status/1458124198166122503
+  * https://twitter.com/rahulj51/status/1455431014671699971
+
+</small>
+
+
+</textarea>
+    </section>
+
+<section data-markdown>
+_MLOps today is in a very messy state with regards to tooling, practices, and standards. However, this is to be expected
+given that we are still in the early phases of broader enterprise machine learning adoption. As this transformation
+continues over the coming years, expect the dust to settle while ML-driven value becomes more widespread._
+
+https://www.mihaileric.com/posts/mlops-is-a-mess/
+</section>
+
+
 <section data-markdown class="todo">
 
-https://developers.google.com/machine-learning/guides/rules-of-ml			
+https://developers.google.com/machine-learning/guides/rules-of-ml		
+Hidden Technical Debt in Machine Learning Systems: https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf	
 </section>
 
 <section data-markdown class="todo">
@@ -224,13 +278,12 @@ Sollte das nicht der Fall sein und du nicht sicher bist, welche Software passt, 
 1. Anaconda: https://www.anaconda.com/products/individual
 2. Visual Studio Code: https://code.visualstudio.com/
 3. Git: https://git-scm.com/downloads
+4. Docker: https://docs.docker.com/get-docker/ und https://docs.docker.com/compose/install/
 
 Wir werden auf einem Beispielprojekt arbeiten. Habt bitte bereits vor dem Workshop
 1. Das Projekt geklont: https://github.com/DJCordhose/insurance-ml
-2. ein neues Environment erzeugt, mit Anaconda ginge das mit (https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html): 
-  * conda create --name insurance-ml --clone base
-  * conda activate insurance-ml
-3. weitere Abhängigkeiten installiert mittels: pip install -r requirements.txt
+2. Das Projekt wie im Readme beschrieben entweder lokal oder/und über Docker installiert
+
 
 Agenda
 
@@ -264,9 +317,9 @@ Phase II: Professionalisierung
 15:00 - 15:15 Uhr: Kaffeepause
 
 Phase III: Produktion
-* Optionen für Produktivsetzung und Integration
-* Drifts und Monitoring
-* TFX
+* Produktivsetzung
+* Drifts, Monitoring, Alerting
+* Evidently, Prometheus, Grafana 
 * Übergang zu Phase II oder I
 
 ca. 17:00 Uhr: Ende
@@ -394,6 +447,43 @@ Short: https://storage.googleapis.com/pub-tools-public-publication-data/pdf/4574
   * Kolmogorow-Smirnow-Test  	
 </section>
 
+<section data-markdown>
+## Data Drift
+
+* Verändert sich die Art der Eingabedaten?
+* Oft ausdrückt durch die Verteilung der einzelnen Features
+
+* Muss nicht notwendig schlimm sein
+  * Wenn entscheidende Features betroffen sind, kann es ein Problem sein 
+* Alarm anhand von
+  * Wichtigkeit der driftenden Features
+  * Anzahl der driftenden Features
+  * Ausmaß des Drifts
+* Dafür wichtig
+  * Vernünftige Tests anhand der Metriken
+  * Vernünftige Konfidenzintervalle
+
+</section>
+
+<section data-markdown>
+## Vernünftige Tests: Nicht-Parametrische Tests
+
+</section>
+
+
+<section data-markdown>
+## Vernünftige Tests: Parametrische Tests
+
+* Parametrische Tests sind besser als Nicht-Parametrische für Drift-Detection
+* Müssen für jedes Feature einzeln aufgesetzt werden
+* Sinnvoll wenn man nicht zu viele Features hat und man eine hohe Sicherheit braucht
+* Beispiele für Tests
+  * Z-Test
+    * Es wird eine Normalverteilung angenommen
+    * https://www.statisticshowto.com/probability-and-statistics/hypothesis-testing/z-test/
+    * Z-Test, T-Test des Mittelwerts (m = m0)
+    * Z-Test für eine Proportion https://statologie.de/z-test-eine-proportion/ (p = p0)
+</section>
 
 <section data-markdown >
 	<textarea data-template>
@@ -412,6 +502,7 @@ Wenn die Welt sich ändert, ist Drift zu erwarten und damit ok
 
 <section data-markdown>
 ## Maßnahmen bei Drift
+
 * Neue Daten aufnehmen (und labeln)
 * Neue Version des Modells trainieren
 * Schnelle Maßnahme
