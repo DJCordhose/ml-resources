@@ -116,6 +116,61 @@
 </section>
 
 <section data-markdown class="todo">
+### Konkrete Todos	
+* Classification Dashboard mit anderem Datensatz zum zucken bringen
+* Script für Requests klauen
+* Setup aus Evidently Beispiel klauen
+  * Code im Server
+  * Grafana Dashboards
+* Aus 2021-wjax-mlops.html Notebooks und Struktur übernehmen 	
+* Datensatz erzeugen, der Außerhalb des Trainingsbereichs testet
+
+	</section>
+	
+
+
+<section data-markdown class="local preparation hide">
+## Story
+
+### Phase 0
+- Grundlagen und Installation
+
+### Phase I
+1. Ein gutes Modell mit TensorFlow oder sklearn entwickeln
+1. Überblick Metriken: was passt gut? Wie benchmarked man
+1. Generalization
+1. Logik bauen die bestimmt, ob man dem Ergebnis traut, also ob man es nimmt oder einen Fallback
+   - bauen:
+     - check
+	 - Fallback in Regeln
+ 1. 1b Notebook und auch Alternative mit lattice zeigen
+ 
+### Phase II
+- Dinge in Module auslagern und auch im Notebook nutzen
+  - Autoreload im Notebook
+  - prediction
+  - präprocessing
+    - SKlearn pipeline
+	- Normalize 
+  - post processing
+    - Denormalize
+	- Plausibility
+- Erste Version des Servers haben
+  - Gerürst von app.py vorgeben mit Tracking Code etc.  
+
+### Phase III
+- Version mit Evidently zum laufen bringen
+- Requests aus Test Satz schicken
+  - Dashboard: alles gut
+- Requests aus Shift Satz schicken
+  - Dashboard: Shift
+  - Alert
+    - anlegen auf Panel
+	- Liste der Alerts in Dashboard hinzufügen
+- Dinge ausprobieren: https://play.grafana.org/
+</section>
+
+<section data-markdown class="todo">
 ### The world is messy
 		
 	Statisticians that believe that doing the statistics is the hard part reveal they have no sense how messy real world data collection is.
@@ -124,9 +179,6 @@ Hardest part is having a dataset that reflects reality. Time delays, simple dism
 (https://twitter.com/normonics/status/1511021293969235975?t=spHs38A9j38gdGASJMt1AA&s=03) 
 </section>
 	
-<section data-markdown class="todo">
-Aus 2021-wjax-mlops.html Notebooks und Struktur übernehmen 	
-</section>
 
 			<section data-markdown>
 				<textarea data-template>
