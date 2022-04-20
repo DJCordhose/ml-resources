@@ -135,7 +135,21 @@ Netzwerkschichten und – nicht zuletzt – augmentierte Trainingsdaten.
 
 <section data-markdown>
     <textarea data-template>
-### Where did the Smurf go?
+## Wie kann man Weltwissen ins Machine Learning einbringen?                
+
+M3 2022, https://www.m3-konferenz.de/veranstaltung-14113-0-wie-kann-man-weltwissen-ins-machine-learning-einbringen.html
+
+Oliver Zeigermann / oliver.zeigermann@openknowledge.de
+
+
+<!-- Folien: https://bit.ly/2022-oop-ml -->
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Wo ist der Schlumpf?
 
 <video src="img/smurf/smurf-short.mp4" controls>
 
@@ -144,56 +158,139 @@ Netzwerkschichten und – nicht zuletzt – augmentierte Trainingsdaten.
 
 <section data-markdown class="fragments">
     <textarea data-template>
-## This isn't so much about whether this is a great trick, but rather...
+## Hier geht es nicht so sehr darum, ob dies ein großartiger Trick ist, sondern eher darum, dass...
 
-* **object permanence** https://en.wikipedia.org/wiki/Object_permanence
-* is a knowledge about the world we are so certain of
-* we get stressed when it is challenged
-* and immediately start thinking: where did it go?
-* basis for a large number of magical tricks
+* **Objektpermanenz** https://en.wikipedia.org/wiki/Object_permanence
+* ein Wissen über die Welt ist, dessen wir uns so sicher sind
+* dass wir gestresst werden, wenn es in Frage gestellt wird
+* und denken sofort: Wo ist es hin?
+* Grundlage für eine große Anzahl von Zaubertricks
+        
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Weltwissen 
+
+* Wir Menschen haben ein grundlegendes Verständnis von Weltwissen.
+* sei es über die Physik normaler Objekte oder über die Eigenschaften von Menschen. 
+* wir erwarten dies ebenso von einem intelligenten automatischen System
+* erfüllt ein System dies nicht sind wir enttäuscht und unser Vertrauen in das System sinkt 
 
 </textarea>
+</section>
+
+
+<section data-markdown>
+### Themen
+
+Grundlagen
+* Encoding World Knowledge just applied statistics and mathematics?
+* Einfache Priors
+* Parametrische Modelle
+* Regularisierung
+* Augmentation
+
+Fortgeschrittenes
+* Markov-Ketten
+* Kausalität
+* Foundation Models
 </section>
 
 <section data-markdown>
-    <textarea data-template>
-### Did it go here?
-
-<img src="img/smurf/smurf-fallen.jpg">
-
-</textarea>
+## Einfache Priors    
 </section>
-
-<section data-markdown>
-    <textarea data-template>
-### No, it is really gone
-
-<video src="img/smurf/smurf-full.mp4" controls>
-
-
-</textarea>
-</section>
-
 
 <section data-markdown class="todo">
-### Für NN
+### Symbole und Suche
 
-* Weltwissen in Praxisbeispiel Autoencoder
-* Latent Space ansehen
+https://nautil.us/deep-learning-is-hitting-a-wall-14467/
+</section>
+
+<section data-markdown class="todo">
+### Bayesian Models, Weltwissen ist Prior
+</section>
+        
+<section data-markdown class="todo">
+
+World Knowledge as 
+* pre-processing, feature engineering
+* post processing
+</section>
+
+<section data-markdown class="todo">
+### Training Objective is part of world Knowledge
+
+Well explained blog post about over-optimizing reward models using simple best-of-n sampling: https://t.co/O3ocQ49etY
+
+By Jacob Hilton and @nabla_theta
+(https://twitter.com/janleike/status/1514304430824300546?t=7PmXFiyCHY9615YgAdP3VQ&s=03) 
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Case: Order
+
+- https://raschka-research-group.github.io/coral-pytorch/
+- Ok, aber die Tatsache dass man weiss dass da eine Ordnung ist ist vielleicht eine Art Prior. Aber das ist sehr weitgegriffen vielleicht
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+### NN
+
 * Auswirkung von
   * Geringerer Dimensionen 
   * Regularisierung
     * L1 and L2
-</section>
-
-
-<section data-markdown class="todo">
-https://www.tensorflow.org/neural_structured_learning
-1_train_nsl.ipynb
+* https://www.tensorflow.org/neural_structured_learning
 </section>
 
 <section data-markdown class="todo">
-### Encoding World Knowledge just applied statistics and mathematics?
+Learning Setting: Unsupervised, we know what is normal. Normal derives from being the majority of cases. But we assume normality.
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### RL
+
+Indirektes Domainwissen in RL über Observation und Reward und Action Modellierung
+</textarea>
+</section>
+    
+<section data-markdown>
+## Parametrische Modelle    
+</section>
+
+<section data-markdown class="todo">
+### Parametric Solutions    
+
+We assume certain properties of the model, like being normally distributed, and just learn the parameters of such properties, like mean and std.
+
+</section>
+
+
+
+<section data-markdown class="todo">
+### World Knowledge in Parametric Models
+    
+Christoph Molnar (@ChristophMolnar) twitterte um 0:40 PM on So., März 27, 2022:
+The modeling mindset of statisticians in one tweet
+
+1) Measure random variables, e.g. water temperature
+2) Assume distribution, e.g. Normal distribution
+3) Goal: Find optimal distribution parameters, e.g. mean
+4) Solution: Maximize the likelihood
+
+Parameters = Insight about world https://t.co/vfpjA9sCfT
+(https://twitter.com/ChristophMolnar/status/1508031278590873607?t=R2uQnLifwuc8MOPKGtyLPQ&s=03) 
+</textarea>
+</section>
+
+
+<section data-markdown>
+## Regularisierung    
 </section>
 
 <section data-markdown class="todo">
@@ -215,43 +312,12 @@ I can’t use a bottleneck or sparsity constraint—I actually want to maximize 
 </section>
 
     
+
+
 <section data-markdown>
-    <textarea data-template>
-## Wie kann man Weltwissen ins Machine Learning einbringen?                
-
-M3 2022, https://www.m3-konferenz.de/veranstaltung-14113-0-wie-kann-man-weltwissen-ins-machine-learning-einbringen.html
-
-Oliver Zeigermann / oliver.zeigermann@openknowledge.de
-
-
-<!-- Folien: https://bit.ly/2022-oop-ml -->
-
-</textarea>
+## Augmentation    
 </section>
-
-<section data-markdown class="todo">
-### Mrozek intro aus Quest for Generalization nehmen 
-    </section>
     
-
-<section data-markdown class="todo">
-### World Knowledge in Parametric Models
-    
-Christoph Molnar (@ChristophMolnar) twitterte um 0:40 PM on So., März 27, 2022:
-The modeling mindset of statisticians in one tweet
-
-1) Measure random variables, e.g. water temperature
-2) Assume distribution, e.g. Normal distribution
-3) Goal: Find optimal distribution parameters, e.g. mean
-4) Solution: Maximize the likelihood
-
-Parameters = Insight about world https://t.co/vfpjA9sCfT
-(https://twitter.com/ChristophMolnar/status/1508031278590873607?t=R2uQnLifwuc8MOPKGtyLPQ&s=03) 
-</textarea>
-</section>
-
-
-
 <section data-markdown class="todo">
 ### Augmentation
 
@@ -259,37 +325,38 @@ Comic auf (unterschiedliche) echte Hintergrund als Weltwissen
 
 </section>
 
-<section data-markdown class="todo">
 
-World Knowledge as 
-* pre-processing, feature engineering
-* post processing
+<section data-markdown>
+## Kausalität    
 </section>
 
 <section data-markdown class="todo">
-### Training Objective is part of world Knowledge
+### causality    
 
-Well explained blog post about over-optimizing reward models using simple best-of-n sampling: https://t.co/O3ocQ49etY
+Dan Roberts (@danintheory) twitterte um 4:41 PM on So., Feb. 20, 2022:
+I respectfully disagree w/ this and @ylecun's perspectives on causality: (a) causality is an essential part of microscopic physics and (b) even at the effective level of Newtonian physics, F=ma is *not* symmetric since it's a differential equation, not an algebraic equality.
 
-By Jacob Hilton and @nabla_theta
-(https://twitter.com/janleike/status/1514304430824300546?t=7PmXFiyCHY9615YgAdP3VQ&s=03) 
+1/
+(https://twitter.com/danintheory/status/1495423336519770112?t=hbKV7pkdpDDK6oCgdNKktg&s=03) 
 </section>
 
 
 <section data-markdown class="todo">
-### Bayesian Model, Weltwissen ist Prior
+
+* Die meisten Ansätze erzeugen Kandidaten und bewerten anhand von der Realität mit Scores oder Unabhängigkeitstests
+
+Nan Rosemary Ke (@rosemary_ke) twitterte um 5:53 AM on Mi., Apr. 20, 2022:
+Supervised causal induction: In this work, we learn to induce causal structure by
+treating the inference process as a black box and design a neural network architecture
+that learns the mapping from data to graph
+structures via supervised training.https://t.co/fHVQlkJLxg https://t.co/dsBvaU2kbe
+(https://twitter.com/rosemary_ke/status/1516626111182028803?t=ZG3F-ReQmn7c1fbODdM8dg&s=03)
 </section>
 
-            <section data-markdown class="todo">
-### Fancy stuff, including AlphaZero
 
-Gary Marcus (@GaryMarcus) twitterte um 2:39 AM on Do., März 10, 2022:
-Deep Learning Is Hitting a Wall. What would it take for artificial intelligence to make real progress?
-
-#longread in ⁦@NautilusMag⁩ on one of the key technical questions in AI. https://t.co/ze8DtZuHwR
-(https://twitter.com/GaryMarcus/status/1501734523628707845?t=wrMHHutT-voIXJ7HJ96HlA&s=03) 
-        </textarea>
-    </section>
+<section data-markdown>
+## Markov-Ketten
+</section>
 
 <section data-markdown class="todo">
 ### Markov Chains as Matrices
@@ -304,87 +371,15 @@ Let me show you how! https://t.co/8rBIkA8ZbZ
 
 </section>
 
-<section data-markdown class="todo">
-### Parametric Solutions    
-
-We assume certain properties of the model, like being normally distributed, and just learn the parameters of such properties, like mean and std.
-
-</section>
-
-
-<section data-markdown class="todo">
-### causality    
-
-Dan Roberts (@danintheory) twitterte um 4:41 PM on So., Feb. 20, 2022:
-I respectfully disagree w/ this and @ylecun's perspectives on causality: (a) causality is an essential part of microscopic physics and (b) even at the effective level of Newtonian physics, F=ma is *not* symmetric since it's a differential equation, not an algebraic equality.
-
-1/
-(https://twitter.com/danintheory/status/1495423336519770112?t=hbKV7pkdpDDK6oCgdNKktg&s=03) 
+<section data-markdown>
+## Foundation Models
 </section>
 
 <section data-markdown class="todo">
-
-https://www.heise.de/hintergrund/Missing-Link-Was-wir-ueber-die-Fairness-der-Welt-von-moderner-KI-lernen-koennen-6351026.html
-</section>
-             
-            <section data-markdown class="todo">
-                <textarea data-template>
-### What can we expect from modern AI?
-
-Amanda Askell (@AmandaAskell) twitterte um 5:55 AM on Mo., Feb. 14, 2022:
-Phenomenal consciousness = Does it have an inner cinema?
-Self-consciousness = Is it aware of itself?
-Sentience = Can it have positive or negative experiences?
-Moral patienthood = Should we care about what we do to it?
-Moral agency = Should we hold it accountable for what it does?
-(https://twitter.com/AmandaAskell/status/1493086389549862915?t=T42_Nd0Vx-qxzuugx34GRg&s=03) 
-        </textarea>
-    </section>
-
-<section data-markdown class="todo">
-# consciousness
-
-* Andy Jones (@andy_l_jones) twitterte um 0:05 AM on Di., Feb. 22, 2022:
-    you can expect to see me repeating these very good opinions as my own
-    (https://twitter.com/andy_l_jones/status/1495897492831227908?t=AOkHCeN0OUOXv2w4sf7vIQ&s=03)
-* https://www.heise.de/hintergrund/Hat-KI-bereits-eine-Art-Bewusstsein-entwickelt-Forscher-streiten-darueber-6522868.html         
-</section>
-
-
-    <section data-markdown class="todo">
-        <textarea data-template>
-### Im Anschluss daran auch über Foundation Models sprechen            
-        </textarea>
-    </section>
-
-            
-            <section data-markdown class="todo">
-                <textarea data-template>
-### RL
-
-Indirektes Domainwissen in RL über Observation und Reward und Action Modellierung
-        </textarea>
-    </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Case: Order
-
-- https://raschka-research-group.github.io/coral-pytorch/
-- Ok, aber die Tatsache dass man weiss dass da eine Ordnung ist ist vielleicht eine Art Prior. Aber das ist sehr weitgegriffen vielleicht
-        </textarea>
-            </section>
-
-            <section data-markdown>
-                <textarea data-template>
-### Links
-
-* Why Do Better Loss Functions Lead to Less Transferable Features?" https://twitter.com/skornblith/status/1469132061579620355
-* Implicit inference of 3D vision: This short paper in the journal i-Perception presents a disconcerting visual illusion spotted “in the wild”: how stackable chairs, viewed from a certain angle, mess with your head [read more, paper: https://t.co/ppu9j0pyIs] https://t.co/r2Sdie3UdF
-(https://twitter.com/Rainmaker1973/status/1489209455489212416?t=gxzQxv4J1yKQWVNnVkQ6bA&s=03)
-* What I’ve learned about making synthetic data work for training ML models: (https://twitter.com/russelljkaplan/status/1490303023267999744?t=QHQ_IkP8zs8LEzzr6bWmQQ&s=03)  
+    <textarea data-template>
+Foundation Models versprechen das Wissen über die Welt in Textform zu speichern            
     </textarea>
-            </section>
+</section>
 
 
         </div>
