@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Essentials of Machine Learning / Artificial Intelligence</title>
+    <title>Introduction to Machine Learning for Software Developers</title>
 
     <link rel="stylesheet" href="reveal.js/dist/reset.css">
     <link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -114,6 +114,15 @@
         <div class="slides">
 
 <section data-markdown class="todo">
+* Mergen
+  * SAA für classic und deep
+  * Booster RL und was sonst fehlt
+  * DS Day für längere Version von Foundation
+* Production und Notebooks: wie?
+* Alle Punkte der Agenda einbauen      
+</section>
+
+<section data-markdown class="todo">
   <textarea data-template>
 * Rahmen hier wie Essentials      
     
@@ -154,24 +163,34 @@ This workshop will be held in English, unless all registered participants speak 
 
 <section data-markdown>
                 <textarea data-template>
-# Essentials of Machine Learning / Artificial Intelligence
+# Introduction to Machine Learning for Software Developers
 
 Oliver Zeigermann
 
     </textarea>
             </section>
 
-<!-- <section data-markdown>
-    <textarea data-template>
-### Olli
+			<section data-markdown>
+				<textarea data-template>
+### Who is Olli
 
-<img src='img/booster/sailor.png'>
-
-https://twitter.com/DJCordhose
-zeigermann.eu
+<div style="display: flex;">
+    <div style="flex: 50%;">
+        <a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+        <img src='img/ml-buch-v2.jpg' height="400">
+        </a>
+    </div>
+    <div style="flex: 50%; font-size: x-large;">
+        <img src='img/olli-opa.jpeg'>
+    </div>
+</div>
+<p>
+    <a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
+Heat of AI@OpenKnowledge
+</p>    
 </textarea>
-</section>
-             -->
+			</section>
+
 <section data-markdown>
     <textarea data-template>
 ### Olli        
@@ -182,8 +201,6 @@ https://twitter.com/DJCordhose
 zeigermann.eu
 </textarea>
 </section>
-
-
 
 <section data-markdown>
     <textarea data-template>
@@ -205,7 +222,6 @@ https://twitter.com/karpathy/status/1486215976559398915
 
 </textarea>
 </section>
-
 
 <section data-markdown>
     <textarea data-template>
@@ -260,10 +276,13 @@ https://twitter.com/burkov/status/1505011374279307266
     <textarea data-template>
 # Schedule
 
-1. Navigating the world of ML
-   * Basic conceptual knowledge
-1. What to bring back from the trip 
-   * Kicking off your machine learning solution
+1. Basic conceptual knowledge, training a machine
+1. Traditional Machine Learning vs Deep Learning
+1. Foundation Models
+1. Outlier detection
+1. Reinforcement Learning
+1. Production
+1. Kicking off your machine learning solution
 
     </textarea>
 </section>
@@ -271,7 +290,7 @@ https://twitter.com/burkov/status/1505011374279307266
 <section data-markdown>
     <textarea data-template>
 ### Part I        
-## Navigating the world of ML
+## Basic conceptual knowledge, training a machine
 
 <img src='img/booster/abfahrt.jpg'>
 
@@ -300,23 +319,6 @@ https://twitter.com/burkov/status/1505011374279307266
 </textarea>
             </section>
 
-<!--             
-<section data-markdown class="fragments">
-
-### Traditional Machine Learning vs Deep Learning
-
-* **Traditional Machine Learning**
-    * e.g. regressions, decision trees, nearest neighbors, support vector machines.
-    * needs selection and preprocessing of features
-    * can be used with few examples in some cases
-    * usually needs little computing power for training
-* **Deep Learning**
-    * can learn which features are relevant and pre-process them by successively connected layers
-    * is typically implemented with neural networks
-    * Can have several billion parameters
-    * usually needs GPUs at least for training
-</section>
- -->
 <section data-markdown>
     <textarea data-template>
 ### Formulating an optimization problem instead of writing code
@@ -334,8 +336,10 @@ https://vimeo.com/272696002
 
 <section data-markdown>
     <textarea data-template>
-## Solution using Machine Learning
+## Hands-On: Solution using Machine Learning
 ### Teach, don't program!
+
+Assignment: Pair up in teams of 2-3 people and teach the machine to tell which one is which. After training, try to trick the model to make (more) mistakes
 
 <a href='https://teachablemachine.withgoogle.com/'>
     <img src='img/teachable-machine.png' style="height: 300px;">
@@ -391,7 +395,7 @@ https://twitter.com/CutInHalfPic/status/1498601900081483779
 </textarea>
 </section>
 
-<!-- <section data-markdown>
+<section data-markdown>
     <textarea data-template>
 ### Machine Learning only works if you can go from known to unknown data
     
@@ -400,7 +404,7 @@ https://twitter.com/CutInHalfPic/status/1498601900081483779
     </textarea>
     </section>
 
- -->
+
 
 <section data-markdown class="fragments">
     <textarea data-template>
@@ -420,6 +424,41 @@ _what we see applied most of the time_
 
 <section data-markdown>
     <textarea data-template>
+### Part II       
+## Traditional Machine Learning vs Deep Learning
+
+</textarea>
+</section>
+
+
+            
+<section data-markdown class="fragments">
+
+### Traditional Machine Learning vs Deep Learning
+
+* **Traditional Machine Learning**
+    * e.g. regressions, decision trees, nearest neighbors, support vector machines.
+    * needs selection and preprocessing of features
+    * can be used with few examples in some cases
+    * usually needs little computing power for training
+* **Deep Learning**
+    * can learn which features are relevant and pre-process them by successively connected layers
+    * is typically implemented with neural networks
+    * Can have several billion parameters
+    * usually needs GPUs at least for training
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Part III       
+## Foundation Models
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
 ### Challenge: Is a text negative or positive?
 
 * There are nasty things circulating on social media about your company
@@ -428,6 +467,19 @@ _what we see applied most of the time_
 * How many stars would a textual review equate to?
 
 </textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Issues in Supervised Learning
+
+* linear 
+* significant error rate to be expected
+  * all standard data sets contain up to 10% of errors
+  * https://labelerrors.com/
+* differences between different labelers
+* change in label definition might require to start all over
+
+_impractical with large data sets_
 </section>
 
 
@@ -449,6 +501,16 @@ _what we see applied most of the time_
 https://www.deepl.com/translator#de/en/Transformer%20sind%20das%20Schweizer%20Messer%20der%20Sprachverarbeitung
 </small>
         </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Bring on the big ships
+    
+<!-- <img src='img/booster/ladebruecke.jpg'> -->
+<img src='img/booster/hmm_algeciras.jpg'>
+
+</textarea>
 </section>
 
 
@@ -494,6 +556,34 @@ https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment
 https://huggingface.co/facebook/bart-large-mnli
 </textarea>
 </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Zoo of models
+
+<a href='https://huggingface.co/models?sort=downloads'>
+<img src='img/transformers/hugging-zoo.png' style="height: 500px;">      
+</a>
+<small>
+
+https://huggingface.co/models?sort=downloads
+
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### German models
+
+* Base: https://huggingface.co/dbmdz/bert-base-german-cased
+* Q&A: https://huggingface.co/deutsche-telekom/electra-base-de-squad2
+* Overview: https://huggingface.co/models?language=de&sort=downloads
+
+</textarea>
+</section>
+
 
 <section data-markdown class="fragments">
 ### More examples for applications in the corporate context
@@ -848,6 +938,17 @@ https://djcordhose.github.io/ml-resources/exercise/ml-business-context.docx
 </section>
 
 <section data-markdown>
+<textarea data-template>
+### Final words    
+
+<img src='img/dl-expert.png'>
+
+https://twitter.com/fchollet/status/1386373123889528835
+</textarea>
+
+</section>
+
+<section data-markdown>
     <textarea data-template>
 ### Minimum Requirements to start with Machine Learning        
 
@@ -855,6 +956,51 @@ https://djcordhose.github.io/ml-resources/exercise/ml-business-context.docx
 - there is no minimum requirement
 - growth mindset is important
 - experience is king
+- idea of scientific work can help
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Make of Buy
+
+* buy: you can't influence much, but you also don't have to
+* make: you can influence a lot, but you also have to
+
+https://medium.com/swlh/build-vs-buy-decision-619414efafc4
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Buy
+
+* AWS: https://aws.amazon.com/machine-learning/ai-services/
+* Google Cloud: https://cloud.google.com/solutions/ai
+* Azure
+  * https://azure.microsoft.com/en-us/overview/ai-platform
+  * https://azure.microsoft.com/en-us/product-categories/applied-ai-services
+* IBM: https://www.ibm.com/cloud/ai
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Make
+
+* Classic Machine Learning: https://scikit-learn.org
+* High Level Neural Networks / Deep Learning
+  * https://www.tensorflow.org
+  * https://keras.io/
+* Low Level Neural networks
+  * https://pytorch.org/
+  * https://github.com/google/jax
+* Base Models
+  * Language: https://huggingface.co/transformers/
+  * Recommendation: https://github.com/tensorflow/recommenders
+* Assorted
+  * https://www.tensorflow.org/hub
+  * https://keras.io/examples/
 </textarea>
 </section>
 
