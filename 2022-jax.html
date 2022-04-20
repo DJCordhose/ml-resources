@@ -186,6 +186,30 @@ Heat of AI@OpenKnowledge
 </textarea>
 </section>
 
+<section data-markdown class="fragments">
+    <textarea data-template>
+## Summary: JAX
+
+clean and simple low level base
+
+* uses XLA to compile and run your NumPy programs on GPUs and TPUs
+  * ```import jax.numpy as np```
+* automatic differentiation to any order
+  * ```grad(grad(grad(tanh)))(1.0)```
+  * can also differentiate lists, tuples, and dictionaries
+* https://github.com/google/jax#compilation-with-jit
+* https://github.com/google/jax#spmd-programming-with-pmap
+* might just as well get a high level Keras API: https://www.youtube.com/watch?v=J0p_thJJnoo&t=4838s
+
+https://github.com/google/jax
+<br>
+https://jax.readthedocs.io/en/latest/
+
+https://towardsdatascience.com/deep-learning-with-jax-and-elegy-c0765e3ec31a
+https://iaml.it/blog/jax-intro-english
+</textarea>
+</section>
+
 
             <section data-markdown>
                 <textarea data-template>
