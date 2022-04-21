@@ -206,17 +206,149 @@ Auch dieser Talk ist keine perfekte Lösung, wir brauchen immer noch 2 Teile
 ## Aufbau des Talks
 
 Auch dieser Talk ist keine perfekte Lösung, wir brauchen immer noch 2 Teile
-1. Neuronale Netzwerke einfacher verständlich machen: Jax-Framework
 1. Die JAX ist eine Java-Konferenz, was geht also im Bereich Java? Warum sind wir ein bisschen zu früh dran? 
+1. Neuronale Netzwerke einfacher verständlich machen: Jax-Framework
 
     </textarea>
             </section>
 
-
 <section data-markdown>
 ### Teil I
 
-## Deep Learning mit dem Jax Framework
+## Was machen wir mit Java?
+</section>
+            
+<section data-markdown>
+	<textarea data-template>
+### Pytorch hat ein komplettes Java-Binding
+
+Allerdings ist Pytorch eher im akademischen Umfeld verbreitet
+
+* https://github.com/bytedeco/javacpp-presets/tree/master/pytorch
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Unterschiedliche Java Bindings in TensorFlow
+
+TensorFlow ist das Defacto Standard wenn man es ernst meint
+
+1. https://github.com/tensorflow/tensorflow/blob/master/tensorflow/java/README.md
+   * Alte Version auf Basis von JNI, nur Core für die Ausführung von Modellen
+   * https://www.tensorflow.org/api_docs/java/org/tensorflow/package-summary
+   * Stabil, aber veraltet
+1. https://www.tensorflow.org/jvm
+* Das aktuelle Projekt
+  * Unterstützt nicht nur Deployment, sondern die volle API inkl. Training
+  * Hat strategische Bedeutung, ist aber noch nicht stabil
+  * Unterprojekt: https://github.com/tensorflow/java-ndarray
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### TensorFlow Java hat seine eigene Version
+
+Stabilitätsgarantien gelten nicht für Java
+
+<img src="img/lang/tf-java-versions.png">
+
+https://github.com/tensorflow/java/#tensorflow-version-support
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Aber: Wieso eigentlich Neuronale Netzwerke in Java?        
+
+* Training von Neuronalen Netzen ist eher Scripting
+* Sprachmittel von Java sind nach wie vor umständlich für Scripting
+* Aber: vielleicht reicht eine einfache Integration eines ML-Modells in Java mit Standard-Schnittstellen?
+  * GRPC, REST, MQTT, etc.  
+
+    </textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Kotlin
+
+Kotlin könnte als Sprache besser geeignet sein als Java
+
+* https://jax.de/big-data-machine-learning/kotlin-fuer-machine-learning/
+* https://kotlinlang.org/docs/data-science-overview.html
+* Keras-artige API: https://github.com/jetbrains/kotlindl
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### TensorFlowLite
+
+* Für mobile Geräte und Embedded Systeme
+* Statt der Java-Version für Android
+* https://www.tensorflow.org/lite
+* https://www.tensorflow.org/lite/guide
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### TensorFlow Modelle können als Graph abgespeichert werden
+
+<img src="https://raw.githubusercontent.com/tensorflow/docs/master/site/en/guide/images/intro_to_graphs/two-layer-network.png">
+
+* https://www.tensorflow.org/guide/intro_to_graphs
+* https://www.tensorflow.org/api_docs/python/tf/Graph#as_graph_def 
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Warum interessiert mich das?
+
+* Graphen enthalten alles was man zur Ausführung eines Neuronalen Netzes braucht
+* Damit kann man die Python-Welt verlassen
+* Man braucht lediglich eine Umgebung, die die Operationen in dem Graphen ausführen kann
+* So eine Umgebung ist bereits in TensorFlow mit C++ implementiert und auch die Python-Version beruht darauf  
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Serving
+
+* Erlauben direkt Ausführung eines Graphen im Server-Betrieb
+* Modell-Server kann lokal unter Linux installiert werden
+* Oder man kann so ein Modell direkt bei GCP deployen
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Serving
+
+```
+saved_model_cli show --dir insurance-classifier --all
+```
+
+```
+tensorflow_model_server --port=8500 --rest_api_port=8501 \
+--model_name=insurance --model_base_path=insurance-classifier
+```
+
+https://www.tensorflow.org/tfx/guide/serving
+</textarea>
+</section>
+
+<section data-markdown>
+### Teil II
+
+## Neuronale Netzwerke mit dem Jax Framework
 </section>
             
 <section data-markdown>
@@ -261,9 +393,7 @@ https://iaml.it/blog/jax-intro-english -->
 </section>
 
 
-
-
-            <section data-markdown>
+            <!-- <section data-markdown>
 
 A JAX implementation of #TriMap is now available: https://t.co/1KoHrWOOYk 🎉🎉🎉
 
@@ -359,7 +489,7 @@ Install: `pip install diffrax`
 (https://twitter.com/PatrickKidger/status/1493239723497857025?t=HuZS_zfGl-e5AAxNpU6WqfvOqVLQQED-AxaeUoYCVWg&s=03) 
 </textarea>
 </section>
-
+ -->
 
 
         </div>
