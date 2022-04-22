@@ -130,6 +130,13 @@ In dieser Session zeige ich anhand von Code Beispiele die Unterschiede und geben
 unterschiedliche Szenarien.
 
  -->
+
+ <section data-markdown class="local preparation hide">
+- Notebooks auf Colab ausprobieren
+- Server starte, sodass ich CURL und Client dagegen machen kann
+- Teachable Machine mit JS Demo	 
+	</section>
+	
 			<section data-markdown>
 				<textarea data-template>
 ## Deep Learning mit TensorFlow, ja gut, aber in welcher Sprache?                
@@ -137,36 +144,84 @@ unterschiedliche Szenarien.
 
 MD Dev Days 2022, https://md-devdays.de/act-detail/1000010
 
-Oliver Zeigermann / oliver@zeigermann.de
+Oliver Zeigermann
+Open Knowledge
+oliver.zeigermann@openknowledge.de
 
+Diese Folien: https://bit.ly/md-dev-tf
+</textarea>
 
-Folien: https://bit.ly/xxx
+</section>
 
-    </textarea>
-			</section>
+<section data-markdown>
+  <textarea data-template>
+### Wer ist Olli
 
-	<section data-markdown class="hide preparation">
-# Vorbereitung
+<div style="display: flex;">
+<div style="flex: 50%;">
+  <a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+  <img src='img/ml-buch-v2.jpg' height="400">
+  </a>
+</div>
+<div style="flex: 50%; font-size: x-large;">
+  <img src='img/olli-opa.jpeg'>
+</div>
+</div>
+<p>
+<a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
+Heat of AI@OpenKnowledge
+</p>    
+</textarea>
+</section>
 
-* insurance-ml lokal starten
-
-	</section>
-
-	<section data-markdown class="hide local">
-# Fahrplan
-
-* Modell in Python entwickeln
-* In Graph wandeln und mit tf serv und C++ servieren
-* In JS wandeln und in Anwendung einbauen
-* JS mit Teachable Maschine erzeugen und zum laufen bringen
-* Java mit neuer und alter Version
-	</section>
-
-	<section data-markdown>
+<section data-markdown>
 		<textarea data-template>
 ## Python
 
 Der Platzhirsch
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Unser Beispiel: Vorhersage von Risiken
+
+* Wir sind CTO einer hochinnovativen Kfz-Versicherungsgesellschaft
+* Anders als andere Versicherungsgesellschaften bestimmen wir den Tarif anhand der geschätzen Anzahl von Unfällen pro Kunde
+* Zielsetzung: Wie viele Unfälle werden die potenziellen Kunden haben?
+
+<img src='img/pixabay/accident-151668_1280.png' style="height: 230px">
+</textarea>
+</section>
+
+<section>
+	<h3>Klassifizierung basierend auf bekannten Daten</h3>
+	<img src="img/insurance-new/train-data.png" height="500px" class="fragment">
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Vorhersage von Risiken für potenzielle Kunden
+
+<a href='html/calculator.html'>
+<img src='img/calculator.png' height="400">
+</a>
+<p><small>
+<a href='html/calculator.html' target="_blank">
+https://djcordhose.github.io/ml-resources/html/calculator.html</a></small>
+</small></p>
+</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large;">
+	<textarea data-template>
+## Live Coding - Notebooks, interaktive Skripte
+
+### Wie fühlt sich Arbeit in Notebooks an?
+
+https://colab.research.google.com/github/DJCordhose/insurance-ml/blob/main/notebooks/1_all.ipynb
+
 </textarea>
 </section>
 
@@ -208,6 +263,7 @@ Server und Embedded Systeme
   * Modell-Server kann lokal unter Linux installiert werden
   * Oder man kann so ein Modell direkt bei GCP deployen
 * Bieten ebenso eine API: https://www.tensorflow.org/api_docs/cc
+* API erlaubt nur Produktion
 </textarea>
 </section>
 
@@ -229,10 +285,59 @@ https://www.tensorflow.org/tfx/guide/serving
 </textarea>
 </section>
 
+<section data-markdown style="font-size: x-large;">
+	<textarea data-template>
+## Live Coding - Serving
+
+### Wir bringen unser Modell in Produktion
+
+https://colab.research.google.com/github/DJCordhose/insurance-ml/blob/main/notebooks/3_serve.ipynb
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## JavaScript
+
+Betrieb im Browser
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## JavaScript
+
+* https://www.tensorflow.org/js
+  * Fertige Modelle: https://www.tensorflow.org/js/models
+* Keras Modelle und TF Graphen können in JS konvertiert werden  
+* https://www.tensorflow.org/js/tutorials#convert_pretained_models_to_tensorflowjs
+* Vollständige TF API: https://js.tensorflow.org/api/latest/
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Live Demo
+### Eine komplette JS-Anwendung in 5 Minuten
+
+<a href='https://teachablemachine.withgoogle.com/'>
+    <img src='img/teachable-machine.png' style="height: 300px;">
+</a>
+
+<small>    
+
+https://teachablemachine.withgoogle.com/
+</small>
+
+</textarea>
+</section>
 
 <section data-markdown>
 		<textarea data-template>
 ## Java
+
+Enterprise
 </textarea>
 </section>
 
@@ -241,12 +346,14 @@ https://www.tensorflow.org/tfx/guide/serving
 ### Unterschiedliche Projekte
 
 1. https://github.com/tensorflow/tensorflow/blob/master/tensorflow/java/README.md
+   * Alte Version auf Basis von JNI, nur Core für die Ausführung von Modellen
    * https://www.tensorflow.org/api_docs/java/org/tensorflow/package-summary
    * Stabil, aber veraltet
 1. https://www.tensorflow.org/jvm
   * Das aktuelle Projekt
   * Unterstützt nicht nur Deployment, sondern die volle API inkl. Training
   * Hat strategische Bedeutung, ist aber noch nicht stabil
+  * Unterprojekt: https://github.com/tensorflow/java-ndarray
 
 </textarea>
 </section>
@@ -254,6 +361,8 @@ https://www.tensorflow.org/tfx/guide/serving
 <section data-markdown>
 	<textarea data-template>
 ### TensorFlow Java hat seine eigene Version
+
+Stabilitätsgarantien gelten nicht für Java
 
 <img src="img/lang/tf-java-versions.png">
 
@@ -266,10 +375,24 @@ https://github.com/tensorflow/java/#tensorflow-version-support
 ### TensorFlowLite
 
 * Für mobile Geräte und Embedded Systeme
+* Statt der Java-Version für Android
 * https://www.tensorflow.org/lite
 * https://www.tensorflow.org/lite/guide
 </textarea>
 </section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Kotlin
+
+Kotlin könnte als Sprache besser geeignet sein als Java
+
+* https://kotlinlang.org/docs/data-science-overview.html
+* Keras-artige API: https://github.com/jetbrains/kotlindl
+</textarea>
+</section>
+
+
 
 			<section data-markdown>
 				<textarea data-template>
@@ -285,11 +408,11 @@ Oliver Zeigermann
 
 https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
-oliver@zeigermann.de
+oliver.zeigermann@openknowledge.de
 
 https://twitter.com/DJCordhose
 
-Diese Folien: https://bit.ly/xxx
+Diese Folien: https://bit.ly/md-dev-tf
 
     </textarea>
 			</section>
