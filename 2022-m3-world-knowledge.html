@@ -379,6 +379,153 @@ Foundation Models versprechen das Wissen über die Welt in Textform zu speichern
     </textarea>
 </section>
 
+<section data-markdown>
+## Neural Networks
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## What is the issue with missing world knowledge?
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Interpolation
+
+<img src="img/world-knowledge/interpolation.png">
+
+Works well 
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Extrapolation
+
+<img src="img/world-knowledge/extrapolation.png">
+
+How would we even assume to extrapolate?
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### How to extrapolate?
+
+* Requires general world knowledge
+* Often also domain knowledge
+* Also: making active choices in modelling
+  * no right or wrong
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## Priors in Model Architecture
+
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+
+    * Modeling choices encode strong assumptions about the data ... (https://twitter.com/fchollet/status/1439799099176357894)
+    * Extrapolation: https://twitter.com/fchollet/status/1450873373194477570
+    https://twitter.com/fchollet/status/1450871559803916290
+    </section>
+    
+<section data-markdown>
+    <textarea data-template>
+## Priors in Model Architecture
+
+### Regularization
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Neural Structured Learning (NSL)
+
+NSL generalizes to 
+* Neural Graph Learning: https://research.google/pubs/pub46568.pdf
+* Adversarial Learning: https://arxiv.org/pdf/1412.6572.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Learning
+
+* original objective is to prevent adversarial attacks
+  * forcing incorrect predictions with high confidence 
+  * my making slight adjustments to input data
+* but can also be used to train a model to be more robust
+  * and by that also to generalize better as a side effect
+* smoother decision boundaries  
+
+https://arxiv.org/pdf/1412.6572.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Interpolation
+
+<img src="img/world-knowledge/adversarial_interpolation.png">
+
+Subtle details
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Extrapolation
+
+<img src="img/world-knowledge/adversarial_extrapolation.png">
+
+Strong difference, actively avoiding the linear extrapolation
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Lattice based models
+
+* allow you to actively encode domain knowledge into the learning process
+* specify constraints such as monotonicity
+* constraints are specified as lattices overlaying the learning process
+* lattices are a way to specify constraints
+* additional regularization can be added to the lattices
+* domain knowledge to better extrapolate to the parts of the input space not covered by the training dataset
+* avoid unexpected model behavior when the serving distribution is different from the training distribution
+
+https://www.tensorflow.org/lattice
+<br>
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html
+<br>
+https://github.com/tensorflow/lattice
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Example constraints
+
+
+* Monotonicity: risk should increase with respect to age and speed
+* Unimodality: there is a single sweet spot in age (between 30 and 60)
+
+
+</textarea>
+</section>
+
+
 
         </div>
     </div>

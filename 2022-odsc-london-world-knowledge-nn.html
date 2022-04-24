@@ -333,52 +333,50 @@ None of the techniques shown are new and you might already know a good chunk of 
 but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the
 world knowledge you have. -->
 
-<section data-markdown class="todo">
-* Weltwissen in Praxisbeispiel Autoencoder
-* Latent Space ansehen
-* Auswirkung von
-  * Geringerer Dimensionen 
-  * Regularisierung
-    * L1 and L2
 
-  Inhalte:
-  - GenerelL: Pre oder Post Processing kodiert oder dekodiert Weltwissen
-  - Data Augmentation using world knowledge
-    - might explode with dimensions
-    - augmented data might outweight "real" data 
-  - Sparsity
-  - CNN
-  - RNN
-  - Lattice
-  - Losses (xent vs mse)
-  - Why auto tuning might not be such a good idea (overfits on val data), but real priors might not even be obeyed
-  - Beispiel mit Lattice, Extrapolation und Tweet von Fchollet
+        <!-- <section data-markdown>
+            <textarea data-template>
+### Links
 
+* Why Do Better Loss Functions Lead to Less Transferable Features?" https://twitter.com/skornblith/status/1469132061579620355
+* Implicit inference of 3D vision: This short paper in the journal i-Perception presents a disconcerting visual illusion spotted “in the wild”: how stackable chairs, viewed from a certain angle, mess with your head [read more, paper: https://t.co/ppu9j0pyIs] https://t.co/r2Sdie3UdF
+(https://twitter.com/Rainmaker1973/status/1489209455489212416?t=gxzQxv4J1yKQWVNnVkQ6bA&s=03)
+* What I’ve learned about making synthetic data work for training ML models: (https://twitter.com/russelljkaplan/status/1490303023267999744?t=QHQ_IkP8zs8LEzzr6bWmQQ&s=03)  
+</textarea>
+        </section> -->
+    
+    
+<section data-markdown>
+    <textarea data-template>
+# How to teach our world knowledge to a neural network?
+
+ODSC Europe, London 2022, https://odsc.com/europe/
+Oliver Zeigermann
+
+</textarea>
 </section>
-
-<section data-markdown class="todo">
-### Nächste Schritte
-
-* Lattice ausprobieren
-* Aus Autoencoder Notebooks ableiten
-* Geringerer Dimensionen 
-  * Regularisierung
-  * L1 and L2
-
-</section>
-
-
 
 <section data-markdown>
     <textarea data-template>
-### Blog Post
+### Who is Olli
 
-* https://docs.google.com/document/d/1abbq2LwdjZQQLlwbxZA9io855-mVa5zos60Dycec2Ww/edit?usp=sharing
-* https://opendatascience.com/how-to-bring-our-world-knowledge-to-machine-learning/
+<div style="display: flex;">
+<div style="flex: 50%;">
+<a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+<img src='img/ml-buch-v2.jpg' height="400">
+</a>
+</div>
+<div style="flex: 50%; font-size: x-large;">
+<img src='img/olli-opa.jpeg'>
+</div>
+</div>
+<p>
+<a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
+Heat of AI@OpenKnowledge
+</p>    
 </textarea>
 </section>
-  
-    
+
 <section data-markdown>
     <textarea data-template>
 ### Where did the Smurf go?
@@ -413,6 +411,34 @@ world knowledge you have. -->
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+## Modeling choices encode strong assumptions about the data
+
+<img src="img/world-knowledge/fchollet-model-priors.png">
+
+https://twitter.com/fchollet/status/1439799099176357894
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## Priors
+
+<div class="container">
+<div class="col">
+<img src="img/world-knowledge/weak-prior.jpeg">
+</div>
+<div class="col">
+    <img src="img/world-knowledge/strong-prior.jpeg">
+    </div>
+    </div>
+
+https://twitter.com/fchollet/status/1450871559803916290
+</textarea>
+</section>
+
 <!-- <section data-markdown>
     <textarea data-template>
 ### Did it go here?
@@ -436,196 +462,99 @@ world knowledge you have. -->
 - Wie Zaubertricks funktionieren: https://twitter.com/TheFigen/status/1511035101878042629?s=20&t=CXyCqvLcGi3WQECLmzw_Fg
 </section> -->
 
-
 <section data-markdown>
     <textarea data-template>
-## Agenda        
-
-1. What is the issue with missing world knowledge?
-1. Encoding world knowledge as priors
-   1. Architecture
-   1. Data Augmentation
-</textarea>
-</section>
-
-
-
-
-<section data-markdown>
-    <textarea data-template>
-## What is the issue with missing world knowledge?
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Interpolation
-
-<img src="img/world-knowledge/interpolation.png">
-
-Works well 
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Extrapolation
-
-<img src="img/world-knowledge/extrapolation.png">
-
-How would we even assume to extrapolate?
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### How to extrapolate?
-
-* Requires general world knowledge
-* Often also domain knowledge
-* Also: making active choices in modelling
-  * no right or wrong
-
-</textarea>
-</section>
-
-
-<section data-markdown>
-    <textarea data-template>
-## Priors in Model Architecture
-
-</textarea>
-</section>
-
-
-<section data-markdown class="todo">
-
-    * Modeling choices encode strong assumptions about the data ... (https://twitter.com/fchollet/status/1439799099176357894)
-    * Extrapolation: https://twitter.com/fchollet/status/1450873373194477570
-    </section>
-    
-<section data-markdown>
-    <textarea data-template>
-## Priors in Model Architecture
-
-### Regularization
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Neural Structured Learning (NSL)
-
-NSL generalizes to 
-* Neural Graph Learning: https://research.google/pubs/pub46568.pdf
-* Adversarial Learning: https://arxiv.org/pdf/1412.6572.pdf
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Adversarial Learning
-
-* original objective is to prevent adversarial attacks
-  * forcing incorrect predictions with high confidence 
-  * my making slight adjustments to input data
-* but can also be used to train a model to be more robust
-  * and by that also to generalize better as a side effect
-* smoother decision boundaries  
-
-https://arxiv.org/pdf/1412.6572.pdf
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Adversarial Interpolation
-
-<img src="img/world-knowledge/adversarial_interpolation.png">
-
-Subtle details
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Adversarial Extrapolation
-
-<img src="img/world-knowledge/adversarial_extrapolation.png">
-
-Strong difference, actively avoiding the linear extrapolation
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Lattice based models
-
-* allow you to actively encode domain knowledge into the learning process
-* specify constraints such as monotonicity
-* constraints are specified as lattices overlaying the learning process
-* lattices are a way to specify constraints
-* additional regularization can be added to the lattices
-* domain knowledge to better extrapolate to the parts of the input space not covered by the training dataset
-* avoid unexpected model behavior when the serving distribution is different from the training distribution
-
-https://www.tensorflow.org/lattice
-<br>
-https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html
-<br>
-https://github.com/tensorflow/lattice
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Example constraints
-
-
-* Monotonicity: risk should increase with respect to age and speed
-* Unimodality: there is a single sweet spot in age (between 30 and 60)
-
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-## Priors in Learning Style
-
-</textarea>
-</section>
-
-
-
-<section data-markdown class="todo">
-Learning Setting: Unsupervised, we know what is normal. Normal derives from being the majority of cases. But we assume normality.
-</section>
-    
-<section data-markdown class="todo">
-Going further: assumed more. like bw
-</section>
-    
-            <section data-markdown>
-                <textarea data-template>
-# World Knowledge Priors
-
+## Mode
+### We go through notebooks on Colab, you will get some time for experimentation        
     </textarea>
-            </section>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Example 1: Basic Model Architecture
+
+<div class="container">
+    <div class="col">
+        <img src="img/world-knowledge/regression-linear.png">
+    </div>
+    <div class="col">
+        <img src="img/world-knowledge/regression-non-linear.png">
+    </div>
+</div>
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/regression.ipynb?hl=en
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Example 2: Advanced Model Architecture
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/autoencoder-denoising.ipynb?hl=en
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Example 3: Smart regularization
+
+<div class="container">
+    <div class="col">
+        <img src="img/world-knowledge/extrapolation.png">
+    </div>
+    <div class="col">
+        <img src="img/world-knowledge/adversarial_extrapolation.png">
+    </div>
+</div>
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/interpolation.ipynb?hl=en
+<br>
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_lattic.ipynb?hl=en
+<br>
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_nsl?hl=en
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+### What else can you do?
+
+Isn't Encoding World Knowledge just applied statistics and mathematics?
+
+* Markov-Chains
+* Foundation Models
+  * Foundation Models promise to store the knowledge about the world in text form
+* Pre- and Post-Processing
+* Parametric Models
+  * We assume certain properties of the model, like being normally distributed, and just learn the parameters of such properties, like mean and std.
+* Causality Models
+* Augmentation
+  - might explode with dimensions
+  - augmented data might outweigh "real" data 
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Thanks for attending        
+# How to teach our world knowledge to a neural network
+
+Blog-Post: https://opendatascience.com/how-to-bring-our-world-knowledge-to-machine-learning/
+### Stay in Contact if you like
+
+Oliver Zeigermann, <a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
 
-            <section data-markdown>
-                <textarea data-template>
-### Links
 
-* Why Do Better Loss Functions Lead to Less Transferable Features?" https://twitter.com/skornblith/status/1469132061579620355
-* Implicit inference of 3D vision: This short paper in the journal i-Perception presents a disconcerting visual illusion spotted “in the wild”: how stackable chairs, viewed from a certain angle, mess with your head [read more, paper: https://t.co/ppu9j0pyIs] https://t.co/r2Sdie3UdF
-(https://twitter.com/Rainmaker1973/status/1489209455489212416?t=gxzQxv4J1yKQWVNnVkQ6bA&s=03)
-* What I’ve learned about making synthetic data work for training ML models: (https://twitter.com/russelljkaplan/status/1490303023267999744?t=QHQ_IkP8zs8LEzzr6bWmQQ&s=03)  
-    </textarea>
-            </section>
+
+</textarea>
+</section>
+
+
 
 
         </div>
