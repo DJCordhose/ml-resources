@@ -314,18 +314,59 @@ loss, forcing sparsity, good dimensions, lattices, and types of network layers f
 networks.
 -->
 
-<section data-markdown class="todo">
-### Für NN
 
+<!-- ODSC London:
+https://odsc.com/europe/
+90 min
+
+Neural networks are powerful approximators for any function. However they do not have the slightest idea of common
+knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by
+training data.
+
+We, as human beings have that knowledge about the world and our domains of expertise, allowing deep learning models to
+become much more robust and even to extrapolate. But how do we encode this?
+
+Based on code examples we will go through the known methods including choosing the right loss, forcing sparsity, choose
+good dimensions, lattices, types of network layers, and - last but not least - augmented training data.
+
+None of the techniques shown are new and you might already know a good chunk of them (probably not all of them, though),
+but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the
+world knowledge you have. -->
+
+<section data-markdown class="todo">
 * Weltwissen in Praxisbeispiel Autoencoder
 * Latent Space ansehen
 * Auswirkung von
   * Geringerer Dimensionen 
   * Regularisierung
     * L1 and L2
-* https://www.tensorflow.org/neural_structured_learning
-  & 1_train_nsl.ipynb
+
+  Inhalte:
+  - GenerelL: Pre oder Post Processing kodiert oder dekodiert Weltwissen
+  - Data Augmentation using world knowledge
+    - might explode with dimensions
+    - augmented data might outweight "real" data 
+  - Sparsity
+  - CNN
+  - RNN
+  - Lattice
+  - Losses (xent vs mse)
+  - Why auto tuning might not be such a good idea (overfits on val data), but real priors might not even be obeyed
+  - Beispiel mit Lattice, Extrapolation und Tweet von Fchollet
+
 </section>
+
+<section data-markdown class="todo">
+### Nächste Schritte
+
+* Lattice ausprobieren
+* Aus Autoencoder Notebooks ableiten
+* Geringerer Dimensionen 
+  * Regularisierung
+  * L1 and L2
+
+</section>
+
 
 
 <section data-markdown>
@@ -360,7 +401,19 @@ networks.
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
+    <textarea data-template>
+### World knowledge 
+
+* humans have a basic understanding of the world
+* be it about the physics of normal objects or about the properties of people 
+* we also expect this from an intelligent automatic system
+* if a system does not fulfill this we are disappointed and our trust in the system decreases 
+        
+</textarea>
+</section>
+
+<!-- <section data-markdown>
     <textarea data-template>
 ### Did it go here?
 
@@ -375,14 +428,177 @@ networks.
 
 <video src="img/smurf/smurf-full.mp4" controls>
 
+</textarea>
+</section> -->
+
+<!-- <section data-markdown class="todo">
+
+- Wie Zaubertricks funktionieren: https://twitter.com/TheFigen/status/1511035101878042629?s=20&t=CXyCqvLcGi3WQECLmzw_Fg
+</section> -->
+
+
+<section data-markdown>
+    <textarea data-template>
+## Agenda        
+
+1. What is the issue with missing world knowledge?
+1. Encoding world knowledge as priors
+   1. Architecture
+   1. Data Augmentation
+</textarea>
+</section>
+
+
+
+
+<section data-markdown>
+    <textarea data-template>
+## What is the issue with missing world knowledge?
 
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+### Interpolation
+
+<img src="img/world-knowledge/interpolation.png">
+
+Works well 
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Extrapolation
+
+<img src="img/world-knowledge/extrapolation.png">
+
+How would we even assume to extrapolate?
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### How to extrapolate?
+
+* Requires general world knowledge
+* Often also domain knowledge
+* Also: making active choices in modelling
+  * no right or wrong
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## Priors in Model Architecture
+
+</textarea>
+</section>
+
+
 <section data-markdown class="todo">
 
-- Wie Zaubertricks funktionieren: https://twitter.com/TheFigen/status/1511035101878042629?s=20&t=CXyCqvLcGi3WQECLmzw_Fg
+    * Modeling choices encode strong assumptions about the data ... (https://twitter.com/fchollet/status/1439799099176357894)
+    * Extrapolation: https://twitter.com/fchollet/status/1450873373194477570
+    </section>
+    
+<section data-markdown>
+    <textarea data-template>
+## Priors in Model Architecture
+
+### Regularization
+</textarea>
 </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Neural Structured Learning (NSL)
+
+NSL generalizes to 
+* Neural Graph Learning: https://research.google/pubs/pub46568.pdf
+* Adversarial Learning: https://arxiv.org/pdf/1412.6572.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Learning
+
+* original objective is to prevent adversarial attacks
+  * forcing incorrect predictions with high confidence 
+  * my making slight adjustments to input data
+* but can also be used to train a model to be more robust
+  * and by that also to generalize better as a side effect
+* smoother decision boundaries  
+
+https://arxiv.org/pdf/1412.6572.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Interpolation
+
+<img src="img/world-knowledge/adversarial_interpolation.png">
+
+Subtle details
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Extrapolation
+
+<img src="img/world-knowledge/adversarial_extrapolation.png">
+
+Strong difference, actively avoiding the linear extrapolation
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Lattice based models
+
+* allow you to actively encode domain knowledge into the learning process
+* specify constraints such as monotonicity
+* constraints are specified as lattices overlaying the learning process
+* lattices are a way to specify constraints
+* additional regularization can be added to the lattices
+* domain knowledge to better extrapolate to the parts of the input space not covered by the training dataset
+* avoid unexpected model behavior when the serving distribution is different from the training distribution
+
+https://www.tensorflow.org/lattice
+<br>
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html
+<br>
+https://github.com/tensorflow/lattice
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Example constraints
+
+
+* Monotonicity: risk should increase with respect to age and speed
+* Unimodality: there is a single sweet spot in age (between 30 and 60)
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Priors in Learning Style
+
+</textarea>
+</section>
+
+
 
 <section data-markdown class="todo">
 Learning Setting: Unsupervised, we know what is normal. Normal derives from being the majority of cases. But we assume normality.
