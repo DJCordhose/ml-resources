@@ -525,7 +525,50 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
+### Most important - data
+
+* real world projects typically don't operate on pre-collected data sets
+* so you have to collect the data, but you can also choose what to collect
+* make sure the data you collect covers the real world
+</section>
+
+<section data-markdown class="fragments">
+### Be aware of the natural bias of the data
+
+* e.g. concerning people
+  * height
+  * age
+  * gender
+  * skin tone
+  * hair styles
+  * body ratio
+  * disabilities
+    * wheel chair
+    * Crutch
+* take care of negative classes
+  * background
+  * noise    
+
+</section>
+
+<section data-markdown class="fragments">
+### Augmentation
+
+* idea: generate more data from existing
+* using invariants of the real world
+  * e.g. a person is still a person no matter how far away
+* concerns
+  - might explode with dimensions
+  - augmented data might outweigh "real" data
+  - don't fool yourself: are you just using standard augmentation or real domain knowledge? 
+* alternative: generate purely synthetic data
+  * like GANs 
+  * reality gap — the small differences between real and synthetic data that models may fixate on incorrectly, harming generalization (https://twitter.com/russelljkaplan/status/1490303023267999744)
+
+</section>
+
+<section data-markdown class="fragments">
 ### What else can you do?
 
 Isn't Encoding World Knowledge just applied statistics and mathematics?
@@ -537,9 +580,7 @@ Isn't Encoding World Knowledge just applied statistics and mathematics?
 * Parametric Models
   * We assume certain properties of the model, like being normally distributed, and just learn the parameters of such properties, like mean and std.
 * Causality Models
-* Augmentation
-  - might explode with dimensions
-  - augmented data might outweigh "real" data 
+  * often work by generating a set of models and seeing which performs best
 </section>
 
 <section data-markdown>
