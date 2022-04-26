@@ -146,6 +146,17 @@ Diese annotierten Dokumente eigenen sich dann besonders gut für alle weiteren A
     </textarea>
   </section>
 
+  <section data-markdown class="local hide preparation">
+    <textarea data-template>
+### Vorbereitung
+
+* JAX ist 15 Minuten länger, ausgeblendete Folien dazu nehmen
+
+* Laden und schonmal ausführen: https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/foundation/transformers-sentiment.ipynb
+* Seite 38 öffnen: https://storage.googleapis.com/pathways-language-model/PaLM-paper.pdf
+  
+    </textarea>
+  </section>
 
 <!-- <section data-markdown class="todo">
   <textarea data-template>
@@ -196,21 +207,21 @@ Heat of AI@OpenKnowledge
 
 <section data-markdown class="fragments">
 <textarea data-template>
-### Problemstellung: Sentiment-Analyse
+### Problem definition: Sentiment analysis
 
-_Ist ein Text eher negativ oder positiv?_
+_Is a text more negative or positive?_
 
-* In den sozialen Medien kursieren böse Dinge über Ihr Unternehmen.
-* Ein negativer Tweet, der auf Twitter auftaucht, könnte sich auf Ihr Unternehmen auswirken.
-* Ein wütender Kunde benötigt möglicherweise besondere oder sofortige Aufmerksamkeit.
-* Wie viele Sterne würde eine textliche Bewertung ergeben?
-
+* There are nasty things circulating about your company on social media
+* A negative tweet that pops up on Reddit or Twitter could affect your business
+* An angry customer may need special or immediate attention
+* How many stars would a textual review yield?
+  
         </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
   <textarea data-template>
-### Unsere Beispiele
+### Our Examples
 
 * I don't think its a good idea to have people driving 40 miles an hour through a light that *just* turned green, especially with the number of people running red lights, or the number of pedestrians running across at the last minute being obscured by large cars in the lanes next to you.
 * MANY YEARS ago, When I was a teenager, I delivered pizza. I had a friend who, just for the fun of it, had a CB. While on a particular channel, he could key the mike with quick taps and make the light right out in front of the pizza place turn green. It was the only light that it worked on, and I was in the car with him numerous times to confirm that it worked. It was sweet.
@@ -239,9 +250,10 @@ https://www.reddit.com/r/transport/
  -->
 
  <section data-markdown class="fragments">
+## Tackle this with Machine Learning   
 ### Issues in Supervised Learning
 
-* linear 
+* linear effort in labelling data
 * significant error rate to be expected
   * all standard data sets contain up to 10% of errors
   * https://labelerrors.com/
@@ -250,8 +262,6 @@ https://www.reddit.com/r/transport/
 
 _impractical with large data sets_
 </section>
-
-
 
  <section data-markdown class="fragments">
 ### Foundation Models: Transformer Core ideas
@@ -327,10 +337,12 @@ https://huggingface.co/course/chapter1/4?fw=pt</small>
   <textarea data-template>
 ## Huggingface is the place to go
 
+https://huggingface.co/transformers/
+
+main framework is Pytorch, but supports TensforFlow and JAX as well: https://huggingface.co/transformers/#supported-frameworks
+
 Models out of the box: https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/foundation/transformers-pipelines.ipynb?hl=en
 
-https://huggingface.co/transformers/
-main framework is Pytorch, but supports TensforFlow and JAX as well: https://huggingface.co/transformers/#supported-frameworks
 </textarea>
 </section>
 
@@ -439,6 +451,17 @@ https://arxiv.org/pdf/1706.03762.pdf
         </textarea>
 </section>
 
+<section data-markdown class="fragments">
+### Embeddings
+
+* vectors representing words
+* aka latent representation
+* maybe turn a sentence into a vector
+* contextual embeddings: turn a word into a vector, but also take the context into account
+* visualizing embeddings: https://github.com/koaning/whatlies
+</section>
+  
+
 <!-- <section data-markdown>
   <textarea data-template>
 ### Evolution of Transformers (original paper is from 2017)
@@ -456,7 +479,7 @@ https://huggingface.co/course/chapter1/4?fw=pt</small>
 
 _also called auto-encoding Transformer models_
 
-* encodes words into vectors (latent representation)
+<!-- * encodes words into vectors (latent representation) -->
 * some problems only need the encoder part of the original transformer
 * "understanding" texts and their semantics is sufficient to e.g.  
   * answer questions about a text with individual original text passages or to  
@@ -467,24 +490,14 @@ _also called auto-encoding Transformer models_
   
   </section>
 
-<section data-markdown class="fragments">
-### Embeddings
-
-* vectors representing words
-* aka latent representation
-* maybe turn a sentence into a vector
-* contextual embeddings: turn a word into a vector, but also take the context into account
-* visualizing embeddings: https://github.com/koaning/whatlies
-</section>
-  
-<section data-markdown>
+<!-- <section data-markdown>
 ### What can BERT do?
     
 * token classification 
 * sentence classification
 * multiple choice classification 
 * question answering
-</section>
+</section> -->
   
   <!-- <section data-markdown>
   ### Example for encoder only BERT: Classifier
@@ -497,7 +510,7 @@ _also called auto-encoding Transformer models_
     * https://huggingface.co/clem/autonlp-test3-2101787?text=I+would+be+nice+if+this+is+done+by+yesterday
   </section> -->
   
-  <section data-markdown class="fragments">
+  <!-- <section data-markdown class="fragments">
 ### Training BERT
 
 * first objective
@@ -510,7 +523,7 @@ _also called auto-encoding Transformer models_
 
 https://huggingface.co/transformers/model_summary.html#bert
 https://arxiv.org/abs/1810.04805
-  </section>
+  </section> -->
   
   <section data-markdown>
     <textarea data-template>
@@ -533,7 +546,6 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 </textarea>
 </section>
 
-
   <section data-markdown class="fragments">
 ### Decoder only (GPT-like)
 
@@ -548,7 +560,7 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
   
   </section>
   
-<section data-markdown>
+<!-- <section data-markdown>
 ### Training GPT
 
 * self-supervised training
@@ -557,7 +569,7 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 
 https://huggingface.co/transformers/model_summary.html#original-gpt
 https://huggingface.co/transformers/model_doc/gpt2.html
-</section>
+</section> -->
 
 <section data-markdown class="fragments">
 ### Evolution of GPT
@@ -640,7 +652,7 @@ https://arxiv.org/abs/1910.10683
   </section>
    -->
   
-<section data-markdown>
+<!-- <section data-markdown>
 ### Training T5
 
 pretraining includes both self-supervised and supervised learning
@@ -652,7 +664,7 @@ pretraining includes both self-supervised and supervised learning
   *  converting them into text-to-text tasks as explained in previous slide
 
 https://huggingface.co/transformers/model_summary.html#t5
-</section>
+</section> -->
 
 <section data-markdown>
   <textarea data-template>
@@ -738,9 +750,10 @@ https://huggingface.co/docs/transformers/training#finetune-a-pretrained-model
 
 <section data-markdown style="font-size: x-large;">
     <textarea data-template>
-### Code: Fine tuning sentiment
+### Code: Fine tuning sentiment on Yelp data
 
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/foundation/transformers-fine-tuning.ipynb?hl=en
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/foundation/transformers-fine-tuning-yelp.ipynb?hl=en
+<!-- https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/foundation/transformers-fine-tuning.ipynb?hl=en -->
 
 </textarea>
 </section>
@@ -848,11 +861,11 @@ https://twitter.com/ak92501/status/1462970921518514177
 * large language models (like GPT-3) to solve grade school math problems much more effectively: https://openai.com/blog/grade-school-math/#samples
 * Introducing the 540 billion parameter Pathways Language Model. Trained on two Cloud #TPU v4 pods, it achieves state-of-the-art performance on benchmarks and shows exciting capabilities like mathematical reasoning, code writing, and even explaining jokes.
   * https://storage.googleapis.com/pathways-language-model/PaLM-paper.pdf
-  * Examples on page 36
+  * Examples on page 38
 * https://www.heise.de/hintergrund/Missing-Link-Was-wir-ueber-die-Fairness-der-Welt-von-moderner-KI-lernen-koennen-6351026.html
 </section>
 
-<section data-markdown class="fragments">
+<!-- <section data-markdown class="fragments">
 ### Are Foundation Models Conscious?
 
 * Phenomenal consciousness = Does it have an inner cinema?
@@ -861,11 +874,11 @@ https://twitter.com/ak92501/status/1462970921518514177
 * Moral patienthood = Should we care about what we do to it?
 * Moral agency = Should we hold it accountable for what it does?
 
-https://twitter.com/AmandaAskell/status/1493086389549862915
+* https://twitter.com/AmandaAskell/status/1493086389549862915
 * https://www.heise.de/hintergrund/Hat-KI-bereits-eine-Art-Bewusstsein-entwickelt-Forscher-streiten-darueber-6522868.html         
 * https://askellio.substack.com/p/ai-consciousness
 </section>
-  
+   -->
 
 <section data-markdown class="fragments">
 ### More Examples for applications in the corporate context
