@@ -601,6 +601,20 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 </section>
 
 <section data-markdown class="fragments">
+### General preprocessing
+
+encode your assumptions, e.g.
+* only general form and structure seen in an image are important
+  * reduce resolution, apply closing
+  * leads to faster training and better generalization
+* a certain feature is highly correlated with the target value
+  * but you know this is a bias in your data set
+  * remove that feature from the input
+  * live with the *worse* classifier
+
+</section>
+
+<section data-markdown class="fragments">
 ### Augmentation
 
 * idea: generate more data from existing
