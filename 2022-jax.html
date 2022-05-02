@@ -186,12 +186,12 @@ Diese Folien: https://bit.ly/jax-jax
 </div>
 <p>
 <a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
-Heat of AI@OpenKnowledge
+Head of AI@OpenKnowledge
 </p>    
 </textarea>
 </section>
 
-            <section data-markdown>
+            <!-- <section data-markdown>
                 <textarea data-template>
 ## Motivation
 
@@ -201,18 +201,17 @@ In vergangenen JAX habe ich mit 2 Problemen gekämpft
 1. Mit den existierenden Frameworks waren neuronale Netzwerke immer noch unnötig komplex
 1. Alles ist Python, JAX ist aber eine Java-Konferenz
 
-Auch dieser Talk ist keine perfekte Lösung, wir brauchen immer noch 2 Teile
-
     </textarea>
-            </section>
+            </section> -->
 
             <section data-markdown>
                 <textarea data-template>
 ## Aufbau des Talks
 
 Auch dieser Talk ist keine perfekte Lösung, wir brauchen immer noch 2 Teile
-1. Die JAX ist eine Java-Konferenz, was geht also im Bereich Java? Warum sind wir ein bisschen zu früh dran? 
+
 1. Neuronale Netzwerke einfacher verständlich machen: Jax-Framework
+1. Die JAX ist eine Java-Konferenz, was geht also im Bereich Java? Warum sind wir ein bisschen zu früh dran? 
 
     </textarea>
             </section>
@@ -220,7 +219,55 @@ Auch dieser Talk ist keine perfekte Lösung, wir brauchen immer noch 2 Teile
 <section data-markdown>
 ### Teil I
 
-## Was machen wir mit Java?
+## Neuronale Netzwerke mit dem Jax Framework
+</section>
+            
+<section data-markdown>
+    <textarea data-template>
+### Notebooks: die IDE von Data Scientists        
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/jax/intro-jax.ipynb
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Was ist Deep Learning?
+
+<img src="img/deep-learning.png">
+
+https://twitter.com/fchollet/status/1516151399628697601
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+## Zusammenfassung: JAX
+
+saubere und einfache Low-Level-Basis
+
+* verwendet XLA zum Kompilieren und Ausführen von NumPy-Programmen auf GPUs und TPUs
+  * ```import jax.numpy as np``
+* automatische Differenzierung in beliebiger Reihenfolge
+  * ```grad(grad(grad(tanh)))(1.0)```
+  * kann auch Listen, Tupel und Dictionaries differenzieren
+* https://github.com/google/jax#compilation-with-jit
+* https://github.com/google/jax#spmd-programming-with-pmap
+* könnte genauso gut eine High-Level-Keras-API haben: https://www.youtube.com/watch?v=J0p_thJJnoo&t=4838s
+
+https://github.com/google/jax
+<br>
+https://jax.readthedocs.io/en/latest/
+<!-- 
+https://towardsdatascience.com/deep-learning-with-jax-and-elegy-c0765e3ec31a
+https://iaml.it/blog/jax-intro-english -->
+</textarea>
+</section>
+
+<section data-markdown>
+### Teil II
+
+## Was machen wir jetzt mit Java?
 </section>
             
 <section data-markdown>
@@ -236,7 +283,7 @@ Allerdings ist Pytorch eher im akademischen Umfeld verbreitet
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### Unterschiedliche Java Bindings in TensorFlow
 
@@ -267,6 +314,34 @@ https://github.com/tensorflow/java/#tensorflow-version-support
 </textarea>
 </section>
 
+<section>
+<h3>Auch in der neuesten Version ist Java-Code nicht gerade knackig</h3>
+
+<pre>
+    <code data-trim data-line-numbers="1|3-7|9-11|13-17"><script type="text/template">
+try (var savedModelBundle = SavedModelBundle.load("insurance-ml/app/classifier", "serve")) {
+
+    var input_matrix = NdArrays.ofFloats(Shape.of(1, 2));
+    input_matrix.set(NdArrays.vectorOf(48.0f, 100.0f), 0);
+    Tensor input_tensor = TFloat32.tensorOf(input_matrix);
+    Map<String, Tensor> inputTensorMap = new HashMap<>();
+    inputTensorMap.put("input", input_tensor);
+
+    var myFunction = savedModelBundle.function("serving_default");
+    Map<String, Tensor> outputTensorMap = myFunction.call(inputTensorMap);
+    var prediction = outputTensorMap.get("output");
+
+    // overly complicated way to get the prediction, but so far found no better way
+    var probas = prediction.asRawTensor().data().asFloats();
+    float redProba = probas.getFloat(0);
+    float yellowProba = probas.getFloat(1);
+    float greenProba = probas.getFloat(2);
+}
+        
+</script></code>
+</pre>
+</section>
+
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Aber: Wieso eigentlich Neuronale Netzwerke in Java?        
@@ -278,6 +353,7 @@ https://github.com/tensorflow/java/#tensorflow-version-support
 
     </textarea>
 </section>
+
 
 <section data-markdown class="fragments">
 	<textarea data-template>
@@ -313,9 +389,9 @@ Kotlin könnte als Sprache besser geeignet sein als Java
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
-### Warum interessiert mich das?
+### Warum interessiert uns das?
 
 * Graphen enthalten alles was man zur Ausführung eines Neuronalen Netzes braucht
 * Damit kann man die Python-Welt verlassen
@@ -354,7 +430,7 @@ https://www.tensorflow.org/tfx/guide/serving
 
 <section data-markdown>
 	<textarea data-template>
-### Demo
+### Optionales Demo
 ## TensorFlow Serving
 
 1500 Predictions im Batch über REST ist superschnell
@@ -362,52 +438,30 @@ https://www.tensorflow.org/tfx/guide/serving
 </textarea>
 </section>
 
+
 <section data-markdown>
-### Teil II
-
-## Neuronale Netzwerke mit dem Jax Framework
-</section>
-            
-<section data-markdown>
-	<textarea data-template>
-### Was ist Deep Learning?
-
-<img src="img/deep-learning.png">
-
-https://twitter.com/fchollet/status/1516151399628697601
-</textarea>
-</section>
-
-<section data-markdown class="fragments">
     <textarea data-template>
+## Vielen Dank, Zeit für Fragen und Diskussion
 
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/jax/intro-jax.ipynb
-</textarea>
+Jax für die JAX: Deep Neural Networks from Scratch
+
+JAX, Mainz 2022, https://jax.de/big-data-machine-learning/jax-fuer-die-jax-deep-neural-networks-from-scratch/
+
+Bleibt gern im Kontakt
+
+Oliver Zeigermann
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
+
+oliver.zeigermann@openknowledge.de
+
+Twitter: @DJCordhose
+
+Diese Folien: https://bit.ly/jax-jax
+
+    </textarea>
 </section>
 
-<section data-markdown class="fragments">
-    <textarea data-template>
-## Summary: JAX
-
-clean and simple low level base
-
-* uses XLA to compile and run your NumPy programs on GPUs and TPUs
-  * ```import jax.numpy as np```
-* automatic differentiation to any order
-  * ```grad(grad(grad(tanh)))(1.0)```
-  * can also differentiate lists, tuples, and dictionaries
-* https://github.com/google/jax#compilation-with-jit
-* https://github.com/google/jax#spmd-programming-with-pmap
-* might just as well get a high level Keras API: https://www.youtube.com/watch?v=J0p_thJJnoo&t=4838s
-
-https://github.com/google/jax
-<br>
-https://jax.readthedocs.io/en/latest/
-<!-- 
-https://towardsdatascience.com/deep-learning-with-jax-and-elegy-c0765e3ec31a
-https://iaml.it/blog/jax-intro-english -->
-</textarea>
-</section>
 
 
             <!-- <section data-markdown>
