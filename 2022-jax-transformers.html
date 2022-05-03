@@ -147,6 +147,25 @@ In diesem Talk gebe ich einen Überblick
 man solche Modelle auf spezielle Aufgaben nachtrainiert. Neben dem Codex-Modell werden wir Beispiele mit dem Copilot von
 GitHub betrachten und diskutieren, welche Auswirkungen solche Modelle auf unsere zukünftige Arbeit als
 Softwareentwickler haben werden.
+
+---
+
+Nordic Coding
+
+Paradigmenwechsel im Bereich Machine Learning - Sprachmodelle und mehr
+
+Sogenannte Foundation Models werden auf einer breiten Datenbasis in großem Umfang trainiert und können an eine Vielzahl
+von nachgelagerten, spezialisierten Aufgaben angepasst werden. Der Ansatz von Machine Learning durchläuft mit dem
+Aufkommen dieser Modelle einen Paradigmenwechsel, da diese Modelle ganz neue Fähigkeiten haben und auf eine ganz neue
+Art direkt trainiert werden können. Beispiele sind die Familie der Transformer-Modelle wie GPT und dem abgeleiteten
+Codex-Modell, das den Ansatz der Programmierung grundlegend verändern könnte. 
+
+In diesem Talk gebe ich einen Überblick
+über diese Transformer-Modelle und zeige am konkreten Codebeispiel was mit vortrainierten Modellen möglich ist und wie
+man solche Modelle auf spezielle Aufgaben nachtrainiert. Neben dem Codex-Modell werden wir Beispiele mit dem Copilot von
+GitHub betrachten und diskutieren, welche Auswirkungen solche Modelle auf unsere zukünftige Arbeit als
+Softwareentwickler haben können.
+
 -->
 
 
@@ -551,7 +570,7 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
   <section data-markdown class="fragments">
 ### Decoder only (GPT-like)
 
-  _also called auto-regressive Transformer models_
+_also called auto-regressive Transformer models_
 
 * the decoder part can transform given inputs into complete sentences
 * e.g. useful in itself, to complete started sentences
@@ -627,6 +646,22 @@ Alternative: https://beta.openai.com/codex-javascript-sandbox
 
 </textarea>
 </section>
+
+<section data-markdown>
+  <textarea data-template>
+## What could be working soon?
+
+- Detecting Code Smells with Deep Learning
+- Better software through ML and DS
+  - 2 aspects: replace by ML, better analysis by DS
+- GPT-3 writes code
+  - in a few years the IDE can also tell if the comment should be adjusted when you change the code, so they don't diverge
+  - or when reading, give a warning: comment seems not up to date
+- Has anyone ever heard of someone training a supervised learning model to reproduce the results of some legacy code they don't want to maintain, and then replacing the code with the model? (https://twitter.com/seanjtaylor/status/1443361903229562881)
+- But: building or analyzing a complete application is a different story than generating a button or commenting on a code snippet. 
+</textarea>
+</section>
+
   
 <section data-markdown class="fragments">
 ### Complete transformer (BART/T5-like)
