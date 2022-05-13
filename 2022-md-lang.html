@@ -133,15 +133,23 @@ unterschiedliche Szenarien.
 
  <section data-markdown class="local preparation hide">
 - Notebooks auf Colab ausprobieren
-- Server starte, sodass ich CURL und Client dagegen machen kann
+- Teachable Machine mit JS Demo
+
+Java Server Demo
+- Server starten, sodass ich CURL und Client dagegen machen kann
 - Java Client auf WSL ausführen
-- Teachable Machine mit JS Demo	 
+
+Java API Demo
+
+olli@DESKTOP-BEN73DP:~/insurance-ml/java$ ./gradlew run
+
+
 	</section>
 	
 			<section data-markdown>
 				<textarea data-template>
 ## Deep Learning mit TensorFlow, ja gut, aber in welcher Sprache?                
-### Python, Java, .NET, JavaScript, C oder C++
+### Python, Java, JavaScript, C oder C++
 
 MD Dev Days 2022, https://md-devdays.de/act-detail/1000010
 
@@ -172,6 +180,44 @@ Diese Folien: https://bit.ly/md-dev-tf
 <a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
 Head of AI@OpenKnowledge
 </p>    
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## JavaScript
+
+Betrieb im Browser
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## JavaScript
+
+* https://www.tensorflow.org/js
+  * Fertige Modelle: https://www.tensorflow.org/js/models
+* Keras Modelle und TF Graphen können in JS konvertiert werden  
+* https://www.tensorflow.org/js/tutorials#convert_pretained_models_to_tensorflowjs
+* Vollständige TF API: https://js.tensorflow.org/api/latest/
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Live Demo
+### Eine komplette JS-Anwendung in 5 Minuten
+
+<a href='https://teachablemachine.withgoogle.com/'>
+    <img src='img/teachable-machine.png' style="height: 300px;">
+</a>
+
+<small>    
+
+https://teachablemachine.withgoogle.com/
+</small>
+
 </textarea>
 </section>
 
@@ -247,12 +293,22 @@ Server und Embedded Systeme
 
 <section data-markdown>
 	<textarea data-template>
-### Warum interessiert mich das?
+### Warum interessiert uns das?
 
 * Graphen enthalten alles was man zur Ausführung eines Neuronalen Netzes braucht
 * Damit kann man die Python-Welt verlassen
 * Man braucht lediglich eine Umgebung, die die Operationen in dem Graphen ausführen kann
 * So eine Umgebung ist bereits in TensorFlow mit C++ implementiert und auch die Python-Version beruht darauf  
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Serving
+
+* Erlauben direkt Ausführung eines Graphen im Server-Betrieb
+* Modell-Server kann lokal unter Linux installiert werden
+* Oder man kann so ein Modell direkt bei GCP deployen
 </textarea>
 </section>
 
@@ -281,7 +337,7 @@ saved_model_cli show --dir insurance-classifier --all
 export TF_CPP_VMODULE=http_server=1
 
 nohup tensorflow_model_server --port=8500 --rest_api_port=8501 \
-  --model_name=insurance --model_base_path=/home/olli/insurance  >server.log 2>&1
+  --model_name=insurance --model_base_path=/home/olli/insurance-model  >server.log 2>&1
 ```
 
 https://www.tensorflow.org/tfx/guide/serving
@@ -299,7 +355,7 @@ https://www.tensorflow.org/tfx/guide/serving
 </section>
 
 
-<section data-markdown style="font-size: x-large;">
+<!-- <section data-markdown style="font-size: x-large;">
 	<textarea data-template>
 ## Live Coding - Serving
 
@@ -308,44 +364,7 @@ https://www.tensorflow.org/tfx/guide/serving
 https://colab.research.google.com/github/DJCordhose/insurance-ml/blob/main/notebooks/3_serve.ipynb
 </textarea>
 </section>
-
-<section data-markdown>
-	<textarea data-template>
-## JavaScript
-
-Betrieb im Browser
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## JavaScript
-
-* https://www.tensorflow.org/js
-  * Fertige Modelle: https://www.tensorflow.org/js/models
-* Keras Modelle und TF Graphen können in JS konvertiert werden  
-* https://www.tensorflow.org/js/tutorials#convert_pretained_models_to_tensorflowjs
-* Vollständige TF API: https://js.tensorflow.org/api/latest/
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-## Live Demo
-### Eine komplette JS-Anwendung in 5 Minuten
-
-<a href='https://teachablemachine.withgoogle.com/'>
-    <img src='img/teachable-machine.png' style="height: 300px;">
-</a>
-
-<small>    
-
-https://teachablemachine.withgoogle.com/
-</small>
-
-</textarea>
-</section>
+ -->
 
 <section data-markdown>
 		<textarea data-template>
@@ -384,6 +403,59 @@ https://github.com/tensorflow/java/#tensorflow-version-support
 </textarea>
 </section>
 
+<section>
+<h3>Auch in der neuesten Version ist Java-Code nicht gerade knackig</h3>
+
+<pre>
+    <code data-trim data-line-numbers="1|3-7|9-11|13-17"><script type="text/template">
+try (var savedModelBundle = SavedModelBundle.load("insurance-ml/app/classifier", "serve")) {
+
+    var input_matrix = NdArrays.ofFloats(Shape.of(1, 2));
+    input_matrix.set(NdArrays.vectorOf(48.0f, 100.0f), 0);
+    Tensor input_tensor = TFloat32.tensorOf(input_matrix);
+    Map<String, Tensor> inputTensorMap = new HashMap<>();
+    inputTensorMap.put("input", input_tensor);
+
+    var myFunction = savedModelBundle.function("serving_default");
+    Map<String, Tensor> outputTensorMap = myFunction.call(inputTensorMap);
+    var prediction = outputTensorMap.get("output");
+
+    // overly complicated way to get the prediction, but so far found no better way
+    var probas = prediction.asRawTensor().data().asFloats();
+    float redProba = probas.getFloat(0);
+    float yellowProba = probas.getFloat(1);
+    float greenProba = probas.getFloat(2);
+}
+        
+</script></code>
+</pre>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Aber: Wieso eigentlich Neuronale Netzwerke in Java?        
+
+* Training von Neuronalen Netzen ist eher Scripting
+* Sprachmittel von Java sind nach wie vor umständlich für Scripting
+* Aber: vielleicht reicht eine einfache Integration eines ML-Modells in Java mit Standard-Schnittstellen?
+  * GRPC, REST, MQTT, etc.  
+
+    </textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Kotlin
+
+Kotlin könnte als Sprache besser geeignet sein als Java
+
+* https://jax.de/big-data-machine-learning/kotlin-fuer-machine-learning/
+* https://kotlinlang.org/docs/data-science-overview.html
+* Keras-artige API: https://github.com/jetbrains/kotlindl
+</textarea>
+</section>
+
 <section data-markdown>
 	<textarea data-template>
 ### TensorFlowLite
@@ -395,24 +467,11 @@ https://github.com/tensorflow/java/#tensorflow-version-support
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Kotlin
-
-Kotlin könnte als Sprache besser geeignet sein als Java
-
-* https://kotlinlang.org/docs/data-science-overview.html
-* Keras-artige API: https://github.com/jetbrains/kotlindl
-</textarea>
-</section>
-
-
-
 			<section data-markdown>
 				<textarea data-template>
 # Vielen Dank
 
-Deep Learning mit TensorFlow, ja gut, aber in welcher Sprache?
+### Deep Learning mit TensorFlow, ja gut, aber in welcher Sprache?
 
 MD Dev Days 2022, https://md-devdays.de
 
