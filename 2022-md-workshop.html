@@ -140,12 +140,22 @@ create one as part of the workshop.
 This workshop will be held in English, unless all registered participants speak German. -->
 
 
+<section data-markdown class="todo">
+- Time Series aus Notebook mit reinnehmen?
+- Overfitting / Generalisierung
+</section>
+
 <section data-markdown>
                 <textarea data-template>
 # Introduction to Machine Learning for Software Developers
 
-Oliver Zeigermann
+MD Dev Days 2022, https://md-devdays.de/act-detail/1000060
 
+Oliver Zeigermann
+Open Knowledge
+oliver.zeigermann@openknowledge.de
+
+Slides: https://bit.ly/md-dev-ml-workshop
     </textarea>
             </section>
 
@@ -171,6 +181,17 @@ Head of AI@OpenKnowledge
 			</section>
 
 <section data-markdown>
+	<textarea data-template>
+### Who are you?
+
+* What do you do?
+* What do you know?
+* Why are you here?
+</textarea>
+</section>
+  
+
+<!-- <section data-markdown>
     <textarea data-template>
 ### Olli        
 
@@ -178,7 +199,7 @@ Head of AI@OpenKnowledge
 
 </textarea>
 </section>
-
+ -->
 <section data-markdown>
     <textarea data-template>
 ### AI overview
@@ -246,6 +267,33 @@ https://twitter.com/karpathy/status/1486215976559398915
 
 https://twitter.com/burkov/status/1505011374279307266
 </textarea>
+</section>
+
+
+<!-- <section data-markdown>
+### Was macht ML schwer für Software-Entwickler?
+
+- man muss das Business mitdenken
+- emotionale Belastung des Experiments
+- ungewohnter Prozess
+- Wissenschaftliches Arbeiten
+- Schwer bottom up anzueignen
+- Uni bildet unsinnig aus
+- Mathe als Gate Keeping
+- Mangelnde Transparenz - man versteht Modelle typischerweise nicht mehr
+</section> -->
+
+<section data-markdown>
+### What makes ML hard for Software Developers?
+
+- you have to think about the business
+- emotional burden of the experiment
+- unfamiliar process
+- Scientific work
+- Hard to adopt bottom up
+- University educates nonsensically
+- Math as gate keeping
+- Lack of transparency - you typically don't understand models anymore
 </section>
 
 
@@ -381,7 +429,31 @@ https://twitter.com/CutInHalfPic/status/1498601900081483779
     </textarea>
     </section>
 
+<!-- <section data-markdown>
+### Labelling
+    
+* Am besten gibt es schon Labels
+  * sonst wird es sehr lästig
+  * manchmal sind die ein bisschen versteckt oder können erzeugt werden 
+* Labelling Services kann man nur nutzen wenn 
+  * man mit hohen Fehlerraten leben kann
+  * das Labelling selbst keine Domänen spezifischen Kenntnisse erfordert
+  * die Daten nicht  geheim sind
+* Es gibt aber auch Arten von ML, die keine Labels brauchen
+</section> -->
 
+<section data-markdown>
+### Labelling
+    
+* Preferably there are already labels
+  * otherwise it becomes very annoying
+  * sometimes they are a bit hidden or can be created 
+* Labelling services can only be used if 
+  * you can live with high error rates
+  * the labeling itself does not require domain specific knowledge
+  * the data is not secret
+* But there are also types of ML that don't need labels.
+</section>
 
 <section data-markdown class="fragments">
     <textarea data-template>
@@ -465,6 +537,121 @@ https://playground.tensorflow.org/
 </small>
     </textarea>
     </section>
+
+
+    <section data-markdown>
+    <textarea data-template>
+### Optional Bonus Level       
+## Time Series Forecasting
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Predicting German Power Consumption
+### Time Series Forecasting
+
+https://colab.research.google.com/github/DJCordhose/ml-workshop/blob/master/notebooks/tf-intro/2020-01-time-series.ipynb
+
+<!-- ## Hands-On
+### How does the number of past steps used for prediction change the outcome?
+
+_Make experiments with a number of training steps reduced to 5 or 10._ -->
+
+        </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+#### Before you get tempted, read this
+
+<img src='img/fchollet-stock-prices.png'>
+<small>
+
+https://twitter.com/fchollet/status/1177633367472259072
+</small>
+        </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+#### Just like in all areas of Machine Learning
+### Time Series Forecasting only works when there is a repeating pattern hidden in the data
+
+<img src='img/timeseries-corona.png' style="height: 350px;">
+
+<small class="fragment">
+New Corona infections in Hamburg, September 2021
+<br>
+No one is able to forecast even with all the knowledge in the world let alone just the time series data
+
+https://www.hamburg.de/corona-zahlen/
+</small>
+        </textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## Open Question
+_How would you map_
+* any number of input time steps
+* with any number of features
+* to any number of output time steps
+* with any number of features
+        </textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Surprising Solution: RNN Encoder-Decoder
+
+* RNN Encoder-Decoder consists of two recurrent neural networks (RNN)
+* they act as an encoder and a decoder pair
+* encoder maps a variable-length source sequence to _a fixed-length vector_, the _latent representation_
+* all the temporal information as lost in the latent representation
+* decoder maps the vector representation back to a variable-length target sequence
+
+<small>
+
+https://arxiv.org/abs/1406.1078
+<br>
+https://machinelearningmastery.com/encoder-decoder-long-short-term-memory-networks/
+
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Example Application: Sequence to Sequence translations
+
+* could be interpreted as sequential embedding
+* fixed-length vector between decoder and encoder is the latent space
+
+<img src='img/seq/encdec.jpg' style="height: 200px;">
+
+<small>
+
+https://github.com/tensorflow/nmt
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+#### You can even describe all networks as a combination of encoder / decoder
+
+<img src='img/embeddings/encoder-decoder-everywhere.png' height="530">
+
+<small style="font-size: large">
+
+https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview-with-tensorflow-355bcd26baf0
+</small>
+</textarea>
+</section>
+
 
 
 <section data-markdown>
@@ -1353,7 +1540,7 @@ https://twitter.com/fchollet/status/1386373123889528835
 
 <section data-markdown>
     <textarea data-template>
-### Make of Buy
+### Make or Buy
 
 * buy: you can't influence much, but you also don't have to
 * make: you can influence a lot, but you also have to
@@ -1375,6 +1562,7 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
 </textarea>
 </section>
 
+
 <section data-markdown>
     <textarea data-template>
 ### Make
@@ -1395,14 +1583,45 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
 </textarea>
 </section>
 
+<!-- <section data-markdown class="todo">
+    ### Vorfertigungsgrad von ML
+    </section> -->
+    
+<section data-markdown>
+    <textarea data-template>
+### Level of Prefabrication
+
+* Make or Buy often isn't a binary decision
+* There are different levels of prefabrication
+  1. Fixed Model over API
+  1. Retrained Model over API
+  1. Classic ML
+  1. Standard Architecture, pretrained
+  1. Standard Architecture
+  1. Custom Architecture
+  1. Low Level Maths Operations 
+</textarea>
+</section>
+    
+
 <section data-markdown>
     <textarea data-template>
 ## Thanks for attending        
-# Essentials of Machine Learning / Artificial Intelligence
+### Introduction to Machine Learning for Software Developers
+
+MD Dev Days 2022, https://md-devdays.de/act-detail/1000060
 
 ### Stay in Contact if you like
 
-Oliver Zeigermann, <a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
+Oliver Zeigermann
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
+
+oliver.zeigermann@openknowledge.de
+
+https://twitter.com/DJCordhose
+
+Slides: https://bit.ly/md-dev-ml-workshop
 
 </textarea>
 </section>
