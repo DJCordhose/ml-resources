@@ -184,6 +184,71 @@ Head of AI@OpenKnowledge
 </section>
 
 <section data-markdown>
+### Als erstes	
+## Was ist TensorFlow?
+
+_TensorFlow is an end-to-end open source platform for machine learning. It has a comprehensive, flexible ecosystem of
+tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily
+build and deploy ML powered applications._
+
+https://www.tensorflow.org/
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Deployment ist ein Schwerpunkt
+
+<img src='img/tf-deploy.png'>
+
+<small>
+
+* https://www.tensorflow.org/tfx/guide/serving
+* https://www.tensorflow.org/lite/api_docs
+* https://www.tensorflow.org/js
+
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Keras vs TensorFlow
+
+<img src='img/tf-vs-keras.png'>
+
+Franćois Chollet - Keras: The Next Five Years, Scaled ML
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Keras: Progressive Disclosure of Complexity
+
+<img src='img/keras-levels.png'>
+
+Franćois Chollet - Keras: The Next Five Years, Scaled ML
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Keras can go from Scikit-Learn API style all the way to Numpy API style
+
+<img src='img/keras-abstraction.png'>
+
+Franćois Chollet - Keras: The Next Five Years, Scaled ML
+
+</textarea>
+</section>
+
+<section data-markdown>
+## Aber mit welcher Programmiersprache?	
+</section>
+
+<section data-markdown>
 	<textarea data-template>
 ## JavaScript
 
@@ -198,9 +263,11 @@ Betrieb im Browser
 * https://www.tensorflow.org/js
   * Fertige Modelle: https://www.tensorflow.org/js/models
 * Keras Modelle und TF Graphen können in JS konvertiert werden  
-* https://www.tensorflow.org/js/tutorials#convert_pretained_models_to_tensorflowjs
+  * https://www.tensorflow.org/js/tutorials#convert_pretained_models_to_tensorflowjs
+* Kann über WebGL beliebige GPUs ansprechen 
+  * Zukünftig auch WebGPU möglich
 * Vollständige TF API: https://js.tensorflow.org/api/latest/
-
+  * Training und Serving
 </textarea>
 </section>
 
@@ -444,7 +511,7 @@ try (var savedModelBundle = SavedModelBundle.load("insurance-ml/app/classifier",
 </section>
 
 
-<section data-markdown class="fragments">
+<!-- <section data-markdown class="fragments">
 	<textarea data-template>
 ### Kotlin
 
@@ -454,7 +521,7 @@ Kotlin könnte als Sprache besser geeignet sein als Java
 * https://kotlinlang.org/docs/data-science-overview.html
 * Keras-artige API: https://github.com/jetbrains/kotlindl
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -465,6 +532,21 @@ Kotlin könnte als Sprache besser geeignet sein als Java
 * https://www.tensorflow.org/lite
 * https://www.tensorflow.org/lite/guide
 </textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Fazit
+
+* TensorFlow Modelle können als abstrakte Berechnungsgraphen abgespeichert werden
+* In Produktion kann man machen was man will
+  * Cloud
+  * Lokaler Server
+  * Browser
+  * Embedded in Java (und .NET)
+  * Mobile
+* Das erzeugen eines Modells ist Script basiert
+  * An eine Script-Sprache hat man eine andere Anforderung als an eine Sprache die in Prod geht  
+  * Python ist dafür das Mittel der Wahl 
 </section>
 
 			<section data-markdown>
