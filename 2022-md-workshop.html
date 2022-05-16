@@ -482,121 +482,6 @@ https://playground.tensorflow.org/
 </textarea>
 </section>
 
-
-    <section data-markdown>
-    <textarea data-template>
-### Optional Bonus Level       
-## What happened before?
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-## Predicting German Power Consumption
-### Time Series Forecasting
-
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/master/notebooks/time-series.ipynb
-
-<!-- ## Hands-On
-### How does the number of past steps used for prediction change the outcome?
-
-_Make experiments with a number of training steps reduced to 5 or 10._ -->
-
-        </textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-#### Before you get tempted, read this
-
-<img src='img/fchollet-stock-prices.png'>
-<small>
-
-https://twitter.com/fchollet/status/1177633367472259072
-</small>
-        </textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-#### Just like in all areas of Machine Learning
-### Time Series Forecasting only works when there is a repeating pattern hidden in the data
-
-<img src='img/timeseries-corona.png' style="height: 350px;">
-
-<small class="fragment">
-New Corona infections in Hamburg, September 2021
-<br>
-No one is able to forecast even with all the knowledge in the world let alone just the time series data
-
-https://www.hamburg.de/corona-zahlen/
-</small>
-        </textarea>
-</section>
-
-
-<section data-markdown>
-    <textarea data-template>
-## Open Question
-_How would you map_
-* any number of input time steps
-* with any number of features
-* to any number of output time steps
-* with any number of features
-        </textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-### Surprising Solution: RNN Encoder-Decoder
-
-* RNN Encoder-Decoder consists of two recurrent neural networks (RNN)
-* they act as an encoder and a decoder pair
-* encoder maps a variable-length source sequence to _a fixed-length vector_, the _latent representation_
-* all the temporal information as lost in the latent representation
-* decoder maps the vector representation back to a variable-length target sequence
-
-<small>
-
-https://arxiv.org/abs/1406.1078
-<br>
-https://machinelearningmastery.com/encoder-decoder-long-short-term-memory-networks/
-
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-### Example Application: Sequence to Sequence translations
-
-* could be interpreted as sequential embedding
-* fixed-length vector between decoder and encoder is the latent space
-
-<img src='img/seq/encdec.jpg' style="height: 200px;">
-
-<small>
-
-https://github.com/tensorflow/nmt
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-#### You can even describe all networks as a combination of encoder / decoder
-
-<img src='img/encoder-decoder-everywhere.png' height="530">
-
-<small style="font-size: large">
-
-https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview-with-tensorflow-355bcd26baf0
-</small>
-</textarea>
-</section>
-
-
 <section data-markdown>
     <textarea data-template>
 ### Challenge: Is a text negative or positive?
@@ -1659,6 +1544,122 @@ Slides: https://bit.ly/md-dev-ml-workshop
 </textarea>
 </section>
 
+
+<section data-markdown>
+    <textarea data-template>
+### Optional Bonus Level       
+### Part VIII        
+## Time Series Forecasting
+        
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Predicting German Power Consumption
+### Time Series Forecasting
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/master/notebooks/time-series.ipynb
+
+<!-- ## Hands-On
+### How does the number of past steps used for prediction change the outcome?
+
+_Make experiments with a number of training steps reduced to 5 or 10._ -->
+
+        </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+#### Before you get tempted, read this
+
+<img src='img/fchollet-stock-prices.png'>
+<small>
+
+https://twitter.com/fchollet/status/1177633367472259072
+</small>
+        </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+#### Just like in all areas of Machine Learning
+### Time Series Forecasting only works when there is a repeating pattern hidden in the data
+
+<img src='img/timeseries-corona.png' style="height: 350px;">
+
+<small class="fragment">
+New Corona infections in Hamburg, September 2021
+<br>
+No one is able to forecast even with all the knowledge in the world let alone just the time series data
+
+https://www.hamburg.de/corona-zahlen/
+</small>
+        </textarea>
+</section>
+
+
+<!-- <section data-markdown>
+    <textarea data-template>
+## Open Question
+_How would you map_
+* any number of input time steps
+* with any number of features
+* to any number of output time steps
+* with any number of features
+        </textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Surprising Solution: RNN Encoder-Decoder
+
+* RNN Encoder-Decoder consists of two recurrent neural networks (RNN)
+* they act as an encoder and a decoder pair
+* encoder maps a variable-length source sequence to _a fixed-length vector_, the _latent representation_
+* all the temporal information as lost in the latent representation
+* decoder maps the vector representation back to a variable-length target sequence
+
+<small>
+
+https://arxiv.org/abs/1406.1078
+<br>
+https://machinelearningmastery.com/encoder-decoder-long-short-term-memory-networks/
+
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Example Application: Sequence to Sequence translations
+
+* could be interpreted as sequential embedding
+* fixed-length vector between decoder and encoder is the latent space
+
+<img src='img/seq/encdec.jpg' style="height: 200px;">
+
+<small>
+
+https://github.com/tensorflow/nmt
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+#### You can even describe all networks as a combination of encoder / decoder
+
+<img src='img/encoder-decoder-everywhere.png' height="530">
+
+<small style="font-size: large">
+
+https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview-with-tensorflow-355bcd26baf0
+</small>
+</textarea>
+</section>
+
+ -->
 
 <!-- 
             <section data-markdown>
