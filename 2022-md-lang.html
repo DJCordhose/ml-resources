@@ -371,16 +371,6 @@ Server und Embedded Systeme
 
 <section data-markdown>
 	<textarea data-template>
-### Serving
-
-* Erlauben direkt Ausführung eines Graphen im Server-Betrieb
-* Modell-Server kann lokal unter Linux installiert werden
-* Oder man kann so ein Modell direkt bei GCP deployen
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
 ### C/C++
 
 * Erlauben direkt Ausführung eines Graphen im Server-Betrieb
@@ -432,6 +422,7 @@ https://colab.research.google.com/github/DJCordhose/insurance-ml/blob/main/noteb
 </textarea>
 </section>
  -->
+
 
 <section data-markdown>
 		<textarea data-template>
@@ -534,6 +525,54 @@ Kotlin könnte als Sprache besser geeignet sein als Java
 </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+## .NET
+
+* https://www.nuget.org/packages/TensorFlowSharp/
+  * nur API zum ausführen von Modellen 
+* https://github.com/SciSharp/TensorFlow.NET
+  * volle API
+  * bisher nur TF 2.6 unterstützt
+  * Keras API: https://www.nuget.org/packages/TensorFlow.Keras
+  * Docs: https://scisharp.github.io/tensorflow-net-docs
+  * Numpy: https://github.com/SciSharp/NumSharp
+  * C#/F# Unterstützung
+
+</textarea>
+</section>
+
+<section>
+<h3>C# Code Beispiel</h3>
+
+<pre>
+    <code data-trim data-line-numbers="1-4|6|7|9-12|14-17"><script type="text/template">
+using static Tensorflow.Binding;
+using static Tensorflow.KerasApi;
+using Tensorflow;
+using NumSharp;		
+
+var optimizer = keras.optimizers.Adam(0.01f);
+using var g = tf.GradientTape();
+
+// Linear regression (Wx + b).
+var pred = W * X + b;
+// Mean square error.
+var loss = tf.reduce_sum(tf.pow(pred - Y, 2)) / (2 * n_samples);
+
+// Compute gradients.
+var gradients = g.gradient(loss, (W, b));
+// Update W and b following gradients.
+optimizer.apply_gradients(zip(gradients, (W, b)));
+</script></code>
+</pre>
+
+<a href='https://scisharp.github.io/tensorflow-net-docs/#/essentials/introduction?id=c-example'>
+https://scisharp.github.io/tensorflow-net-docs/#/essentials/introduction?id=c-example</a>
+
+</section>
+
+
 <section data-markdown class="fragments">
 ### Fazit
 
@@ -542,7 +581,7 @@ Kotlin könnte als Sprache besser geeignet sein als Java
   * Cloud
   * Lokaler Server
   * Browser
-  * Embedded in Java (und .NET)
+  * Embedded in Java und .NET
   * Mobile
 * Das erzeugen eines Modells ist Script basiert
   * An eine Script-Sprache hat man eine andere Anforderung als an eine Sprache die in Prod geht  
