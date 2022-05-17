@@ -244,8 +244,13 @@ Franćois Chollet - Keras: The Next Five Years, Scaled ML
 </textarea>
 </section>
 
+
 <section data-markdown>
-## Aber mit welcher Programmiersprache?	
+## Aber mit welcher Programmiersprache?
+
+* Wieso ist das eigentlich Python? (Spoiler)
+* Ist das wichtig?
+* Wieso mache ich das nicht in C++? 
 </section>
 
 <section data-markdown>
@@ -403,11 +408,27 @@ https://www.tensorflow.org/tfx/guide/serving
 
 <section data-markdown>
 	<textarea data-template>
-### Optionales Demo
+### Demo
 ## TensorFlow Serving
 
 1500 Predictions im Batch über REST ist superschnell
 
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Services in der Cloud
+
+* AWS: https://aws.amazon.com/machine-learning/ai-services/
+  * Eigene Modelle trainieren: https://aws.amazon.com/sagemaker/train/
+* Google Cloud: https://cloud.google.com/solutions/ai
+  * Eigene Modelle trainieren: https://colab.research.google.com/
+* Azure
+  * https://azure.microsoft.com/en-us/overview/ai-platform
+  * https://azure.microsoft.com/en-us/product-categories/applied-ai-services
+  * https://docs.microsoft.com/en-us/azure/machine-learning/concept-deep-learning-vs-machine-learning
+* IBM: https://www.ibm.com/cloud/ai
 </textarea>
 </section>
 
@@ -461,6 +482,18 @@ https://github.com/tensorflow/java/#tensorflow-version-support
 </textarea>
 </section>
 
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Aber: Wieso eigentlich Neuronale Netzwerke in Java?        
+
+* Training von Neuronalen Netzen ist eher Scripting
+* Sprachmittel von Java sind nach wie vor umständlich für Scripting
+* Aber: vielleicht reicht eine einfache Integration eines ML-Modells in Java mit Standard-Schnittstellen?
+  * GRPC, REST, MQTT, etc.  
+
+    </textarea>
+</section>
+
 <section>
 <h3>Auch in der neuesten Version ist Java-Code nicht gerade knackig</h3>
 
@@ -489,18 +522,15 @@ try (var savedModelBundle = SavedModelBundle.load("insurance-ml/app/classifier",
 </pre>
 </section>
 
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Aber: Wieso eigentlich Neuronale Netzwerke in Java?        
+<section data-markdown>
+    <textarea data-template>
+## Demo
+### Ein TensorFlow Modell aus Java ausführen
 
-* Training von Neuronalen Netzen ist eher Scripting
-* Sprachmittel von Java sind nach wie vor umständlich für Scripting
-* Aber: vielleicht reicht eine einfache Integration eines ML-Modells in Java mit Standard-Schnittstellen?
-  * GRPC, REST, MQTT, etc.  
+https://github.com/DJCordhose/insurance-ml/tree/main/java
 
-    </textarea>
+</textarea>
 </section>
-
 
 <!-- <section data-markdown class="fragments">
 	<textarea data-template>
@@ -585,7 +615,8 @@ https://scisharp.github.io/tensorflow-net-docs/#/essentials/introduction?id=c-ex
   * Mobile
 * Das erzeugen eines Modells ist Script basiert
   * An eine Script-Sprache hat man eine andere Anforderung als an eine Sprache die in Prod geht  
-  * Python ist dafür das Mittel der Wahl 
+  * Python ist dafür das Mittel der Wahl
+* Problematisch bleibt der Glue Code, die Pipeline direkt um das Modell herum   
 </section>
 
 			<section data-markdown>
