@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Foundation Models</title>
+    <title>Nordic-Coding - Foundation Models</title>
 
     <link rel="stylesheet" href="reveal.js/dist/reset.css">
     <link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -151,7 +151,8 @@ Softwareentwickler haben können.
     <textarea data-template>
 ### Vorbereitung
 
-* Kein Codex
+Codex
+* einfaches Beispiel zeigen als 2. Demo?
 
 Copilot
 * Predict.predictFromServer
@@ -169,14 +170,14 @@ Copilot
     </textarea>
   </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 ### Flamingo
 
 * https://twitter.com/laurentsifre/status/1523942063821455360
 * https://twitter.com/gordic_aleksa/status/1524083015420465154
 * https://twitter.com/risi1979/status/1523638082985099266
 </section>
-
+ -->
 
 <!-- <section data-markdown class="todo">
   <textarea data-template>
@@ -225,78 +226,61 @@ Head of AI@OpenKnowledge
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown>
   <textarea data-template>
-## Meine Behauptung
-### die Zukunft ist schon da, nur noch nicht überall
+### Demo Github Copilot - Autocempletion on Steroids
 
-* das meiste was ich heute zeige läuft nur im Labor
-* Gründe sind 
-  * die Modellgrößen und
-  * begrenzte Speicher und Rechenpower
-* bei beiden spielt die Zeit für uns
-* in wenigen Jahren wird diese Technik auf breiter Fläche verfügbar sein
-* wir können uns schon jetzt darauf vorbereiten
-* wir erkunden die Möglichkeiten anhand eines Beispiels
-* und sehen uns auch an, was die direkten Auswirkungen für uns als Entwickler sind 
+<img src='img/transformers/copilot.png' style="height: 100%;">
+
+<small>
+
+* https://copilot.github.com/
+* https://github.com/github/copilot-docs/tree/main/docs
+* https://github.com/github/copilot-docs/blob/main/docs/visualstudiocode/gettingstarted.md#getting-started-with-github-copilot-in-visual-studio-code
+
+</small>
 
 </textarea>
 </section>
 
 <section data-markdown>
+  <textarea data-template>
+### What else can Copilot do?
 
-Gato🐈a scalable generalist agent that uses a single transformer with exactly the same weights to play Atari, follow
-text instructions, caption images, chat with people, control a real robot arm, and more: https://dpmd.ai/Gato
+* Convert comments to code
+* Autofill for repetitive code
+* Generate Tests
 
-https://twitter.com/DeepMind/status/1524770016259887107
+https://copilot.github.com/
+
+</textarea>
 </section>
 
-<section data-markdown class="fragments">
-<textarea data-template>
-### Our example: Sentiment analysis
 
-_Is a text more negative or positive?_
-
-* There are nasty things circulating about your company on social media
-* A negative tweet that pops up on Reddit or Twitter could affect your business
-* An angry customer may need special or immediate attention
-* How many stars would a textual review yield?
   
-        </textarea>
-</section>
+<section data-markdown>
+### More Examples for AI based completion
 
-<section data-markdown class="fragments">
-  <textarea data-template>
-### Our Examples
-
-* I don't think its a good idea to have people driving 40 miles an hour through a light that *just* turned green, especially with the number of people running red lights, or the number of pedestrians running across at the last minute being obscured by large cars in the lanes next to you.
-* MANY YEARS ago, When I was a teenager, I delivered pizza. I had a friend who, just for the fun of it, had a CB. While on a particular channel, he could key the mike with quick taps and make the light right out in front of the pizza place turn green. It was the only light that it worked on, and I was in the car with him numerous times to confirm that it worked. It was sweet.
-* The "green" thing to do is not to do anything ever, don't even breath!  Oh, and if you are not going to take that ridiculous standpoint then I guess this is relevant to Green because it uses Bio-fuels in one of the most harsh environments in the world, showing that dependence on tradition fuels is a choice not a necessity.
-
-https://www.reddit.com/r/transport/
-</textarea>
-</section>
-
-
-<!-- <section data-markdown>
-## Schedule
-
-1. Intro: What is a transformer and why would I want one?
-1. Tasks: What can transformers do?
-1. Architecture: There is more than one kind of transformer
+* https://docs.warp.dev/features/ai-command-search
+  * https://youtu.be/kSXpwOElFY0?t=113
+* OpenAI Codex (basis for Copilot)
+  * https://beta.openai.com/codex-javascript-sandbox
+  * OpenAI Codex and GitHub Copilot are both models trained on the GPT-3 language prediction model created by OpenAI.
+  However, while Copilot writes code alongside you in your text editor (as the name suggests), Codex requires that you
+  access it via their API, or Playground.
+    * https://aidan-tilgner.medium.com/github-copilot-vs-openai-codex-which-should-you-use-ed67e53e00c0
 </section>
 
 <section data-markdown>
-## Schedule
+### How is this possible?
 
-1. _Intro: What is a transformer and why would I want one?_
-1. Tasks: What can transformers do?
-1. Architecture: There is more than one kind of transformer
+* Tackle this with Machine Learning
+* Model has basically been been trained on all of the Internet including Github
+* Github contains code alongside tests and documentation
+* A large language model (based on GPT-3) is the basis 
 </section>
- -->
 
  <section data-markdown class="fragments">
-## Tackle this with Machine Learning   
 ### Issues in Supervised Learning
 
 * linear effort in labelling data
@@ -327,137 +311,6 @@ _impractical with large data sets_
   <!-- https://www.youtube.com/watch?v=iFhYwEi03Ew -->
   </section>
     
-    
-<!-- <section data-markdown>
-<textarea data-template>
-### Example
-
-<img src='img/transformers/deepl-example.png'>
-
-<small>
-
-https://www.deepl.com/translator#de/en/Transformer%20sind%20das%20Schweizer%20Messer%20der%20Sprachverarbeitung
-</small>
-        </textarea>
-</section>
- -->
-
-<!-- <section data-markdown>
-<textarea data-template>
-### Details of the Transformer Architecture
-
-<div style="display: flex; align-items: center; justify-content: space-around;">
-  <div>
-    <ul>
-      <li>left side is encoder</li>
-      <li>right side is decoder</li>
-      <li>encoder feeds in embeddings of input into decoder</li>
-      <li>decoder needs context to work</li>
-    </ul>
-</div>
-  <div>
-    <img src='img/transformers/transformer-encoder-decoder.png'>
-</div>
-</div>
-<small>
-
-https://arxiv.org/pdf/1706.03762.pdf
-</small>
-
-        </textarea>
-</section> -->
-
-<!-- <section data-markdown>
-  <textarea data-template>
-### Evolution of Transformers (original paper is from 2017)
-
-<img src='https://huggingface.co/course/static/chapter1/model_parameters.png' style="height: 500px;">
-
-<small>
-
-https://huggingface.co/course/chapter1/4?fw=pt</small>
-  </textarea>
-</section> -->
-
-<section data-markdown style="font-size: x-large;">
-  <textarea data-template>
-## Huggingface is the place to go
-
-https://huggingface.co/transformers/
-
-main framework is Pytorch, but supports TensforFlow and JAX as well: https://huggingface.co/transformers/#supported-frameworks
-
-Models out of the box: https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/foundation/transformers-pipelines.ipynb?hl=en
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### But now this
-
-<a href='https://huggingface.co/models?sort=downloads'>
-<img src='img/transformers/hugging-zoo.png' style="height: 500px;">      
-</a>
-<small>
-
-https://huggingface.co/models?sort=downloads
-
-</small>
-
-</textarea>
-</section>
-
-
-<!-- <section data-markdown class="fragments">
-    <textarea data-template>
-### How to bring structure into the Zoo?
-
-* Huggingface has it all
-* But what is what?
-* Way of structuring: By
-  * Task
-  * Architecture
-
-</textarea>
-</section>
-
-<section data-markdown>
-## Schedule
-
-1. Intro: What is a transformer and why would I want one?
-1. _Tasks: What can transformers do?_
-1. Architecture: There is more than one kind of transformer
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Kickstart Demo - T0pp
-
-<img src='img/transformers/t0pp.png' style="height: 500px;">      
-
-https://huggingface.co/bigscience/T0pp
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### T0pp
-
-* encoder-decoder model? 
-* T5?
-* Seq2Seq?
-</textarea>
-</section>
-
-<section data-markdown>
-## Schedule
-
-1. Intro: What is a transformer and why would I want one?
-1. Tasks: What can transformers do?
-1. _Architecture: There is more than one kind of transformer_
-</section> -->
-
 <section data-markdown class="fragments">
 ### Transformer Zoo
 
@@ -497,159 +350,19 @@ https://arxiv.org/pdf/1706.03762.pdf
         </textarea>
 </section>
 
-<!-- <section data-markdown class="fragments">
-### Embeddings
-
-* vectors representing words
-* aka latent representation
-* maybe turn a sentence into a vector
-* contextual embeddings: turn a word into a vector, but also take the context into account
-* visualizing embeddings: https://github.com/koaning/whatlies
-</section> -->
-  
-
-<!-- <section data-markdown>
-  <textarea data-template>
-### Evolution of Transformers (original paper is from 2017)
-
-<img src='https://huggingface.co/course/static/chapter1/model_parameters.png' style="height: 500px;">
-
-<small>
-
-https://huggingface.co/course/chapter1/4?fw=pt</small>
-  </textarea>
-</section> -->
-
 <section data-markdown class="fragments">
-### Encoder only (BERT-like)
+### Decoder only (GPT-like)
 
-_also called auto-encoding Transformer models_
+_also called auto-regressive Transformer models_
 
-<!-- * encodes words into vectors (latent representation) -->
-* some problems only need the encoder part of the original transformer
-* "understanding" texts and their semantics is sufficient to e.g.  
-  * answer questions about a text with individual original text passages or to  
-  * sort the mood of a text into "positive" or "negative", 
-  * filling individual word gaps in texts
-* in all three cases, no "complex" answer is required for which a decoder would be needed. 
-* BERT and derived models are famous off-the-shelf representatives for encoder only models
+* the decoder part can transform given inputs into complete sentences
+* e.g. useful in itself, to complete started sentences
+* generates a response iteratively ("auto regressive")
+* GPT would be an example for this kind of application 
+  * unidirectional: trained to predict next word
+  * by OpenAI 
   
   </section>
-
-<!-- <section data-markdown>
-### What can BERT do?
-    
-* token classification 
-* sentence classification
-* multiple choice classification 
-* question answering
-</section> -->
-  
-  <!-- <section data-markdown>
-  ### Example for encoder only BERT: Classifier
-  
-  Downstream task: Sentence Classification
-  
-  Email Classifier, urgent oder not urgend:
-    * https://twitter.com/ClementDelangue/status/1409728768915214337
-    * https://huggingface.co/clem/autonlp-test3-2101787?text=I+would+be+nice+if+this+is+done+by+next+year vs
-    * https://huggingface.co/clem/autonlp-test3-2101787?text=I+would+be+nice+if+this+is+done+by+yesterday
-  </section> -->
-  
-  <section data-markdown class="fragments">
-### Training BERT
-
-* first objective
-  * input corrupted by using random masking
-  * model must predict the original sentence
-    * only masked words are predicted rather than reconstructing the entire input (because BERT can not do this)
-* second objective: 
-  * inputs are two sentences A and B
-  * model has to predict if the sentences are consecutive or not
-
-https://huggingface.co/transformers/model_summary.html#bert
-https://arxiv.org/abs/1810.04805
-  </section>
-  
-  <section data-markdown>
-    <textarea data-template>
-### Demo - Bert
-
-Bert finetuned for sentiment analysis 
-
-<img src='img/booster/t0pp.png' style="height: 350px;">      
-
-https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment
-</textarea>
-</section>
-
-<section data-markdown style="font-size: x-large;">
-  <textarea data-template>
-## Models also have a Python API
-
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/foundation/transformers-sentiment.ipynb?hl=en
-
-</textarea>
-</section>
-
-<section data-markdown class="fragments">
-### Complete transformer (BART/T5-like)
-
-_also called sequence-to-sequence transformer model_
-
-* combined use of encoder and decoder, as in the original transformer approach
-* allows summaries of texts in addition to translations
-* name is probably most appropriate as texts really get transformed
-* models like T5 and BART are most common here
-* to be able to operate on all NLP tasks, it transforms them into text-to-text problems by using specific prefixes: 
-  * summarize: 
-  * question: 
-  * translate English to German: 
-  * etc.
-
-https://arxiv.org/abs/1910.10683
-</section>
-
-<section data-markdown>
-### Training T5
-
-pretraining includes both self-supervised and supervised learning
-* self-supervised training randomly removes a fraction of the tokens and replacing them with individual sentinel tokens
-  * input of the encoder is the corrupted sentence
-  * input of the decoder is the original sentence 
-  * target is then the dropped out tokens delimited by their sentinel tokens
-* supervised training on downstream tasks provided by the GLUE and SuperGLUE benchmarks
-  *  converting them into text-to-text tasks as explained in previous slide
-
-https://huggingface.co/transformers/model_summary.html#t5
-</section>
-
-<section data-markdown>
-  <textarea data-template>
-### Demo - Bart 
-
-Natural language inference (NLI): do "hypotheses" match a "premise"?
-
-<img src='img/transformers/t0pp.png' style="height: 400px;">
-
-https://huggingface.co/facebook/bart-large-mnli
-</textarea>
-</section>
-
-
-<section data-markdown class="fragments">
-  ### Decoder only (GPT-like)
-  
-  _also called auto-regressive Transformer models_
-  
-  * the decoder part can transform given inputs into complete sentences
-  * e.g. useful in itself, to complete started sentences
-  * generates a response iteratively ("auto regressive")
-  * GPT would be an example for this kind of application 
-    * unidirectional: trained to predict next word
-    * by OpenAI 
-    
-    </section>
     
   <section data-markdown>
   ### Training GPT
@@ -662,41 +375,41 @@ https://huggingface.co/facebook/bart-large-mnli
   https://huggingface.co/transformers/model_doc/gpt2.html
   </section>
   
-  <!-- <section data-markdown class="fragments">
-  ### Evolution of GPT
+<section data-markdown class="fragments">
+### Evolution of GPT
+
+GPT: Generative Pre-Trained Transformer
+
+* GPT-1: 2018, 110 million parameters (https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf), https://www.youtube.com/watch?v=LOCzBgSV4tQ
+* GPT-2: 2019, 1.5 billion parameters (https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf), https://www.youtube.com/watch?v=BXv1m9Asl7I
+* GPT-3: 2020, 175 billion parameters (https://arxiv.org/abs/2005.14165), https://www.youtube.com/watch?v=wYdKn-X4MhY
+* GPT-4: 2022, probably not much larger, but trained on more data and more context (4096 instead of 2048) (https://analyticsindiamag.com/gpt-4-sam-altman-confirms-the-rumours/)
+
+</section>
   
-  GPT: Generative Pre-Trained Transformer
-  
-  * GPT-1: 2018, 110 million parameters (https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf), https://www.youtube.com/watch?v=LOCzBgSV4tQ
-  * GPT-2: 2019, 1.5 billion parameters (https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf), https://www.youtube.com/watch?v=BXv1m9Asl7I
-  * GPT-3: 2020, 175 billion parameters (https://arxiv.org/abs/2005.14165), https://www.youtube.com/watch?v=wYdKn-X4MhY
-  * GPT-4: 2022, probably not much larger, but trained on more data and more context (4096 instead of 2048) (https://analyticsindiamag.com/gpt-4-sam-altman-confirms-the-rumours/)
-  
-  </section> -->
-  
-  <section data-markdown>
-    <textarea data-template>
-    ### Typical example for decoder only GPT: completing a text (zero-shot)
+<section data-markdown>
+<textarea data-template>
+### Typical example for decoder only GPT: completing a text (zero-shot)
+
+<img src='img/transformers/gpt-3-article.png' style="height: 450px;">
+
+<small>
+
+https://arxiv.org/abs/2005.14165</small>
+        </textarea>
+</section>
     
-    <img src='img/transformers/gpt-3-article.png' style="height: 450px;">
-    
-    <small>
-    
-    https://arxiv.org/abs/2005.14165</small>
-            </textarea>
-    </section>
-    
-    <section data-markdown>
-    <textarea data-template>
-    ### Completion (One-Shot / Few-Shot)
-    
-    <img src='img/transformers/gpt-few-shot.png' style="height: 450px;">
-    
-    <small>
-    
-    https://arxiv.org/abs/2005.14165</small>
-            </textarea>
-    </section>
+<section data-markdown>
+<textarea data-template>
+### Completion (One-Shot / Few-Shot)
+
+<img src='img/transformers/gpt-few-shot.png' style="height: 450px;">
+
+<small>
+
+https://arxiv.org/abs/2005.14165</small>
+        </textarea>
+</section>
 
 <section data-markdown>
 <textarea data-template>
@@ -713,132 +426,7 @@ https://huggingface.co/facebook/bart-large-mnli
         </textarea>
 </section>
 
-  <section data-markdown>
-    <textarea data-template>
-  ### Demo Github Copilot - Autocempletion on Steroids
-  
-  <img src='img/transformers/copilot.png' style="height: 100%;">
-  
-  <small>
-  
-  * https://copilot.github.com/
-  * https://github.com/github/copilot-docs/tree/main/docs
-  * https://github.com/github/copilot-docs/blob/main/docs/visualstudiocode/gettingstarted.md#getting-started-with-github-copilot-in-visual-studio-code
-  
-  Alternative: https://beta.openai.com/codex-javascript-sandbox
-  
-  </small>
-  
-  </textarea>
-  </section>
-  
-  <section data-markdown class="fragments">
-    <textarea data-template>
-  ## What could be working soon?
-  
-  - Detecting Code Smells with Deep Learning
-  - Better software through ML and DS
-    - 2 aspects: replace by ML, better analysis by DS
-  - GPT-3 writes code
-    - in a few years the IDE can also tell if the comment should be adjusted when you change the code, so they don't diverge
-    - or when reading, give a warning: comment seems not up to date
-  <!-- - Has anyone ever heard of someone training a supervised learning model to reproduce the results of some legacy code they don't want to maintain, and then replacing the code with the model? (https://twitter.com/seanjtaylor/status/1443361903229562881) -->
-  - But: building or analyzing a complete application is a different story than generating a button or commenting on a code snippet. 
-  - And: Could such a model ever be innovative?
-  </textarea>
-  </section>
-  
-<section data-markdown>
-  <textarea data-template>
-### German models
-
-* Base: https://huggingface.co/dbmdz/bert-base-german-cased
-* Q&A: https://huggingface.co/deutsche-telekom/electra-base-de-squad2
-* Overview: https://huggingface.co/models?language=de&sort=downloads
-
-</textarea>
-</section>
-
 <section data-markdown class="fragments">
-  <textarea data-template>
-## If that is not enough
-
-### Can I train my own transformer model?
-
-* Do you have the compute to train a transformer model in the first place?
-* Do you have a lot of (labelled) data specific to your domain of application?
-
-</textarea>
-</section>
-
-<section data-markdown>
-  <textarea data-template>
-### How expensive is it to train a Foundational Model
-
-<img src='https://huggingface.co/datasets/huggingface-course/documentation-images/resolve/main/en/chapter1/carbon_footprint.svg'>
-
-<small>
-
-https://huggingface.co/course/chapter1/4?fw=pt
-<br>
-https://mlco2.github.io/impact/
-</small>
-</textarea>
-</section>
-
-<!-- <section data-markdown>
-  <textarea data-template>
-### What to do when facing limited amount of labeled data or limited compute
-
-1. Semi-supervised learning: learn from the labelled and unlabeled samples together
-1. Active learning: learn to select most valuable unlabeled samples to be collected next
-1. Pre-training + fine-tuning
-   1. pre-train a powerful task-agnostic model on a large data corpus
-   1. fine-tune on the downstream task with a small set of samples
-
-https://lilianweng.github.io/lil-log/2021/12/05/semi-supervised-learning.html
-</textarea>
-</section> -->
-
-
-<section data-markdown>
-    <textarea data-template>
-### Remedy: Transfer Learning
-
-<img src='https://huggingface.co/datasets/huggingface-course/documentation-images/resolve/main/en/chapter1/pretraining.svg'>
-
-<small>
-
-https://huggingface.co/course/chapter1/4?fw=pt</small>
-    </textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Fine-tuning for Downstream Task
-
-<img src='https://huggingface.co/datasets/huggingface-course/documentation-images/resolve/main/en/chapter1/finetuning.svg'>
-
-<small>
-
-https://huggingface.co/course/chapter1/4?fw=pt
-<br>
-https://huggingface.co/docs/transformers/training#finetune-a-pretrained-model
-</small>
-  </textarea>
-</section>
-
-<section data-markdown style="font-size: x-large;">
-    <textarea data-template>
-### Code: Fine tuning sentiment on Yelp data
-
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/foundation/transformers-fine-tuning-yelp.ipynb?hl=en
-<!-- https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/foundation/transformers-fine-tuning.ipynb?hl=en -->
-
-</textarea>
-</section>
-
-<!-- <section data-markdown class="fragments">
 ### Don't forget: Transformers are language models
 
 * No abstract reasoning like it is in our brains takes place
@@ -849,7 +437,7 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 * One can argue that this system passes his test
   * https://twitter.com/glouppe/status/1438496208343949318
 </section>
- -->
+
 <section data-markdown class="fragments">
 ### On the Opportunities and Risks of Foundational Models
 
@@ -862,14 +450,14 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 https://arxiv.org/abs/2108.07258
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 ### Why it might make sense to study transformers even when you are not into NLP
   
 So even though I'm technically in vision, papers, people and ideas across all of AI are suddenly extremely relevant. 
 Everyone is working with essentially the same model, so most improvements and ideas can "copy paste" rapidly across all of AI.
 
 https://twitter.com/karpathy/status/1468370611797852161 
-</section>
+</section> -->
 
 <section data-markdown>
 <textarea data-template>
@@ -890,54 +478,6 @@ https://openai.com/dall-e-2/
         </textarea>
 </section>
 
-<!-- <section data-markdown>
-<textarea data-template>
-### Object Detection expressed as language problem
-
-<img src='img/transformers/pix2seq-od.jpg'>
-
-<small>
-
-https://arxiv.org/abs/2109.10852
-<br>
-https://twitter.com/karpathy/status/1441497808897380357
-<br>
-https://keras.io/examples/vision/mobilevit/
-</small>
-        </textarea>
-</section>
-
-
-<section data-markdown>
-<textarea data-template>
-### An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
-
-<img src='img/transformers/vit.jpg'>
-
-<small>
-
-https://arxiv.org/abs/2010.11929
-<br>
-https://huggingface.co/transformers/model_doc/vit.html
-</small>
-        </textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-### Unified models for Vision
-
-<img src='img/transformers/florence-foundational-vision.jpg'>
-
-<small>
-
-https://arxiv.org/abs/2111.11432
-<br>
-https://twitter.com/ak92501/status/1462970921518514177
-</small>
-        </textarea>
-</section>
- -->
 <!-- <section data-markdown class="fragments" style="font-size: x-large;">
 ## More cool stuff
 
@@ -951,9 +491,10 @@ https://twitter.com/ak92501/status/1462970921518514177
   * https://twitter.com/jluan/status/1519035169537093632  
   * https://twitter.com/AdeptAILabs/status/1518975477917962245
 * https://www.heise.de/hintergrund/Missing-Link-Was-wir-ueber-die-Fairness-der-Welt-von-moderner-KI-lernen-koennen-6351026.html
+* Gato🐈a scalable generalist agent that uses a single transformer with exactly the same weights to play Atari, follow
+text instructions, caption images, chat with people, control a real robot arm, and more: https://dpmd.ai/Gato (https://twitter.com/DeepMind/status/1524770016259887107)
+
 </section> -->
-
-
 
 <section data-markdown class="fragments">
 ### Are Foundation Models Conscious?
@@ -1028,48 +569,36 @@ https://twitter.com/sama/status/1520798948562141184
 </small>
         </textarea>
 </section>
-  
-<section data-markdown>
+
+<section data-markdown class="fragments">
   <textarea data-template>
-### Zusammenfassung
+## What could be working soon?
 
-* Foundational Modells läuten eine Paradigmenwechsel ein
-* Was und wie Sprachmodelle wirken verändert sich grundsätzlich
-* das meiste was ich heute zeige läuft nur im Labor
-* Gründe sind 
-  * die Modellgrößen und
-  * begrenzte Speicher und Rechenpower
-* bei beiden spielt die Zeit für uns
-* in wenigen Jahren wird diese Technik auf breiter Fläche verfügbar sein
-* manche Modelle laufen schon lokal
-* Deutsche oder Universelle Modelle sind noch Mangelware und zudem meist deutlich schlechter als die Englischen
-
+- Detecting Code Smells with Deep Learning
+- Better software through ML and DS
+  - 2 aspects: replace by ML, better analysis by DS
+- GPT-3 writes code
+  - in a few years the IDE can also tell if the comment should be adjusted when you change the code, so they don't diverge
+  - or when reading, give a warning: comment seems not up to date
+<!-- - Has anyone ever heard of someone training a supervised learning model to reproduce the results of some legacy code they don't want to maintain, and then replacing the code with the model? (https://twitter.com/seanjtaylor/status/1443361903229562881) -->
+- But: building or analyzing a complete application is a different story than generating a button or commenting on a code snippet. 
+- And: Could such a model ever be innovative?
 </textarea>
 </section>
-
+  
+<!-- 
+  
 <section data-markdown>
   <textarea data-template>
 ### Call to Action
 
 Überlegt euch
-* Was könntet ihr mit Sprachmodellen generell machen?
-* Braucht ihr ein Deutsches Modell?
-* Was könntet ihr jetzt schon machen?
+* Wo sind wir Menschen besser als Maschinen?
 * Wie kann mit solchen Modellen die Softwareentwicklung verändern? 
 * Wo sind die Grenzen und die Gefahren?
 </textarea>
 </section>
-
-<!-- <section data-markdown class="fragments">
-### Wrap-Up
-
-* There just isn't "The Transformer" but there is a whole Zoo of transformers
-* Transformers can be distinguished by their architecture and how they are trained
-* There is considerable overlap in what tasks they can perform
-* Foundational models like transformers cause a paradigm shift in machine learning
-* Advanced Sentiment Analysis is within the realm of transformers
-
-</section> -->
+ -->
 
 <section data-markdown>
     <textarea data-template>
