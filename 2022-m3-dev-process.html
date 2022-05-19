@@ -132,18 +132,30 @@ In diesem Talk beschreiben wir ein Modell für die unterschiedlichen Phasen eine
 technischen Detail, welche Artefakte in welcher Phase entstehen und wie diese in andere Phasen übergehen. 
 -->
 
-			<section data-markdown>
-				<textarea data-template>
+<section data-markdown>
+	<textarea data-template>
 ## Der Entwicklungsprozess eines Machine-Learning-Projekts                
 
 M3 2022, https://www.m3-konferenz.de/veranstaltung-14114-0-der-entwicklungsprozess-eines-machine-learning-projekts.html
 
 Oliver Zeigermann / oliver.zeigermann@openknowledge.de
 
+Mikio Braun / mikiobraun@gmail.com
+
 <!-- Folien: https://bit.ly/2022-oop-ml -->
 
-    </textarea>
-			</section>
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+		### ML in Produktion bringen
+		1. Model trainieren & deployen
+		2. ???
+		3. Profit?
+	</textarea>
+</section>
 
 <section data-markdown class="todo">
 
@@ -324,7 +336,7 @@ In diesem durch praktische Übungen geprägten Workshop wollen wir zusammen die 
   	
 </section>
 
-<section data-markdown>
+<section data-markdown class="todo">
 	<textarea data-template>
 ### Shift und Monitoring		
 
@@ -333,16 +345,12 @@ https://huyenchip.com/2022/02/07/data-distribution-shifts-and-monitoring.html
 </section>
 
 <section data-markdown>
+	<textarea data-template>
 
-Mark Tenenholtz (@marktenenholtz) twitterte um 2:00 PM on Di., Feb. 22, 2022:
-Zillow’s home buying business lost them $500,000,000, 25% of their stock value, and 25% of their workforce.
+	<img src="img/twitter-tenenholtz-zillow.png" height="400">
 
-How did this happen to a company with so much data on housing prices?
-
-Bad model evaluation.
-
-Here’s the fatal error they made that you must avoid when deploying models🧵
-(https://twitter.com/marktenenholtz/status/1496107516324835331?t=3W9bTXJu87_FlVS0YIAsEQ&s=03) 
+	https://twitter.com/marktenenholtz/status/1496107516324835331
+</textarea>
 </section>
 
 <section data-markdown>
@@ -359,26 +367,36 @@ https://boards.greenhouse.io/openai/jobs/4050138004
 </section>
 
 
-			<section data-markdown>
-				<textarea data-template>
-### Wer ist Olli
+<section data-markdown>
+	<textarea data-template>
+		### Wer ist Olli
 
-<div style="display: flex;">
-    <div style="flex: 50%;">
-        <a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
-        <img src='img/ml-buch-v2.jpg' height="400">
-        </a>
-    </div>
-    <div style="flex: 50%; font-size: x-large;">
-        <img src='img/olli-opa.jpeg'>
-    </div>
-</div>
-<p>
-    <a target="_blank" href="mailto:OliverZeigermann@gmail.com">Oliver Zeigermann</a>:
-Entwickler, Architekt, Berater und Coach für Machine Learning
-</p>    
-</textarea>
-			</section>
+		<div style="display: flex;">
+			<div style="flex: 50%;">
+				<a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+				<img src='img/ml-buch-v2.jpg' height="400">
+				</a>
+			</div>
+			<div style="flex: 50%; font-size: x-large;">
+				<img src='img/olli-opa.jpeg'>
+			</div>
+		</div>
+		<p>
+			<a target="_blank" href="mailto:OliverZeigermann@gmail.com">Oliver Zeigermann</a>:
+		Entwickler, Architekt, Berater und Coach für Machine Learning
+		</p>    
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+		### Wer ist Mikio
+		<img src='img/mikio-data.jpeg'>
+
+		<a target="_blank" href="mailto:mikiobraun@gmail.com">Mikio Braun</a>:
+		Ex-ML Researcher, Architekt, Berater und Mentor für Machine Learning
+	</textarea>
+</section>
 
 			<!-- <section data-markdown>
 				<textarea data-template>
@@ -405,19 +423,10 @@ https://twitter.com/cedric_p/status/1486743144163155974
 	</textarea>
 			</section> -->
 
-			<section data-markdown>
-				<textarea data-template>
-# Agenda
 
-* Phase 1: Exploration
-* Phase 2: Professionalisierung
-* Phase 3: Produktion
 
-	</textarea>
-			</section>
-
-			<section data-markdown>
-				<textarea data-template>
+<section data-markdown>
+	<textarea data-template>
 ## Unser Beispiel: Vorhersage von Risiken
 
 * Wir sind CTO einer hochinnovativen Kfz-Versicherungsgesellschaft
@@ -445,11 +454,11 @@ https://twitter.com/cedric_p/status/1486743144163155974
 <a href='html/calculator.html' target="_blank">
 https://djcordhose.github.io/ml-resources/html/calculator.html</a></small>
 </small></p>
-</textarea>
-			</section>
+	</textarea>
+</section>
 
-			<section data-markdown>
-				<textarea data-template>
+<section data-markdown>
+	<textarea data-template>
 # Agenda
 
 * Phase 1: _Exploration_
@@ -457,18 +466,19 @@ https://djcordhose.github.io/ml-resources/html/calculator.html</a></small>
 * Phase 3: Produktion
 
 	</textarea>
-			</section>
+</section>
+			
 
 			<section data-markdown class="fragments">
 ### Phase 1: Exploration
 
-* in der ersten Phase eines Machine Learning Projekts wird die Anwendungsidee validiert und ein
+in der ersten Phase eines Machine Learning Projekts wird die Anwendungsidee validiert und ein
 funktionsfähiges Modell entwickelt.
 * dabei ist ein schnelles iterieren und ausprobieren von Ideen zentral
 * das Ziel ist *nicht* ein sinnvolles Stück Software
 * Scripting passt hier besser als Programmieren als Ausdruck für die Tätigkeit
 * das Ziel ist eine schnelle Entwicklung
-* Phase 1 endet entweder mit
+* Phase I endet entweder mit
   * einem funktionsfähigen Modell mit dem man in Phase II übergeht oder
   * dem Verwerfen des Ansatzes
 
@@ -727,7 +737,7 @@ https://twitter.com/SamuelDataT/status/1488150832742899718
 			</section> -->
 
 			<section data-markdown class="fragments">
-### Phase 3: Produktion / Betrieb
+### Phase III: Produktion / Betrieb
 
 * in der dritten Phase wird die Lösung in Betrieb genommen
 * alle Regeln des produktiven Einsatzes von Software gelten auch hier
@@ -1036,11 +1046,15 @@ Bleibt gern im Kontakt
 
 Oliver Zeigermann
 
-https://www.linkedin.com/in/oliver-zeigermann-34989773/
+https://www.linkedin.com/in/oliver-zeigermann-34989773/  https://twitter.com/DJCordhose 
 
 <!-- oliver@zeigermann.de -->
 
-https://twitter.com/DJCordhose
+
+
+Mikio Braun 
+
+https://www.linkedin.com/in/mikiobraun https://twitter.com/mikiobraun 
 
 Diese Folien: https://bit.ly/2022-oop-ml
 
