@@ -457,33 +457,6 @@ https://djcordhose.github.io/ml-resources/html/calculator.html</a></small>
 	</textarea>
 </section>
 
-<section data-markdown>
-	<textarea data-template>
-# Agenda
-
-* Phase 1: _Exploration_
-* Phase 2: Professionalisierung
-* Phase 3: Produktion
-
-	</textarea>
-</section>
-			
-
-			<section data-markdown class="fragments">
-### Phase 1: Exploration
-
-in der ersten Phase eines Machine Learning Projekts wird die Anwendungsidee validiert und ein
-funktionsfähiges Modell entwickelt.
-* dabei ist ein schnelles iterieren und ausprobieren von Ideen zentral
-* das Ziel ist *nicht* ein sinnvolles Stück Software
-* Scripting passt hier besser als Programmieren als Ausdruck für die Tätigkeit
-* das Ziel ist eine schnelle Entwicklung
-* Phase I endet entweder mit
-  * einem funktionsfähigen Modell mit dem man in Phase II übergeht oder
-  * dem Verwerfen des Ansatzes
-
-			</section>
-
 			<!-- <section data-markdown>
 				<textarea data-template>
 ### Man muss sein Problem so formulieren, dass es für ML greifbar wird
@@ -567,16 +540,43 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 				<textarea data-template>
 ### Kann man sinnvoll direkt in Produktion gehen?
 
-<img src='img/sketch/ml-phasen.png' style="height: 600px;">
+<img src='img/mikio/process-overview.png' style="height: 500px;">
     </textarea>
 			</section>
 
+			<section data-markdown>
+				<textarea data-template>
+			# Agenda
+			
+			* Phase I: _Exploration_
+			* Phase II: Professionalisierung
+			* Phase III: Produktion
+			
+				</textarea>
+			</section>
+						
+			
+			<section data-markdown class="fragments">
+			### Phase I: Exploration
+			
+			in der ersten Phase eines Machine Learning Projekts wird die Anwendungsidee validiert und ein
+			funktionsfähiges Modell entwickelt.
+			* dabei ist ein schnelles iterieren und ausprobieren von Ideen zentral
+			* das Ziel ist *nicht* ein sinnvolles Stück Software
+			* Scripting passt hier besser als Programmieren als Ausdruck für die Tätigkeit
+			* das Ziel ist eine schnelle Entwicklung
+			* Phase I endet entweder mit
+			  * einem funktionsfähigen Modell mit dem man in Phase II übergeht oder
+			  * dem Verwerfen des Ansatzes
+			
+			</section>
+			
 
 			<section data-markdown>
 				<textarea data-template>
 ### Phase I hinterlässt gern einen Wust an Notebooks
 
-<img src='img/sketch/notebook-explosion-no-title.png'  style="height: 600px;">
+<img src='img/mikio/phase-i-notebooks.png'  style="height: 600px;">
 
     </textarea>
 			</section>
@@ -637,9 +637,9 @@ _wer will Scripte in Produktion?_
 				<textarea data-template>
 # Agenda
 
-* Phase 1: Exploration
-* Phase 2: _Professionalisierung_
-* Phase 3: Produktion
+* Phase I: Exploration
+* Phase II: _Professionalisierung_
+* Phase III: Produktion
 
 	</textarea>
 			</section>
@@ -657,9 +657,10 @@ https://twitter.com/DavidSKrueger/status/1487391569028296710
 			</section> -->
 
 			<section data-markdown class="fragments">
-### Phase 2: Professionalisierung
+### Phase II: Professionalisierung
 
-* in der zweiten Phase wird die skizzierte Lösung in ein langlebiges Projekt umgewandelt
+in der zweiten Phase wird die skizzierte Lösung in ein langlebiges Projekt umgewandelt
+
 * alle Regeln einer guten Software-Entwicklung gelten von nun an
 * Stabilität und Funktionalität wird gewährleistet
 * Die Rahmenbedingungen der Produktionsumgebung müssen erfüllt werden
@@ -671,11 +672,11 @@ https://twitter.com/DavidSKrueger/status/1487391569028296710
 			</section>
 
 
-			<section data-markdown>
-				<textarea data-template>
-<img src='img/sketch/ml-dev-prozess.png' style="height: 650px;">
+<section data-markdown>
+	<textarea data-template>
+		<img src='img/mikio/process-details.png' style="height: 650px;">
     </textarea>
-			</section>
+</section>
 
 			<section data-markdown>
 				<textarea data-template>
@@ -683,8 +684,7 @@ https://twitter.com/DavidSKrueger/status/1487391569028296710
 
 * Wir können nicht mit einem Notebook in Produktion gehen
   * also muss alles was wir in Produktion brauchen aus den Notebooks herausgezogen werden
-* Bestimmte Teile eines Notebooks haben sich als stabil herausgestellt und 
-  * sollten nicht bei jeder Kopie entkoppelt werden
+* Bestimmte Teile eines Notebooks haben sich als stabil herausgestellt und sollten nicht bei jeder Kopie entkoppelt werden
 * Alles was sich nach Software anfühlt (Klassen, Funktionen, etc.) ist auch Software
   * diese Teile sollten auch wie solche behandelt werden  
     </textarea>
@@ -705,9 +705,9 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 				<textarea data-template>
 # Agenda
 
-* Phase 1: Exploration
-* Phase 2: Professionalisierung
-* _Phase 3: Produktion_
+* Phase I: Exploration
+* Phase II: Professionalisierung
+* _Phase III: Produktion_
 
 	</textarea>
 			</section>
@@ -739,7 +739,8 @@ https://twitter.com/SamuelDataT/status/1488150832742899718
 			<section data-markdown class="fragments">
 ### Phase III: Produktion / Betrieb
 
-* in der dritten Phase wird die Lösung in Betrieb genommen
+in der dritten Phase wird die Lösung in Betrieb genommen
+
 * alle Regeln des produktiven Einsatzes von Software gelten auch hier
 * Monitoring hat zusätzliche Herausforderungen
   * Natur und Verteilung der Anfragen und auch Vorhersagen muss permanent überwacht werden
@@ -996,7 +997,7 @@ https://twitter.com/chipro/status/1313921889061015557
 
 
 <section data-markdown>
-### Der ganze Prozess ist auch als MLOps bekannt
+### MLOps versucht diese Praktiken zusammenzufassen
 
 _MLOps is a set of practices used to deploy and maintain machine learning models in production._
 
@@ -1054,7 +1055,7 @@ https://www.linkedin.com/in/oliver-zeigermann-34989773/  https://twitter.com/DJC
 
 Mikio Braun 
 
-https://www.linkedin.com/in/mikiobraun https://twitter.com/mikiobraun 
+https://www.linkedin.com/in/mikiobraun / [@mikiobraun](https://twitter.com/mikiobraun)
 
 Diese Folien: https://bit.ly/2022-oop-ml
 
