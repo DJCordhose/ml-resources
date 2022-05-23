@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>World Knowledge Priors</title>
+    <title>M3: World Knowledge Priors</title>
 
     <link rel="stylesheet" href="reveal.js/dist/reset.css">
     <link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -141,10 +141,44 @@ M3 2022, https://www.m3-konferenz.de/veranstaltung-14113-0-wie-kann-man-weltwiss
 
 Oliver Zeigermann / oliver.zeigermann@openknowledge.de
 
+Mikio Braun / mikiobraun@gmail.com
 
-<!-- Folien: https://bit.ly/2022-oop-ml -->
+### Folien: https://bit.ly/m3-2022-world-knowledge
 
 </textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+		### Wer ist Mikio
+		<img src='img/mikio-data.jpeg'>
+
+		<a target="_blank" href="mailto:mikiobraun@gmail.com">Mikio Braun</a>:
+		Ex-ML Researcher, Architekt, Berater und Mentor für Machine Learning
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+		### Wer ist Olli
+
+		<div style="display: flex;">
+			<div style="flex: 50%;">
+				<a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+				<img src='img/ml-buch-v2.jpg' height="400">
+				</a>
+			</div>
+			<div style="flex: 50%; font-size: x-large;">
+				<img src='img/olli-opa.jpeg'>
+			</div>
+		</div>
+		<p>
+			<a target="_blank" href="mailto:OliverZeigermann@gmail.com">Oliver Zeigermann</a>:
+		Entwickler, Architekt, Berater und Coach für Machine Learning
+		</p>    
+	</textarea>
 </section>
 
 <section data-markdown>
@@ -181,224 +215,236 @@ Oliver Zeigermann / oliver.zeigermann@openknowledge.de
 </textarea>
 </section>
 
-
-<section data-markdown>
-### Themen
-
-Grundlagen
-* Encoding World Knowledge just applied statistics and mathematics?
-* Einfache Priors
-* Parametrische Modelle
-* Regularisierung
-* Augmentation
-
-Fortgeschrittenes
-* Markov-Ketten
-* Kausalität
-* Foundation Models
-</section>
-
-<section data-markdown class="todo">
-
-- Hidden Markov Models
-  * https://en.wikipedia.org/wiki/Markov_chain
-- Kalman Filter
-  * https://en.wikipedia.org/wiki/Kalman_filter
-
-Weltwissen hauptsächlich Frage der Architektur
-- Traditionelle Systeme instrumentieren viele kleine Modelle als Pattern matcher viel besser als
-- Großes System als Blackbox
-</section>
-
-<section data-markdown>
-## Einfache Priors    
-</section>
-
-<section data-markdown class="todo">
-### Symbole und Suche
-
-https://nautil.us/deep-learning-is-hitting-a-wall-14467/
-</section>
-
-<section data-markdown class="todo">
-### Bayesian Models, Weltwissen ist Prior
-</section>
-        
-<section data-markdown class="todo">
-
-World Knowledge as 
-* pre-processing, feature engineering
-* post processing
-</section>
-
-<section data-markdown class="todo">
-### Training Objective is part of world Knowledge
-
-Well explained blog post about over-optimizing reward models using simple best-of-n sampling: https://t.co/O3ocQ49etY
-
-By Jacob Hilton and @nabla_theta
-(https://twitter.com/janleike/status/1514304430824300546?t=7PmXFiyCHY9615YgAdP3VQ&s=03) 
-</section>
-
 <section data-markdown>
     <textarea data-template>
-### Case: Order
+## Modeling choices encode strong assumptions about the data
 
-- https://raschka-research-group.github.io/coral-pytorch/
-- Ok, aber die Tatsache dass man weiss dass da eine Ordnung ist ist vielleicht eine Art Prior. Aber das ist sehr weitgegriffen vielleicht
-</textarea>
-</section>
+<img src="img/world-knowledge/fchollet-model-priors.png">
 
-<section data-markdown class="todo">
-### NN
-
-* Auswirkung von
-  * Geringerer Dimensionen 
-  * Regularisierung
-    * L1 and L2
-* https://www.tensorflow.org/neural_structured_learning
-</section>
-
-<section data-markdown class="todo">
-Learning Setting: Unsupervised, we know what is normal. Normal derives from being the majority of cases. But we assume normality.
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### RL
-
-Indirektes Domainwissen in RL über Observation und Reward und Action Modellierung
-</textarea>
-</section>
-    
-<section data-markdown>
-## Parametrische Modelle    
-</section>
-
-<section data-markdown class="todo">
-### Parametric Solutions    
-
-We assume certain properties of the model, like being normally distributed, and just learn the parameters of such properties, like mean and std.
-
-</section>
-
-
-
-<section data-markdown class="todo">
-### World Knowledge in Parametric Models
-    
-Christoph Molnar (@ChristophMolnar) twitterte um 0:40 PM on So., März 27, 2022:
-The modeling mindset of statisticians in one tweet
-
-1) Measure random variables, e.g. water temperature
-2) Assume distribution, e.g. Normal distribution
-3) Goal: Find optimal distribution parameters, e.g. mean
-4) Solution: Maximize the likelihood
-
-Parameters = Insight about world https://t.co/vfpjA9sCfT
-(https://twitter.com/ChristophMolnar/status/1508031278590873607?t=R2uQnLifwuc8MOPKGtyLPQ&s=03) 
+https://twitter.com/fchollet/status/1439799099176357894
 </textarea>
 </section>
 
 
 <section data-markdown>
-## Regularisierung    
-</section>
-
-<section data-markdown class="todo">
-### Regularization as a way to add world knowledge
-
-* L1 as Sparsity enforcing prior
-  * Use L1 if you know your images only contain few pixels
-* L2 enforcing small values as prior     
-</section>
-
-
-<section data-markdown class="todo">
-
-Miles Cranmer (@MilesCranmer) twitterte um 11:54 PM on Sa., Apr. 16, 2022:
-In a neural network, is there a type of  regularization which encourages one learned feature to be independent, **including nonlinearly,** of other features in the same layer?
-
-I can’t use a bottleneck or sparsity constraint—I actually want to maximize the dimensionality!
-(https://twitter.com/MilesCranmer/status/1515448502377234436?t=fFix03REi1KsQ64zcz8kVQ&s=03) 
-</section>
-
-    
-
-
-<section data-markdown>
-## Augmentation    
-</section>
-    
-<section data-markdown class="todo">
-https://lilianweng.github.io/posts/2022-04-15-data-gen/
-
-</section>
-
-
-<section data-markdown>
-## Kausalität    
-</section>
-
-<section data-markdown class="todo">
-### causality    
-
-Dan Roberts (@danintheory) twitterte um 4:41 PM on So., Feb. 20, 2022:
-I respectfully disagree w/ this and @ylecun's perspectives on causality: (a) causality is an essential part of microscopic physics and (b) even at the effective level of Newtonian physics, F=ma is *not* symmetric since it's a differential equation, not an algebraic equality.
-
-1/
-(https://twitter.com/danintheory/status/1495423336519770112?t=hbKV7pkdpDDK6oCgdNKktg&s=03) 
-</section>
-
-
-<section data-markdown class="todo">
-
-* Die meisten Ansätze erzeugen Kandidaten und bewerten anhand von der Realität mit Scores oder Unabhängigkeitstests
-
-Nan Rosemary Ke (@rosemary_ke) twitterte um 5:53 AM on Mi., Apr. 20, 2022:
-Supervised causal induction: In this work, we learn to induce causal structure by
-treating the inference process as a black box and design a neural network architecture
-that learns the mapping from data to graph
-structures via supervised training.https://t.co/fHVQlkJLxg https://t.co/dsBvaU2kbe
-(https://twitter.com/rosemary_ke/status/1516626111182028803?t=ZG3F-ReQmn7c1fbODdM8dg&s=03)
-</section>
-
-
-<section data-markdown>
-## Markov-Ketten
-</section>
-
-<section data-markdown class="todo">
-### Markov Chains as Matrices
-
-Tivadar Danka 🇺🇦 (@TivadarDanka) twitterte um 10:30 AM on Fr., März 11, 2022:
-The single most undervalued fact of linear algebra: matrices are graphs, and graphs are matrices.
-
-Encoding matrices as graphs is a cheat code, making complex behavior simple to study.
-
-Let me show you how! https://t.co/8rBIkA8ZbZ
-(https://twitter.com/TivadarDanka/status/1502215264544296962?t=gMcg-3niXfPHyXfw4wx8_g&s=03) 
-
-</section>
-
-<section data-markdown>
-## Foundation Models
-</section>
-
-<section data-markdown class="todo">
     <textarea data-template>
-Foundation Models versprechen das Wissen über die Welt in Textform zu speichern            
+## Agenda
+
+1. Basic Model Architecture
+1. Advanced Model Architecture
+1. Smart regularization
+1. What else is there?
     </textarea>
 </section>
 
 <section data-markdown>
-## Neural Networks
+    <textarea data-template>
+## Agenda
+
+1. _Basic Model Architecture_
+1. Advanced Model Architecture
+1. Smart regularization
+1. What else is there?
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Example: Regression
+
+<img src="img/world-knowledge/regression.png">
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/regression.ipynb?hl=en
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## What is the true model for that data?
+
+<img src="img/world-knowledge/regression.png">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## This or that?
+
+<div class="container">
+    <div class="col">
+        <img src="img/world-knowledge/regression-linear.png">
+    </div>
+    <div class="col">
+        <img src="img/world-knowledge/regression-non-linear.png">
+    </div>
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## ... and for that?
+
+<img src="img/world-knowledge/seq.png">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Priors
+
+<div class="container">
+<div class="col">
+<img src="img/world-knowledge/weak-prior.jpeg">
+</div>
+<div class="col">
+    <img src="img/world-knowledge/strong-prior.jpeg">
+    </div>
+    </div>
+
+https://twitter.com/fchollet/status/1450871559803916290
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## MLP does not have all the knowledge we have
+
+<img src="img/world-knowledge/seq-mlp.png">
+
+3 layers, 500 nodes each, relu acitvation
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## This is a sequence, each point is a continuation of the previous ones
+
+<img src="img/world-knowledge/seq-rnn.png">
+
+Simple RNN, 1 layer with 50 nodes, relu acitvation, 30 previous values used for prediction
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Encode priors in neural network architecture
+## Basics
+
+* capacity of the model
+  * the more complex the model architecture, the more complex the function that can be learned
+  * it can be shown that 3 layers with enough neurons and relu activation can learn any function, though
+  * in extremo you can have a single neuron allowing for linear models only
+* values are a sequence, i.e. the next value depends on what we had before
+  * use RNN to model
+  * LSTM / GRU allow to take more of the past into account and create a complex model
+  * simple RNN only uses near past (right choice for our example)
+
+</textarea>
+</section>
+
+<section data-markdown>
+### Encode priors in neural network architecture
+## Regularization
+    
+* L1 as Sparsity enforcing prior
+    * Use L1 if you know your images only contain few pixels
+* L2 enforcing small values as prior
+    * keep a certain parameter close a specific value
+    * great visual example: https://twitter.com/matthen2/status/1520427990420791298     
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Agenda
+
+1. Basic Model Architecture
+1. _Advanced Model Architecture_
+1. Smart regularization
+1. What else is there?
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Example: Denoising using CNNs with Autoencoders
+
+<img src="img/world-knowledge/denoising.png">
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/autoencoder-denoising.ipynb?hl=en
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Encode priors in neural network architecture
+## CNNs for Images
+        
+* in images adjacency of pixels has a meaning
+* objects are connected
+* features in an objects are translation invariant  
+* use CNN making use of that knowledge
+* same filter going over all parts of the image
+* much less parameters
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Encode priors in neural network architecture
+## Autoencoders for Abstraction
+        
+* assumption: there are underlying concepts that can be used for abstraction
+* project instances to latent representation
+* the less the capacity of the latent representation, the higher the abstraction
+* means to restrict capacity
+  * undercomplete (capacity of latent representation << dim of inputs)
+    * l2 to further compress latent a bit
+  * overcomplete (capacity of latent representation >= dim of inputs)
+    * use l1 to increase sparsity of embedding when having dim > 2, to have an additional restriction (often gives better results)
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Agenda
+
+1. Basic Model Architecture
+1. Advanced Model Architecture
+1. _Smart regularization_
+1. What else is there?
+    </textarea>
 </section>
 
 
 <section data-markdown>
     <textarea data-template>
-## What is the issue with missing world knowledge?
+## Example: Classification for areas with no training data
+
+<div class="container">
+    <div class="col">
+        <img src="img/world-knowledge/extrapolation.png">
+    </div>
+    <div class="col">
+        <img src="img/world-knowledge/adversarial_extrapolation.png">
+    </div>
+</div>
+<small>
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/interpolation.ipynb?hl=en
+<br>
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_nsl.ipynb?hl=en
+<!-- <br>
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_lattice.ipynb?hl=en -->
+
+</small>
 
 </textarea>
 </section>
@@ -432,30 +478,6 @@ How would we even assume to extrapolate?
 * Also: making active choices in modelling
   * no right or wrong
 
-</textarea>
-</section>
-
-
-<section data-markdown>
-    <textarea data-template>
-## Priors in Model Architecture
-
-</textarea>
-</section>
-
-
-<section data-markdown class="todo">
-
-    * Modeling choices encode strong assumptions about the data ... (https://twitter.com/fchollet/status/1439799099176357894)
-    * Extrapolation: https://twitter.com/fchollet/status/1450873373194477570
-    https://twitter.com/fchollet/status/1450871559803916290
-    </section>
-    
-<section data-markdown>
-    <textarea data-template>
-## Priors in Model Architecture
-
-### Regularization
 </textarea>
 </section>
 
@@ -537,8 +559,328 @@ https://github.com/tensorflow/lattice
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+## Agenda
+
+1. Basic Model Architecture
+1. Advanced Model Architecture
+1. Smart regularization
+1. _What else is there?_
+    </textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### In a nutshell: Encoding World Knowledge
+
+What objective do you phrase in your learning experiment?
+
+- type of learning
+  - supervised learning, unsupervised learning, reinforcement learning
+- Input and output
+  - feature extraction / preprocessing: what is really relevant?
+- general architecture
+  - type of model, network capacity, parametric
+- reward and observation for RL
+  - shape learning objective
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Data
+
+* real world projects typically don't operate on pre-collected data sets
+* so you have to collect the data, but you can also choose what data to collect
+* make sure the data you collect covers the real world or at least the domain you are interested in
+</section>
+
+<section data-markdown class="fragments">
+### Be aware of the natural bias of the data
+
+* e.g. concerning people
+  * height
+  * age
+  * gender
+  * skin tone / hair styles
+  * body ratio
+  * disabilities
+    * wheel chair
+    * crutches
+* take care of negative classes
+  * dogs
+  * background
+  * noise from sensors    
+
+</section>
+
+<section data-markdown class="fragments">
+### General preprocessing
+
+encode your assumptions, e.g.
+* only general form and structure seen in an image are important
+  * reduce resolution, apply closing
+  * leads to faster training and better generalization
+* a certain feature is highly correlated with the target value
+  * but you know this is a bias in your data set
+  * remove that feature from the input
+  * live with the *worse* classifier
+
+</section>
+
+<section data-markdown class="fragments">
+### Augmentation
+
+* idea: generate more data from existing
+* using invariants of the real world
+  * e.g. a person is still a person no matter how far away
+* concerns
+  - might explode with dimensions
+  - augmented data might outweigh "real" data
+  - don't fool yourself: are you just using standard augmentation or real domain knowledge? 
+* alternative: generate purely synthetic data
+  * like GANs 
+  * reality gap — the small differences between real and synthetic data that models may fixate on incorrectly, harming generalization (https://twitter.com/russelljkaplan/status/1490303023267999744)
+
+</section>
+
+<section data-markdown class="fragments">
+### Foundation Models
+
+_foundational models: trained on broad data at scale and are adaptable to a wide range of downstream tasks_
+
+* promise to store the knowledge about the world in text form
+* have a high capacity for learning
+* can be trained on all data available in text form
+* one day a general abstraction for everything?
+
+https://arxiv.org/abs/2108.07258
+</section>
+
+<section data-markdown class="fragments">
+### What else can you do?
+
+* Markov-Chains
+* Pre- and Post-Processing
+* Parametric Models
+  * We assume certain properties of the model, like being normally distributed, and just learn the parameters of such properties, like mean and std.
+* Causality Models
+  * often work by generating a set of models and seeing which performs best
+</section>
+
+<section data-markdown class="fragments">
+### Summary
+
+* machine learning models do not even have the most basic world knowledge a priori
+* typical data sets also do not contain that Information
+* a human user of the model will, however, assume such knowledge in order to be satisfied
+* unfortunately, encoding world knowledge as priors into machine learning models is not straight forward
+* neural networks the most opportunities for such an encoding 
+* you need deeper understanding of the way models work and a bunch of poorly structured approaches in your tool belt
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Vielen Dank
+
+### Wie kann man Weltwissen ins Machine Learning einbringen?
+
+M3 2022, https://www.m3-konferenz.de/veranstaltung-14113-0-wie-kann-man-weltwissen-ins-machine-learning-einbringen.html
+
+Bleibt gern im Kontakt
+
+Oliver Zeigermann
+
+Mikio Braun 
+
+https://www.linkedin.com/in/mikiobraun / [@mikiobraun](https://twitter.com/mikiobraun)
 
 
+https://www.linkedin.com/in/oliver-zeigermann-34989773/  https://twitter.com/DJCordhose oliver.zeigermann@openknowledge.de
+
+
+### Diese Folien: https://bit.ly/m3-2022-world-knowledge
+
+</textarea>
+</section>
+
+<!-- 
+<section data-markdown>
+### Themen
+
+Grundlagen
+* Encoding World Knowledge just applied statistics and mathematics?
+* Einfache Priors
+* Parametrische Modelle
+* Regularisierung
+* Augmentation
+
+Fortgeschrittenes
+* Markov-Ketten
+* Kausalität
+* Foundation Models
+</section>
+
+<section data-markdown class="todo">
+
+- Hidden Markov Models
+  * https://en.wikipedia.org/wiki/Markov_chain
+- Kalman Filter
+  * https://en.wikipedia.org/wiki/Kalman_filter
+
+Weltwissen hauptsächlich Frage der Architektur
+- Traditionelle Systeme instrumentieren viele kleine Modelle als Pattern matcher viel besser als
+- Großes System als Blackbox
+</section>
+
+<section data-markdown>
+## Einfache Priors    
+</section>
+
+<section data-markdown class="todo">
+### Symbole und Suche
+
+https://nautil.us/deep-learning-is-hitting-a-wall-14467/
+</section>
+
+<section data-markdown class="todo">
+### Bayesian Models, Weltwissen ist Prior
+</section>
+        
+<section data-markdown class="todo">
+
+World Knowledge as 
+* pre-processing, feature engineering
+* post processing
+</section>
+
+<section data-markdown class="todo">
+### Training Objective is part of world Knowledge
+
+Well explained blog post about over-optimizing reward models using simple best-of-n sampling: https://t.co/O3ocQ49etY
+
+By Jacob Hilton and @nabla_theta
+(https://twitter.com/janleike/status/1514304430824300546?t=7PmXFiyCHY9615YgAdP3VQ&s=03) 
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Case: Order
+
+- https://raschka-research-group.github.io/coral-pytorch/
+- Ok, aber die Tatsache dass man weiss dass da eine Ordnung ist ist vielleicht eine Art Prior. Aber das ist sehr weitgegriffen vielleicht
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+Learning Setting: Unsupervised, we know what is normal. Normal derives from being the majority of cases. But we assume normality.
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### RL
+
+Indirektes Domainwissen in RL über Observation und Reward und Action Modellierung
+</textarea>
+</section>
+    
+<section data-markdown>
+## Parametrische Modelle    
+</section>
+
+<section data-markdown class="todo">
+### Parametric Solutions    
+
+We assume certain properties of the model, like being normally distributed, and just learn the parameters of such properties, like mean and std.
+
+</section>
+
+
+
+<section data-markdown class="todo">
+### World Knowledge in Parametric Models
+    
+Christoph Molnar (@ChristophMolnar) twitterte um 0:40 PM on So., März 27, 2022:
+The modeling mindset of statisticians in one tweet
+
+1) Measure random variables, e.g. water temperature
+2) Assume distribution, e.g. Normal distribution
+3) Goal: Find optimal distribution parameters, e.g. mean
+4) Solution: Maximize the likelihood
+
+Parameters = Insight about world https://t.co/vfpjA9sCfT
+(https://twitter.com/ChristophMolnar/status/1508031278590873607?t=R2uQnLifwuc8MOPKGtyLPQ&s=03) 
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+
+Miles Cranmer (@MilesCranmer) twitterte um 11:54 PM on Sa., Apr. 16, 2022:
+In a neural network, is there a type of  regularization which encourages one learned feature to be independent, **including nonlinearly,** of other features in the same layer?
+
+I can’t use a bottleneck or sparsity constraint—I actually want to maximize the dimensionality!
+(https://twitter.com/MilesCranmer/status/1515448502377234436?t=fFix03REi1KsQ64zcz8kVQ&s=03) 
+</section>
+
+    
+
+
+<section data-markdown>
+## Augmentation    
+</section>
+    
+<section data-markdown class="todo">
+https://lilianweng.github.io/posts/2022-04-15-data-gen/
+
+</section>
+
+
+<section data-markdown>
+## Kausalität    
+</section>
+
+<section data-markdown class="todo">
+### causality    
+
+Dan Roberts (@danintheory) twitterte um 4:41 PM on So., Feb. 20, 2022:
+I respectfully disagree w/ this and @ylecun's perspectives on causality: (a) causality is an essential part of microscopic physics and (b) even at the effective level of Newtonian physics, F=ma is *not* symmetric since it's a differential equation, not an algebraic equality.
+
+1/
+(https://twitter.com/danintheory/status/1495423336519770112?t=hbKV7pkdpDDK6oCgdNKktg&s=03) 
+</section>
+
+
+<section data-markdown class="todo">
+
+* Die meisten Ansätze erzeugen Kandidaten und bewerten anhand von der Realität mit Scores oder Unabhängigkeitstests
+
+Nan Rosemary Ke (@rosemary_ke) twitterte um 5:53 AM on Mi., Apr. 20, 2022:
+Supervised causal induction: In this work, we learn to induce causal structure by
+treating the inference process as a black box and design a neural network architecture
+that learns the mapping from data to graph
+structures via supervised training.https://t.co/fHVQlkJLxg https://t.co/dsBvaU2kbe
+(https://twitter.com/rosemary_ke/status/1516626111182028803?t=ZG3F-ReQmn7c1fbODdM8dg&s=03)
+</section>
+
+
+<section data-markdown>
+## Markov-Ketten
+</section>
+
+<section data-markdown class="todo">
+### Markov Chains as Matrices
+
+Tivadar Danka 🇺🇦 (@TivadarDanka) twitterte um 10:30 AM on Fr., März 11, 2022:
+The single most undervalued fact of linear algebra: matrices are graphs, and graphs are matrices.
+
+Encoding matrices as graphs is a cheat code, making complex behavior simple to study.
+
+Let me show you how! https://t.co/8rBIkA8ZbZ
+(https://twitter.com/TivadarDanka/status/1502215264544296962?t=gMcg-3niXfPHyXfw4wx8_g&s=03) 
+
+</section>
+ -->
         </div>
     </div>
 

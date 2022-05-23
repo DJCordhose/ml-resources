@@ -436,28 +436,12 @@ Head of AI@OpenKnowledge
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ## Isn't Encoding World Knowledge just applied statistics and mathematics?
 </textarea>
-</section>
+</section> -->
 
-<section data-markdown>
-    <textarea data-template>
-### In a nutshell: Encoding World Knowledge
-
-What objective do you phrase in your learning experiment?
-
-- type of learning
-  - supervised learning, unsupervised learning, reinforcement learning
-- Input and output
-  - feature extraction / preprocessing: what is really relevant?
-- general architecture
-  - type of model, network capacity , parametric
-- reward and observation for RL
-  - shape learning objective
-</textarea>
-</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -469,6 +453,73 @@ https://twitter.com/fchollet/status/1439799099176357894
 </textarea>
 </section>
 
+
+<section data-markdown>
+    <textarea data-template>
+## Agenda
+
+1. Basic Model Architecture
+1. Advanced Model Architecture
+1. Smart regularization
+1. What else is there?
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Agenda
+
+1. _Basic Model Architecture_
+1. Advanced Model Architecture
+1. Smart regularization
+1. What else is there?
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Example: Regression
+
+<img src="img/world-knowledge/regression.png">
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/regression.ipynb?hl=en
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## What is the true model for that data?
+
+<img src="img/world-knowledge/regression.png">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## This or that?
+
+<div class="container">
+    <div class="col">
+        <img src="img/world-knowledge/regression-linear.png">
+    </div>
+    <div class="col">
+        <img src="img/world-knowledge/regression-non-linear.png">
+    </div>
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## ... and for that?
+
+<img src="img/world-knowledge/seq.png">
+
+</textarea>
+</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -487,57 +538,68 @@ https://twitter.com/fchollet/status/1450871559803916290
 </textarea>
 </section>
 
-<!-- <section data-markdown>
+<section data-markdown>
     <textarea data-template>
-### Did it go here?
+## MLP does not have all the knowledge we have
 
-<img src="img/smurf/smurf-fallen.jpg">
+<img src="img/world-knowledge/seq-mlp.png">
 
+3 layers, 500 nodes each, relu acitvation
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### No, it is really gone
+## This is a sequence, each point is a continuation of the previous ones
 
-<video src="img/smurf/smurf-full.mp4" controls>
+<img src="img/world-knowledge/seq-rnn.png">
+
+Simple RNN, 1 layer with 50 nodes, relu acitvation, 30 previous values used for prediction
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Encode priors in neural network architecture
+## Basics
+
+* capacity of the model
+  * the more complex the model architecture, the more complex the function that can be learned
+  * it can be shown that 3 layers with enough neurons and relu activation can learn any function, though
+  * in extremo you can have a single neuron allowing for linear models only
+* values are a sequence, i.e. the next value depends on what we had before
+  * use RNN to model
+  * LSTM / GRU allow to take more of the past into account and create a complex model
+  * simple RNN only uses near past (right choice for our example)
 
 </textarea>
-</section> -->
+</section>
 
-<!-- <section data-markdown class="todo">
-
-- Wie Zaubertricks funktionieren: https://twitter.com/TheFigen/status/1511035101878042629?s=20&t=CXyCqvLcGi3WQECLmzw_Fg
-</section> -->
+<section data-markdown>
+### Encode priors in neural network architecture
+## Regularization
+    
+* L1 as Sparsity enforcing prior
+    * Use L1 if you know your images only contain few pixels
+* L2 enforcing small values as prior
+    * keep a certain parameter close a specific value
+    * great visual example: https://twitter.com/matthen2/status/1520427990420791298     
+</section>
 
 <section data-markdown>
     <textarea data-template>
-## Mode
-### We go through notebooks on Colab, you will get some time for experimentation        
+## Agenda
+
+1. Basic Model Architecture
+1. _Advanced Model Architecture_
+1. Smart regularization
+1. What else is there?
     </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-## Example 1: Basic Model Architecture
-
-<div class="container">
-    <div class="col">
-        <img src="img/world-knowledge/regression-linear.png">
-    </div>
-    <div class="col">
-        <img src="img/world-knowledge/regression-non-linear.png">
-    </div>
-</div>
-
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/regression.ipynb?hl=en
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-## Example 2: Advanced Model Architecture
+## Example: Denoising using CNNs with Autoencoders
 
 <img src="img/world-knowledge/denoising.png">
 
@@ -546,21 +608,53 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 </textarea>
 </section>
 
-<section data-markdown>
-### Regularization as a way to add world knowledge
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Encode priors in neural network architecture
+## CNNs for Images
+        
+* in images adjacency of pixels has a meaning
+* objects are connected
+* features in an objects are translation invariant  
+* use CNN making use of that knowledge
+* same filter going over all parts of the image
+* much less parameters
 
-Basics
+</textarea>
+</section>
 
-* L1 as Sparsity enforcing prior
-    * Use L1 if you know your images only contain few pixels
-* L2 enforcing small values as prior
-  * keep a certain parameter close a specific value
-  * great visual example: https://twitter.com/matthen2/status/1520427990420791298     
-    </section>
-    
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Encode priors in neural network architecture
+## Autoencoders for Abstraction
+        
+* assumption: there are underlying concepts that can be used for abstraction
+* project instances to latent representation
+* the less the capacity of the latent representation, the higher the abstraction
+* means to restrict capacity
+  * undercomplete (capacity of latent representation << dim of inputs)
+    * l2 to further compress latent a bit
+  * overcomplete (capacity of latent representation >= dim of inputs)
+    * use l1 to increase sparsity of embedding when having dim > 2, to have an additional restriction (often gives better results)
+
+</textarea>
+</section>
+
 <section data-markdown>
     <textarea data-template>
-## Example 3: Smart regularization
+## Agenda
+
+1. Basic Model Architecture
+1. Advanced Model Architecture
+1. _Smart regularization_
+1. What else is there?
+    </textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## Example: Classification for areas with no training data
 
 <div class="container">
     <div class="col">
@@ -574,7 +668,7 @@ Basics
 
 https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/interpolation.ipynb?hl=en
 <br>
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_nsl?hl=en
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_nsl.ipynb?hl=en
 <!-- <br>
 https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_lattice.ipynb?hl=en -->
 
@@ -583,11 +677,149 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+### Interpolation
+
+<img src="img/world-knowledge/interpolation.png">
+
+Works well 
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Extrapolation
+
+<img src="img/world-knowledge/extrapolation.png">
+
+How would we even assume to extrapolate?
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### How to extrapolate?
+
+* Requires general world knowledge
+* Often also domain knowledge
+* Also: making active choices in modelling
+  * no right or wrong
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Neural Structured Learning (NSL)
+
+NSL generalizes to 
+* Neural Graph Learning: https://research.google/pubs/pub46568.pdf
+* Adversarial Learning: https://arxiv.org/pdf/1412.6572.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Learning
+
+* original objective is to prevent adversarial attacks
+  * forcing incorrect predictions with high confidence 
+  * my making slight adjustments to input data
+* but can also be used to train a model to be more robust
+  * and by that also to generalize better as a side effect
+* smoother decision boundaries  
+
+https://arxiv.org/pdf/1412.6572.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Interpolation
+
+<img src="img/world-knowledge/adversarial_interpolation.png">
+
+Subtle details
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Extrapolation
+
+<img src="img/world-knowledge/adversarial_extrapolation.png">
+
+Strong difference, actively avoiding the linear extrapolation
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Lattice based models
+
+* allow you to actively encode domain knowledge into the learning process
+* specify constraints such as monotonicity
+* constraints are specified as lattices overlaying the learning process
+* lattices are a way to specify constraints
+* additional regularization can be added to the lattices
+* domain knowledge to better extrapolate to the parts of the input space not covered by the training dataset
+* avoid unexpected model behavior when the serving distribution is different from the training distribution
+
+https://www.tensorflow.org/lattice
+<br>
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html
+<br>
+https://github.com/tensorflow/lattice
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Example constraints
+
+
+* Monotonicity: risk should increase with respect to age and speed
+* Unimodality: there is a single sweet spot in age (between 30 and 60)
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Agenda
+
+1. Basic Model Architecture
+1. Advanced Model Architecture
+1. Smart regularization
+1. _What else is there?_
+    </textarea>
+</section>
+
 <section data-markdown class="fragments">
-### Most important - data
+    <textarea data-template>
+### In a nutshell: Encoding World Knowledge
+
+What objective do you phrase in your learning experiment?
+
+- type of learning
+  - supervised learning, unsupervised learning, reinforcement learning
+- Input and output
+  - feature extraction / preprocessing: what is really relevant?
+- general architecture
+  - type of model, network capacity, parametric
+- reward and observation for RL
+  - shape learning objective
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Data
 
 * real world projects typically don't operate on pre-collected data sets
-* so you have to collect the data, but you can also choose what to collect
+* so you have to collect the data, but you can also choose what data to collect
 * make sure the data you collect covers the real world or at least the domain you are interested in
 </section>
 
@@ -598,15 +830,15 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
   * height
   * age
   * gender
-  * skin tone
-  * hair styles
+  * skin tone / hair styles
   * body ratio
   * disabilities
     * wheel chair
-    * Crutch
+    * crutches
 * take care of negative classes
+  * dogs
   * background
-  * noise    
+  * noise from sensors    
 
 </section>
 
@@ -664,11 +896,16 @@ https://arxiv.org/abs/2108.07258
   * often work by generating a set of models and seeing which performs best
 </section>
 
-<section data-markdown class="todo">
-### Summray
+<section data-markdown class="fragments">
+### Summary
 
+* machine learning models do not even have the most basic world knowledge a priori
+* typical data sets also do not contain that Information
+* a human user of the model will, however, assume such knowledge in order to be satisfied
+* unfortunately, encoding world knowledge as priors into machine learning models is not straight forward
+* neural networks the most opportunities for such an encoding 
+* you need deeper understanding of the way models work and a bunch of poorly structured approaches in your tool belt
 </section>
-
 
 <section data-markdown>
     <textarea data-template>
