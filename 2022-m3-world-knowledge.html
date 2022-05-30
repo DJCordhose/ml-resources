@@ -422,17 +422,18 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
     </textarea>
 </section>
 
-
 <section data-markdown>
     <textarea data-template>
-## Example: Classification for areas with no training data
+### Example: Classification for areas with no training data
 
 <div class="container">
     <div class="col">
-        <img src="img/world-knowledge/extrapolation.png">
+        <img src="img/world-knowledge/extrapolation.png" style="height: 300px">
+        Like this?
     </div>
     <div class="col">
-        <img src="img/world-knowledge/adversarial_extrapolation.png">
+        <img src="img/world-knowledge/adversarial_extrapolation.png" style="height: 300px">
+        Or like that?
     </div>
 </div>
 <small>
@@ -480,6 +481,18 @@ How would we even assume to extrapolate?
 </textarea>
 </section>
 
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Do we need more means of control?
+
+* Even though common forms of regularization can result in more sensible extrapolation, standard regularizers cannot guarantee reasonable model behaviour across the entire input space, especially with high-dimensional inputs.         
+* Switching to simpler models with more controlled and predictable behaviour can come at a severe cost to the model accuracy.
+
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html
+</textarea>
+</section>
+
+
 <section data-markdown>
     <textarea data-template>
 ### Neural Structured Learning (NSL)
@@ -496,7 +509,8 @@ NSL generalizes to
 
 * original objective is to prevent adversarial attacks
   * forcing incorrect predictions with high confidence 
-  * my making slight adjustments to input data
+  * by making slight adjustments to input data
+* rather perturbes and removes tendencies not backed by data than adding something new  
 * but can also be used to train a model to be more robust
   * and by that also to generalize better as a side effect
 * smoother decision boundaries  
@@ -525,6 +539,38 @@ Strong difference, actively avoiding the linear extrapolation
 </textarea>
 </section>
 
+<section>
+<h3>Encoding soft Penalties instead of hard Constraints</h3>
+
+<p>Adding to the loss as some form of regularization makes this easy to embed into standard backprop</p>
+<div class="container">
+    <div class="col"  style='width: 500px;'>
+<pre>
+    <code data-trim data-line-numbers="1-4|6-10|12-14"><script type="text/template">
+model = tf.keras.Sequential()
+model.add(InputLayer(input_shape=(3,)))
+# ...
+model.add(Dense(units=3, activation='softmax'))
+
+# Wrap the model with adversarial regularization
+adv_config = make_adv_reg_config(multiplier=0.2, 
+                                 adv_step_size=0.05)
+model = AdversarialRegularization(model, 
+                                  adv_config=adv_config)
+
+model.compile(loss='sparse_categorical_crossentropy',
+                optimizer='adam',
+                metrics=['accuracy'])
+
+    </script></code>
+</pre>
+            </div>
+    <div class="col">
+        <img src="img/world-knowledge/adversarial-training.png" style='width: 500px;'>
+    </div>
+
+</section>
+
 <section data-markdown>
     <textarea data-template>
 ### Lattice based models
@@ -546,17 +592,57 @@ https://github.com/tensorflow/lattice
 </textarea>
 </section>
 
-<section data-markdown>
+<section>
+<h3>How would this look like in Code?</h3>
+
+<pre>
+    <code data-trim data-line-numbers="1|3-5|7-11|13-17|19-20,28|21-22|23-26"><script type="text/template">
+model = tf.keras.Sequential()
+
+# combine all calibrators in parallel
+combined_calibrators = tfl.layers.ParallelCombination()
+model.add(combined_calibrators)
+
+# age, piecewise linear function
+combined_calibrators.append(tfl.layers.PWLCalibration(
+    input_keypoints=np.linspace(18, 100),
+    # feeding into a lattice with 2 vertices
+    output_min=0.0, output_max=1.0))
+
+# speed, piecewise linear function
+combined_calibrators.append(tfl.layers.PWLCalibration(
+    input_keypoints=np.linspace(80, 160),
+    # feeding into a lattice with 3 vertices
+    output_min=0.0, output_max=2.0))
+
+# lattice is an interpolated look-up table that can approximate arbitrary input-output relationships
+lattice = tfl.layers.Lattice(
+    # one per calibrator, needs to match their domain
+    lattice_sizes=[2, 3],
+    # one per calibartor, all increasing monotonically
+    monotonicities=[
+        'increasing', 'increasing'
+    ]
+) 
+model.add(lattice)
+    </script></code>
+</pre>
+
+<p>API is pretty wild, cohesion of information often not given, many examples still use outdated Estimator API</p>
+
+</section>
+
+<!-- <section data-markdown>
     <textarea data-template>
 ### Example constraints
-
 
 * Monotonicity: risk should increase with respect to age and speed
 * Unimodality: there is a single sweet spot in age (between 30 and 60)
 
 
 </textarea>
-</section>
+</section> -->
+
 
 <section data-markdown>
     <textarea data-template>
