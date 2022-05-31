@@ -1006,7 +1006,7 @@ Let me show you how! https://t.co/8rBIkA8ZbZ
                 Reveal.configure({ controls: false });
             } else {
                 // only applies to public version
-                // $('.fragment').removeClass('fragment');
+                $(':not(code).fragment').removeClass('fragment');
             }
 
             // we do not like fragments
