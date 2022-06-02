@@ -718,11 +718,23 @@ What objective do you phrase in your learning experiment?
 </section>
 
 <section data-markdown class="fragments">
-### Data
+    <textarea data-template>
+        ### Data
+        <div class="container">
+            <div class="col">
 
-* real world projects typically don't operate on pre-collected data sets
-* so you have to collect the data, but you can also choose what data to collect
-* make sure the data you collect covers the real world or at least the domain you are interested in
+                * real world projects typically don't operate on pre-collected data sets
+                * so you have to collect the data, but you can also choose what data to collect
+                * make sure the data you collect covers the real world or at least the domain you are interested in
+                
+</div>
+            <div class="col">
+
+                <img src="img/mikio/ml-wk-data.png" style="height:300px;">
+            </div>
+        </div>
+
+</textarea>
 </section>
 
 <section data-markdown class="fragments">
@@ -745,20 +757,6 @@ What objective do you phrase in your learning experiment?
 </section>
 
 <section data-markdown class="fragments">
-### General preprocessing
-
-encode your assumptions, e.g.
-* only general form and structure seen in an image are important
-  * reduce resolution, apply closing
-  * leads to faster training and better generalization
-* a certain feature is highly correlated with the target value
-  * but you know this is a bias in your data set
-  * remove that feature from the input
-  * live with the *worse* classifier
-
-</section>
-
-<section data-markdown class="fragments">
 ### Augmentation
 
 * idea: generate more data from existing
@@ -774,6 +772,22 @@ encode your assumptions, e.g.
 
 </section>
 
+<!--
+<section data-markdown class="fragments">
+    ### General preprocessing
+    
+    encode your assumptions, e.g.
+    * only general form and structure seen in an image are important
+      * reduce resolution, apply closing
+      * leads to faster training and better generalization
+    * a certain feature is highly correlated with the target value
+      * but you know this is a bias in your data set
+      * remove that feature from the input
+      * live with the *worse* classifier
+    
+</section>
+    
+    
 <section data-markdown class="fragments">
 ### Foundation Models
 
@@ -797,6 +811,7 @@ https://arxiv.org/abs/2108.07258
 * causality models
   * often work by generating a set of models and seeing which performs best
 </section>
+-->
 
 <section data-markdown>
     <textarea data-template>
