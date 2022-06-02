@@ -368,20 +368,6 @@ Simple RNN, 1 layer with 50 nodes, relu acitvation, 30 previous values used
 </textarea>
 </section>
 
-<section data-markdown>
-    <textarea data-template>
-### Encode priors in neural network architecture
-## Regularization
-    
-* L1 as sparsity enforcing prior
-    * Use L1 if you know your images only contain few pixels
-* L2 enforcing small values as prior
-    * keep a certain parameter close a specific value
-    * great visual example: https://twitter.com/matthen2/status/1520427990420791298   
-    
-</textarea>
-</section>
-
 <!-- Part 2 --------------------------------------------------------------------------- -->
 <section data-markdown>
     <textarea data-template>
@@ -444,6 +430,21 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 
 </textarea>
 </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Encode priors in neural network architecture
+## Regularization
+    
+* L1 as sparsity enforcing prior
+    * Use L1 if you know your images only contain few pixels
+* L2 enforcing small values as prior
+    * keep a certain parameter close a specific value
+    * great visual example: https://twitter.com/matthen2/status/1520427990420791298   
+    
+</textarea>
+</section>
+
 
 <!-- Part 3 --------------------------------------------------------------------------- -->
 
@@ -569,13 +570,13 @@ model.add(combined_calibrators)
 
 # age, piecewise linear function
 combined_calibrators.append(tfl.layers.PWLCalibration(
-    input_keypoints=np.linspace(18, 100),
+    input_keypoints=np.linspace(18, 100, 5),
     # feeding into a lattice with 2 vertices
     output_min=0.0, output_max=1.0))
 
 # speed, piecewise linear function
 combined_calibrators.append(tfl.layers.PWLCalibration(
-    input_keypoints=np.linspace(80, 160),
+    input_keypoints=np.linspace(80, 160, 5),
     # feeding into a lattice with 3 vertices
     output_min=0.0, output_max=2.0))
 
@@ -699,7 +700,7 @@ model.compile(loss='sparse_categorical_crossentropy',
     </textarea>
 </section>
 
-
+<!-- 
 <section data-markdown class="fragments">
     <textarea data-template>
 ### In a nutshell: Encoding World Knowledge
@@ -715,7 +716,7 @@ What objective do you phrase in your learning experiment?
 - _reward and observation for RL_
   - shape learning objective
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown class="fragments">
     <textarea data-template>
