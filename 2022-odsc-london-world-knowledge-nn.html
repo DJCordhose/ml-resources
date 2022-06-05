@@ -485,6 +485,31 @@ https://twitter.com/fchollet/status/1439799099176357894
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+## Priors
+
+<div class="container">
+<div class="col">
+<img src="img/world-knowledge/weak-prior.jpeg">
+</div>
+<div class="col">
+    <img src="img/world-knowledge/strong-prior.jpeg">
+    </div>
+    </div>
+
+https://twitter.com/fchollet/status/1450871559803916290
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+
+        ## ML: The High-Level View
+
+        <img src="img/mikio/ml-wk-overview.png">
+    </textarea>
+</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -499,12 +524,25 @@ https://twitter.com/fchollet/status/1439799099176357894
 
 <section data-markdown>
     <textarea data-template>
+
+<!-- Part 1 --------------------------------------------------------------------------- -->
+<div class="container">
+    <div class="col">
+
 ## Agenda
 
 1. _Basic Model Architecture_
 1. Advanced Model Architecture
 1. Smart regularization
 1. What else is there?
+        
+    </div>
+    <div class="col">
+<img src="img/mikio/ml-wk-basic-model.png" style="height:300px;">
+
+    </div>
+</div>
+
     </textarea>
 </section>
 
@@ -555,28 +593,11 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 
 <section data-markdown>
     <textarea data-template>
-## Priors
-
-<div class="container">
-<div class="col">
-<img src="img/world-knowledge/weak-prior.jpeg">
-</div>
-<div class="col">
-    <img src="img/world-knowledge/strong-prior.jpeg">
-    </div>
-    </div>
-
-https://twitter.com/fchollet/status/1450871559803916290
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
 ## MLP does not have all the knowledge we have
 
 <img src="img/world-knowledge/seq-mlp.png">
 
-3 layers, 500 nodes each, relu acitvation
+3 layers, 1500 nodes each, relu acitvation
 </textarea>
 </section>
 
@@ -586,7 +607,7 @@ https://twitter.com/fchollet/status/1450871559803916290
 
 <img src="img/world-knowledge/seq-rnn.png">
 
-Simple RNN, 1 layer with 50 nodes, relu acitvation, 30 previous values used for prediction
+Simple RNN, 1 layer with 50 nodes, relu acitvation, 30 previous values
 </textarea>
 </section>
 
@@ -595,11 +616,11 @@ Simple RNN, 1 layer with 50 nodes, relu acitvation, 30 previous values used for 
 ### Encode priors in neural network architecture
 ## Basics
 
-* capacity of the model
-  * the more complex the model architecture, the more complex the function that can be learned
-  * it can be shown that 3 layers with enough neurons and relu activation can learn any function, though
-  * in extremo you can have a single neuron allowing for linear models only
-* values are a sequence, i.e. the next value depends on what we had before
+* _capacity of the model_
+  * more complex model architectures lead to more complex functions
+  * it can be shown: 3 layers with enough neurons and ReLU activation can learn any function
+  * simplest case: a single neuron giving a linear model
+* if values are _sequential_, i.e. the next value depends on what we had before
   * use RNN to model
   * LSTM / GRU allow to take more of the past into account and create a complex model
   * simple RNN only uses near past (right choice for our example)
@@ -607,25 +628,23 @@ Simple RNN, 1 layer with 50 nodes, relu acitvation, 30 previous values used for 
 </textarea>
 </section>
 
-<section data-markdown>
-### Encode priors in neural network architecture
-## Regularization
-    
-* L1 as Sparsity enforcing prior
-    * Use L1 if you know your images only contain few pixels
-* L2 enforcing small values as prior
-    * keep a certain parameter close a specific value
-    * great visual example: https://twitter.com/matthen2/status/1520427990420791298     
-</section>
-
+<!-- Part 2 --------------------------------------------------------------------------- -->
 <section data-markdown>
     <textarea data-template>
+<div class="container">
+    <div class="col">
+
 ## Agenda
 
 1. Basic Model Architecture
 1. _Advanced Model Architecture_
 1. Smart regularization
 1. What else is there?
+    </div>
+    <div class="col">
+<img src="img/mikio/ml-wk-advanced.png" style="height:250px;">
+    </div>
+</div>
     </textarea>
 </section>
 
@@ -645,10 +664,10 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 ### Encode priors in neural network architecture
 ## CNNs for Images
         
-* in images adjacency of pixels has a meaning
+* in images, adjacency of pixels has a meaning
 * objects are connected
 * features in an objects are translation invariant  
-* use CNN making use of that knowledge
+* use CNN to encode that knowledge into the network
 * same filter going over all parts of the image
 * much less parameters
 
@@ -663,37 +682,74 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 * assumption: there are underlying concepts that can be used for abstraction
 * project instances to latent representation
 * the less the capacity of the latent representation, the higher the abstraction
-* means to restrict capacity
-  * undercomplete (capacity of latent representation << dim of inputs)
-    * l2 to further compress latent a bit
-  * overcomplete (capacity of latent representation >= dim of inputs)
-    * use l1 to increase sparsity of embedding when having dim > 2, to have an additional restriction (often gives better results)
+* means to restrict capacity:
+  * _undercomplete_ (capacity of latent representation << dim of inputs)
+    * L2 to further compress latent a bit
+  * _overcomplete_ (capacity of latent representation >= dim of inputs)
+    * use L1 to increase sparsity of embedding when having dim > 2, to have an additional restriction (often gives better results)
+
+
+<small>
+
+https://www.deeplearningbook.org/contents/autoencoders.html</small>
 
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
+### Encode priors in neural network architecture
+## Regularization
+    
+* L1 as sparsity enforcing prior
+    * Use L1 if you know your images only contain few pixels
+* L2 enforcing small values as prior
+    * keep a certain parameter close a specific value
+    * great visual example: https://twitter.com/matthen2/status/1520427990420791298 (L2 on θ₄ to keep final segment pretty stiff)
+* In Bayesian statistics, regularization corresponds to the choice of a prior
+  * L1 regularization corresponds to a Laplacian prior
+  * L2 is equivalent to a Gaussian Prior (https://towardsdatascience.com/bayesian-priors-and-regularization-penalties-6d0054d9747b)
+</textarea>
+</section>
+
+
+<!-- Part 3 --------------------------------------------------------------------------- -->
+
+<section data-markdown>
+    <textarea data-template>
+        <div class="container">
+            <div class="col">
+
 ## Agenda
 
 1. Basic Model Architecture
 1. Advanced Model Architecture
 1. _Smart regularization_
 1. What else is there?
+                            
+</div>
+<div class="col">
+
+<img src="img/mikio/ml-wk-regularization.png" style="height:300px;">
+
+</div>
+        </div>
+
     </textarea>
 </section>
 
-
 <section data-markdown>
     <textarea data-template>
-## Example: Classification for areas with no training data
+### Example: Classification for areas with no training data
 
 <div class="container">
     <div class="col">
-        <img src="img/world-knowledge/extrapolation.png">
+        <img src="img/world-knowledge/extrapolation.png" style="height: 300px">
+        Like this?
     </div>
     <div class="col">
-        <img src="img/world-knowledge/adversarial_extrapolation.png">
+        <img src="img/world-knowledge/adversarial_extrapolation.png" style="height: 300px">
+        Or like that?
     </div>
 </div>
 <small>
@@ -741,13 +797,23 @@ How would we even assume to extrapolate?
 </textarea>
 </section>
 
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Do we need more means of control?
+
+* standard regularizers usually result in more "sensible" extrapolation
+* no guarantee across the whole space, esp. for high dimensions
+* simpler models give more control, but accuracy might be much worse
+</textarea>
+</section>
+
 <section data-markdown>
     <textarea data-template>
 ### Neural Structured Learning (NSL)
 
-NSL generalizes to 
-* Neural Graph Learning: https://research.google/pubs/pub46568.pdf
-* Adversarial Learning: https://arxiv.org/pdf/1412.6572.pdf
+Two examples:
+* _Neural Graph Learning_: extending graph regularization (= close nodes should be more similar) to DL https://research.google/pubs/pub46568.pdf
+* _Adversarial Learning_:  https://arxiv.org/pdf/1412.6572.pdf
 </textarea>
 </section>
 
@@ -756,11 +822,10 @@ NSL generalizes to
 ### Adversarial Learning
 
 * original objective is to prevent adversarial attacks
-  * forcing incorrect predictions with high confidence 
-  * my making slight adjustments to input data
-* but can also be used to train a model to be more robust
-  * and by that also to generalize better as a side effect
-* smoother decision boundaries  
+* learning can be modified to protect against sensitive inputs
+* also leads to smoother decision boundaries
+
+<img src="img/mikio/ml-wk-adversarial.png" style="height:200px;">
 
 https://arxiv.org/pdf/1412.6572.pdf
 </textarea>
@@ -786,23 +851,79 @@ Strong difference, actively avoiding the linear extrapolation
 </textarea>
 </section>
 
+<section>
+<h3>Encoding soft Penalties instead of hard Constraints</h3>
+
+<p>Adding to the loss as some form of regularization makes this easy to embed into standard backprop</p>
+<div class="container">
+    <div class="col"  style='width: 500px;'>
+<pre>
+    <code data-trim data-line-numbers="1-4|6-10|12-14"><script type="text/template">
+model = tf.keras.Sequential()
+model.add(InputLayer(input_shape=(3,)))
+# ...
+model.add(Dense(units=3, activation='softmax'))
+
+# Wrap the model with adversarial regularization
+adv_config = make_adv_reg_config(multiplier=0.2, 
+                                 adv_step_size=0.05)
+model = AdversarialRegularization(model, 
+                                  adv_config=adv_config)
+
+model.compile(loss='sparse_categorical_crossentropy',
+                optimizer='adam',
+                metrics=['accuracy'])
+
+    </script></code>
+</pre>
+            </div>
+    <div class="col">
+        <img src="img/world-knowledge/adversarial-training.png" style='width: 500px;'>
+    </div>
+
+</section>
+
+
 <section data-markdown>
     <textarea data-template>
 ### Lattice based models
 
-* allow you to actively encode domain knowledge into the learning process
-* specify constraints such as monotonicity
-* constraints are specified as lattices overlaying the learning process
-* lattices are a way to specify constraints
-* additional regularization can be added to the lattices
-* domain knowledge to better extrapolate to the parts of the input space not covered by the training dataset
-* avoid unexpected model behavior when the serving distribution is different from the training distribution
+* lattices are functions that interpolate between a points on a (high-dim) regular grid
+* encode domain knowledge like monotonicity, convexity, feature relationships
+* avoid unexpected model behavior on data far from training data
 
 https://www.tensorflow.org/lattice
 <br>
 https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html
 <br>
 https://github.com/tensorflow/lattice
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Calibrating features using piecewise linear functions
+
+<img src="img/world-knowledge/calibration.png">
+
+<small>
+
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Mapping calibrated features to a lattice
+
+<img src="img/world-knowledge/laticefunction.png">
+
+<small>
+
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html</small>
 
 </textarea>
 </section>
@@ -819,6 +940,49 @@ https://github.com/tensorflow/lattice
 </textarea>
 </section>
 
+
+<section>
+<h3>How would this look like in Code?</h3>
+
+<pre>
+    <code data-trim data-line-numbers="1|3-5|7-11|13-17|19-20,30|21-22|23-26|27-28"><script type="text/template">
+model = tf.keras.Sequential()
+
+# combine all calibrators in parallel
+combined_calibrators = tfl.layers.ParallelCombination()
+model.add(combined_calibrators)
+
+# age, piecewise linear function
+combined_calibrators.append(tfl.layers.PWLCalibration(
+    input_keypoints=np.linspace(18, 100, 5),
+    # feeding into a lattice with 2 vertices
+    output_min=0.0, output_max=1.0))
+
+# speed, piecewise linear function
+combined_calibrators.append(tfl.layers.PWLCalibration(
+    input_keypoints=np.linspace(80, 160, 5),
+    # feeding into a lattice with 3 vertices
+    output_min=0.0, output_max=2.0))
+
+# lattice is an interpolated look-up table that can approximate arbitrary input-output relationships
+lattice = tfl.layers.Lattice(
+    # one per calibrator, needs to match their domain
+    lattice_sizes=[2, 3],
+    # one per calibartor, all increasing monotonically
+    monotonicities=[
+        'increasing', 'increasing'
+    ],
+    # normalized
+    output_min=0.0, output_max=1.0)
+) 
+model.add(lattice)
+    </script></code>
+</pre>
+
+<p>API is pretty wild, cohesion of information often not given, many examples still use outdated Estimator API</p>
+
+</section>
+
 <section data-markdown>
     <textarea data-template>
 ## Agenda
@@ -830,29 +994,42 @@ https://github.com/tensorflow/lattice
     </textarea>
 </section>
 
+<!-- 
 <section data-markdown class="fragments">
     <textarea data-template>
 ### In a nutshell: Encoding World Knowledge
 
 What objective do you phrase in your learning experiment?
 
-- type of learning
+- _type of learning_
   - supervised learning, unsupervised learning, reinforcement learning
-- Input and output
+- _input and output_
   - feature extraction / preprocessing: what is really relevant?
-- general architecture
+- _general architecture_
   - type of model, network capacity, parametric
-- reward and observation for RL
+- _reward and observation for RL_
   - shape learning objective
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown class="fragments">
-### Data
+    <textarea data-template>
+        ### Data
+        <div class="container">
+            <div class="col">
 
-* real world projects typically don't operate on pre-collected data sets
-* so you have to collect the data, but you can also choose what data to collect
-* make sure the data you collect covers the real world or at least the domain you are interested in
+                * real world projects typically don't operate on pre-collected data sets
+                * so you have to collect the data, but you can also choose what data to collect
+                * make sure the data you collect covers the real world or at least the domain you are interested in
+                
+</div>
+            <div class="col">
+
+                <img src="img/mikio/ml-wk-data.png" style="height:300px;">
+            </div>
+        </div>
+
+</textarea>
 </section>
 
 <section data-markdown class="fragments">
@@ -875,20 +1052,6 @@ What objective do you phrase in your learning experiment?
 </section>
 
 <section data-markdown class="fragments">
-### General preprocessing
-
-encode your assumptions, e.g.
-* only general form and structure seen in an image are important
-  * reduce resolution, apply closing
-  * leads to faster training and better generalization
-* a certain feature is highly correlated with the target value
-  * but you know this is a bias in your data set
-  * remove that feature from the input
-  * live with the *worse* classifier
-
-</section>
-
-<section data-markdown class="fragments">
 ### Augmentation
 
 * idea: generate more data from existing
@@ -904,6 +1067,22 @@ encode your assumptions, e.g.
 
 </section>
 
+<!--
+<section data-markdown class="fragments">
+    ### General preprocessing
+    
+    encode your assumptions, e.g.
+    * only general form and structure seen in an image are important
+      * reduce resolution, apply closing
+      * leads to faster training and better generalization
+    * a certain feature is highly correlated with the target value
+      * but you know this is a bias in your data set
+      * remove that feature from the input
+      * live with the *worse* classifier
+    
+</section>
+    
+    
 <section data-markdown class="fragments">
 ### Foundation Models
 
@@ -920,23 +1099,33 @@ https://arxiv.org/abs/2108.07258
 <section data-markdown class="fragments">
 ### What else can you do?
 
-* Markov-Chains
-* Pre- and Post-Processing
-* Parametric Models
-  * We assume certain properties of the model, like being normally distributed, and just learn the parameters of such properties, like mean and std.
-* Causality Models
+* Markov-chains
+* pre- and post-processing
+* parametric models
+  * strong assumptions about the model (e.g. normally distributed)
+* causality models
   * often work by generating a set of models and seeing which performs best
+</section>
+-->
+
+<section data-markdown>
+    <textarea data-template>
+
+        ## Recap ML: The High-Level View
+
+        <img src="img/mikio/ml-wk-overview.png">
+    </textarea>
 </section>
 
 <section data-markdown class="fragments">
 ### Summary
 
-* machine learning models do not even have the most basic world knowledge a priori
-* typical data sets also do not contain that Information
-* a human user of the model will, however, assume such knowledge in order to be satisfied
-* unfortunately, encoding world knowledge as priors into machine learning models is not straight forward
-* neural networks the most opportunities for such an encoding 
-* you need deeper understanding of the way models work and a bunch of poorly structured approaches in your tool belt
+* a prior, ML models do not even have the most basic world knowledge
+* typical data sets also do not contain that information
+* a human user of the model will, however, assume such knowledge
+* unfortunately, encoding world knowledge as priors into ML models is not straight forward
+* neural networks have the most opportunities for such an encoding 
+* you need deeper understanding of the way models work, as well as a bunch of poorly structured approaches in your tool belt 🛠
 </section>
 
 <section data-markdown>
