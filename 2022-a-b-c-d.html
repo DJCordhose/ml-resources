@@ -249,12 +249,24 @@ entschieden, wie weiter vorgegangen wird.
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Make or Buy
 
 * buy: you can't influence much, but you also don't have to
 * make: you can influence a lot, but you also have to
+
+https://medium.com/swlh/build-vs-buy-decision-619414efafc4
+    </textarea>
+</section> -->
+
+
+<section data-markdown>
+    <textarea data-template>
+### Make or Buy
+
+* Buy: Man kann nicht viel beeinflussen, aber man muss es auch nicht.
+* Make: Man kann viel beeinflussen, muss es aber auch tun.
 
 https://medium.com/swlh/build-vs-buy-decision-619414efafc4
     </textarea>
@@ -305,11 +317,22 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
 https://greylock.com/citc-market-map/
 </section>
 
-<!-- <section data-markdown class="todo">
-    ### Vorfertigungsgrad von ML
-    </section> -->
-    
 <section data-markdown>
+### Vorfertigungsgrad von ML
+
+* Make or Buy ist oft keine binäre Entscheidung
+* Es gibt verschiedene Stufen der Vorfertigung
+  1. Fertiges Modell über API
+  1. Nachtrainiertes Modell über API
+  1. Klassisches Machine Learning
+  1. Neuronale Netzwerke
+     1. Standardarchitektur, vortrainiert
+     1. Standard-Architektur
+     1. Benutzerdefinierte Architektur
+     1. Low-Level (eigene Trainingsloop und handgeschriebene Operationen)
+</section>
+    
+<!-- <section data-markdown>
     <textarea data-template>
 ### Level of Prefabrication
 
@@ -323,7 +346,7 @@ https://greylock.com/citc-market-map/
   1. Custom Architecture
   1. Low Level Maths Operations 
 </textarea>
-</section>
+</section> -->
     
 
 
@@ -398,7 +421,7 @@ https://aws.amazon.com/de/rekognition/image-features/
 ### Workflows für halbautomatische Vorhersage mit menschlicher Überprüfung
 
 <a href="https://d1.awsstatic.com/a2i/Product-Page-Diagram_A2I%402x.2fe2e8e5eed05fa5045835c3f3f04e23a9245e9c.png">
-    <img src="'https://d1.awsstatic.com/a2i/Product-Page-Diagram_A2I%402x.2fe2e8e5eed05fa5045835c3f3f04e23a9245e9c.png">
+    <img src="https://d1.awsstatic.com/a2i/Product-Page-Diagram_A2I%402x.2fe2e8e5eed05fa5045835c3f3f04e23a9245e9c.png">
 </a>
 
 https://aws.amazon.com/de/augmented-ai/
@@ -415,7 +438,7 @@ https://aws.amazon.com/rekognition/custom-labels-features
   * There are two types of costs with Amazon Rekognition Image: the cost for image analysis and the cost for face metadata storage.
   * Amazon Rekognition Image charges you each time you analyze an image using our APIs.
   * Amazon Rekognition Custom Labels pricing
-  * Inference 4x (~4€/h) more expensive than training (~1€/h), depending on region
+  * Inference 4x (~ 4€/h) more expensive than training (~1€/h), depending on region
 * https://aws.amazon.com/sagemaker/data-labeling/
   * Amazon SageMaker Ground Truth Plus: Kombination aus deren ML und deren Experten
   * Amazon SageMaker Ground Truth: Man wählt über Amazon einen Anbieter für Labelling aus  
