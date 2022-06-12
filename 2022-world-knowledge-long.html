@@ -1,0 +1,1254 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>World Knowledge Priors</title>
+
+    <link rel="stylesheet" href="reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+    <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+    <link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+    <style>
+        .right-img {
+            margin-left: 10px !important;
+            float: right;
+            height: 500px;
+        }
+
+        .todo:before {
+            content: 'TODO: ';
+        }
+
+        .todo {
+            color: red !important;
+        }
+
+        code span.line-number {
+            color: lightcoral;
+        }
+
+        .reveal pre code {
+            max-height: 1000px !important;
+        }
+
+        img {
+            border: 0 !important;
+            box-shadow: 0 0 0 0 !important;
+            height: 450px;
+        }
+
+        .reveal {
+            -ms-touch-action: auto !important;
+            touch-action: auto !important;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            /* letter-spacing: 2px; */
+            font-family: 'Calibri', sans-serif;
+            /* font-family: 'Times New Roman', Times, serif; */
+            /* font-weight: bold; */
+            color: black;
+            /* font-style: italic; */
+            /* letter-spacing: -2px; */
+            text-transform: none !important;
+        }
+
+        .reveal em {
+            font-weight: bold;
+        }
+
+        .reveal section img {
+            background: none;
+        }
+
+        .reveal img.with-border {
+            border: 1px solid #586e75 !important;
+            box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .reveal li {
+            margin-bottom: 8px;
+        }
+
+        /* For li's that use FontAwesome icons as bullet-point */
+        .reveal ul.fa-ul li {
+            list-style-type: none;
+        }
+
+        .reveal {
+            /* font-family: 'Work Sans', 'Calibri'; */
+            font-family: 'Calibri';
+            color: black !important;
+            font-size: xx-large;
+        }
+        .reveal section.left ul {
+            width: 100%;
+          }
+
+        .container {
+            display: flex;
+        }
+
+        .col,
+        col-1 {
+            flex: 1;
+        }
+
+        .col-2 {
+            flex: 2;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: whitesmoke;">
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- 
+Welt- und Domänenwissen für neuronalen Netze
+ 
+Neuronale Netze können jede Funktion approximieren, sie haben jedoch nicht die geringste Ahnung von allgemeinem Wissen über die Welt. 
+Dieser Mangel lässt sie oft kläglich scheitern, insbesondere bei der Extrapolation in Bereiche, die nicht durch Trainingsdaten abgedeckt sind.
+ 
+Wir Menschen verfügen über dieses Welt- und Domänenwissen, das Deep-Learning-Modelle viel robuster werden lassen und sogar
+Extrapolation erlauben könnte. Zum Beispiel lösen sich Objekte bei der Bilderkennung meistens nicht einfach in Luft auf und es gibt die Tendenz, dass Menschen mit zunehmendem Alter erst schneller, aber dann langsamer werden und irgendwann auch sterben. Nur, wie kodieren wir dieses Wissen?
+ 
+Dieser Vortrag ist ein Überblick über bekannte Methoden, einschließlich der Wahl des richtigen Losses, der Erzwingung von Sparsity,
+der Wahl guter Dimensionen, Lattices, Arten von Netzwerkschichten und - nicht zuletzt - augmentierte Trainingsdaten.
+ 
+M3 700 Zeichen kurzverversion:
+
+Neuronale Netze können jede Funktion approximieren, sie haben jedoch nicht die geringste Ahnung von allgemeinem Wissen über die Welt. 
+
+ 
+Dieser Vortrag ist ein Überblick über bekannte Methoden, einschließlich der Wahl des richtigen Losses, der Erzwingung von Sparsity,
+der Wahl guter Dimensionen, Lattices, Arten von Netzwerkschichten und - nicht zuletzt - augmentierte Trainingsdaten.
+
+Vorkenntnisse:
+
+Ein grundsätzliches Verständnis wie neuronale Netze trainiert werden und Vorhersagen machen.
+
+Lernziele:
+
+Teilnehmer bekommen eine Idee von der Herausforderung Weltwissen in einen Trainingsprozess einfließen zu lassen und einen Überblick über die existierenden Möglichkeiten.
+ 
+Neuer Abstract M3
+
+Wie kann man Weltwissen ins Machine Learning einbringen?
+
+Machine Learning Modelle verfügen a priori nicht über allgemeines Weltwissen. 
+Dieser Mangel lässt sie oft kläglich scheitern, vor allem, wenn sie auf Bereiche extrapolieren, die nicht durch Trainingsdaten abgedeckt sind. 
+
+Wir Menschen verfügen über dieses Welt- und Domänenwissen, das Machine Learning Modelle viel robuster werden lassen und sogar
+Extrapolation erlauben könnte. So sind z.B. Objekte in der Bilderkennung häufig invariant zu einer bestimmten Reihe von Parametern, 
+wie zum Beispiel der Position im Raum, oder man weiß, dass niemand über 150 Jahre alt ist oder Autos typischerweise nicht die Schallgeschwindigkeit erreichen.
+
+Dieser Vortrag ist ein Überblick über bekannte Methoden, dieses wissen in einen Machine Learning Prozess einzubringen. 
+
+
+
+-->
+<!-- 
+
+Pydata London:
+
+Teaching world knowledge to a machine learning model
+
+Abstract
+
+Machine learning models do not have a priori general knowledge of the world. 
+This lack often causes them to fail miserably, especially when they extrapolate to domains not covered by training data. 
+
+We humans have this world and domain knowledge that could make machine learning models much more robust and even allow for extrapolation. 
+
+Give give some examples: Objects in image recognition are often invariant to their relative position. 
+It is known that human is over 150 years old. Cars typically do not reach the speed of sound. 
+
+This talk is an overview of known methods to incorporate this knowledge into a machine learning process. 
+
+Description
+
+We will have general overview and focus a bit more on neural networks.
+Topics will include: data augmentation, Bayesian priors, parametric vs non-parametric models, regularization, Markov chains, and more.
+
+You will need a basic understanding of how machine learning works, but no knowledge about libraries, as this talk will be more conceptual than code driven. 
+ -->
+
+            <!-- Title: How to teach our world knowledge to a neural network?
+
+Neural networks are powerful approximators for any function. However they do not have the slightest idea of common knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by training data.
+
+We, as human beings have that knowledge about the world and our domains of expertise, allowing deep learning models to become much more robust and even to extrapolate. But how do we encode this?
+
+This talk is a survey on known methods including choosing the right loss, forcing sparsity, choose good dimensions, lattices, types of network layers, and - last but not least - augmented training data. 
+
+There will also be a critique of too much trust in auto tuning libraries. They might win you a Kaggle competition, but might spoil your real-world applicability.
+
+I will show actual code on different examples and share the code for you to take home as a starting point.
+
+None of the techniques shown are new and you might already know a good chunk of them (probably not all of them, though), but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the world knowledge you have.
+
+Pitch: Deep Learning models are notorious for not being able to extrapolate from their area of training data. However, by encoding your world knowledge as priors you can at least push it in the right direction. It might even be the most important skill of a deep learning engineer to know how to do that.
+
+Workshop:
+
+Neural networks are powerful approximators for any function. However they do not have the slightest idea of common
+knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by
+training data.
+
+We, as human beings have that knowledge about the world and our domains of expertise, allowing deep learning models to
+become much more robust and even to extrapolate. But how do we encode this?
+
+Based on code examples we will go through the known methods including choosing the right loss, forcing sparsity, choose
+good dimensions, lattices, types of network layers, and - last but not least - augmented training data.
+
+None of the techniques shown are new and you might already know a good chunk of them (probably not all of them, though),
+but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the
+world knowledge you have.
+
+
+Format: Workshop oder Talk
+
+Level: Intermediate
+
+Konferenzen:
+-  ODSC Europe / West: https://odsc.com/europe/call-for-speakers-europe/
+- M3
+- Scipy
+
+Inhalte:
+- GenerelL: Pre oder Post Processing kodiert oder dekodiert Weltwissen
+- Data Augmentation using world knowledge
+  - might explode with dimensions
+  - augmented data might outweight "real" data 
+- Sparsity
+- CNN
+- RNN
+- Lattice
+- Losses (xent vs mse)
+- Why auto tuning might not be such a good idea (overfits on val data), but real priors might not even be obeyed
+- Beispiel mit Lattice, Extrapolation und Tweet von Fchollet
+- Daten-Beispiele selbst gemalte Bilder oder Sinus
+- Hidden Markov Models
+  * https://en.wikipedia.org/wiki/Markov_chain
+- Kalman Filter
+  * https://en.wikipedia.org/wiki/Kalman_filter
+
+Weltwissen hauptsächlich Frage der Architektur
+- Traditionelle Systeme instrumentieren viele kleine Modelle als Pattern matcher viel besser als
+- Großes System als Blackbox
+
+Großes System als Blackbox
+Eigener Talk
+- die wichtigste Architektur Frage im Machine Learning
+- Ein großes Modell oder viele kleine traditionell instrumentiert
+
+---
+
+Talk: ODSC Europe
+
+Why you should prefer many small models over a single large one
+
+When designing a solution using machine learning one of the central architectural questions is whether you
+should use a set of small models orchestrated by traditional code or a single big one that just figures out
+things from beginning to end.
+
+In this talk I take the standpoint that a single large one should be avoided for many reasons. The main
+reason for choosing small ones is to keep being in control as the human domain expert. This applies to
+training as well as putting in domain knowledge your models can not possibly have.
+
+While this might also be of interest in the academic world in context of whether deep learning is the
+solution to all in this talk we will look at it from a practical perspective.
+
+Of course this is an over-generalization, but I found this to be true in all the projects I have
+participated in and in many other common ones.
+
+
+---
+
+Talk: QCon
+
+Title: The most important architectural decision in machine learning: many small models over a single large one?
+
+actionable takeaways
+
+What are the most important architectural questions in machine learning? 
+Why architecture for machine learning has a special place in the world of software engineering. 
+Among the important decisions you need to make early which are the ones that are especially hard to change. 
+Why such a seemingly harmless question has so much emotional potential.
+
+While sounding harmless at first sight, there is also a lot of emotional potential in this question.
+
+
+
+
+what is by far the most important and hardly correctable architectural decision in retrospect
+
+As another teaser: doesn't look important at first, and requires much explanation why it is so
+
+---
+
+Scipy Updated und genereller
+
+How to bring world knowledge into a machine learning model?
+
+Machine learning models in general and neural networks in particular do not have common knowledge of the world a priori.
+This lack often makes them fail miserably, especially when extrapolating to areas not covered by training data.
+
+We, as human beings have knowledge about the world and our domains of expertise, that would allow machine learning
+models to become much more robust and even to extrapolate. But how do we encode this?
+
+This talk is a survey of known methods that tackle the issue from different angles. We will look at baking knowledge
+into deep neural networks as well as combining machine learning models with well known classic AI techniques. Techniques
+include Markov chains, rule systems, and augmented training data for approaches from the outside and choosing the right
+loss, forcing sparsity, good dimensions, lattices, and types of network layers for bringing a prior into neural
+networks.
+-->
+
+
+<!-- ODSC London:
+https://odsc.com/europe/
+90 min
+
+Neural networks are powerful approximators for any function. However they do not have the slightest idea of common
+knowledge of the world which often makes them fail miserably, especially when extrapolating to areas not covered by
+training data.
+
+We, as human beings have that knowledge about the world and our domains of expertise, allowing deep learning models to
+become much more robust and even to extrapolate. But how do we encode this?
+
+Based on code examples we will go through the known methods including choosing the right loss, forcing sparsity, choose
+good dimensions, lattices, types of network layers, and - last but not least - augmented training data.
+
+None of the techniques shown are new and you might already know a good chunk of them (probably not all of them, though),
+but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the
+world knowledge you have. -->
+
+
+        <!-- <section data-markdown>
+            <textarea data-template>
+### Links
+
+* Why Do Better Loss Functions Lead to Less Transferable Features?" https://twitter.com/skornblith/status/1469132061579620355
+* Implicit inference of 3D vision: This short paper in the journal i-Perception presents a disconcerting visual illusion spotted “in the wild”: how stackable chairs, viewed from a certain angle, mess with your head [read more, paper: https://t.co/ppu9j0pyIs] https://t.co/r2Sdie3UdF
+(https://twitter.com/Rainmaker1973/status/1489209455489212416?t=gxzQxv4J1yKQWVNnVkQ6bA&s=03)
+* What I’ve learned about making synthetic data work for training ML models: (https://twitter.com/russelljkaplan/status/1490303023267999744?t=QHQ_IkP8zs8LEzzr6bWmQQ&s=03)  
+</textarea>
+        </section> -->
+
+  <section data-markdown class="todo">
+	<textarea data-template>
+### Ablauf
+
+* Teil 1 als Intro
+* Überleitung Regularisierung auf Adverserial
+* Adverserial kürzen
+* Autoencoder raus
+* Dann nur Lattice in Tiefe mit Übung
+  * Colab Notebook mit Grundlagen Lattice
+* Den Rest mit Daten und so nur am Ende in Übersicht
+* So wenig Gelaber wie möglich
+
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+### Know Your Limits: Uncertainty Estimation with ReLU Classifiers Fails at Reliable OOD Detection
+
+We prove that such techniques are not able to reliably identify OOD samples in a classification setting, since their
+level of confidence is generalized to unseen areas of the feature space.
+
+https://arxiv.org/abs/2012.05329
+</section>
+
+  <section data-markdown class="local hide preparation">
+    <textarea data-template>
+### Vorbereitung
+
+* Nice to have: Lattice Beispiel basteln
+* https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_lattice.ipynb?hl=en
+
+    </textarea>
+  </section>
+
+  <section data-markdown class="todo">
+	<textarea data-template>
+### Lattice Trainieren        
+
+https://www.tensorflow.org/lattice/overview#shape_constraints
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html
+https://www.tensorflow.org/lattice/overview
+</textarea>
+</section>
+
+  <section data-markdown class="todo">
+	<textarea data-template>
+### Vor Adversarial, die Lücken zeigen
+
+<img src="img/insurance-new/dec_bound_adaboost.png">
+<img src="img/insurance-new/dec_bound_rf.png">
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+
+François Chollet (@fchollet) twitterte um 9:37 PM on So., Mai 29, 2022:
+"Compositionality" is also not a limitation of deep learning. "Compositionality" means that you should be able to combine multiple abstractions into a single program. Deep learning models can do this well.
+(https://twitter.com/fchollet/status/1530996685857382401?t=ZOu2CWUuXaxMzzLbLvD86Q&s=03) 
+
+Im Buch Kapitel 14.2 Generalization
+</textarea>
+</section>
+
+
+
+  <section data-markdown class="todo">
+    <textarea data-template>
+### Idee für Sparsity Plot klauen        
+* https://towardsdatascience.com/sparse-autoencoder-neural-networks-how-to-utilise-sparsity-for-robust-information-encoding-6aa9ff542bc9
+* Warum Robust? Warum Sparsity? Nochmal nachlesen in ursprünglicher Quelle, dem akademischen
+</textarea>
+</section>
+
+        
+<section data-markdown>
+    <textarea data-template>
+# How to teach our world knowledge to a neural network?
+
+Workshop at ODSC Europe, London 2022, https://odsc.com/europe/
+Oliver Zeigermann
+
+Slides: https://bit.ly/2022-odsc-priors
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Who is Olli
+
+<div style="display: flex;">
+<div style="flex: 50%;">
+<a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+<img src='img/ml-buch-v2.jpg' height="400">
+</a>
+</div>
+<div style="flex: 50%; font-size: x-large;">
+<img src='img/olli-opa.jpeg'>
+</div>
+</div>
+<p>
+<a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
+Head of AI@OpenKnowledge
+</p>    
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Where did the Smurf go?
+
+<video src="img/smurf/smurf-short.mp4" controls>
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+## This isn't so much about whether this is a great trick, but rather...
+
+* **object permanence** https://en.wikipedia.org/wiki/Object_permanence
+* is a knowledge about the world we are so certain of
+* we get stressed when it is challenged
+* and immediately start thinking: where did it go?
+* basis for a large number of magical tricks
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### World knowledge 
+
+* humans have a basic understanding of the world
+* be it about the physics of normal objects or about the properties of people 
+* we also expect this from an intelligent automatic system
+* if a system does not fulfill this we are disappointed and our trust in the system decreases 
+        
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+    <textarea data-template>
+## Isn't Encoding World Knowledge just applied statistics and mathematics?
+</textarea>
+</section> -->
+
+
+<section data-markdown>
+    <textarea data-template>
+## Modeling choices encode strong assumptions about the data
+
+<img src="img/world-knowledge/fchollet-model-priors.png">
+
+https://twitter.com/fchollet/status/1439799099176357894
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Priors
+
+<div class="container">
+<div class="col">
+<img src="img/world-knowledge/weak-prior.jpeg">
+</div>
+<div class="col">
+    <img src="img/world-knowledge/strong-prior.jpeg">
+    </div>
+    </div>
+
+https://twitter.com/fchollet/status/1450871559803916290
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+
+        ## ML: The High-Level View
+
+        <img src="img/mikio/ml-wk-overview.png">
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Agenda
+
+1. Basic Model Architecture
+1. Advanced Model Architecture
+1. Smart regularization
+1. What else is there?
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+
+<!-- Part 1 --------------------------------------------------------------------------- -->
+<div class="container">
+    <div class="col">
+
+## Agenda
+
+1. _Basic Model Architecture_
+1. Advanced Model Architecture
+1. Smart regularization
+1. What else is there?
+        
+    </div>
+    <div class="col">
+<img src="img/mikio/ml-wk-basic-model.png" style="height:300px;">
+
+    </div>
+</div>
+
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Example: Regression
+
+<img src="img/world-knowledge/regression.png">
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/regression.ipynb?hl=en
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## What is the true model for that data?
+
+<img src="img/world-knowledge/regression.png">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## This or that?
+
+<div class="container">
+    <div class="col">
+        <img src="img/world-knowledge/regression-linear.png">
+    </div>
+    <div class="col">
+        <img src="img/world-knowledge/regression-non-linear.png">
+    </div>
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## ... and for that?
+
+<img src="img/world-knowledge/seq.png">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## MLP does not have all the knowledge we have
+
+<img src="img/world-knowledge/seq-mlp.png">
+
+3 layers, 1500 nodes each, relu acitvation
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## This is a sequence, each point is a continuation of the previous ones
+
+<img src="img/world-knowledge/seq-rnn.png">
+
+Simple RNN, 1 layer with 50 nodes, relu acitvation, 30 previous values
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Encode priors in neural network architecture
+## Basics
+
+* _capacity of the model_
+  * more complex model architectures lead to more complex functions
+  * it can be shown: 3 layers with enough neurons and ReLU activation can learn any function
+  * simplest case: a single neuron giving a linear model
+* if values are _sequential_, i.e. the next value depends on what we had before
+  * use RNN to model
+  * LSTM / GRU allow to take more of the past into account and create a complex model
+  * simple RNN only uses near past (right choice for our example)
+
+</textarea>
+</section>
+
+<!-- Part 2 --------------------------------------------------------------------------- -->
+<section data-markdown>
+    <textarea data-template>
+<div class="container">
+    <div class="col">
+
+## Agenda
+
+1. Basic Model Architecture
+1. _Advanced Model Architecture_
+1. Smart regularization
+1. What else is there?
+    </div>
+    <div class="col">
+<img src="img/mikio/ml-wk-advanced.png" style="height:250px;">
+    </div>
+</div>
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Example: Denoising using CNNs with Autoencoders
+
+<img src="img/world-knowledge/denoising.png">
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/autoencoder-denoising.ipynb?hl=en
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Encode priors in neural network architecture
+## CNNs for Images
+        
+* in images, adjacency of pixels has a meaning
+* objects are connected
+* features in an objects are translation invariant  
+* use CNN to encode that knowledge into the network
+* same filter going over all parts of the image
+* much less parameters
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Encode priors in neural network architecture
+## Autoencoders for Abstraction
+        
+* assumption: there are underlying concepts that can be used for abstraction
+* project instances to latent representation
+* the less the capacity of the latent representation, the higher the abstraction
+* means to restrict capacity:
+  * _undercomplete_ (capacity of latent representation << dim of inputs)
+    * L2 to further compress latent a bit
+  * _overcomplete_ (capacity of latent representation >= dim of inputs)
+    * use L1 to increase sparsity of embedding when having dim > 2, to have an additional restriction (often gives better results)
+
+
+<small>
+
+https://www.deeplearningbook.org/contents/autoencoders.html</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Encode priors in neural network architecture
+## Regularization
+    
+* L1 as sparsity enforcing prior
+    * Use L1 if you know your images only contain few pixels
+* L2 enforcing small values as prior
+    * keep a certain parameter close a specific value
+    * great visual example: https://twitter.com/matthen2/status/1520427990420791298 (L2 on θ₄ to keep final segment pretty stiff)
+* In Bayesian statistics, regularization corresponds to the choice of a prior
+  * L1 regularization corresponds to a Laplacian prior
+  * L2 is equivalent to a Gaussian Prior (https://towardsdatascience.com/bayesian-priors-and-regularization-penalties-6d0054d9747b)
+</textarea>
+</section>
+
+
+<!-- Part 3 --------------------------------------------------------------------------- -->
+
+<section data-markdown>
+    <textarea data-template>
+        <div class="container">
+            <div class="col">
+
+## Agenda
+
+1. Basic Model Architecture
+1. Advanced Model Architecture
+1. _Smart regularization_
+1. What else is there?
+                            
+</div>
+<div class="col">
+
+<img src="img/mikio/ml-wk-regularization.png" style="height:300px;">
+
+</div>
+        </div>
+
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Example: Classification for areas with no training data
+
+<div class="container">
+    <div class="col">
+        <img src="img/world-knowledge/extrapolation.png" style="height: 300px">
+        Like this?
+    </div>
+    <div class="col">
+        <img src="img/world-knowledge/adversarial_extrapolation.png" style="height: 300px">
+        Or like that?
+    </div>
+</div>
+<small>
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/interpolation.ipynb?hl=en
+<br>
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_nsl.ipynb?hl=en
+<!-- <br>
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_lattice.ipynb?hl=en -->
+
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Interpolation
+
+<img src="img/world-knowledge/interpolation.png">
+
+Works well 
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Extrapolation
+
+<img src="img/world-knowledge/extrapolation.png">
+
+How would we even assume to extrapolate?
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### How to extrapolate?
+
+* Requires general world knowledge
+* Often also domain knowledge
+* Also: making active choices in modelling
+  * no right or wrong
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Do we need more means of control?
+
+* standard regularizers usually result in more "sensible" extrapolation
+* no guarantee across the whole space, esp. for high dimensions
+* simpler models give more control, but accuracy might be much worse
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Neural Structured Learning (NSL)
+
+Two examples:
+* _Neural Graph Learning_: extending graph regularization (= close nodes should be more similar) to DL https://research.google/pubs/pub46568.pdf
+* _Adversarial Learning_:  https://arxiv.org/pdf/1412.6572.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Learning
+
+* original objective is to prevent adversarial attacks
+* learning can be modified to protect against sensitive inputs
+* also leads to smoother decision boundaries
+
+<img src="img/mikio/ml-wk-adversarial.png" style="height:200px;">
+
+https://arxiv.org/pdf/1412.6572.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Interpolation
+
+<img src="img/world-knowledge/adversarial_interpolation.png">
+
+Subtle details
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adversarial Extrapolation
+
+<img src="img/world-knowledge/adversarial_extrapolation.png">
+
+Strong difference, actively avoiding the linear extrapolation
+</textarea>
+</section>
+
+<section>
+<h3>Encoding soft Penalties instead of hard Constraints</h3>
+
+<p>Adding to the loss as some form of regularization makes this easy to embed into standard backprop</p>
+<div class="container">
+    <div class="col"  style='width: 500px;'>
+<pre>
+    <code data-trim data-line-numbers="1-4|6-10|12-14"><script type="text/template">
+model = tf.keras.Sequential()
+model.add(InputLayer(input_shape=(3,)))
+# ...
+model.add(Dense(units=3, activation='softmax'))
+
+# Wrap the model with adversarial regularization
+adv_config = make_adv_reg_config(multiplier=0.2, 
+                                 adv_step_size=0.05)
+model = AdversarialRegularization(model, 
+                                  adv_config=adv_config)
+
+model.compile(loss='sparse_categorical_crossentropy',
+                optimizer='adam',
+                metrics=['accuracy'])
+
+    </script></code>
+</pre>
+            </div>
+    <div class="col">
+        <img src="img/world-knowledge/adversarial-training.png" style='width: 500px;'>
+    </div>
+
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Lattice based models
+
+* lattices are functions that interpolate between a points on a (high-dim) regular grid
+* encode domain knowledge like monotonicity, convexity, feature relationships
+* avoid unexpected model behavior on data far from training data
+
+https://www.tensorflow.org/lattice
+<br>
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html
+<br>
+https://github.com/tensorflow/lattice
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Calibrating features using piecewise linear functions
+
+<img src="img/world-knowledge/calibration.png">
+
+<small>
+
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Mapping calibrated features to a lattice
+
+<img src="img/world-knowledge/laticefunction.png">
+
+<small>
+
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Example constraints
+
+
+* Monotonicity: risk should increase with respect to age and speed
+* Unimodality: there is a single sweet spot in age (between 30 and 60)
+
+
+</textarea>
+</section>
+
+
+<section>
+<h3>How would this look like in Code?</h3>
+
+<pre>
+    <code data-trim data-line-numbers="1|3-5|7-11|13-17|19-20,30|21-22|23-26|27-28"><script type="text/template">
+model = tf.keras.Sequential()
+
+# combine all calibrators in parallel
+combined_calibrators = tfl.layers.ParallelCombination()
+model.add(combined_calibrators)
+
+# age, piecewise linear function
+combined_calibrators.append(tfl.layers.PWLCalibration(
+    input_keypoints=np.linspace(18, 100, 5),
+    # feeding into a lattice with 2 vertices
+    output_min=0.0, output_max=1.0))
+
+# speed, piecewise linear function
+combined_calibrators.append(tfl.layers.PWLCalibration(
+    input_keypoints=np.linspace(80, 160, 5),
+    # feeding into a lattice with 3 vertices
+    output_min=0.0, output_max=2.0))
+
+# lattice is an interpolated look-up table that can approximate arbitrary input-output relationships
+lattice = tfl.layers.Lattice(
+    # one per calibrator, needs to match their domain
+    lattice_sizes=[2, 3],
+    # one per calibartor, all increasing monotonically
+    monotonicities=[
+        'increasing', 'increasing'
+    ],
+    # normalized
+    output_min=0.0, output_max=1.0)
+) 
+model.add(lattice)
+    </script></code>
+</pre>
+
+<p>API is pretty wild, cohesion of information often not given, many examples still use outdated Estimator API</p>
+
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Agenda
+
+1. Basic Model Architecture
+1. Advanced Model Architecture
+1. Smart regularization
+1. _What else is there?_
+    </textarea>
+</section>
+
+<!-- 
+<section data-markdown class="fragments">
+    <textarea data-template>
+### In a nutshell: Encoding World Knowledge
+
+What objective do you phrase in your learning experiment?
+
+- _type of learning_
+  - supervised learning, unsupervised learning, reinforcement learning
+- _input and output_
+  - feature extraction / preprocessing: what is really relevant?
+- _general architecture_
+  - type of model, network capacity, parametric
+- _reward and observation for RL_
+  - shape learning objective
+</textarea>
+</section> -->
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+        ### Data
+        <div class="container">
+            <div class="col">
+
+                * real world projects typically don't operate on pre-collected data sets
+                * so you have to collect the data, but you can also choose what data to collect
+                * make sure the data you collect covers the real world or at least the domain you are interested in
+                
+</div>
+            <div class="col">
+
+                <img src="img/mikio/ml-wk-data.png" style="height:300px;">
+            </div>
+        </div>
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Be aware of the natural bias of the data
+
+* e.g. concerning people
+  * height
+  * age
+  * gender
+  * skin tone / hair styles
+  * body ratio
+  * disabilities
+    * wheel chair
+    * crutches
+* take care of negative classes
+  * dogs
+  * background
+  * noise from sensors    
+
+</section>
+
+<section data-markdown class="fragments">
+### Augmentation
+
+* idea: generate more data from existing
+* using invariants of the real world
+  * e.g. a person is still a person no matter how far away
+* concerns
+  - might explode with dimensions
+  - augmented data might outweigh "real" data
+  - don't fool yourself: are you just using standard augmentation or real domain knowledge? 
+* alternative: generate purely synthetic data
+  * like GANs 
+  * reality gap — the small differences between real and synthetic data that models may fixate on incorrectly, harming generalization (https://twitter.com/russelljkaplan/status/1490303023267999744)
+
+</section>
+
+<!--
+<section data-markdown class="fragments">
+    ### General preprocessing
+    
+    encode your assumptions, e.g.
+    * only general form and structure seen in an image are important
+      * reduce resolution, apply closing
+      * leads to faster training and better generalization
+    * a certain feature is highly correlated with the target value
+      * but you know this is a bias in your data set
+      * remove that feature from the input
+      * live with the *worse* classifier
+    
+</section>
+    
+    
+<section data-markdown class="fragments">
+### Foundation Models
+
+_foundational models: trained on broad data at scale and are adaptable to a wide range of downstream tasks_
+
+* promise to store the knowledge about the world in text form
+* have a high capacity for learning
+* can be trained on all data available in text form
+* one day a general abstraction for everything?
+
+https://arxiv.org/abs/2108.07258
+</section>
+
+<section data-markdown class="fragments">
+### What else can you do?
+
+* Markov-chains
+* pre- and post-processing
+* parametric models
+  * strong assumptions about the model (e.g. normally distributed)
+* causality models
+  * often work by generating a set of models and seeing which performs best
+</section>
+-->
+
+<section data-markdown>
+    <textarea data-template>
+
+        ## Recap ML: The High-Level View
+
+        <img src="img/mikio/ml-wk-overview.png">
+    </textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Summary
+
+* a prior, ML models do not even have the most basic world knowledge
+* typical data sets also do not contain that information
+* a human user of the model will, however, assume such knowledge
+* unfortunately, encoding world knowledge as priors into ML models is not straight forward
+* neural networks have the most opportunities for such an encoding 
+* you need deeper understanding of the way models work, as well as a bunch of poorly structured approaches in your tool belt 🛠
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Thanks for attending        
+# How to teach our world knowledge to a neural network
+
+Slides: https://bit.ly/2022-odsc-priors
+
+Blog-Post: https://opendatascience.com/how-to-bring-our-world-knowledge-to-machine-learning/
+
+### Stay in Contact if you like
+
+Oliver Zeigermann, <a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
+
+
+
+
+</textarea>
+</section>
+
+
+
+
+        </div>
+    </div>
+
+
+    <script src="reveal.js/dist/reveal.js"></script>
+    <script src="lib/jquery.js"></script>
+
+    <script>
+        const printMode = window.location.search.match(/print-pdf/gi);
+        const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+            window.location.hostname.indexOf('127.0.0.1') !== -1;
+        const isPresentation = isLocal && !printMode;
+        const isPublic = !isPresentation;
+
+        $('.hide').remove();
+
+        if (isPresentation) {
+        } else {
+            // only applies to public version
+            $('.todo').remove();
+            $('.preparation').remove();
+            $('.local').remove();
+        }
+
+        Reveal.addEventListener('ready', function (event) {
+            // applies to all versions
+            $('code').addClass('line-numbers');
+
+            $('.fragments li').addClass('fragment')
+
+            // make all links open in new tab
+            $('a').attr('target', '_blank')
+
+            if (isPresentation) {
+                // only applies to presentation version
+                Reveal.configure({ controls: false });
+            } else {
+                // only applies to public version
+                $('.fragment').removeClass('fragment');
+            }
+
+            // we do not like fragments
+            // $('.fragment').removeClass('fragment');
+
+        });
+
+    </script>
+
+    <script src="reveal.js/plugin/notes/notes.js"></script>
+    <script src="reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="reveal.js/plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            width: 1100,
+            slideNumber: true,
+            hideInactiveCursor: false,
+
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+    </script>
+
+
+</body>
+
+</html>
