@@ -149,7 +149,7 @@ Slides: https://bit.ly/2022-odsc-priors
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Who is Olli
 
@@ -168,7 +168,7 @@ Slides: https://bit.ly/2022-odsc-priors
 Head of AI@OpenKnowledge
 </p>    
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
     <textarea data-template>
@@ -236,24 +236,44 @@ https://twitter.com/fchollet/status/1450871559803916290
     <textarea data-template>
 ## What is the true model for that data?
 
-<img src="img/world-knowledge/regression.png">
+<img src="img/world-knowledge/beer.png">
 
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ## This or that?
 
 <div class="container">
     <div class="col">
-        <img src="img/world-knowledge/regression-linear.png">
+        <img src="img/world-knowledge/beer-linear.png" style="height: 300px;">
     </div>
     <div class="col">
-        <img src="img/world-knowledge/regression-non-linear.png">
+        <img src="img/world-knowledge/beer-non-linear.png" style="height: 300px;">
     </div>
 </div>
 
+</textarea>
+</section> -->
+
+<section data-markdown>
+    <textarea data-template>
+## This?
+
+<img src="img/world-knowledge/beer-non-linear.png">
+
+3 layers, 1500 nodes each, relu acitvation
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Or that?
+
+<img src="img/world-knowledge/beer-linear.png">
+
+single linear neuron
 </textarea>
 </section>
 
@@ -261,7 +281,7 @@ https://twitter.com/fchollet/status/1450871559803916290
     <textarea data-template>
 ## Both models have issues
 
-* linear model is very general, very good at extrapolation, but ...` 
+* linear model is very general, very good at extrapolation, but ...
 * also not very good at interpolation (underfits)
 * Can we have both, please?
 </textarea>
@@ -289,7 +309,7 @@ https://github.com/tensorflow/lattice
     <textarea data-template>
 ## Hands-On: Regression using Lattices
 
-<img src="img/world-knowledge/ood-beer.png">
+<img src="img/world-knowledge/beer-calibrated.png">
 
 https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_lattice_beer.ipynb?hl=en
 
