@@ -313,16 +313,41 @@ single linear neuron
     <textarea data-template>
 ### Lattice based models
 
-* lattices are functions that interpolate between a points on a (high-dim) regular grid
+* lattices are functions that interpolate between point on a n-d regular grid
+* works well on lower dim, up to 16 features shown to work
 * encode domain knowledge like monotonicity, convexity, feature relationships
 * avoid unexpected model behavior on data out of training distribution
 
-https://www.tensorflow.org/lattice
+Concepts: https://www.tensorflow.org/lattice/overview
 <br>
-https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html
-<br>
-https://github.com/tensorflow/lattice
+Paper: https://jmlr.org/papers/v17/15-243.html
+</textarea>
+</section>
 
+<section data-markdown>
+    <textarea data-template>
+### Calibrating features using piecewise linear functions
+
+<img src="img/world-knowledge/calibration.png">
+
+Encoding world knowledge in constraints and regularizations
+<small>
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Mapping calibrated features to a lattice
+
+<img src="img/world-knowledge/laticefunction.png">
+
+_A lattice is an interpolated look-up table that can approximate arbitrary input-output relationships in your data._
+<small>
+https://blog.tensorflow.org/2020/02/tensorflow-lattice-flexible-controlled-and-interpretable-ML.html</small>
+    
 </textarea>
 </section>
 

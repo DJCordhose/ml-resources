@@ -10,6 +10,7 @@ dependencies:
     - dtreeviz
     - lrcurve
     - tensorflow-lattice
+    - pydot
   - python=3.8
   - scikit-learn
   - pandas
