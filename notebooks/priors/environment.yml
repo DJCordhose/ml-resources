@@ -1,0 +1,20 @@
+name: priors
+
+channels:
+    - conda-forge
+
+dependencies:
+  - pip
+  - pip:
+    - tensorflow
+    - dtreeviz
+    - lrcurve
+    - tensorflow-lattice
+  - python=3.8
+  - scikit-learn
+  - pandas
+  - seaborn
+  - jupyter
+  - notebook
+  - numpy
+  - matplotlib
