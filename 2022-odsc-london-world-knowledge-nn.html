@@ -292,9 +292,9 @@ that is more or less
     <textarea data-template>
 ## This?
 
-<img src="img/world-knowledge/beer-non-linear.png">
+<img src="img/world-knowledge/beer-linear.png">
 
-3 layers, 1500 nodes each, relu acitvation
+linear model
 </textarea>
 </section>
 
@@ -302,9 +302,9 @@ that is more or less
     <textarea data-template>
 ## Or that?
 
-<img src="img/world-knowledge/beer-linear.png">
+<img src="img/world-knowledge/beer-non-linear.png">
 
-single linear neuron
+3 layers, 1500 nodes each, relu acitvation
 </textarea>
 </section>
 
@@ -314,8 +314,10 @@ single linear neuron
 
 * linear model is general, good at extrapolation, but ...
   * at the same time not very good at interpolation (underfits)
+  * ... at first sight
+  * do we really trust anybody to drink a negative amount of beer when it gets really cold?
 * complex model is good at interpolation
-  * but violates basic world knowledge
+  * but violates basic world knowledge (beer consumption going up when temperature gets really low)
   * does not extrapolate well
 * Can we have the best of both worlds, please?
 </textarea>
