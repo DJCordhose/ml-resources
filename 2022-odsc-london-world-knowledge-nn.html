@@ -135,7 +135,7 @@ None of the techniques shown are new and you might already know a good chunk of 
 but maybe you have not looked at them from the perspective of setting priors for your deep learning by encoding the
 world knowledge you have. -->
 
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
 ### TODO
 
 - Slider für die unterschiedlichen Varianten von Lattice Constraints
@@ -145,13 +145,14 @@ world knowledge you have. -->
   - https://bit.ly/2022-odsc-priors
   - https://bit.ly/tf-lattice-beer
 </section>
-
+ -->
+<!--  
 <section data-markdown class="todo">
 
 Step function versus piecewise linear function https://t.co/cM9YTWMkqC
 (https://twitter.com/CardColm/status/1535917008230940672?t=Y6d1rOLVR6bUAcVSnBhVgw&s=03) 
 </section>
-
+ -->
 
 <section data-markdown>
     <textarea data-template>
@@ -255,6 +256,15 @@ https://twitter.com/fchollet/status/1450871559803916290
 
 <section data-markdown>
     <textarea data-template>
+## For the rest of this workshop let us assume we (as humans) know the prior
+
+that is more or less
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
 ## What is the true model for that data?
 
 <img src="img/world-knowledge/beer.png">
@@ -302,9 +312,12 @@ single linear neuron
     <textarea data-template>
 ## Both models have issues
 
-* linear model is very general, very good at extrapolation, but ...
-* also not very good at interpolation (underfits)
-* Can we have both, please?
+* linear model is general, good at extrapolation, but ...
+  * at the same time not very good at interpolation (underfits)
+* complex model is good at interpolation
+  * but violates basic world knowledge
+  * does not extrapolate well
+* Can we have the best of both worlds, please?
 </textarea>
 </section>
 
