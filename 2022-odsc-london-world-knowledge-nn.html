@@ -381,13 +381,80 @@ https://bit.ly/tf-lattice-beer
 
 <section data-markdown>
     <textarea data-template>
+### In general
+## Encode priors in neural network architecture
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Regularization
+    
+* L1 as sparsity enforcing prior
+    * Use L1 if you know your images only contain few pixels
+* L2 enforcing small values as prior
+    * keep a certain parameter close a specific value
+    * great visual example: https://twitter.com/matthen2/status/1520427990420791298 (L2 on θ₄ to keep final segment pretty stiff)
+* In Bayesian statistics, regularization corresponds to the choice of a prior
+  * L1 regularization corresponds to a Laplacian prior
+  * L2 is equivalent to a Gaussian Prior (https://towardsdatascience.com/bayesian-priors-and-regularization-penalties-6d0054d9747b)
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### CNNs for Images
+        
+* in images, adjacency of pixels has a meaning
+* objects are connected
+* features in an objects are translation invariant  
+* use CNN to encode that knowledge into the network
+* same filter going over all parts of the image
+* much less parameters
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Autoencoders for Abstraction
+        
+* assumption: there are underlying concepts that can be used for abstraction
+* project instances to latent representation
+* the less the capacity of the latent representation, the higher the abstraction
+* means to restrict capacity:
+  * _undercomplete_ (capacity of latent representation << dim of inputs)
+    * L2 to further compress latent a bit
+  * _overcomplete_ (capacity of latent representation >= dim of inputs)
+    * use L1 to increase sparsity of embedding when having dim > 2, to have an additional restriction (often gives better results)
+
+
+<small>
+
+https://www.deeplearningbook.org/contents/autoencoders.html</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+
+## The High-Level View
+
+<img src="img/mikio/ml-wk-overview.png">
+
+Courtesy of Mikio Braun https://twitter.com/mikiobraun
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
 ## What else is there?
     </textarea>
 </section>
 
-
-
-<section data-markdown class="fragments">
+<section data-markdown>
     <textarea data-template>
 ### In a nutshell: Encoding World Knowledge
 
@@ -404,10 +471,11 @@ What objective do you phrase in your learning experiment?
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
-### Foundation Models
+<section data-markdown>
+### Finally, a promising alternative approach    
+## Foundation Models
 
-_foundational models: trained on broad data at scale and are adaptable to a wide range of downstream tasks_
+_trained on broad data at scale and are adaptable to a wide range of downstream tasks_
 
 * promise to store the knowledge about the world in text form
 * have a high capacity for learning
@@ -417,16 +485,6 @@ _foundational models: trained on broad data at scale and are adaptable to a wide
 https://arxiv.org/abs/2108.07258
 </section>
 
-<section data-markdown>
-    <textarea data-template>
-
-## The High-Level View
-
-<img src="img/mikio/ml-wk-overview.png">
-
-Courtesy of Mikio Braun https://twitter.com/mikiobraun
-    </textarea>
-</section>
 
 <section data-markdown>
     <textarea data-template>
