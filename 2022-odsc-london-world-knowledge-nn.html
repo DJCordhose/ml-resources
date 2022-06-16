@@ -156,7 +156,7 @@ Step function versus piecewise linear function https://t.co/cM9YTWMkqC
 
 <section data-markdown>
     <textarea data-template>
-# How to teach our world knowledge to a neural network?
+# How to teach our world knowledge (rather priors) to a neural network?
 
 Workshop at ODSC Europe, London 2022, https://odsc.com/europe/
 
@@ -256,9 +256,11 @@ https://twitter.com/fchollet/status/1450871559803916290
 
 <section data-markdown>
     <textarea data-template>
-## For the rest of this workshop let us assume we (as humans) know the prior
+## This is a technical talk        
+_let us assume we (as humans) decide on and know the prior based on_
 
-that is more or less
+* Facts
+* Ethics / Fighting Unwanted Biases
 
 </textarea>
 </section>
@@ -379,7 +381,7 @@ https://bit.ly/tf-lattice-beer
 </section>
 
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Regularization
     
@@ -428,7 +430,7 @@ https://bit.ly/tf-lattice-beer
 https://www.deeplearningbook.org/contents/autoencoders.html</small>
 
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
     <textarea data-template>
@@ -436,10 +438,12 @@ https://www.deeplearningbook.org/contents/autoencoders.html</small>
 
 * Extrapolation in Regression and Time Series Data: https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/regression.ipynb?hl=en
 * Autoencoders: https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/autoencoder-denoising.ipynb?hl=en
+  * Regularization
+  * Autoencoders for Abstraction
+  * CNNs using proximity as prior
 * Adversarial Learning (removing weird extrapolations): https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/priors/extrapolate_nsl.ipynb?hl=en
 </textarea>
 </section>
-
 
 <section data-markdown>
     <textarea data-template>
@@ -468,6 +472,7 @@ What objective do you phrase in your learning experiment?
   - supervised learning, unsupervised learning, reinforcement learning
 - _input and output_
   - feature extraction / preprocessing: what is really relevant?
+  - bias: what features should you leave out?
 - _general architecture_
   - type of model, network capacity, parametric
 - _reward and observation for RL_
@@ -489,7 +494,17 @@ _trained on broad data at scale and are adaptable to a wide range of downstream 
 https://arxiv.org/abs/2108.07258
 </section>
 
+<section data-markdown>
+### What do you gain by adding priors to your model?
 
+* Fairness
+* Explainability / Interpretability
+  * without necessarily sacrificing accuracy
+  * sometimes even improving on that
+  * stating your priors (global interpretability)
+* Trust
+</section>
+    
 <section data-markdown>
     <textarea data-template>
 ## Thanks for attending        
@@ -505,12 +520,8 @@ Oliver Zeigermann, <a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
 
 https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
-
 </textarea>
 </section>
-
-
-
 
         </div>
     </div>
