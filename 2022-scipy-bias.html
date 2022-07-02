@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
 
-	<title>Why ML?</title>
+	<title>Fighting Unwanted Bias</title>
 
 	<link rel="stylesheet" href="reveal.js/dist/reset.css">
 	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -114,7 +114,8 @@
 
 			<section data-markdown>
 				<textarea data-template>
-# Why Machine Learning?
+# Fighting Unwanted Bias 
+## in Machine Learning
 
 Oliver Zeigermann
 
@@ -123,67 +124,104 @@ Oliver Zeigermann
 
 <section data-markdown>
 	<textarea data-template>
-<!-- #### In the Middle Ages, artists knew about the existence of elephants, but they had only the descriptions of travelers to go by -->
-<img src='img/elephants/RUwdSMK.jpeg'>
+## Example
 
-<small>
+1. You train a model for *applicant fitness* for a job
+1. Based on existing *data collected from performance reviews* in your institute / company
+1. So far the institute / company *mostly employed young people*
+1. They *outperform* the *older* people in the company
+1. So a *model* trained on existing data is *biased towards young people*
+1. You assume that your *data* is 
+   1. *not representative* (or no longer is) of the complete world
+   1. or it might, but you *whish* more older people in your company
+   1. or it might, but you must *not discriminate* against older people
 
-https://imgur.com/gallery/MpRBy
-</small>
-	
 </textarea>
 </section>
 
-<section data-markdown>
-	<textarea data-template>
-<!-- ## Some things can not be explained, only shown / Complex concepts are beyond description -->
-
-<!-- <br> -->
-
-### The way that can be spoken is not the eternal way
-### The name that can be named is not the eternal name
-
-<br>
-
-Tao Te Ching		
-</textarea>
-</section>
 
 <section data-markdown>
 	<textarea data-template>
-## Machine Learning
+## A model always has to be biased in order to be useful
 
-an approach to *develop software*, not by writing rules by hand, but *letting the machine figure out* what to do *based on*
-* a *metric* for success you define,
-* *examples* you give and
-* *priors* you add
+*bias* is about *giving importance* to some of the features over others in order to *generalize* 
+
+http://www.cs.cmu.edu/~tom/pubs/NeedForBias_1980.pdf
 
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Why Priors matter - Models must not violate fundamental properties of the world
+## You defined what is unwanted bias
 
-<video src="img/smurf/smurf-short.mp4" controls>
+you might pay by *worse* overall *performance*, but also might gain *better generalization*
 
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
-### When does ML make sense?
+## Typically unwanted biases
 
-_The solution to the problem at hand is unknown or difficult to specify_
+1. Age (shown here)
+2. Gender
+3. Culture
+4. Religion
+5. "Race"
+6. Sexual Orientation
+7. Political belief
 
-_And_
+</textarea>
+</section>
 
-* We have data with a clear, simple input and at best also matching output 
-* There are patterns in the input that can be used for prediction
-* The solution to the problem can tolerate error or uncertainty
-<!-- * We are willing and able to perform open-ended experiments in an initial phase -->
 
-	</textarea>
+<!-- <section data-markdown>
+	<textarea data-template>
+## 1. What is Bias in the first place?
+
+</textarea>
+</section> -->
+
+<!-- <section data-markdown>
+	<textarea data-template>
+## 2. How does unwanted bias it come into your model
+
+</textarea>
+</section>
+ -->
+<!-- <section data-markdown>
+	<textarea data-template>
+## 2. Why you might have unwanted bias
+
+Your ML model is based on data
+
+1. The past is no longer valid
+2. You want to actively form the future 
+</textarea>
+</section>
+ -->
+<section data-markdown>
+	<textarea data-template>
+## How to fight unwanted bias
+
+1. this still is a young field
+1. even measuring it is a challenge, really
+1. become more sensitive to unwanted bias
+1. changing the world we sample from 
+
+*but...*
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Neural Networks and Backpropagation offer a slew of possibilities
+
+<img src="img/mikio/ml-wk-overview.png">
+
+Courtesy of Mikio Braun https://twitter.com/mikiobraun
+    </textarea>
 </section>
 
 
@@ -191,7 +229,7 @@ _And_
 				<textarea data-template>
 # Thanks a lot
 
-## Why Machine Learning?
+## Fighting Unwanted Bias in Machine Learning
 
 Stay in Contact
 
@@ -203,7 +241,9 @@ https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
 https://twitter.com/DJCordhose
 
-Slides: https://djcordhose.github.io/ml-resources/2022-scipy-ml.html
+Slides: https://djcordhose.github.io/ml-resources/2022-scipy-bias.html
+
+Slides form ODSC Europe 2022 (introducing lattices): https://bit.ly/2022-odsc-priors
 
     </textarea>
 			</section>
