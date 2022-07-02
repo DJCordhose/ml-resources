@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
 
-	<title>AI</title>
+	<title>Why ML?</title>
 
 	<link rel="stylesheet" href="reveal.js/dist/reset.css">
 	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -96,10 +96,6 @@
 			display: flex;
 		}
 
-		.col img {
-			height: auto;
-		}
-
 		.col,
 		col-1 {
 			flex: 1;
@@ -116,28 +112,18 @@
 	<div class="reveal">
 		<div class="slides">
 
-
-
 			<section data-markdown>
 				<textarea data-template>
-# Was ist KI?
+# Why  Machine Learning?
+
+Oliver Zeigermann
 
     </textarea>
 			</section>
 
 <section data-markdown>
 	<textarea data-template>
-### Beispiel: Wie kann man diese beiden Arten automatisch unterscheiden?
-
-<img src="img/rings.jpg">
-
-Gleiche Form, gleiches Material
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Im Mittelalter wussten Künstler zwar von der Existenz von Elefanten, aber sie konnten sich nur auf die Beschreibungen von Reisenden stützen
+<!-- #### In the Middle Ages, artists knew about the existence of elephants, but they had only the descriptions of travelers to go by -->
 <img src='img/elephants/RUwdSMK.jpeg'>
 
 <small>
@@ -150,142 +136,62 @@ https://imgur.com/gallery/MpRBy
 
 <section data-markdown>
 	<textarea data-template>
-## Manche Sachen kann man nicht erklären, sondern nur zeigen
+<!-- ## Some things can not be explained, only shown / Complex concepts are beyond description -->
+
+<!-- <br> -->
 
 ### The way that can be spoken is not the eternal way
 ### The name that can be named is not the eternal name
-		
+
+<br>
+
 Tao Te Ching		
 </textarea>
 </section>
-
 
 <section data-markdown>
 	<textarea data-template>
 ## Machine Learning
 
-<!-- |   | Quelle | Vorgehen | Artefakt für die Produktion |
-|---|---|---|---|
-| *Traditionelle Entwicklung* | Modell | Regeln | Programm |
-| *Maschinelles Lernen* | Daten und Priors | ML-Algorithmus | *Modell* |
-|   |   |   | -->
-
-_Ein Ansatz zur Entwicklung von Software, bei dem die Software nicht von Hand geschrieben wird, 
-sondern die Maschine auf der Grundlage gegebener Beispiele und Rahmenbedingungen herausfindet, 
-was zu tun ist_
-
-</textarea>
-</section>
-
-<!-- <section data-markdown>
-	<textarea data-template>
-### Machine Learning
-
-
-|   | Source  | Means  | Deployable  |
-|---|---|---|---|
-| *Traditional Development*  | Model  |  Rules | Program |
-| *Machine Learning*  | Data and Priors  | ML Algorithm | Model |
-|   |   |   |
-
-_an approach to develop software, not by writing it by hand, but letting the machine figure out what to do based on a metric for success you define, examples you give and priors you add_
-
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
-    <textarea data-template>
-### Formulating an optimization problem instead of writing code
-
-<img src='img/booster/software-complexity.png'>
-
-<small>
-Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
-
-https://vimeo.com/272696002
-
-</small>
-</textarea>
-</section> -->
-
-<section data-markdown>
-    <textarea data-template>
-## Lösung mit Machine Learning
-### Beibringen, nicht programmieren!
-
-<a href='https://teachablemachine.withgoogle.com/'>
-    <img src='img/teachable-machine.png' style="height: 300px;">
-</a>
-
-_Live Demo_
-
-https://teachablemachine.withgoogle.com/
+an approach to *develop software*, not by writing rules by hand, but *letting the machine figure out* what to do *based on*
+* a *metric* for success you define,
+* *examples* you give and
+* *priors* you add
 
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Wann macht ML Sinn?
+### Why Priors matter - Models must not violate fundamental properties of the world
 
-_Die Lösung des vorliegenden Problems ist unbekannt oder schwer zu spezifizieren_
+<video src="img/smurf/smurf-short.mp4" controls>
 
-_Und_
-
-* Es liegen Daten mit einer klaren, einfache Eingabe und bestenfalls auch passender Ausgabe vor 
-* Es gibt Muster in der Eingabe, die zur Vorhersage verwendet werden können
-* Die Lösung des Problems kann Fehler oder Unsicherheiten tolerieren
-* Wir sind bereit und in der Lage, in einer initialen Phase Experimente mit offenem Ausgang durchzuführen
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
-### Machine Learning Projekte laufen anders ab als klassische Projekte
+### When does ML make sense?
 
-<img src="img/sketch/phases-ml.png">
+_The solution to the problem at hand is unknown or difficult to specify_
 
-</textarea>
-</section>
+_And_
 
-<section data-markdown>
-    <textarea data-template>
-### Künstliche Intelligenz (KI) vs Machine Learning (ML)
+* We have data with a clear, simple input and at best also matching output 
+* There are patterns in the input that can be used for prediction
+* The solution to the problem can tolerate error or uncertainty
+<!-- * We are willing and able to perform open-ended experiments in an initial phase -->
 
-<img src='img/AI.png'>
-
-Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
-</textarea>
+	</textarea>
 </section>
 
 
-<section data-markdown>
-    <textarea data-template>
-### Mehr Anwendungen
-
-<!-- * Classification
-* Regression -->
-* Anomalie detection
-* Language preprocessing
-* Recommendation
-* Time Series Prediction
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-# Vielen Dank
-## Was ist KI?
-
-Folien: https://djcordhose.github.io/ml-resources/2022-ai-ok.html
-</textarea>
-</section>
-
-			<!-- <section data-markdown>
+			<section data-markdown>
 				<textarea data-template>
 # Thanks a lot
 
-## What is AI?
+## Why Machine Learning?
 
 Stay in Contact
 
@@ -293,14 +199,14 @@ Oliver Zeigermann
 
 https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
-oliver@zeigermann.de
+<!-- oliver@zeigermann.de -->
 
 https://twitter.com/DJCordhose
 
-Slides: https://bit.ly/ai-2022
+Slides: https://bit.ly/ml-scipy-2022
 
     </textarea>
-			</section> -->
+			</section>
 
 
 		</div>
