@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
 
-	<title>AI</title>
+	<title>Bilderkennung</title>
 
 	<link rel="stylesheet" href="reveal.js/dist/reset.css">
 	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -108,6 +108,20 @@
 		.col-2 {
 			flex: 2;
 		}
+
+	/* https://intranet.openknowledge.de/plugins/servlet/mobile?contentId=18612939#content/view/18612939
+      https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
+      https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
+       */
+       body:after {
+        content: url(img/ok/logo.png) ;
+        position: fixed;
+        bottom: 80px;
+        left: -1080px;
+        transform: scale(.06);
+        height: 10px;
+    }
+
 	</style>
 
 </head>
@@ -115,15 +129,72 @@
 <body style="background-color: whitesmoke;">
 	<div class="reveal">
 		<div class="slides">
+<!-- 
+Stand der Kunst in der Bilderkennung
 
+Bilderkennung ist die Paradedisziplin des Maschinellen Lernens. Gerade in diesem Bereich sind mit künstlichen Neuralen
+Netzwerken Erkennungsraten und eine Robustheit möglich, an die mit klassischen Verfahren nicht zu denken war. Allerdings
+sind traditionelle Ansätze in manchen Bereichen als Alternative oder in Kombination mit Neuronalen Netzen immer noch
+sinnvoll.
 
+In diesem Vortrag führe ich daher durch die folgenden Themen:
+
+1. Traditionelle Ansätze
+
+Was sind diese Ansätze? Wo liegt deren Stärke und wo sind die Grenzen?
+
+2. Neuronale Netzwerke
+
+Wann sind diese sinnvoll und in welcher Architektur? Was braucht man, um sie zu trainieren?
+
+3. Was kommt als nächstes?
+
+Es gibt neuere Ansätze, die in der praktischen Anwendung bisher nicht erprobt sind, aber Potential haben, in der Zukunft
+eine größere Rolle zu spielen. Dazu gehören Ansätze auf Basis von Transformern und Systeme, die realitätsnahe Bilder
+erzeugen können wie GANs und DALLE-2.
+			 -->
+
+<section data-markdown class="todo">
+	<textarea data-template>
+* OpenCV Notebook zum Erkennen der Ringe
+  * Aus dem Bild gleich nehmen
+  * https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
+* Ring ist aber an der Hand!
+* Fotos der Ringe machen mit Teachable Machine
+  * Auch Hintergrund
+  * Auch Hand ohne Ring ()
+
+	</textarea>
+</section>
+			
 
 			<section data-markdown>
 				<textarea data-template>
-# Was ist KI?
+# Stand der Kunst in der Bilderkennung
 
+Oliver Zeigermann
     </textarea>
 			</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. Vergangenheit: Klassische Bilderkennung
+1. Gegenwart: Deep Learning
+1. Zukunft: Transformers und Co
+	</textarea>
+</section>
+			
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. _Vergangenheit: Klassische Bilderkennung_
+1. Gegenwart: Deep Learning
+1. Zukunft: Transformers und Co
+	</textarea>
+</section>
 
 <section data-markdown>
 	<textarea data-template>
@@ -134,6 +205,26 @@
 Gleiche Form, gleiches Material
 	</textarea>
 </section>
+
+<section data-markdown>
+	<textarea data-template>
+### Was gibt es noch in der klassischen Bilderkennung?
+
+* Python-Werkzeuge: OpenCV (https://docs.opencv.org/4.x/) und scikit-image (https://scikit-image.org/)
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. Vergangenheit: Klassische Bilderkennung
+1. _Gegenwart: Deep Learning_
+1. Zukunft: Transformers und Co
+	</textarea>
+</section>
+			
 
 <section data-markdown>
 	<textarea data-template>
@@ -164,58 +255,12 @@ Tao Te Ching
 	<textarea data-template>
 ## Machine Learning
 
-<!-- |   | Quelle | Vorgehen | Artefakt für die Produktion |
-|---|---|---|---|
-| *Traditionelle Entwicklung* | Modell | Regeln | Programm |
-| *Maschinelles Lernen* | Daten und Priors | ML-Algorithmus | *Modell* |
-|   |   |   | -->
-
 _Ein Ansatz zur Entwicklung von Software, bei dem die Software nicht von Hand geschrieben wird, 
 sondern die Maschine auf der Grundlage gegebener Beispiele und Rahmenbedingungen herausfindet, 
 was zu tun ist_
 
 </textarea>
 </section>
-
-<section data-markdown>
-	<textarea data-template>
-### Warum Rahmenbedingungen wichtig sind - Modelle dürfen grundlegende Eigenschaften der Welt nicht verletzen
-
-<video src="img/smurf/smurf-short.mp4" controls>
-
-</textarea>
-</section>
-
-<!-- <section data-markdown>
-	<textarea data-template>
-### Machine Learning
-
-
-|   | Source  | Means  | Deployable  |
-|---|---|---|---|
-| *Traditional Development*  | Model  |  Rules | Program |
-| *Machine Learning*  | Data and Priors  | ML Algorithm | Model |
-|   |   |   |
-
-_an approach to develop software, not by writing it by hand, but letting the machine figure out what to do based on a metric for success you define, examples you give and priors you add_
-
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
-    <textarea data-template>
-### Formulating an optimization problem instead of writing code
-
-<img src='img/booster/software-complexity.png'>
-
-<small>
-Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
-
-https://vimeo.com/272696002
-
-</small>
-</textarea>
-</section> -->
 
 <section data-markdown>
     <textarea data-template>
@@ -267,50 +312,46 @@ Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
 </textarea>
 </section>
 
-
 <section data-markdown>
-    <textarea data-template>
-### Gut abgehangene Anwendungen
+	<textarea data-template>
+### Agenda
 
-* Bilderkennung (wie hier gezeigt)
-* Anomalie detection
-* Language preprocessing
-* Recommendation
-* Time Series Prediction
-</textarea>
+1. Vergangenheit: Klassische Bilderkennung
+1. Gegenwart: Deep Learning
+1. _Zukunft: Transformers und Co_
+	</textarea>
 </section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+* https://www.kaggle.com/code/odins0n/jax-flax-tf-data-vision-transformers-tutorial
+	</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Zusammenfassung
+
+	</textarea>
+</section>
+
 
 <section data-markdown>
 	<textarea data-template>
 # Vielen Dank
-## Was ist KI?
+## Stand der Kunst in der Bilderkennung
 
-Folien: https://djcordhose.github.io/ml-resources/2022-ai-ok.html
-</textarea>
-</section>
-
-			<!-- <section data-markdown>
-				<textarea data-template>
-# Thanks a lot
-
-## What is AI?
-
-Stay in Contact
-
-Oliver Zeigermann
+Bleibt gern im Kontakt
 
 https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
-oliver@zeigermann.de
+oliver.zeigermann@openknowledge.de
 
-https://twitter.com/DJCordhose
+Twitter: @DJCordhose
 
-Slides: https://bit.ly/ai-2022
-
-    </textarea>
-			</section> -->
-
-
+Diese Folien: https://djcordhose.github.io/ml-resources/2022-ods.html
+</textarea>
+</section>
 		</div>
 	</div>
 
