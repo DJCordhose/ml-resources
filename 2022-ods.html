@@ -156,10 +156,6 @@ erzeugen können wie GANs und DALLE-2.
 
 <section data-markdown class="todo">
 	<textarea data-template>
-* OpenCV Notebook zum Erkennen der Ringe
-  * Aus dem Bild gleich nehmen
-  * https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
-* Ring ist aber an der Hand!
 * Fotos der Ringe machen mit Teachable Machine
   * Auch Hintergrund
   * Auch Hand ohne Ring ()
@@ -208,11 +204,135 @@ Gleiche Form, gleiches Material
 
 <section data-markdown>
 	<textarea data-template>
-### Was gibt es noch in der klassischen Bilderkennung?
+### Unterschiedliche Größe
 
-* Python-Werkzeuge: OpenCV (https://docs.opencv.org/4.x/) und scikit-image (https://scikit-image.org/)
-
+* es gibt Verfahren, die Kreise zuverlässig erkennen können
+* das bekannteste Verfahren ist die Hough-Transformation
+* anhand der Größe der Kreise könnten wir den Unterschied ablesen
 	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Die Parameter sind Gefummel, aber mit ein bisschen Erfahrung bekommt man das hin 
+
+```
+aperture = 21
+img_gray_blur = cv.medianBlur(img_gray, ksize=aperture)
+
+threshold_canny_edge_detector = 100
+threshold_circle_centers = 30
+
+circles = cv.HoughCircles(
+    image=img_gray_blur,
+    method=cv.HOUGH_GRADIENT,
+    dp=1,
+    minDist=rows/8,
+    param1=threshold_canny_edge_detector, 
+    param2=threshold_circle_centers,
+    minRadius=0, 
+    maxRadius=0)
+```
+
+https://github.com/DJCordhose/ml-resources/blob/main/notebooks/image/classic.ipynb
+
+https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hough-Transformation
+
+<img src="data/ring/stone-top-detection.jpg">
+
+133 vs 150
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Aber nun...
+
+<img src="data/ring/stone-tilt-detection.jpg">
+
+114 vs 116
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Andere Umgebung und Schatten
+
+<img src="data/ring/wama-tilt-detection.jpg">
+
+145 vs 151
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Ohje
+
+<img src="data/ring/table-top-flash-detection.jpg">
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Unter Laborbedingungen ist das sehr brauchbar
+
+* Objekte mit klaren, am besten geometrische Formen (z.B. Kreise) oder aus diesen zusammengesetzt
+* Konstanter Hintergrund, der sich klar vom zu erkennenden Objekt abhebt
+* Konstante Lichtquelle
+* Konstante Kamera mit
+* Konstanter Entfernung, Winkel und Brennweite
+* Generell möglichst konstante Umgebung beim erstellen der Fotos (kein Staub, Sonnenlicht, etc.)
+
+_Aber für die freie Wildbahn eine große Herausforderung_
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Python-Werkzeuge für klassischen Bilderkennung
+
+* OpenCV
+  * https://docs.opencv.org/4.x/
+  * https://pypi.org/project/opencv-python/ 
+* scikit-image
+  * https://scikit-image.org/
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Wichtigste Techniken der klassischen Bilderkennung
+
+* Faltungen (Blur/Sobel/Sharpen): https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html
+* Edge-Detection: https://docs.opencv.org/4.x/da/d22/tutorial_py_canny.html
+* Konturen und Bounding Boxes: https://docs.opencv.org/4.x/d3/d05/tutorial_py_table_of_contents_contours.html
+* Morphologische Operationen (Opening/Closing): https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html
+* Segmentierung: https://docs.opencv.org/4.x/d3/db4/tutorial_py_watershed.html
+
+https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Und nun?
+
+<img src="data/ring/hand.jpg">
+
+</textarea>
 </section>
 
 <section data-markdown>
@@ -327,6 +447,23 @@ Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
 * https://www.kaggle.com/code/odins0n/jax-flax-tf-data-vision-transformers-tutorial
 	</textarea>
 </section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Den Fortgeschrittenen Kram aus 2022-image-recognition.html
+* Transformers
+* GANs
+* DALLE-2 		
+	</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Tiefenbilder		
+	</textarea>
+</section>
+
 
 <section data-markdown class="todo">
 	<textarea data-template>
