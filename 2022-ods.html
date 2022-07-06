@@ -152,14 +152,21 @@ Wann sind diese sinnvoll und in welcher Architektur? Was braucht man, um sie zu 
 Es gibt neuere Ansätze, die in der praktischen Anwendung bisher nicht erprobt sind, aber Potential haben, in der Zukunft
 eine größere Rolle zu spielen. Dazu gehören Ansätze auf Basis von Transformern und Systeme, die realitätsnahe Bilder
 erzeugen können wie GANs und DALLE-2.
+
+
+---
+
+MLConf Berlin: Image Recognition: Past, Present and Future
+
+
+
 			 -->
 
 <section data-markdown class="todo">
 	<textarea data-template>
-* Fotos der Ringe machen mit Teachable Machine
-  * Auch Hintergrund
-  * Auch Hand ohne Ring ()
-
+Links CNNs
+* https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
+* ALexnet: https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html
 	</textarea>
 </section>
 			
@@ -283,6 +290,15 @@ https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
 </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+### Und nun?
+
+<img src="data/ring/hand.jpg">
+
+Geht es hier nicht vielmehr um das Muster?
+</textarea>
+</section>
 
 <section data-markdown>
 	<textarea data-template>
@@ -328,15 +344,6 @@ https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
 
 <section data-markdown>
 	<textarea data-template>
-### Und nun?
-
-<img src="data/ring/hand.jpg">
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
 ### Agenda
 
 1. Vergangenheit: Klassische Bilderkennung
@@ -346,7 +353,7 @@ https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
 </section>
 			
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Im Mittelalter wussten Künstler zwar von der Existenz von Elefanten, aber sie konnten sich nur auf die Beschreibungen von Reisenden stützen
 <img src='img/elephants/RUwdSMK.jpeg'>
@@ -370,10 +377,11 @@ Tao Te Ching
 </textarea>
 </section>
 
+ -->
 
 <section data-markdown>
 	<textarea data-template>
-## Machine Learning
+### Machine Learning
 
 _Ein Ansatz zur Entwicklung von Software, bei dem die Software nicht von Hand geschrieben wird, 
 sondern die Maschine auf der Grundlage gegebener Beispiele und Rahmenbedingungen herausfindet, 
@@ -383,15 +391,95 @@ was zu tun ist_
 </section>
 
 <section data-markdown>
+	<textarea data-template>
+### Machine Learning auf manuellen Features
+
+Wir extrahieren manuell Merkmale und trainieren damit einen Klassifikator
+
+* Wir könnten eine ganze Reihe von Features aus unseren Bildern extrahieren
+* Das erste könnten die Kreise sein
+* Kanten, Konturen und Segmente sind ebenso üblich 
+* Diese Features kodieren wir numerisch und schicken sie in Machine Learning Algorithmen
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Bilderkennung mit Deep Learning 
+
+Wir lernen auch die Extraktion der Features
+
+* Deep Learning ist eine spezielle Form des Machine Learnings
+* Neuronale Netze mit vielen Schichten
+* Dense-Layers sind effizient über Matrix-Multiplikationen realisierbar 
+* Training über Backpropagation
+* 3 Schichten mit genügend Neuronen und teilweise linearer Aktivierung (ReLU) können beliebige Funktionen approximieren 
+* Das heißt auch theoretisch auf jede Aufgabe der Bilderkennung trainierbar
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Aber Bilder sind besonders		
+
+* In Bildern hat die Nachbarschaft von Pixeln eine Bedeutung
+* Objekte sind miteinander verbunden
+* Merkmale in einem Objekt sind translationsinvariant
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Spezielle Schichten zur Bilderkennung
+
+Convolutional Neural Networks (CNNs)
+* wir nutzen dieses Wissen über Bilder 
+* ein alter Bekannter: Faltungen (Convolution) 
+* Faltungen haben sehr wenige Parameter, und sind Translations-Invariant
+* derselbe Filter geht über alle Teile des Bildes
+* Neuronale Netze können beliebige Faltungskerne lernen
+* Schaltet man viele hintereinander können diese Merkmale des Bildes extrahieren
+</textarea>
+</section>
+
+
+<section data-markdown>
     <textarea data-template>
-## Lösung mit Machine Learning
-### Beibringen, nicht programmieren!
+### Deep Learning mit CNNs
+
+<img src="img/vgg.png">
+
+_beginnt mit einer Reihe von Faltungsblöcken zur Merkmalsextraktion und endet mit einem klassischen Klassifikator_
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Deep Learning und Datenmenge
+<img src='img/Why-Deep-Learning.png' height="500">
+<small>
+
+Andrew Ng: https://www.slideshare.net/ExtractConf<br>
+https://machinelearningmastery.com/what-is-deep-learning/    
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Entscheidend sind aber fast immer die Beispieldaten
 
 <a href='https://teachablemachine.withgoogle.com/'>
     <img src='img/teachable-machine.png' style="height: 300px;">
 </a>
 
-_Live Demo_
+_Herausforderungen im Live Demo_
 
 https://teachablemachine.withgoogle.com/
 
@@ -399,6 +487,72 @@ https://teachablemachine.withgoogle.com/
 </section>
 
 <section data-markdown>
+	<textarea data-template>
+### Typische Architekturen
+
+* AlexNet
+* VGG
+* Resnet
+* Inception
+* MobileNet
+
+https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### 2012 - AlexNet
+
+Die Mutter aller CNNs
+
+* Faltungen - CNNs
+* Deep, 5 CNN Layers
+* Kombination aus Merkmalsextraktion und Klassifikator
+* ReLU Aktivierungen
+* Normalisierung von Zwischenergebnissen als Layer
+* Dropout Layers
+* Training auf augmentierten Daten
+
+https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html
+
+https://towardsdatascience.com/difference-between-local-response-normalization-and-batch-normalization-272308c034ac
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### 2014 - VGG 16/19
+
+Fast alles handgestrickte basiert auf einem vereinfachten VGG Modell
+
+* immer 3x3 Faltungen anstatt 11x11, 5x5, 3x3 bei AlexNet reduziert Parameteranzahl bei gleicher Leistung
+* Noch tieferes Netz mit 16 oder 19 Schichten
+
+https://arxiv.org/abs/1409.1556
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### 2015 - ResNet
+
+Wirklich tiefe Netze, in der Praxis häufig sehr erfolgreich
+
+* VGG kann man nicht tiefer machen, da Gradienten dann sehr klein werden, d.h. kein Training mehr möglich  
+* Shortcuts können ganze Blöcke überspringen
+  * Zum einen kann eine einfachere Funktion gelernt werden
+  * Zum anderen kann das ursprüngliche Signal in tiefste Schichten durchgeschleift werden
+  * So hat man weiterhin einen brauchbaren Gradienten
+* Der letzte Klassifikator mit den meisten Parametern kann bei großer Tiefe eingespart werden  
+* RestNet hat meist 50 oder 101 Layers, es können aber auch mehr sein
+
+https://arxiv.org/abs/1512.03385
+	</textarea>
+</section>
+
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Wann macht ML Sinn?
 
@@ -431,7 +585,7 @@ _Und_
 Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
 </textarea>
 </section>
-
+ -->
 <section data-markdown>
 	<textarea data-template>
 ### Agenda
@@ -439,6 +593,12 @@ Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
 1. Vergangenheit: Klassische Bilderkennung
 1. Gegenwart: Deep Learning
 1. _Zukunft: Transformers und Co_
+	</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Object Detection		
 	</textarea>
 </section>
 
