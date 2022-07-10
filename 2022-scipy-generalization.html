@@ -41,7 +41,7 @@
 		img {
 			border: 0 !important;
 			box-shadow: 0 0 0 0 !important;
-			height: 450px;
+			height: 650px;
 		}
 
 		.reveal {
@@ -112,17 +112,13 @@
 	<div class="reveal">
 		<div class="slides">
 
-			<section data-markdown class="todo">
-				<textarea data-template>
-# Sobald Internet da ist
-
-* Imagenet Gewichte Herunterladen
-* Welche Kategorie ist am dichtesten an Squirrel? Oder gibt es dir sogar direkt?
-* Tweet mit Referenz auf Dan heraussuchen
-
-    </textarea>
-			</section>
-
+<section data-markdown class="todo">
+	<textarea data-template>
+### Größe Checken		
+			https://twitter.com/DanielBolnick/status/1525538863783067651?s=20&t=5rfXahD1-NsTuU785S1lpw
+		</textarea>
+	</section>
+	
 			<section data-markdown>
 				<textarea data-template>
 # The Quest for Generalization
@@ -138,38 +134,25 @@ Oliver Zeigermann
 
 Because: Kids can!
 
+<img src="data/squirrels/validation/335/emoji.png" style="height: 300px">
 
-<img src="img/squirrels/emoji.png">
-
-TODO: Link auf Tweet und Dan
+Kudos to Daan van Berkel for motivating the question https://twitter.com/DJCordhose/status/1508019125800652807
 
 </textarea>
 </section>
+
+
 
 <section data-markdown>
 	<textarea data-template>
-## Yet here we are
+## This can certainly just be done with a standard architecture trained on standard dataset!
 
-<img src="img/uncertainty/no-checkin.png">
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## There already are powerful neural networks 
-
-http://image-net.org/
-
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-## What is the closest category?
-
-http://image-net.org/
-
+* Contains the category 'fox_squirrel': http://image-net.org/
+* Our architecture, ResNet: https://arxiv.org/abs/1603.05027
+<!-- * Our architecture, Xception: https://arxiv.org/abs/1610.02357 -->
+<!-- * Model prebuilt and pretrained in Keras: https://keras.io/api/applications/xception/ -->
+* Model prebuilt and pretrained in Keras: https://keras.io/api/applications/resnet/#resnet50v2-function
+* The code: https://github.com/DJCordhose/ml-resources/blob/main/notebooks/image/generalization.ipynb
 
 
 </textarea>
@@ -177,24 +160,268 @@ http://image-net.org/
 
 <section data-markdown>
 	<textarea data-template>
-## Results aren't great
+### Results: ResNet 50 V2 trained on ImageNet
 
-Maybe we need to show more examples?
+<div class="container">
+<div class="col">
+<img src="data/squirrels/validation/335/emoji.png" style="height:400px;">
+
+</div>		
+
+<div class="col">
+<br>
+<br>
+<br>
+
+<h2 class="fragments">
+
+1. 'tree_frog': 68%, 
+1. 'tailed_frog': 8%
+1. 'comic_book', 5%
+</h2>
+</div>		
+</div>
+
 </textarea>
 </section>
 
 <section data-markdown>
+	<textarea data-template>
+# Results aren't great
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Approach: Fine tune on more images
+
+## New ones taken this past weekend
+</textarea>
+</section>
+
+
+<!-- <section data-markdown>
 	<textarea data-template>
 ## Coming back to the Austin Squirrel
 
 After the 2017 friends kept collecting variations of squirrels, so we have a stash to base our training on
 
-<img src="img/squirrels/monster/austin2.jpg">
+<img src="data/squirrels/monster/austin2.jpg" style="height: 400px">
 
 https://djcordhose.github.io/ai/2017_scipy_cnn_introspection.html#/
 </textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-close.jpg">		
+
+</textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-bum.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-blurred.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-drinking.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-through-legs.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-shadow.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### 10 Epochs, 10 Images, Learning Rate 0.00004, 15 secs on CPU
+
+<img src="img/emoji-training.png">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Results: ResNet 50 V2 trained on ImageNet
+
+<div class="container">
+<div class="col">
+<img src="data/squirrels/validation/335/emoji.png" style="height:400px;">
+
+</div>		
+
+<div class="col">
+<br>
+<br>
+<br>
+
+<h2 class="fragments">
+
+1. 'fox_squirrel': 35%, 
+1. 'tree_frog': 11%	
+1. 'muzzle', 6%
+</h2>
+</div>		
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Oh, you are just overfitting!!11!		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+<img src="img/Alibi_Explain_Logo_rgb.png" style="height:400px;">
+
+https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+<img src="img/alibi-anchor-squirrel.png" style="height:400px;">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Oh, you just made the net see squirrels everwhere!!11!		
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+<img src="img/alibi-anchor-cat.png" style="height:400px;">		
+
+Egyptian_cat: 93%
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# It is not flawless, though		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## We still don't find enough squirrels		
+
+<div class="container">
+<div class="col">
+<img src="img/alibi-anchor-comic.png" style="height:250px;">
+
+</div>		
+
+<div class="col">
+<br>
+
+<h2 class="fragments">
+
+1. 'comic_book': 96%, 
+1. 'book_jacket': 1%	
+1. 'envelope', .1%
+</h2>
+</div>		
+</div>
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+	<textarea data-template>
+## And too many at the some time
+
+<div class="container">
+<div class="col">
+<img src="img/alibi-anchor-beaver.png" style="height:250px;">
+
+</div>		
+
+<div class="col">
+<br>
+
+<h2 class="fragments">
+
+1. 'fox_squirrel': 62%, 
+1. 'beaver': 10%	
+1. 'patas', 2%
+</h2>
+</div>		
+</div>
+</textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+## And too many at the some time
+
+<div class="container">
+<div class="col">
+<img src="img/alibi-anchor-mouse.png" style="height:250px;">
+
+</div>		
+
+<div class="col">
+<br>
+
+<h2 class="fragments">
+
+1. 'fox_squirrel': 36%, 
+1. 'nipple': 16%	
+1. 'comic_book', 5%
+</h2>
+</div>		
+</div>
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# How to improve results
+
+* Try better training set (e.g. more images) 
+* Try better validation set (including other classes than squirrels)
+* Train classifier part only (or final layers of CNN part)
+* Make noses less pink and see if network sill thinks this is a nipple
+</textarea>
+</section>
 
 			<section data-markdown>
 				<textarea data-template>
@@ -211,6 +438,8 @@ https://www.linkedin.com/in/oliver-zeigermann-34989773/
 <!-- oliver@zeigermann.de -->
 
 https://twitter.com/DJCordhose
+
+Slides: https://djcordhose.github.io/ml-resources/2022-scipy-generalization.html
 
     </textarea>
 			</section>
