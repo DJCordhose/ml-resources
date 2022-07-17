@@ -166,11 +166,11 @@ MLConf Berlin: Image Recognition: Past, Present and Future
 	<textarea data-template>
 ### Als nächstes
 
+* CNN Übersicht fertig machen
+  * Inception
 * Was muss man ins Modell hinein trainieren?
   * Welche realistischen Variationen gibt es?
   * Kein Objekt gefunden als Klasse
-* CNN Übersicht fertig machen
-  * Inception
 * Anchor Alibi
 
 	</textarea>
@@ -180,7 +180,7 @@ MLConf Berlin: Image Recognition: Past, Present and Future
 	<textarea data-template>
 Links CNNs
 * https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
-* ALexnet: https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html
+* https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
 
 Ausbeuten:
 * https://bit.ly/mlconf-2021-cnn-workshop
@@ -231,6 +231,7 @@ Gleiche Form, gleiches Material
 
 <section data-markdown>
 	<textarea data-template>
+## Feature Extraction
 ### Unterschiedliche Größe
 
 * es gibt Verfahren, die Kreise zuverlässig erkennen können
@@ -312,16 +313,6 @@ https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
 
 <section data-markdown>
 	<textarea data-template>
-### Und nun?
-
-<img src="data/ring/hand.jpg">
-
-Geht es hier nicht vielmehr um das Muster?
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
 ### Unter Laborbedingungen ist das sehr brauchbar
 
 _Alles ist voll mit "Magic Numbers", die handgetuned werden und auf bestimme Bedingungen passen_
@@ -330,7 +321,7 @@ _Alles ist voll mit "Magic Numbers", die handgetuned werden und auf bestimme Bed
 * Konstanter Hintergrund, der sich klar vom zu erkennenden Objekt abhebt
 * Konstante Lichtquelle
 * Konstante Kamera mit
-* Konstanter Entfernung, Winkel und Brennweite
+  * Konstanter Entfernung, Winkel und Brennweite
 * Generell möglichst konstante Umgebung beim erstellen der Fotos (kein Staub, Sonnenlicht, etc.)
 
 _Aber für die freie Wildbahn eine große Herausforderung_
@@ -363,6 +354,16 @@ _Aber für die freie Wildbahn eine große Herausforderung_
 https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
 	</textarea>
 </section>
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Und nun?
+
+<img src="data/ring/hand.jpg">
+
+Geht es hier nicht vielmehr um das Muster?
+</textarea>
+</section> -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -405,9 +406,17 @@ Tao Te Ching
 	<textarea data-template>
 ### Machine Learning
 
-_Ein Ansatz zur Entwicklung von Software, bei dem die Software nicht von Hand geschrieben wird, 
+<!-- _Ein Ansatz zur Entwicklung von Software, bei dem die Software nicht von Hand geschrieben wird, 
 sondern die Maschine auf der Grundlage gegebener Beispiele und Rahmenbedingungen herausfindet, 
-was zu tun ist_
+was zu tun ist_ -->
+
+ein Ansatz zur *Entwicklung von Software*, bei dem man nicht von Hand Regeln schreibt, sondern *die Maschine herausfinden lässt*, 
+was zu tun ist 
+
+Grundlage dafür
+* eine *Metrik* für das Maß des Erfolgs,
+* *Beispieldaten*
+* *Rahmenbedingungen*
 
 </textarea>
 </section>
@@ -422,7 +431,7 @@ Wir extrahieren manuell Merkmale und trainieren damit einen Klassifikator
 * Das erste könnten die Kreise sein
 * Kanten, Konturen und Segmente sind ebenso üblich 
 * Diese Features kodieren wir numerisch und schicken sie in Machine Learning Algorithmen
-
+* Wir können aber auch noch abstraktere Features extrahieren wie z.B. die Größe des Rings
 </textarea>
 </section>
 
@@ -551,6 +560,8 @@ Scipy 2022
 * MobileNet
 
 https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
+<br>
+https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
 	</textarea>
 </section>
 
@@ -640,6 +651,25 @@ Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
 </textarea>
 </section>
  -->
+
+ <section data-markdown>
+	<textarea data-template>
+### Erklärbarkeit und Check gegen Overfitting
+
+<img src="img/Alibi_Explain_Logo_rgb.png" style="height:400px;">
+
+https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+<img src="img/alibi-anchor-squirrel.png" style="height:400px;">		
+
+</textarea>
+</section>
+
 <section data-markdown>
 	<textarea data-template>
 ### Agenda
@@ -650,32 +680,43 @@ Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
 	</textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
-### Object Detection		
+### Object Detection
+
+https://github.com/tensorflow/models/tree/master/research/object_detection
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
 	</textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
+	<textarea data-template>
+### Tiefenbilder		
+	</textarea>
+</section>
+
+
+
+<section data-markdown>
 	<textarea data-template>
 <img src="img/image-recognition/kinect-image.jpg">		
 	</textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
 <img src="img/image-recognition/d435i.jpg">		
 	</textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
 <img src="img/image-recognition/kinect.jpg">		
 	</textarea>
 </section>
 
 
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
 	<textarea data-template>
 * https://www.kaggle.com/code/odins0n/jax-flax-tf-data-vision-transformers-tutorial
 	</textarea>
@@ -688,19 +729,124 @@ Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
 * GANs
 * DALLE-2 		
 	</textarea>
+</section> -->
+
+
+<section data-markdown>
+<textarea data-template>
+### Object Detection expressed as language problem
+
+<img src='img/transformers/pix2seq-od.jpg'>
+
+<small>
+
+https://arxiv.org/abs/2109.10852
+<br>
+https://twitter.com/karpathy/status/1441497808897380357
+<br>
+https://keras.io/examples/vision/mobilevit/
+</small>
+        </textarea>
 </section>
 
+
+<section data-markdown>
+<textarea data-template>
+### An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+
+<img src='img/transformers/vit.jpg'>
+
+<small>
+
+https://arxiv.org/abs/2010.11929
+<br>
+https://huggingface.co/transformers/model_doc/vit.html
+</small>
+        </textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Unified models for Vision
+
+<img src='img/transformers/florence-foundational-vision.jpg'>
+
+<small>
+
+https://arxiv.org/abs/2111.11432
+<br>
+https://twitter.com/ak92501/status/1462970921518514177
+</small>
+        </textarea>
+</section>
 
 <section data-markdown class="todo">
 	<textarea data-template>
-### Tiefenbilder		
-	</textarea>
+### GAN
+
+https://twitter.com/rasbt/status/1548694310299787264
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Was kommt nach GANs?		
+# DALL-E: A chubby green squirrel on the moon
+
+https://labs.openai.com/
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### DALL-E: A chubby green squirrel on the moon
+
+<img src="data/squirrels/2022/DALL-E-squirrels.png" style="height: 500px">
+<br>
+
+<small>
+
+https://labs.openai.com/
+
+</small>
+
+</textarea>
 </section>
 
 
-<section data-markdown class="todo">
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/DALL·E 2022-07-12 13.55.34 - A chubby green squirrel on the moon.png">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/DALL·E 2022-07-12 13.59.26 - A chubby green squirrel on the moon.png">		
+
+</textarea>
+</section>
+
+<section data-markdown>
 	<textarea data-template>
 ### Zusammenfassung
+
+1. Vergangenheit: Klassische Bilderkennung
+   * Oft ausreichend in einem kontrollierten Umfeld
+   * Meist nützlich als Vorverarbeitung  
+1. Gegenwart: Deep Learning
+   * Wenn hohe Flexibilität erforderlich ist
+   * Braucht viele Daten und viel Rechenleistung		
+1. Zukunft: Transformers und Co
+   * Objekte in Bildern erkennen ist deutlich schwieriger und wenig ausgereift
+   * 3D-Kameras können Tiefe als Graustufen abbilden
+   * Transformer bieten einen neuen Ansatz, Modelle sind aber (noch) kaum praktikabel
+   * Bilder können beinahe realistisch erzeugt werden
 
 	</textarea>
 </section>
