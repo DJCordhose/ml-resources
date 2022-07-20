@@ -548,10 +548,21 @@ Scipy 2022
 </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+### Überblick über Architekturen
+
+<img src="img/image-recognition/cnn-architecture-overview.jpeg">
+
+https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
+https://arxiv.org/abs/1605.07678
+	</textarea>
+</section>
+
 
 <section data-markdown>
 	<textarea data-template>
-### Typische Architekturen
+### Wichtigste Architekturen
 
 * AlexNet
 * VGG
@@ -579,9 +590,10 @@ Die Mutter aller CNNs
 * Dropout Layers
 * Training auf augmentierten Daten
 
-https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html
-
+<small>https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html
+<br>
 https://towardsdatascience.com/difference-between-local-response-normalization-and-batch-normalization-272308c034ac
+</small>
 	</textarea>
 </section>
 
@@ -601,19 +613,73 @@ https://arxiv.org/abs/1409.1556
 
 <section data-markdown>
 	<textarea data-template>
+### 2014 / 2015 - GoogLeNet / Inception
+
+Komplexere Architektur, aber weniger Compute
+
+<div class="container">
+	<div class="col">
+		<img src="img/image-recognition/inception.png">
+	</div>
+	<div class="col">
+
+* Netz geht in die Breite: unterschiedliche Kernel-Größen erfassen Features auf unterschiedlicher Ebene
+  * Netz lernt selbst welcher Kernel für welches Feature passt		
+* weniger Compute: Bottleneck 1x1 Convolutions fassen Feature Channels zusammen
+* V2/V3: BatchNormalization normalisiert alle Feature Channels		
+</div>
+</div>	
+
+<small>https://arxiv.org/abs/1409.4842
+</small>
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
 ### 2015 - ResNet
 
-Wirklich tiefe Netze, in der Praxis häufig sehr erfolgreich
+Wirklich tiefe Netze, in der Praxis häufig erfolgreich
 
-* VGG kann man nicht tiefer machen, da Gradienten dann sehr klein werden, d.h. kein Training mehr möglich  
+<div class="container">
+<div class="col">
+	<img src="img/image-recognition/resenet.jpg">
+</div>
+<div class="col">
+
+<!-- * VGG kann man nicht tiefer machen, da Gradienten dann sehr klein werden, d.h. kein Training mehr möglich   -->
+<!-- * VGG kann man nicht tiefer machen, da Gradienten dann sehr klein werden, d.h. kein Training mehr möglich   -->
 * Shortcuts können ganze Blöcke überspringen
-  * Zum einen kann eine einfachere Funktion gelernt werden
-  * Zum anderen kann das ursprüngliche Signal in tiefste Schichten durchgeschleift werden
-  * So hat man weiterhin einen brauchbaren Gradienten
+	* Zum einen kann eine einfachere Funktion gelernt werden
+	* Zum anderen kann das ursprüngliche Signal in tiefste Schichten durchgeschleift werden
+	* So hat man auch bei großer Tiefe einen brauchbaren Gradienten
 * Der letzte Klassifikator mit den meisten Parametern kann bei großer Tiefe eingespart werden  
-* RestNet hat meist 50 oder 101 Layers, es können aber auch mehr sein
+<!-- * RestNet hat meist 50 oder 101 Layers, es können aber auch mehr sein -->
+</div>
+</div>
 
-https://arxiv.org/abs/1512.03385
+<small>https://arxiv.org/abs/1512.03385
+</small>
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Ab 2017 - Mobilnets
+
+Kombination aller Ideen, ausgelegt auf möglichst wenig Compute
+
+* Hauptidee: Convolutions einfacher aufbauen: Spatial Separable Convolutions
+  * erfordern weniger Compute
+  * kann aber auch weniger Operationen abbilden
+* Kombination aller bester Ideen aus den vorherigen Architekturen  
+
+<small>https://arxiv.org/abs/1704.04861
+<br>
+https://arxiv.org/abs/1801.04381
+<br>
+https://towardsdatascience.com/a-basic-introduction-to-separable-convolutions-b99ec3102728
+</small>
 	</textarea>
 </section>
 
