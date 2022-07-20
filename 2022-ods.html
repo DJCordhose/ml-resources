@@ -158,36 +158,27 @@ erzeugen können wie GANs und DALLE-2.
 
 MLConf Berlin: Image Recognition: Past, Present and Future
 
+Image recognition is the parade discipline of machine learning. Artificial neural networks can achieve
+recognition rates and robustness that were unthinkable with classical methods. However,
+traditional approaches are still useful in some areas as an alternative or in combination with neural networks.
+
+In this talk, I take you through the following topics:
+
+1. traditional approaches: What are these approaches? What is their strength and what are their limitations?
+
+2. neural networks: When are they useful and in what architecture? What does it take to train them?
+
+3. what's next: Newer approaches that have not yet been tested in practical applications, but have potential to play a  larger role in the future. 
+
 
 
 			 -->
 
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
 	<textarea data-template>
-### Als nächstes
-
-* CNN Übersicht fertig machen
-  * Inception
-* Was muss man ins Modell hinein trainieren?
-  * Welche realistischen Variationen gibt es?
-  * Kein Objekt gefunden als Klasse
-* Anchor Alibi
 
 	</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-Links CNNs
-* https://towardsdatascience.com/the-w3h-of-alexnet-vggnet-resnet-and-inception-7baaaecccc96
-* https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
-
-Ausbeuten:
-* https://bit.ly/mlconf-2021-cnn-workshop
-
-	</textarea>
-</section>
-			
+</section> -->
 
 			<section data-markdown>
 				<textarea data-template>
@@ -539,6 +530,22 @@ https://teachablemachine.withgoogle.com/
 
 <section data-markdown>
 	<textarea data-template>
+### Was muss man ins Modell hinein trainieren?
+
+Entscheidend sind die Beispieldaten
+
+* Welche realistischen Variationen gibt es?
+* Welche Klassen sind notwendig?
+  * pro Objekttyp
+  * Fragmente?
+  * vermischte Objekttypen?
+  * kein Objekt
+  * ein anderes Objekt
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
 ### Bias in Image Recognition
 
 <img src="img/image-recognition/Bias-in-Image-Recognition.jpg">
@@ -750,34 +757,44 @@ https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images
 	<textarea data-template>
 ### Object Detection
 
-https://github.com/tensorflow/models/tree/master/research/object_detection
+Noch deutlich mehr Forschung als man sich wünschen würde
+
+<img src="img/image-recognition/kites_detections_output.jpg">
+
+
+<small>https://github.com/tensorflow/models/tree/master/research/object_detection
 https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
+</small>
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Tiefenbilder		
-	</textarea>
-</section>
-
-
-
-<section data-markdown>
-	<textarea data-template>
-<img src="img/image-recognition/kinect-image.jpg">		
+## Tiefenbilder		
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
+### Intellisense D435i
+
 <img src="img/image-recognition/d435i.jpg">		
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
+### Azure Kinect
+
 <img src="img/image-recognition/kinect.jpg">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Aufbau mit Azure Kinect
+
+<img src="img/image-recognition/kinect-image.jpg">		
 	</textarea>
 </section>
 
@@ -796,6 +813,18 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 * DALLE-2 		
 	</textarea>
 </section> -->
+
+<section data-markdown>
+	<textarea data-template>
+## Transformers
+
+* Klasse von sehr großen Sprachmodellen
+* Auf Allgemeinheit trainiert
+* Meist riesige Trainingsdaten
+* Erfordern (momentan) zu viel Compute, um sie sinnvoll produktiv zu nutzen
+* Destillierte Modelle und mehr Compute ebnen den Weg in die produktive Welt 
+	</textarea>
+</section>
 
 
 <section data-markdown>
@@ -846,11 +875,16 @@ https://twitter.com/ak92501/status/1462970921518514177
         </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
 ### GAN
 
-https://twitter.com/rasbt/status/1548694310299787264
+<img src="img/image-recognition/GAN-2017-vs-2022.jpg">
+
+<small>https://twitter.com/rasbt/status/1548694310299787264
+<br>
+https://arxiv.org/abs/2206.09479
+</small>
 
 </textarea>
 </section>

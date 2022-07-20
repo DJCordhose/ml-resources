@@ -119,10 +119,12 @@ Rethinking ML
 "Fit a model on a given dataset sampled from a distribution that represents our problem" could be a casual way
 of describing the classic idea of machine learning.
 
-This, however, does not reflect the challenges of many modern machine learning projects. Data does not simply exist and the
-sample people are working on often is not static, but rather gets generated on a daily, weekly or monthly basis. Also,
-the distribution the data is sampled from changes with the domain it comes from. Domains like fashion or music
-change especially fast, but other domains are rarely static as well.
+This, however, does not reflect the challenges of many modern machine learning projects. Data is not simply accessible and the
+sample people are working on often is not static, but rather gets generated on a daily, weekly or monthly basis. 
+Also, the distribution the data is sampled from can change with the domain it comes from.
+Domains like fashion or music change especially fast, but other domains are rarely static as well.
+
+
 
 This temporal aspect indicates that the process of training a machine learning model is a dynamic task that needs iterations with frequent retraining cycles.
 
@@ -130,10 +132,9 @@ In this talk we will address the following questions:
 - Workflow: What kind of workflow reflects our new take on machine learning?
 - Training for Production: How can we anticipate if our model works well in production and when to retrain?
 - Explainability: How can we find out how our model works to check for bias and analysis of degradation?
-- Unwanted Bias: Data sampled in the past is used to predict the future. How can we find out how our model works and if it has bias that is (no longer) wanted?
+- Unwanted Bias: Data sampled in the past is used to predict the future. How can we find out if our model has bias that is (no longer) wanted?
 - Testing: What is a proper way of testing a model to find regressions from previous cycles?
-- Monitoring: How to detect when our model actually degrades in production and how to react?
-
+- Monitoring: How do we detect when our model actually degrades in production and how do we react?
 ---
 
 Kurz
@@ -141,18 +142,36 @@ Kurz
 "Fit a model on a given dataset sampled from a distribution that represents our problem" could be a casual way of describing the classic idea of machine learning.
  
 This, however, does not reflect the challenges of many modern machine learning projects. Data does not simply exist and
-the sample people are working on often is not static, but rather gets generated incrementally in smaller batches. Also,
-the distribution the data is sampled from changes with the domain it comes from.
- 
+the sample people are working on often is not static, but rather gets generated incrementally in smaller batches. 
+Also, the distribution the data is sampled from can change with the domain it comes from.
+
 In this talk we will address the following questions:
 - Workflow: What kind of workflow reflects our new take on machine learning?
 - Training for Production: How can we anticipate if our model works well in production and when to retrain?
 - Explainability: How can we find out how our model works to check for bias and analysis of degradation?
-- Unwanted Bias: Data sampled in the past is used to predict the future. How can we find out how our model works and if it has bias that is (no longer) wanted?
+- Unwanted Bias: Data sampled in the past is used to predict the future. How can we find out if our model has bias that is (no longer) wanted?
 - Testing: What is a proper way of testing a model to find regressions from previous cycles?
-- Monitoring: How to detect when our model actually degrades in production and how to react?
+- Monitoring: How do we detect when our model actually degrades in production and how do we react?
+
+---
+
+Testing:
+
+How do you test machine learning models
+
+Testing is an important and well established discipline in traditional software development. Over the decades people
+have come up with a good idea what to test when and also how.
+
+When we talk about professionalizing machine learning models and actually bringing them into production we can not look
+back on such a long history of experience and best practices.
+
+How do you even test something without having a specification to check against? How to check if a machine learning model
+performs reasonably on a set of data without having a ground truth?
+
+In this talk we will look at both the concepts as well as suitable Python libraries implementing them.
  -->
-			<section data-markdown>
+ 
+ <section data-markdown>
 				<textarea data-template>
 # The Quest for Generalization
 
