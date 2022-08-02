@@ -117,7 +117,7 @@
 		<div class="slides">
 
 
-			<section data-markdown class="todo">
+			<!-- <section data-markdown class="todo">
 				<textarea data-template>
 ### Wann KI?
 
@@ -125,15 +125,7 @@ Positivity. For each level of each covariate in your data, there needs to be som
 Ignorability. All major confounding variables are included in your data. This is a tough one, but necessary to get an unbiased estimate of the treatment effect. 
 
 				</textarea>
-			</section>
-
-			<section data-markdown class="todo">
-				<textarea data-template>
-* Herausforderung ML: neues Werkzeug vs neues Handwerk
-* Keynote: unterhalten mit Elefant und Zaubertrick (falls noch nicht drin)
- 
-		</textarea>
-	</section>
+			</section> -->
 
 			<section data-markdown>
 				<textarea data-template>
@@ -142,7 +134,31 @@ Ignorability. All major confounding variables are included in your data. This is
     </textarea>
 			</section>
 
-<section data-markdown>
+ <section data-markdown>
+	<textarea data-template>
+### Open Knowledge
+
+<img src="img/ok/ok-projekte.png">
+
+Wir bauen tolle Software
+</textarea>
+</section>
+
+	<section data-markdown class="fragments">
+		<textarea data-template>
+## Regelbasierte Systeme bilden den Kern unserer Software
+
+* oft getarnt als
+	* Geschäftslogik
+	* verschachtelte ifs
+* manchmal offensichtlich als
+  * klassische KI-Expertensysteme
+  * CSS
+
+		</textarea>
+	</section>
+
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Beispiel: Wie kann man diese beiden Arten automatisch unterscheiden?
 
@@ -151,21 +167,9 @@ Ignorability. All major confounding variables are included in your data. This is
 Gleiche Form, gleiches Material
 	</textarea>
 </section>
+ -->
 
-<section data-markdown>
-	<textarea data-template>
-### Im Mittelalter wussten Künstler zwar von der Existenz von Elefanten, aber sie konnten sich nur auf die Beschreibungen von Reisenden stützen
-<img src='img/elephants/RUwdSMK.jpeg'>
-
-<small>
-
-https://imgur.com/gallery/MpRBy
-</small>
-	
-</textarea>
-</section>
-
-<section data-markdown>
+ <section data-markdown>
 	<textarea data-template>
 ## Manche Sachen kann man nicht erklären, sondern nur zeigen
 
@@ -176,101 +180,314 @@ Tao Te Ching
 </textarea>
 </section>
 
-
 <section data-markdown>
 	<textarea data-template>
-## Machine Learning
+### Im Mittelalter wussten Künstler zwar von der Existenz von Elefanten, aber sie konnten sich nur auf die Beschreibungen von Reisenden stützen
 
-<!-- |   | Quelle | Vorgehen | Artefakt für die Produktion |
-|---|---|---|---|
-| *Traditionelle Entwicklung* | Modell | Regeln | Programm |
-| *Maschinelles Lernen* | Daten und Priors | ML-Algorithmus | *Modell* |
-|   |   |   | -->
+https://imgur.com/gallery/MpRBy
+<br>
+https://twitter.com/DannyDutch/status/1313211950738870272
+</textarea>
+</section>
+		
+	
+<section data-markdown>
+	<textarea data-template>
+<img src='img/elephants/qX7nRDi-roi.jpg'>
 
-_Ein Ansatz zur Entwicklung von Software, bei dem die Software nicht von Hand geschrieben wird, 
-sondern die Maschine auf der Grundlage gegebener Beispiele und Rahmenbedingungen herausfindet, 
-was zu tun ist_
+<small>
+
+https://imgur.com/gallery/MpRBy
+</small>
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+
+<img src='img/elephants/yyartya.jpeg'>
+
+<small>
+
+https://imgur.com/gallery/MpRBy
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+
+<img src='img/elephants/qyPb6o0.jpeg'>
+
+<small>
+
+https://imgur.com/gallery/MpRBy
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+
+<img src='img/elephants/RUwdSMK.jpeg'>
+
+<small>
+
+https://imgur.com/gallery/MpRBy
+</small>
 
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Warum Rahmenbedingungen wichtig sind - Modelle dürfen grundlegende Eigenschaften der Welt nicht verletzen
+### Machine Learning
+
+<!-- _Ein Ansatz zur Entwicklung von Software, bei dem die Software nicht von Hand geschrieben wird, 
+sondern die Maschine auf der Grundlage gegebener Beispiele und Rahmenbedingungen herausfindet, 
+was zu tun ist_ -->
+
+ein Ansatz zur *Entwicklung von Software*, bei dem man nicht von Hand Regeln schreibt, sondern *die Maschine herausfinden lässt*, 
+was zu tun ist 
+
+Grundlage dafür
+* eine *Metrik* für das Maß des Erfolgs,
+* *Beispieldaten*
+* *Rahmenbedingungen*
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Rahmenbedingungen		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Modelle dürfen grundlegende Eigenschaften der Welt nicht verletzen
 
 <video src="img/smurf/smurf-short.mp4" controls>
 
 </textarea>
 </section>
 
-<!-- <section data-markdown>
+<section data-markdown>
 	<textarea data-template>
-### Machine Learning
-
-
-|   | Source  | Means  | Deployable  |
-|---|---|---|---|
-| *Traditional Development*  | Model  |  Rules | Program |
-| *Machine Learning*  | Data and Priors  | ML Algorithm | Model |
-|   |   |   |
-
-_an approach to develop software, not by writing it by hand, but letting the machine figure out what to do based on a metric for success you define, examples you give and priors you add_
-
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
-    <textarea data-template>
-### Formulating an optimization problem instead of writing code
-
-<img src='img/booster/software-complexity.png'>
-
-<small>
-Andrej Karpathy - TRAIN AI 2018 - Building the Software 2.0 Stack
-
-https://vimeo.com/272696002
-
-</small>
-</textarea>
-</section> -->
+# Beispieldaten
+	</textarea>
+</section>
 
 <section data-markdown>
-    <textarea data-template>
-## Lösung mit Machine Learning
-### Beibringen, nicht programmieren!
+	<textarea data-template>
+## Es geht um Generalisierung		
+### Eine breite Datenbasis ist entscheidend für unseren Erfolg
+	</textarea>
+</section>
 
-<a href='https://teachablemachine.withgoogle.com/'>
-    <img src='img/teachable-machine.png' style="height: 300px;">
-</a>
+<section data-markdown>
+	<textarea data-template>
+# Unser kleines Beispiel aus Texas
 
-_Live Demo_
+<img src="data/squirrels/2022/austin-through-legs.jpg">
 
-https://teachablemachine.withgoogle.com/
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Kann eine KI, die auf Bildern der physischen Welt trainiert wurde, eine Comicfigur erkennen?
+
+Weil: Kinder können das!
+		
+<img src="data/squirrels/validation/335/emoji.png" style="height: 300px">
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Standard-Modelle ohne spezielles Training
+
+<div class="container">
+<div class="col">
+<img src="data/squirrels/validation/335/emoji.png" style="height:400px;">
+
+</div>		
+
+<div class="col">
+<br>
+<br>
+<br>
+
+<h2 class="fragments">
+
+1. 'tree_frog': 68%, 
+1. 'tailed_frog': 8%
+1. 'comic_book', 5%
+</h2>
+</div>		
+</div>
 
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Wann macht ML Sinn?
+		
+# Nicht so toll
 
-_Die Lösung des vorliegenden Problems ist unbekannt oder schwer zu spezifizieren_
-
-_Und_
-
-* Es liegen Daten mit einer klaren, einfache Eingabe und bestenfalls auch passender Ausgabe vor 
-* Es gibt Muster in der Eingabe, die zur Vorhersage verwendet werden können
-* Die Lösung des Problems kann Fehler oder Unsicherheiten tolerieren
-* Wir sind bereit und in der Lage, in einer initialen Phase Experimente mit offenem Ausgang durchzuführen
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Machine Learning Projekte laufen anders ab als klassische Projekte
 
-<img src="img/sketch/phases-ml.png">
+# Wir können aber ein paar Beispiele geben
 
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-close.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-bum.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-blurred.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-drinking.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/ut.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/ut-couple-clipped.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/austin-shadow.jpg">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Ergebnisse nach dem Training auf dem Austin Squirrel
+
+<div class="container">
+<div class="col">
+<img src="data/squirrels/validation/335/emoji.png" style="height:400px;">
+
+</div>		
+
+<div class="col">
+<br>
+<br>
+<br>
+
+<h2 class="fragments">
+
+1. 'fox_squirrel': 35%, 	
+1. 'tree_frog': 11%	
+1. 'muzzle', 6%
+</h2>
+</div>		
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown style="font-size: 400pt">
+	<textarea data-template>
+
+🥳
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Können wir dem Ergebnis trauen?		
+## Woran erkennt die KI unser Eichhörnchen?		
+<img src="img/alibi-anchor-squirrel.png" style="height:400px;" class="fragment">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Da macht unsere KI Schlapp		
+## DALL-E: A chubby green squirrel on the moon
+
+<img src="data/squirrels/2022/DALL-E-squirrels.png" style="height: 500px" class="fragment">
+
+https://labs.openai.com/
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Und was hat das mit uns zu tun?
+
+<img src="img/ok/logo.png">
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+#		Wir sind keine KI Firma, aber...
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Agile und Projekt-Management
+
+<img src="img/sketch/phasen-einfach.jpg">
+
+ML Projekte laufen von Natur aus agil ab
 </textarea>
 </section>
 
@@ -284,7 +501,21 @@ Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
 </textarea>
 </section>
 
+<!-- <section data-markdown>
+	<textarea data-template>
+### Wann macht ML Sinn?
 
+_Die Lösung des vorliegenden Problems ist unbekannt oder schwer zu spezifizieren_
+
+_Und_
+
+* Es liegen Daten mit einer klaren, einfache Eingabe und bestenfalls auch passender Ausgabe vor 
+* Es gibt Muster in der Eingabe, die zur Vorhersage verwendet werden können
+* Die Lösung des Problems kann Fehler oder Unsicherheiten tolerieren
+* Wir sind bereit und in der Lage, in einer initialen Phase Experimente mit offenem Ausgang durchzuführen
+</textarea>
+</section>
+ -->
 <section data-markdown>
     <textarea data-template>
 ### Gut abgehangene Anwendungen
@@ -297,6 +528,45 @@ Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+### ML Modelle brauchen permanente Wartung
+
+<img src='img/mlops/modell-vergammelt.jpg'>
+
+Das gilt nicht nur für ML Modelle, aber bei diesen ist es offensichtlicher
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Aber...
+
+By far, the most accurate representation of machine learning pipelines in the real world 🍿 😀
+
+https://twitter.com/bindureddy/status/1552073812157403136
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Wir sind super darin, Software in Produktion zu bringen und da zu halten
+
+<img src='img/mlops/devops-vs-mlops.png'>
+
+MLOps ist eine Obermenge von DevOps
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+    <textarea data-template>
+### Herausforderungen
+
+* ML ist kein neues Werkzeug, sondern ein neues Handwerk
+* Wenig praktische Ausbildung an Hochschulen
+</textarea>
+</section>
+ -->
 <section data-markdown>
 	<textarea data-template>
 # Vielen Dank
