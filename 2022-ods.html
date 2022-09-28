@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
 
-	<title>Bilderkennung</title>
+	<title>Bilderkennung: Vergangenheit, Gegenwart und Zukunft</title>
 
 	<link rel="stylesheet" href="reveal.js/dist/reset.css">
 	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -132,6 +132,8 @@
 <!-- 
 Stand der Kunst in der Bilderkennung
 
+13:00 - 13:45
+
 Bilderkennung ist die Paradedisziplin des Maschinellen Lernens. Gerade in diesem Bereich sind mit künstlichen Neuralen
 Netzwerken Erkennungsraten und eine Robustheit möglich, an die mit klassischen Verfahren nicht zu denken war. Allerdings
 sind traditionelle Ansätze in manchen Bereichen als Alternative oder in Kombination mit Neuronalen Netzen immer noch
@@ -183,12 +185,55 @@ In this talk, I take you through the following topics:
 			<section data-markdown>
 				<textarea data-template>
 # Stand der Kunst in der Bilderkennung
+## Vergangenheit, Gegenwart und Zukunft
 
-Oliver Zeigermann
+### opta data SummIT, Essen 2022
 
-https://djcordhose.github.io/ml-resources/2022-ods.html
+Oliver Zeigermann, OPEN KNOWLEDGE
+
+Diese Folien: http://bit.ly/opta-summit-2022-cv
+<!-- https://djcordhose.github.io/ml-resources/2022-ods.html -->
     </textarea>
 			</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Wer ist Olli
+
+<div style="display: flex;">
+<div style="flex: 50%;">
+  <a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+  <img src='img/ml-buch-v2.jpg' height="400">
+  </a>
+</div>
+<div style="flex: 50%; font-size: x-large;">
+  <img src='img/olli-opa.jpeg'>
+</div>
+</div>
+<p>
+<a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
+Head of AI@<a href='https://www.openknowledge.de/'>OPEN KNOWLEDGE</a>
+</p>    
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Wer seid ihr?
+
+* Was macht ihr?
+* Was wisst ihr schon?
+* Warum seid ihr hier?
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+Fragen sind *jederzeit* willkommen		
+	</textarea>
+</section>
+
 
 <section data-markdown>
 	<textarea data-template>
@@ -236,17 +281,17 @@ Gleiche Form, gleiches Material
 ### Die Parameter sind Gefummel, aber mit ein bisschen Erfahrung bekommt man das hin 
 
 ```
-aperture = 21
+aperture = 21 # magic number
 img_gray_blur = cv.medianBlur(img_gray, ksize=aperture)
 
-threshold_canny_edge_detector = 100
-threshold_circle_centers = 30
+threshold_canny_edge_detector = 100 # magic number
+threshold_circle_centers = 30 # magic number
 
 circles = cv.HoughCircles(
     image=img_gray_blur,
     method=cv.HOUGH_GRADIENT,
-    dp=1,
-    minDist=rows/8,
+    dp=1, # ???
+    minDist=img_gray_blur.rows/8,
     param1=threshold_canny_edge_detector, 
     param2=threshold_circle_centers,
     minRadius=0, 
@@ -267,6 +312,50 @@ https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
 133 vs 150
 
 </textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Unter Laborbedingungen ist das brauchbar
+
+* Aber: viele "Magic Numbers", die handgetuned werden und auf bestimme Bedingungen passen
+* Objekte mit klaren, am besten geometrische Formen (z.B. Kreise) oder aus diesen zusammengesetzt
+* Konstanter Hintergrund, der sich klar vom zu erkennenden Objekt abhebt
+* Konstante Lichtquelle
+  * Konstante Helligkeit und Farbtemperatur
+* Konstante Kamera mit
+  * Konstanter Entfernung, Winkel und Brennweite
+  * Evtl. schwarz/weiß
+* Generell möglichst konstante Umgebung beim erstellen der Fotos (kein Staub, Sonnenlicht, etc.)
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Python-Werkzeuge für klassischen Bilderkennung
+
+* OpenCV
+  * https://docs.opencv.org/4.x/
+  * https://pypi.org/project/opencv-python/ 
+* scikit-image
+  * https://scikit-image.org/
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Wichtigste Techniken der klassischen Bilderkennung
+
+* Faltungen (Blur/Sobel/Sharpen): https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html
+* Edge-Detection: https://docs.opencv.org/4.x/da/d22/tutorial_py_canny.html
+* Morphologische Operationen (Opening/Closing): https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html
+* Konturen und Bounding Boxes: https://docs.opencv.org/4.x/d3/d05/tutorial_py_table_of_contents_contours.html
+* Segmentierung: https://docs.opencv.org/4.x/d3/db4/tutorial_py_watershed.html
+
+https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
+	</textarea>
 </section>
 
 <section data-markdown>
@@ -300,59 +389,26 @@ https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
 </textarea>
 </section>
 
-<section data-markdown>
-	<textarea data-template>
-### Unter Laborbedingungen ist das sehr brauchbar
 
-_Alles ist voll mit "Magic Numbers", die handgetuned werden und auf bestimme Bedingungen passen_
-
-* Objekte mit klaren, am besten geometrische Formen (z.B. Kreise) oder aus diesen zusammengesetzt
-* Konstanter Hintergrund, der sich klar vom zu erkennenden Objekt abhebt
-* Konstante Lichtquelle
-* Konstante Kamera mit
-  * Konstanter Entfernung, Winkel und Brennweite
-* Generell möglichst konstante Umgebung beim erstellen der Fotos (kein Staub, Sonnenlicht, etc.)
-
-_Aber für die freie Wildbahn eine große Herausforderung_
-	</textarea>
-</section>
 
 <section data-markdown>
 	<textarea data-template>
-### Python-Werkzeuge für klassischen Bilderkennung
+## In wenig kontrollierten oder sehr variantenreichen Szenarien kommt man mit klassischen Ansätzen meist nicht sehr weit
 
-* OpenCV
-  * https://docs.opencv.org/4.x/
-  * https://pypi.org/project/opencv-python/ 
-* scikit-image
-  * https://scikit-image.org/
+Oder zumindest nicht mit klassischen Ansätzen allein
 </textarea>
 </section>
 
-
 <section data-markdown>
 	<textarea data-template>
-### Wichtigste Techniken der klassischen Bilderkennung
-
-* Faltungen (Blur/Sobel/Sharpen): https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html
-* Edge-Detection: https://docs.opencv.org/4.x/da/d22/tutorial_py_canny.html
-* Morphologische Operationen (Opening/Closing): https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html
-* Konturen und Bounding Boxes: https://docs.opencv.org/4.x/d3/d05/tutorial_py_table_of_contents_contours.html
-* Segmentierung: https://docs.opencv.org/4.x/d3/db4/tutorial_py_watershed.html
-
-https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
-	</textarea>
-</section>
-
-<!-- <section data-markdown>
-	<textarea data-template>
-### Und nun?
+### Oft geht es vielmehr um das Muster
 
 <img src="data/ring/hand.jpg">
 
-Geht es hier nicht vielmehr um das Muster?
+Diese sind sehr schwer zu beschreiben
+
 </textarea>
-</section> -->
+</section>
 
 <section data-markdown>
 	<textarea data-template>
@@ -367,8 +423,9 @@ Geht es hier nicht vielmehr um das Muster?
 
 <section data-markdown>
 	<textarea data-template>
-### Manche Sachen kann man nicht erklären, sondern nur zeigen
-Im Mittelalter wussten Künstler zwar von der Existenz von Elefanten, aber sie konnten sich nur auf die Beschreibungen von Reisenden stützen
+#### Im Mittelalter wussten Künstler zwar von der Existenz von Elefanten, aber sie konnten sich nur auf die Beschreibungen von Reisenden stützen
+
+So etwas kommt dabei heraus
 <img src='img/elephants/RUwdSMK.jpeg' class="fragment">
 
 <small>https://imgur.com/gallery/MpRBy
@@ -377,39 +434,56 @@ Im Mittelalter wussten Künstler zwar von der Existenz von Elefanten, aber sie k
 </textarea>
 </section>
 
-<!-- <section data-markdown>
-	<textarea data-template>
-## Manche Sachen kann man nicht erklären, sondern nur zeigen
-
-### The way that can be spoken is not the eternal way
-### The name that can be named is not the eternal name
-		
-Tao Te Ching		
-</textarea>
-</section> -->
-
-
-
 <section data-markdown>
 	<textarea data-template>
-### Machine Learning
+## Manche Sachen kann man nicht beschreiben, sondern nur zeigen
 
-<!-- _Ein Ansatz zur Entwicklung von Software, bei dem die Software nicht von Hand geschrieben wird, 
-sondern die Maschine auf der Grundlage gegebener Beispiele und Rahmenbedingungen herausfindet, 
-was zu tun ist_ -->
+<br>
+<div class="fragment">
+
+<h3>The way that can be spoken is not the eternal way</h3>
+<h3>The name that can be named is not the eternal name</h3>
+		
+<p>Tao Te Ching</p>
+</div>		
+</textarea>
+</section>
+
+
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Machine Learning
 
 ein Ansatz zur *Entwicklung von Software*, bei dem man nicht von Hand Regeln schreibt, sondern *die Maschine herausfinden lässt*, 
 was zu tun ist 
 
 Grundlage dafür
-* eine *Metrik* für das Maß des Erfolgs,
+* eine *Metrik* für das Maß des Erfolgs
 * *Beispieldaten*
 * *Rahmenbedingungen*
 
 </textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/ml-vs-dev-1.png">		
+	</textarea>
 </section>
 
 <section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/ml-vs-dev-2.png">		
+	</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### Machine Learning auf manuellen Features
 
@@ -424,7 +498,7 @@ Wir extrahieren manuell Merkmale und trainieren damit einen Klassifikator
 </section>
 
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### Bilderkennung mit Deep Learning 
 
@@ -445,13 +519,13 @@ Wir lernen auch die Extraktion der Features
 ### Aber Bilder sind besonders		
 
 * In Bildern hat die Nachbarschaft von Pixeln eine Bedeutung
-* Objekte sind miteinander verbunden
+  * Objekte sind miteinander verbunden
 * Merkmale in einem Objekt sind translationsinvariant
 
 	</textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### Spezielle Schichten zur Bilderkennung
 
@@ -497,7 +571,7 @@ _beginnt mit einer Reihe von Faltungsblöcken zur Merkmalsextraktion und endet m
     </small></p>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Deep Learning und Datenmenge
 <img src='img/Why-Deep-Learning.png' height="500">
@@ -509,8 +583,8 @@ https://machinelearningmastery.com/what-is-deep-learning/
 
 </textarea>
 </section>
-
-<section data-markdown>
+ -->
+<!-- <section data-markdown>
     <textarea data-template>
 ### Entscheidend sind aber fast immer die Beispieldaten
 
@@ -523,17 +597,17 @@ _Herausforderungen im Live Demo_
 https://teachablemachine.withgoogle.com/
 
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
 	<textarea data-template>
 ### Was muss man ins Modell hinein trainieren?
 
-Entscheidend sind die Beispieldaten
+*Entscheidend sind die Beispieldaten*
 
 * Welche realistischen Variationen gibt es?
 * Welche Klassen sind notwendig?
-  * pro Objekttyp
+  * eine pro Objekttyp
   * Fragmente?
   * vermischte Objekttypen?
   * kein Objekt
@@ -541,7 +615,7 @@ Entscheidend sind die Beispieldaten
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Bias in Image Recognition
 
@@ -550,7 +624,7 @@ Entscheidend sind die Beispieldaten
 Enzo Ferrante - Fairness of Machine Learning in Medical Image Analysis
 Scipy 2022
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -563,9 +637,30 @@ https://arxiv.org/abs/1605.07678
 	</textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+### Bibliotheken für Deep Learning
 
+* *PyTorch*: Platzhirsch im akademischen Umfeld
+  * hat häufig die ersten Implementierungen neuer Ideen
+* *TensorFlow / Keras*: Platzhirsch im industriellen Umfeld
+  * Auf Imagenet vortrainierte Modelle zum direkten Einsatz oder zum Transfer Learning: https://keras.io/applications
+  * Spezielle Bausteine für Computer Vision (Augmentation, Object Detection, Stable Diffusion): https://keras.io/keras_cv/ 
+	</textarea>
+</section>
 
 <section data-markdown>
+	<textarea data-template>
+### KerasCV
+
+<img src="img/image-recognition/keras-cv-augmentations.gif">
+
+https://keras.io/keras_cv/
+	</textarea>
+</section>
+
+
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Wann macht ML Sinn?
 
@@ -578,7 +673,7 @@ _Und_
 * Die Lösung des Problems kann Fehler oder Unsicherheiten tolerieren
 * Wir sind bereit und in der Lage, in einer initialen Phase Experimente mit offenem Ausgang durchzuführen
 </textarea>
-</section>
+</section> -->
 
 <!-- <section data-markdown>
 	<textarea data-template>
@@ -689,7 +784,7 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 	</textarea>
 </section> -->
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
 ## Transformers
 
@@ -701,7 +796,33 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 	</textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
+<textarea data-template>
+### Transformer Architektur: Encoder/Decoder
+
+<div style="display: flex; align-items: center; justify-content: space-around;">
+  <div class="col">
+    <ul>
+      <li>Links: Encoder</li>
+      <li>Rechts: Decoder</li>
+      <li>Der Encoder konvertiert Eingaben in kontextsensitive Embeddings</li>
+      <li>Der Decoder kann auf diesen Embeddings arbeiten, braucht aber immer einen linken Kontext zur Generierung der Ausgabe</li>
+      <li>Encoder und Decoder können zusammen oder jeder für sich allein arbeiten</li>
+    </ul>
+</div>
+<div>
+    <img src='img/transformers/transformer-encoder-decoder.png' >
+</div>
+</div>
+<small>
+
+https://arxiv.org/pdf/1706.03762.pdf
+</small>
+
+        </textarea>
+</section>
+
+<!-- <section data-markdown class="todo">
 	<textarea data-template>
 	
 Lucas Beyer (@giffmana) twitterte um 10:50 PM on Mi., Sept. 14, 2022:
@@ -714,10 +835,10 @@ If you want to use some of the slides for your lecture, you may, as long as you 
 If you'd like me to give the lecture: maybe; e-mail me. https://t.co/uaNpWqEt2S
 (https://twitter.com/giffmana/status/1570152923233144832?t=1PvFXSFzV_GyRUbXuxLEZw&s=03) 
 </textarea>
-</section>
+</section> -->
 
 
-<section data-markdown>
+<!-- <section data-markdown>
 <textarea data-template>
 ### Object Detection expressed as language problem
 
@@ -732,25 +853,28 @@ https://twitter.com/karpathy/status/1441497808897380357
 https://keras.io/examples/vision/mobilevit/
 </small>
         </textarea>
-</section>
+</section> -->
 
 
 <section data-markdown>
 <textarea data-template>
-### An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale
+### Bilderkennung kann mit einem Encoder gemacht werden
+
+Die Hoffnung: Training weniger aufwändig (und: warum auch nicht)
 
 <img src='img/transformers/vit.jpg'>
 
-<small>
+<small style="margin-top: -40px; ">
 
 https://arxiv.org/abs/2010.11929
 <br>
 https://huggingface.co/transformers/model_doc/vit.html
-</small>
+<br>
+https://keras.io/examples/vision/mobilevit/</small>
         </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 <textarea data-template>
 ### Unified models for Vision
 
@@ -763,11 +887,27 @@ https://arxiv.org/abs/2111.11432
 https://twitter.com/ak92501/status/1462970921518514177
 </small>
         </textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+### GANs: Generative Adversarial Networks
+
+* Ein Teil des Systems (Generator) lernt ein Bild zu fälschen...
+* während ein anderes (Discriminator) immer besser wird, die Fälschung zu erkennen 
+<!-- * Startpunkt ist Training mit realen Daten -->
+
+<img src="img/image-recognition/gan.png" style="height: 400px">
+
+<small>https://poloclub.github.io/ganlab/
+</small>
+
+</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### GAN
+### GANs: Stand der Kunst 2022
 
 <img src="img/image-recognition/GAN-2017-vs-2022.jpg">
 
@@ -779,21 +919,26 @@ https://arxiv.org/abs/2206.09479
 </textarea>
 </section>
 
+
 <section data-markdown>
 	<textarea data-template>
-## Was kommt nach GANs?		
-# DALL-E: A chubby green squirrel on the moon
+### Was kommt nach GANs?		
+## Diffusion 		
 
-https://labs.openai.com/
+*DALL·E 2 has learned the relationship between images and the text used to describe them. It uses a process called
+“diffusion,” which starts with a pattern of random dots and gradually alters that pattern towards an image when it
+recognizes specific aspects of that image.*
+
+https://openai.com/dall-e-2/
 
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### DALL-E: A chubby green squirrel on the moon
+### DALL·E 2: A chubby green squirrel on the moon
 
-<img src="data/squirrels/2022/DALL-E-squirrels.png" style="height: 500px">
+<img src="data/squirrels/2022/DALL-E-squirrels.png" style="height: 500px" class="fragments">
 <br>
 
 <small>
@@ -822,7 +967,23 @@ https://labs.openai.com/
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
+	<textarea data-template>
+### DALL·E 2 ist closed source 
+
+nur über OpenAI API verfügbar, aber
+
+* Stable Diffusion ist frei
+  * https://stability.ai/blog/stable-diffusion-public-release
+  * https://github.com/CompVis/stable-diffusion
+* Und ebenso über KerasCV verfügbar
+  * https://keras.io/guides/keras_cv/generate_images_with_stable_diffusion/
+  * https://twitter.com/fchollet/status/1574782176633430017
+
+</textarea>
+</section>
+
+<!-- <section data-markdown class="todo">
 	<textarea data-template>
 
 Today, along with my collaborators at @GoogleAI, we announce DreamBooth! It allows a user to generate a subject of choice (pet, object, etc.) in myriad contexts and with text-guided semantic variations! The options are endless. (Thread 👇)
@@ -830,10 +991,10 @@ webpage: https://t.co/EDpIyalqiK
 1/N https://t.co/FhHFAMtLwS
 (https://twitter.com/natanielruizg/status/1563166568195821569?t=X_u51bmbJ33aMiY_GV9I6A&s=03) 
 </textarea>
-</section>
+</section> -->
 
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### Zusammenfassung
 
@@ -842,12 +1003,12 @@ webpage: https://t.co/EDpIyalqiK
    * Meist nützlich als Vorverarbeitung  
 1. Gegenwart: Deep Learning
    * Wenn hohe Flexibilität erforderlich ist
-   * Braucht viele Daten und viel Rechenleistung		
+   * Braucht viele Daten und viel Rechenleistung, kein Training ohne GPU(s)		
 1. Zukunft: Transformers und Co
    * Objekte in Bildern erkennen ist deutlich schwieriger und wenig ausgereift
    * 3D-Kameras können Tiefe als Graustufen abbilden
    * Transformer bieten einen neuen Ansatz, Modelle sind aber (noch) kaum praktikabel
-   * Bilder können beinahe realistisch erzeugt werden
+   * Bilder können beinahe realistisch aus Beschreibungen erzeugt werden
 
 	</textarea>
 </section>
@@ -866,7 +1027,7 @@ oliver.zeigermann@openknowledge.de
 
 Twitter: @DJCordhose
 
-Diese Folien: https://djcordhose.github.io/ml-resources/2022-ods.html
+Diese Folien: http://bit.ly/opta-summit-2022-cv
 </textarea>
 </section>
 		</div>
@@ -931,6 +1092,7 @@ Diese Folien: https://djcordhose.github.io/ml-resources/2022-ods.html
 			width: 1100,
 			slideNumber: true,
 			hideInactiveCursor: false,
+			transition: 'none', // none/fade/slide/convex/concave/zoom
 
 
 			// Learn about plugins: https://revealjs.com/plugins/
