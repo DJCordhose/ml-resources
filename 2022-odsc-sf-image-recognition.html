@@ -1,0 +1,1213 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
+
+	<title>Bilderkennung: Vergangenheit, Gegenwart und Zukunft</title>
+
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+	<link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+	<style>
+		.right-img {
+			margin-left: 10px !important;
+			float: right;
+			height: 500px;
+		}
+
+		.todo:before {
+			content: 'TODO: ';
+		}
+
+		.todo {
+			color: red !important;
+		}
+
+		code span.line-number {
+			color: lightcoral;
+		}
+
+		.reveal pre code {
+			max-height: 1000px !important;
+		}
+
+		img {
+			border: 0 !important;
+			box-shadow: 0 0 0 0 !important;
+			height: 450px;
+		}
+
+		.reveal {
+			-ms-touch-action: auto !important;
+			touch-action: auto !important;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4 {
+			/* letter-spacing: 2px; */
+			font-family: 'Calibri', sans-serif;
+			/* font-family: 'Times New Roman', Times, serif; */
+			/* font-weight: bold; */
+			color: black;
+			/* font-style: italic; */
+			/* letter-spacing: -2px; */
+			text-transform: none !important;
+		}
+
+		.reveal em {
+			font-weight: bold;
+		}
+
+		.reveal section img {
+			background: none;
+		}
+
+		.reveal img.with-border {
+			border: 1px solid #586e75 !important;
+			box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+		}
+
+		.reveal li {
+			margin-bottom: 8px;
+		}
+
+		/* For li's that use FontAwesome icons as bullet-point */
+		.reveal ul.fa-ul li {
+			list-style-type: none;
+		}
+
+		.reveal {
+			/* font-family: 'Work Sans', 'Calibri'; */
+			font-family: 'Calibri';
+			color: black !important;
+			font-size: xx-large;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.col img {
+			height: auto;
+		}
+
+		.col,
+		col-1 {
+			flex: 1;
+		}
+
+		.col-2 {
+			flex: 2;
+		}
+
+	/* https://intranet.openknowledge.de/plugins/servlet/mobile?contentId=18612939#content/view/18612939
+      https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
+      https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
+       */
+       body:after {
+        content: url(img/ok/logo.png) ;
+        position: fixed;
+        bottom: 80px;
+        left: -1080px;
+        transform: scale(.06);
+        height: 10px;
+    }
+
+	</style>
+
+</head>
+
+<body style="background-color: whitesmoke;">
+	<div class="reveal">
+		<div class="slides">
+<!-- 
+Stand der Kunst in der Bilderkennung
+
+13:00 - 13:45
+
+Bilderkennung ist die Paradedisziplin des Maschinellen Lernens. Gerade in diesem Bereich sind mit künstlichen Neuralen
+Netzwerken Erkennungsraten und eine Robustheit möglich, an die mit klassischen Verfahren nicht zu denken war. Allerdings
+sind traditionelle Ansätze in manchen Bereichen als Alternative oder in Kombination mit Neuronalen Netzen immer noch
+sinnvoll.
+
+In diesem Vortrag führe ich daher durch die folgenden Themen:
+
+1. Traditionelle Ansätze
+
+Was sind diese Ansätze? Wo liegt deren Stärke und wo sind die Grenzen?
+
+2. Neuronale Netzwerke
+
+Wann sind diese sinnvoll und in welcher Architektur? Was braucht man, um sie zu trainieren?
+
+3. Was kommt als nächstes?
+
+Es gibt neuere Ansätze, die in der praktischen Anwendung bisher nicht erprobt sind, aber Potential haben, in der Zukunft
+eine größere Rolle zu spielen. Dazu gehören Ansätze auf Basis von Transformern und Systeme, die realitätsnahe Bilder
+erzeugen können wie GANs und DALLE-2.
+
+
+---
+
+MLConf Berlin: Image Recognition: Past, Present and Future
+
+Image recognition is the parade discipline of machine learning. Artificial neural networks can achieve
+recognition rates and robustness that were unthinkable with classical methods. However,
+traditional approaches are still useful in some areas as an alternative or in combination with neural networks.
+
+In this talk, I take you through the following topics:
+
+1. traditional approaches: What are these approaches? What is their strength and what are their limitations?
+
+2. neural networks: When are they useful and in what architecture? What does it take to train them?
+
+3. what's next: Newer approaches that have not yet been tested in practical applications, but have potential to play a  larger role in the future. 
+
+---
+
+Image Recognition with OpenCV and TensorFlow
+
+https://odsc.com/speakers/image-recognition-with-opencv-and-tensorflow/
+
+Recognizing what is in an image is a common task. Applications range from simple classification to extracting multiple objects even in video.
+
+On one hand we will use OpenCV for classic image processing and on the other hand we have TensorFlow with its Keras API for machine learning to do pattern matching.
+
+In this hands-on workshop you will learn when to use which library and how to use it. The workshop assumes that you have a basic knowledge of Python.
+All hands-on exercises are on Colab notebooks, so all you need is a laptop, a recent version of a Chrome browser, and a Google account.
+
+This workshop is split into two parts of approx. 90 minutes each. Each part has well prepared hands-on exercises and short lectures.
+
+The first part covers classic image processing with OpenCV. We will use it to extract objects from complex images and remove noise and other artefacts.
+
+In the second part we train a classifier using the extracted objects and make it generalize to previously unseen objects. For this part we will use standard convolutional neural network architectures provided by the Keras API on top of TensorFlow. That means we do not go into the details of the network architecture, but rather how to use it, what options you have, and how to know if you are doing well.
+
+Session Outline:
+- Getting started (30 min)
+  - introduction to image recognition
+  - scope of the libraries
+  - preparing hands-on: setting it up on Colab or local machine (repo ready to be cloned)
+- Classic Image Processing with OpenCV (60 min)
+  - internal structures of images
+  - regions of interest (ROI)
+  - filtering and detection
+  - hands-on: detect and extract ROIs from images  
+- Deep Learning using TensorFlow (90 min)
+  - when do we need deep learning
+  - from filters to convolutional networks
+  - hands-on: understanding convolutional neural networks
+  - what architecture to use
+  - how to know if we are fitting the right parts
+  - hands-on: using neural networks to classify ROIs
+- Closing (30 min)
+  - wrap up
+  - what else is there? from Transformers to DALL-E
+  - open questions
+
+Background Knowledge:
+Solid understanding of Python and Notebooks, basic understanding of TensorFlow
+			 -->
+
+<section data-markdown class="preparation">
+	<textarea data-template>
+* Klicker
+* Handy Uhr
+* Internet (Hotspot)
+* Demos laden
+	- keras viz
+	- GANLab
+	- dalle 2
+	</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+
+Plan		
+- alle Folien wieder rein 
+- auf Englisch übersetzen. 
+- Übungen pro Thema dazu		
+  - OpenCV Notebook mit der Hough Transformation 
+  - Bilderkennung von Hund vs Katze
+  - DALLE-2 falls ohne Anmeldung möglich
+
+Details
+- OpenCV kann auch Patterns matchen
+
+	</textarea>
+</section>
+
+
+			<section data-markdown>
+				<textarea data-template>
+# Stand der Kunst in der Bilderkennung
+## Vergangenheit, Gegenwart und Zukunft
+
+### opta data SummIT, Essen 2022
+
+Oliver Zeigermann, OPEN KNOWLEDGE
+
+Diese Folien: http://bit.ly/opta-summit-2022-cv
+<!-- https://djcordhose.github.io/ml-resources/2022-ods.html -->
+    </textarea>
+			</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Wer ist Olli
+
+<div style="display: flex;">
+<div style="flex: 50%;">
+  <a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+  <img src='img/ml-buch-v2.jpg' height="400">
+  </a>
+</div>
+<div style="flex: 50%; font-size: x-large;">
+  <img src='img/olli-opa.jpeg'>
+</div>
+</div>
+<p>
+<a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
+Head of AI@<a href='https://www.openknowledge.de/'>OPEN KNOWLEDGE</a>
+</p>    
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Wer seid ihr?
+
+* Was macht ihr?
+* Was wisst ihr schon?
+* Warum seid ihr hier?
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+Fragen sind *jederzeit* willkommen		
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. Vergangenheit: Klassische Bilderkennung
+1. Gegenwart: Deep Learning
+1. Zukunft: Transformers und Co
+	</textarea>
+</section>
+			
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. _Vergangenheit: Klassische Bilderkennung_
+1. Gegenwart: Deep Learning
+1. Zukunft: Transformers und Co
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Beispiel: Wie kann man diese beiden Arten automatisch unterscheiden?
+
+<img src="img/rings.jpg">
+
+Gleiche Form, gleiches Material
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Feature Extraction
+### Unterschiedliche Größe
+
+* es gibt Verfahren, die Kreise zuverlässig erkennen können
+* das bekannteste Verfahren ist die Hough-Transformation
+* anhand der Größe der Kreise könnten wir den Unterschied ablesen
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Die Parameter sind Gefummel, aber mit ein bisschen Erfahrung bekommt man das hin 
+
+```
+aperture = 21 # magic number
+img_gray_blur = cv.medianBlur(img_gray, ksize=aperture)
+
+threshold_canny_edge_detector = 100 # magic number
+threshold_circle_centers = 30 # magic number
+
+circles = cv.HoughCircles(
+    image=img_gray_blur,
+    method=cv.HOUGH_GRADIENT,
+    dp=1, # ???
+    minDist=img_gray_blur.rows/8,
+    param1=threshold_canny_edge_detector, 
+    param2=threshold_circle_centers,
+    minRadius=0, 
+    maxRadius=0)
+```
+
+https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hough-Transformation
+
+<img src="data/ring/stone-top-detection.jpg">
+
+133 vs 150
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Unter Laborbedingungen ist das brauchbar
+
+* Aber: viele "Magic Numbers", die handgetuned werden und auf bestimme Bedingungen passen
+* Objekte mit klaren, am besten geometrische Formen (z.B. Kreise) oder aus diesen zusammengesetzt
+* Konstanter Hintergrund, der sich klar vom zu erkennenden Objekt abhebt
+* Konstante Lichtquelle
+  * Konstante Helligkeit und Farbtemperatur
+* Konstante Kamera mit
+  * Konstanter Entfernung, Winkel und Brennweite
+  * Evtl. schwarz/weiß
+* Generell möglichst konstante Umgebung beim erstellen der Fotos (kein Staub, Sonnenlicht, etc.)
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Python-Werkzeuge für klassischen Bilderkennung
+
+* OpenCV
+  * https://docs.opencv.org/4.x/
+  * https://pypi.org/project/opencv-python/ 
+* scikit-image
+  * https://scikit-image.org/
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Wichtigste Techniken der klassischen Bilderkennung
+
+* Faltungen (Blur/Sobel/Sharpen): https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html
+* Edge-Detection: https://docs.opencv.org/4.x/da/d22/tutorial_py_canny.html
+* Morphologische Operationen (Opening/Closing): https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html
+* Konturen und Bounding Boxes: https://docs.opencv.org/4.x/d3/d05/tutorial_py_table_of_contents_contours.html
+* Segmentierung: https://docs.opencv.org/4.x/d3/db4/tutorial_py_watershed.html
+
+https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Aber nun...
+
+<img src="data/ring/stone-tilt-detection.jpg">
+
+114 vs 116
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Andere Umgebung und Schatten
+
+<img src="data/ring/wama-tilt-detection.jpg">
+
+145 vs 151
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Ohje
+
+<img src="data/ring/table-top-flash-detection.jpg">
+
+</textarea>
+</section>
+
+
+
+<section data-markdown>
+	<textarea data-template>
+## In wenig kontrollierten oder sehr variantenreichen Szenarien kommt man mit klassischen Ansätzen meist nicht sehr weit
+
+Oder zumindest nicht mit klassischen Ansätzen allein
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Oft geht es vielmehr um das Muster
+
+<img src="data/ring/hand.jpg">
+
+Diese sind sehr schwer zu beschreiben
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. Vergangenheit: Klassische Bilderkennung
+1. _Gegenwart: Deep Learning_
+1. Zukunft: Transformers und Co
+	</textarea>
+</section>
+			
+
+<!-- <section data-markdown>
+	<textarea data-template>
+#### Im Mittelalter wussten Künstler zwar von der Existenz von Elefanten, aber sie konnten sich nur auf die Beschreibungen von Reisenden stützen
+
+So etwas kommt dabei heraus
+<img src='img/elephants/RUwdSMK.jpeg' class="fragment">
+
+<small>https://imgur.com/gallery/MpRBy
+</small>
+	
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Manche Sachen kann man nicht beschreiben, sondern nur zeigen
+
+<br>
+<div class="fragment">
+
+<h3>The way that can be spoken is not the eternal way</h3>
+<h3>The name that can be named is not the eternal name</h3>
+		
+<p>Tao Te Ching</p>
+</div>		
+</textarea>
+</section> -->
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+ein Ansatz zur *Entwicklung von Software*, bei dem man nicht von Hand Regeln schreibt, sondern *die Maschine herausfinden lässt*, 
+was zu tun ist 
+
+Grundlage dafür
+* eine *Metrik* für das Maß des Erfolgs
+* *Beispieldaten*
+* *Rahmenbedingungen*
+
+</textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/ml-vs-dev-1.png">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/ml-vs-dev-2.png">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KI vs Machine Learning vs Deep Learning
+
+<img src="img/KI_ML_Skizzen/Folie12.PNG">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KI vs Machine Learning vs Deep Learning
+
+<img src="img/KI_ML_Skizzen/Folie13.PNG">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KI vs Machine Learning vs Deep Learning
+
+<img src="img/KI_ML_Skizzen/Folie14.PNG">		
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Machine Learning auf manuellen Features
+
+Wir extrahieren manuell Merkmale und trainieren damit einen Klassifikator
+
+* Wir könnten eine ganze Reihe von Features aus unseren Bildern extrahieren
+* Das erste könnten die Kreise sein
+* Kanten, Konturen und Segmente sind ebenso üblich 
+* Diese Features kodieren wir numerisch und schicken sie in Machine Learning Algorithmen
+* Wir können aber auch noch abstraktere Features extrahieren wie z.B. die Größe des Rings
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Bilderkennung mit Deep Learning 
+
+Wir lernen auch die Extraktion der Features
+
+* Deep Learning ist eine spezielle Form des Machine Learnings
+* Neuronale Netze mit vielen Schichten
+* Dense-Layers sind effizient über Matrix-Multiplikationen realisierbar 
+* Training über Backpropagation
+* 3 Schichten mit genügend Neuronen und teilweise linearer Aktivierung (ReLU) können beliebige Funktionen approximieren 
+* Das heißt auch theoretisch auf jede Aufgabe der Bilderkennung trainierbar
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Aber Bilder sind besonders		
+
+* In Bildern hat die Nachbarschaft von Pixeln eine Bedeutung
+  * Objekte sind miteinander verbunden
+* Merkmale in einem Objekt sind translationsinvariant
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Spezielle Schichten zur Bilderkennung
+
+Convolutional Neural Networks (CNNs)
+* wir nutzen dieses Wissen über Bilder 
+* ein alter Bekannter: Faltungen (Convolution) 
+* Faltungen haben sehr wenige Parameter, und sind Translations-Invariant
+* derselbe Filter geht über alle Teile des Bildes
+* Neuronale Netze können beliebige Faltungskerne lernen
+* Schaltet man viele hintereinander können diese Merkmale des Bildes extrahieren
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+    <textarea data-template>
+### Faltungen
+
+<img src="img/setosa_io_image-kernels.png">
+
+https://setosa.io/ev/image-kernels/
+	</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Deep Learning mit CNNs
+
+<img src="img/vgg.png">
+
+_beginnt mit einer Reihe von Faltungsblöcken zur Merkmalsextraktion und endet mit einem klassischen Klassifikator_
+
+</textarea>
+</section>
+ -->
+<section>
+    <h3>Wie spielen die Schichten zusammen?</h3>
+    <a href="https://transcranial.github.io/keras-js/#/mnist-cnn" target="_blank">
+        <img src="img/keras-browser.png" height="350px">
+    </a>
+    <p><small>
+        <a href="https://transcranial.github.io/keras-js/#/mnist-cnn" target="_blank">https://transcranial.github.io/keras-js/#/mnist-cnn</a>
+    </small></p>
+</section>
+
+<!-- <section data-markdown>
+    <textarea data-template>
+### Deep Learning und Datenmenge
+<img src='img/Why-Deep-Learning.png' height="500">
+<small>
+
+Andrew Ng: https://www.slideshare.net/ExtractConf<br>
+https://machinelearningmastery.com/what-is-deep-learning/    
+</small>
+
+</textarea>
+</section>
+ -->
+<!-- <section data-markdown>
+    <textarea data-template>
+### Entscheidend sind aber fast immer die Beispieldaten
+
+<a href='https://teachablemachine.withgoogle.com/'>
+    <img src='img/teachable-machine.png' style="height: 300px;">
+</a>
+
+_Herausforderungen im Live Demo_
+
+https://teachablemachine.withgoogle.com/
+
+</textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+### Was muss man ins Modell hinein trainieren?
+
+*Entscheidend sind die Beispieldaten*
+
+* Welche realistischen Variationen gibt es?
+* Welche Klassen sind notwendig?
+  * eine pro Objekttyp
+  * Fragmente?
+  * vermischte Objekttypen?
+  * kein Objekt
+  * ein anderes Objekt
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Bias in Image Recognition
+
+<img src="img/image-recognition/Bias-in-Image-Recognition.jpg">
+
+Enzo Ferrante - Fairness of Machine Learning in Medical Image Analysis
+Scipy 2022
+</textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+### Überblick über Architekturen
+
+<img src="img/image-recognition/cnn-architecture-overview.jpeg">
+
+https://towardsdatascience.com/neural-network-architectures-156e5bad51ba
+https://arxiv.org/abs/1605.07678
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Bibliotheken für Deep Learning
+
+* *PyTorch*: Platzhirsch im akademischen Umfeld
+  * hat häufig die ersten Implementierungen neuer Ideen
+* *TensorFlow / Keras*: Platzhirsch im industriellen Umfeld
+  * Auf Imagenet vortrainierte Modelle zum direkten Einsatz oder zum Transfer Learning: https://keras.io/applications
+  * Spezielle Bausteine für Computer Vision (Augmentation, Object Detection, Stable Diffusion): https://keras.io/keras_cv/ 
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KerasCV
+
+<img src="img/image-recognition/keras-cv-augmentations.gif">
+
+https://keras.io/keras_cv/
+	</textarea>
+</section>
+
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Wann macht ML Sinn?
+
+_Die Lösung des vorliegenden Problems ist unbekannt oder schwer zu spezifizieren_
+
+_Und_
+
+* Es liegen Daten mit einer klaren, einfache Eingabe und bestenfalls auch passender Ausgabe vor 
+* Es gibt Muster in der Eingabe, die zur Vorhersage verwendet werden können
+* Die Lösung des Problems kann Fehler oder Unsicherheiten tolerieren
+* Wir sind bereit und in der Lage, in einer initialen Phase Experimente mit offenem Ausgang durchzuführen
+</textarea>
+</section> -->
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Machine Learning Projekte laufen anders ab als klassische Projekte
+
+<img src="img/sketch/phases-ml.png">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Künstliche Intelligenz (KI) vs Machine Learning (ML)
+
+<img src='img/se_ai_and_architecure.pptx.png'>
+
+Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
+</textarea>
+</section> -->
+
+
+ <!-- <section data-markdown>
+	<textarea data-template>
+### Erklärbarkeit und Check gegen Overfitting
+
+<img src="img/Alibi_Explain_Logo_rgb.png" style="height:400px;">
+
+https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images		
+
+</textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+### Erklärbarkeit und Check gegen Overfitting
+
+<img src="img/alibi-anchor-squirrel.png" style="height:400px;" class="fragment">		
+
+https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images		
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Überprüfung gegen Adversarial Attacks
+
+Adversarial Perturbation gibt bei x und x' deutlich andere Ausgaben
+
+<img src="img/adversarialae.png" style="height:400px;" class="fragment">
+
+<small>
+
+https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html		
+https://github.com/SeldonIO/alibi-detect#adversarial-detection
+
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. Vergangenheit: Klassische Bilderkennung
+1. Gegenwart: Deep Learning
+1. _Zukunft: Transformers und Co_
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Object Detection
+
+Noch deutlich mehr Forschung als man sich wünschen würde
+
+<img src="img/image-recognition/kites_detections_output.jpg">
+
+
+<small>https://github.com/tensorflow/models/tree/master/research/object_detection
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
+</small>
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Tiefenbilder		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Intellisense D435i
+
+<img src="img/image-recognition/d435i.jpg">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Azure Kinect
+
+<img src="img/image-recognition/kinect.jpg">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Aufbau mit Azure Kinect
+
+<img src="img/image-recognition/kinect-image.jpg">		
+	</textarea>
+</section>
+
+
+<!-- <section data-markdown class="todo">
+	<textarea data-template>
+* https://www.kaggle.com/code/odins0n/jax-flax-tf-data-vision-transformers-tutorial
+	</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Den Fortgeschrittenen Kram aus 2022-image-recognition.html
+* Transformers
+* GANs
+* DALLE-2 		
+	</textarea>
+</section> -->
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+## Transformers
+
+* Klasse von sehr großen Sprachmodellen
+* Auf Allgemeinheit trainiert
+* Meist riesige Trainingsdaten
+* Erfordern (momentan) zu viel Compute, um sie sinnvoll produktiv zu nutzen
+* Destillierte Modelle und mehr Compute ebnen den Weg in die produktive Welt 
+	</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Transformer Architektur: Encoder/Decoder
+
+<div style="display: flex; align-items: center; justify-content: space-around;">
+  <div class="col">
+    <ul>
+      <li>Links: Encoder</li>
+      <li>Rechts: Decoder</li>
+      <li>Der Encoder konvertiert Eingaben in kontextsensitive Embeddings</li>
+      <li>Der Decoder kann auf diesen Embeddings arbeiten, braucht aber immer einen linken Kontext zur Generierung der Ausgabe</li>
+      <li>Encoder und Decoder können zusammen oder jeder für sich allein arbeiten</li>
+    </ul>
+</div>
+<div>
+    <img src='img/transformers/transformer-encoder-decoder.png' >
+</div>
+</div>
+<small>
+
+https://arxiv.org/pdf/1706.03762.pdf
+</small>
+
+        </textarea>
+</section>
+
+<!-- <section data-markdown class="todo">
+	<textarea data-template>
+	
+Lucas Beyer (@giffmana) twitterte um 10:50 PM on Mi., Sept. 14, 2022:
+My Transformer tutorial slides are now available at https://t.co/aYfnVKPDjT
+
+I'll append recordings to this thread as I get them.
+
+If you want to use some of the slides for your lecture, you may, as long as you credit me.
+
+If you'd like me to give the lecture: maybe; e-mail me. https://t.co/uaNpWqEt2S
+(https://twitter.com/giffmana/status/1570152923233144832?t=1PvFXSFzV_GyRUbXuxLEZw&s=03) 
+</textarea>
+</section> -->
+
+
+<!-- <section data-markdown>
+<textarea data-template>
+### Object Detection expressed as language problem
+
+<img src='img/transformers/pix2seq-od.jpg'>
+
+<small>
+
+https://arxiv.org/abs/2109.10852
+<br>
+https://twitter.com/karpathy/status/1441497808897380357
+<br>
+https://keras.io/examples/vision/mobilevit/
+</small>
+        </textarea>
+</section> -->
+
+
+<section data-markdown>
+<textarea data-template>
+### Bilderkennung kann mit einem Encoder gemacht werden
+
+Die Hoffnung: Training weniger aufwändig (und: warum auch nicht)
+
+<img src='img/transformers/vit.jpg'>
+
+<small style="margin-top: -40px; ">
+
+https://arxiv.org/abs/2010.11929
+<br>
+https://huggingface.co/transformers/model_doc/vit.html
+<br>
+https://keras.io/examples/vision/mobilevit/</small>
+        </textarea>
+</section>
+
+<!-- <section data-markdown>
+<textarea data-template>
+### Unified models for Vision
+
+<img src='img/transformers/florence-foundational-vision.jpg'>
+
+<small>
+
+https://arxiv.org/abs/2111.11432
+<br>
+https://twitter.com/ak92501/status/1462970921518514177
+</small>
+        </textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+### GANs: Generative Adversarial Networks
+
+* Ein Teil des Systems (Generator) lernt ein Bild zu fälschen...
+* während ein anderes (Discriminator) immer besser wird, die Fälschung zu erkennen 
+<!-- * Startpunkt ist Training mit realen Daten -->
+
+<img src="img/image-recognition/gan.png" style="height: 400px">
+
+<small>https://poloclub.github.io/ganlab/
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### GANs: Stand der Kunst 2022
+
+<img src="img/image-recognition/GAN-2017-vs-2022.jpg">
+
+<small>https://twitter.com/rasbt/status/1548694310299787264
+<br>
+https://arxiv.org/abs/2206.09479
+</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Was kommt nach GANs?		
+## Diffusion 		
+
+*DALL·E 2 has learned the relationship between images and the text used to describe them. It uses a process called
+“diffusion,” which starts with a pattern of random dots and gradually alters that pattern towards an image when it
+recognizes specific aspects of that image.*
+
+https://openai.com/dall-e-2/
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### DALL·E 2: A chubby green squirrel on the moon
+
+<img src="data/squirrels/2022/DALL-E-squirrels.png" style="height: 500px" class="fragments">
+<br>
+
+<small>
+
+https://labs.openai.com/
+
+</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/DALL·E 2022-07-12 13.55.34 - A chubby green squirrel on the moon.png">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+
+<img src="data/squirrels/2022/DALL·E 2022-07-12 13.59.26 - A chubby green squirrel on the moon.png">		
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### DALL·E 2 ist closed source 
+
+nur über OpenAI API verfügbar, aber
+
+* Stable Diffusion ist frei
+  * https://stability.ai/blog/stable-diffusion-public-release
+  * https://github.com/CompVis/stable-diffusion
+* Und ebenso über KerasCV verfügbar
+  * https://keras.io/guides/keras_cv/generate_images_with_stable_diffusion/
+  * https://twitter.com/fchollet/status/1574782176633430017
+
+</textarea>
+</section>
+
+<!-- <section data-markdown class="todo">
+	<textarea data-template>
+
+Today, along with my collaborators at @GoogleAI, we announce DreamBooth! It allows a user to generate a subject of choice (pet, object, etc.) in myriad contexts and with text-guided semantic variations! The options are endless. (Thread 👇)
+webpage: https://t.co/EDpIyalqiK
+1/N https://t.co/FhHFAMtLwS
+(https://twitter.com/natanielruizg/status/1563166568195821569?t=X_u51bmbJ33aMiY_GV9I6A&s=03) 
+</textarea>
+</section> -->
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Zusammenfassung
+
+1. Vergangenheit: Klassische Bilderkennung
+   * Oft ausreichend in einem kontrollierten Umfeld
+   * Meist nützlich als Vorverarbeitung  
+1. Gegenwart: Deep Learning
+   * Wenn hohe Flexibilität erforderlich ist
+   * Braucht viele Daten und viel Rechenleistung, kein Training ohne GPU(s)		
+1. Zukunft: Transformers und Co
+   * Objekte in Bildern erkennen ist deutlich schwieriger und wenig ausgereift
+   * 3D-Kameras können Tiefe als Graustufen abbilden
+   * Transformer bieten einen neuen Ansatz, Modelle sind aber (noch) kaum praktikabel
+   * Bilder können beinahe realistisch aus Beschreibungen erzeugt werden
+
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+# Vielen Dank
+## Stand der Kunst in der Bilderkennung
+
+Bleibt gern im Kontakt
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
+
+oliver.zeigermann@openknowledge.de
+
+Twitter: @DJCordhose
+
+Diese Folien: http://bit.ly/opta-summit-2022-cv
+</textarea>
+</section>
+		</div>
+	</div>
+
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="lib/jquery.js"></script>
+	<script>
+		const printMode = window.location.search.match(/print-pdf/gi);
+		const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+			window.location.hostname.indexOf('127.0.0.1') !== -1;
+		const isPresentation = isLocal && !printMode;
+		const isPublic = !isPresentation;
+
+		$('.hide').remove();
+
+		if (isPresentation) {
+		} else {
+			// only applies to public version
+			$('.todo').remove();
+			$('.preparation').remove();
+			$('.local').remove();
+		}
+
+		Reveal.addEventListener('ready', function (event) {
+			// applies to all versions
+			$('code').addClass('line-numbers');
+
+			$('.fragments li').addClass('fragment')
+
+			// make all links open in new tab
+			$('a').attr('target', '_blank')
+
+			if (isPresentation) {
+				// only applies to presentation version
+				Reveal.configure({ controls: false });
+			} else {
+				// only applies to public version
+				$('.fragment').removeClass('fragment');
+			}
+
+			// we do not like fragments
+			// $('.fragment').removeClass('fragment');
+
+		});
+
+	</script>
+
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+			width: 1100,
+			slideNumber: true,
+			hideInactiveCursor: false,
+			transition: 'none', // none/fade/slide/convex/concave/zoom
+
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+
+</body>
+
+</html>
