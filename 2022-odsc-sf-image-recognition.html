@@ -263,9 +263,6 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 * Does a custom architecture make sense? Only for understanding?
 
 
-Jetzt: mit den Bildern ein Netz trainieren
-* hier abgucken: /home/olli/cv/facialExpressionRecognition/EmotionDetection.ipynb
-* und da: https://github.com/joaopdss/FacialExpressionRecognition
 </textarea>
 </section>
 
@@ -276,9 +273,13 @@ TODOs
 
 * Story in Folien aufbauen
 * Allgemeine OpenCV Teile aus Folien
+* in OpenCV: and remove noise and other artefacts.
 * Welches Netzwerk 
   * https://keras.io/api/applications/
-* ausgewählte Themen aus practical cnn, z.B. Alibi Explain
+  Sobald Internet da: mit den Bildern ein Netz trainieren
+  * hier abgucken: /home/olli/cv/facialExpressionRecognition/EmotionDetection.ipynb
+  * und da: https://github.com/joaopdss/FacialExpressionRecognition
+  * ausgewählte Themen aus practical cnn, z.B. Alibi Explain
   * 2022-scipy-generalization.html	
   * https://github.com/DJCordhose/ml-resources/blob/main/notebooks/image/generalization.ipynb
 	</textarea>
@@ -302,11 +303,26 @@ https://odsc.com/speakers/image-recognition-with-opencv-and-tensorflow/
 
 Oliver Zeigermann, OPEN KNOWLEDGE
 
-Diese Folien: http://bit.ly/odsc-2022-cv
+These slides: http://bit.ly/odsc-2022-cv
 <!-- https://djcordhose.github.io/ml-resources/2022-odsc-sf-image-recognition.html -->
     </textarea>
 			</section>
 
+<section data-markdown class="todo">
+	<textarea data-template>
+Exercise:
+- jede Zelle ausführen, also darauf achten, dass die alle Sinn machen
+- TensorFlow
+  1. choose a neural network architecture and train it on the data provided
+  1. make sure the model can be converted to the TensorFlow.js format
+- OpenCV
+  1. 
+  1. Take a few pictures of yourself and use with the code provided			
+
+			Wie können Übungen aussehen?
+		</textarea>
+	</section>
+	
 <section data-markdown>
   <textarea data-template>
 ### Who is Olli
@@ -340,247 +356,56 @@ This is not school
 	</textarea>
 </section>
 
+
+			<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. Our use case
+1. Present: Deep Learning
+1. Past: Classic Computer Vision
+1. Future: Transformers
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. _Our use case_
+1. Present: Deep Learning
+1. Past: Classic Computer Vision
+1. Future: Transformers
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Use Case: Detecting emotions
+
+* find out what emotion someone shows
+* based on facial expressions
+* restricted to very typical western emotions
+  * "Angry", 
+  * "Happy", 
+  * "Sad", 
+  * "Surprise", 
+  * "Neutral"
+* bring this into production on your mobile phone
+
+	</textarea>
+</section>
+
 <section data-markdown>
 	<textarea data-template>
 ### Agenda
 
 1. Our use case
-1. Past: Classic Computer Vision
-1. Present: Deep Learning
-1. Future: Transformers & Co
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Agenda
-
-1. Past: Classic Computer Vision
-1. Present: Deep Learning
-1. Future: Transformers & Co
-	</textarea>
-</section>
-			
-
-<section data-markdown>
-	<textarea data-template>
-### Agenda
-
-1. _Past: Classic Computer Vision_
-1. Present: Deep Learning
-1. Future: Transformers & Co
-
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Example: How to distinguish these two types automatically?
-
-<img src="img/rings.jpg">
-
-Same form, same material
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## Feature Extraction
-### Different Sizes
-
-* there are methods that can reliably detect circles
-* the best known method is the Hough transformation
-* by the size of the circles we could tell the difference
-
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### The parameters are fiddly, but with a little experience you can do it
-
-```
-aperture = 21 # magic number
-img_gray_blur = cv.medianBlur(img_gray, ksize=aperture)
-
-threshold_canny_edge_detector = 100 # magic number
-threshold_circle_centers = 30 # magic number
-
-circles = cv.HoughCircles(
-    image=img_gray_blur,
-    method=cv.HOUGH_GRADIENT,
-    dp=1, # ???
-    minDist=img_gray_blur.rows/8,
-    param1=threshold_canny_edge_detector, 
-    param2=threshold_circle_centers,
-    minRadius=0, 
-    maxRadius=0)
-```
-
-https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Hough-Transformation
-
-<img src="data/ring/stone-top-detection.jpg">
-
-133 vs 150
-
-</textarea>
-</section>
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Under laboratory conditions this is doable
-
-* But: many "Magic Numbers" that are hand-tuned and fit to certain conditions
-* Objects with clear, preferably geometric shapes (e.g. circles) or composed of them
-* Constant background that clearly stands out from the object to be recognized
-* Constant light source
-  * Constant brightness and color temperature
-* Constant camera with
-  * Constant distance, angle and focal length
-  * Possibly black and white
-* Generally constant environment when taking photos (no dust, sunlight, etc.)
-
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Python Tools for classic computer vision
-
-* OpenCV
-  * https://docs.opencv.org/4.x/
-  * https://pypi.org/project/opencv-python/ 
-* scikit-image
-  * https://scikit-image.org/
-</textarea>
-</section>
-
-
-<section data-markdown>
-	<textarea data-template>
-### Most important techniques of classic computer vision
-
-* Convolutions (Blur/Sobel/Sharpen): https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html
-* Edge-Detection: https://docs.opencv.org/4.x/da/d22/tutorial_py_canny.html
-* Morphological Operations (Opening/Closing): https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html
-* Contours and Bounding Boxes: https://docs.opencv.org/4.x/d3/d05/tutorial_py_table_of_contents_contours.html
-* Segmentation: https://docs.opencv.org/4.x/d3/db4/tutorial_py_watershed.html
-* Template Matching: https://docs.opencv.org/4.x/d4/dc6/tutorial_py_template_matching.html
-
-https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### But now...
-
-<img src="data/ring/stone-tilt-detection.jpg">
-
-114 vs 116
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Other environment and shadows
-
-<img src="data/ring/wama-tilt-detection.jpg">
-
-145 vs 151
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Oh dear...
-
-<img src="data/ring/table-top-flash-detection.jpg">
-
-</textarea>
-</section>
-
-
-
-<section data-markdown>
-	<textarea data-template>
-## In little controlled or very variant scenarios you usually don't get very far with classical approaches
-
-Or at least not with classical approaches alone
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Varying patterns are hard for classical computer vision 
-
-<img src="data/ring/hand.jpg">
-
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Agenda
-
-1. Past: Classic Computer Vision
 1. _Present: Deep Learning_
-1. Future: Transformers & Co
+1. Past: Classic Computer Vision
+1. Future: Transformers
 	</textarea>
 </section>
-			
-<!-- <section data-markdown>
-	<textarea data-template>
-#### Im Mittelalter wussten Künstler zwar von der Existenz von Elefanten, aber sie konnten sich nur auf die Beschreibungen von Reisenden stützen
-
-So etwas kommt dabei heraus
-<img src='img/elephants/RUwdSMK.jpeg' class="fragment">
-
-<small>https://imgur.com/gallery/MpRBy
-</small>
-	
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## Manche Sachen kann man nicht beschreiben, sondern nur zeigen
-
-<br>
-<div class="fragment">
-
-<h3>The way that can be spoken is not the eternal way</h3>
-<h3>The name that can be named is not the eternal name</h3>
-		
-<p>Tao Te Ching</p>
-</div>		
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
-	<textarea data-template>
-### Machine Learning
-
-ein Ansatz zur *Entwicklung von Software*, bei dem man nicht von Hand Regeln schreibt, sondern *die Maschine herausfinden lässt*, 
-was zu tun ist 
-
-Grundlage dafür
-* eine *Metrik* für das Maß des Erfolgs
-* *Beispieldaten*
-* *Rahmenbedingungen*
-
-</textarea>
-</section> -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -605,6 +430,58 @@ Grundlage dafür
 <img src="img/AI.png">		
 	</textarea>
 </section>
+
+
+<section data-markdown>
+	<textarea data-template>
+
+### When is AI/ML applicable?
+
+* The solution to the problem at hand is unknown or _difficult to specify_.
+* There is _data_ with a clear, simple input and, at best, output that matches it
+* There are _patterns_ in the input that can be used for prediction
+* The solution to the problem can tolerate error or _uncertainty_.
+  * _80% accuracy_ is rarely exceeded
+* We are willing and able to perform _open-ended experiments_ in an initial phase.
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Phases of a machine learning project
+
+<img src="img/en/process.PNG">
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Data is king
+
+* What data is available?
+  * Often not trivially answerable at all
+* How much data?
+* Which quality
+* Which areas are covered?
+* Data compatible with use case? 
+* How much effort for preparation?
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hands On I: Getting and preprocessing faces data
+
+* Download data: https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data
+  * You will need a Kaggle account for that, create one if you do not have one so far
+  * Make yourself comfortable with the data
+  * Decide which classes you want to train on 
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/cv/faces-data.ipynb
+	</textarea>
+</section>
+
 
 <section data-markdown class="fragments">
 	<textarea data-template>
@@ -694,62 +571,6 @@ _start with a set of convolutional blocks for feature extraction and ends with a
         <a href="https://transcranial.github.io/keras-js/#/mnist-cnn" target="_blank">https://transcranial.github.io/keras-js/#/mnist-cnn</a>
     </small></p>
 </section>
-
-<!-- <section data-markdown>
-    <textarea data-template>
-### Deep Learning und Datenmenge
-<img src='img/Why-Deep-Learning.png' height="500">
-<small>
-
-Andrew Ng: https://www.slideshare.net/ExtractConf<br>
-https://machinelearningmastery.com/what-is-deep-learning/    
-</small>
-
-</textarea>
-</section>
- -->
-<!-- <section data-markdown>
-    <textarea data-template>
-### Entscheidend sind aber fast immer die Beispieldaten
-
-<a href='https://teachablemachine.withgoogle.com/'>
-    <img src='img/teachable-machine.png' style="height: 300px;">
-</a>
-
-_Herausforderungen im Live Demo_
-
-https://teachablemachine.withgoogle.com/
-
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
-	<textarea data-template>
-### Was muss man ins Modell hinein trainieren?
-
-*Entscheidend sind die Beispieldaten*
-
-* Welche realistischen Variationen gibt es?
-* Welche Klassen sind notwendig?
-  * eine pro Objekttyp
-  * Fragmente?
-  * vermischte Objekttypen?
-  * kein Objekt
-  * ein anderes Objekt
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
-	<textarea data-template>
-### Bias in Image Recognition
-
-<img src="img/image-recognition/Bias-in-Image-Recognition.jpg">
-
-Enzo Ferrante - Fairness of Machine Learning in Medical Image Analysis
-Scipy 2022
-</textarea>
-</section> -->
-
 <section data-markdown>
 	<textarea data-template>
 ### Overview of Architectures
@@ -775,60 +596,16 @@ https://arxiv.org/abs/1605.07678
 
 <section data-markdown>
 	<textarea data-template>
-### KerasCV
+### Hands On II: Train a CNN on the data
 
-<img src="img/image-recognition/keras-cv-augmentations.gif">
+* Choose a given architecture
+* Train using the prepared data
+* What score can you get?
 
-https://keras.io/keras_cv/
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/cv/faces-cnn.ipynb
 	</textarea>
 </section>
 
-
-<!-- <section data-markdown>
-	<textarea data-template>
-### Wann macht ML Sinn?
-
-_Die Lösung des vorliegenden Problems ist unbekannt oder schwer zu spezifizieren_
-
-_Und_
-
-* Es liegen Daten mit einer klaren, einfache Eingabe und bestenfalls auch passender Ausgabe vor 
-* Es gibt Muster in der Eingabe, die zur Vorhersage verwendet werden können
-* Die Lösung des Problems kann Fehler oder Unsicherheiten tolerieren
-* Wir sind bereit und in der Lage, in einer initialen Phase Experimente mit offenem Ausgang durchzuführen
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
-	<textarea data-template>
-### Machine Learning Projekte laufen anders ab als klassische Projekte
-
-<img src="img/sketch/phases-ml.png">
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Künstliche Intelligenz (KI) vs Machine Learning (ML)
-
-<img src='img/se_ai_and_architecure.pptx.png'>
-
-Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
-</textarea>
-</section> -->
-
-
- <!-- <section data-markdown>
-	<textarea data-template>
-### Erklärbarkeit und Check gegen Overfitting
-
-<img src="img/Alibi_Explain_Logo_rgb.png" style="height:400px;">
-
-https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images		
-
-</textarea>
-</section> -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -858,102 +635,116 @@ https://github.com/SeldonIO/alibi-detect#adversarial-detection
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
-### Autoencoders 
+### Done?
 
-* Smart way of dimensionality reduction to latent space 
-* Can be combined with dimensionality reduction, clustering and outlier detection
+_Objective: Recognize emotional state of user on mobile device_ 
 
-<div class="container">
-	<div class="col">
-		<img src="img/autoencoder-latent-space.png">
-	</div>
-	<div class="col">
-		<img src="img/autoencoder-clustering.png">
-	</div>
-
-</div>
-
-
-<!-- https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/autoencoder_outlier_detection.ipynb -->
-
+* we can detect the emotion on the given training set to a reasonable accuracy
+* but
+  1. this is a TensorFlow model not running on your mobile phone
+  1. even if it does run, will it have a decent performance
+  1. main issue
+     * training data had faces nicely cut out
+	 * our camera on mobile phone does not do this
+	 * images are high res
+	 * images are color, not b/w
+  1. how often do we trigger the neural network? 
 </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+### Remember: ML solutions are almost never just the model, but rather a system
 
+<img src="img/en/production.PNG">
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### After having validated the approach we need to implement it for production
+
+<img src="img/en/process.PNG">
+</textarea>
+</section>
 
 
 <section data-markdown>
 	<textarea data-template>
 ### Agenda
 
-1. Past: Classic Computer Vision
+1. Our use case
 1. Present: Deep Learning
-1. _Future: Transformers & Co_
+1. _Past: Classic Computer Vision_
+1. Future: Transformers
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Object Detection
+### Most important techniques of classic computer vision
+</textarea>
+</section>
 
-Rather academic than solved industrially 
+<section data-markdown>
+	<textarea data-template>
+### Hands On III: Extract faces using OpenCV
 
-<img src="img/image-recognition/kites_detections_output.jpg">
 
-
-<small>https://github.com/tensorflow/models/tree/master/research/object_detection
-https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
-</small>
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/cv/opencv-faces.ipynb
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-## Depth Images		
+### Most important techniques of classic computer vision
+
+* Convolutions (Blur/Sobel/Sharpen): https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html
+* Edge-Detection: https://docs.opencv.org/4.x/da/d22/tutorial_py_canny.html
+* Morphological Operations (Opening/Closing): https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html
+* Contours and Bounding Boxes: https://docs.opencv.org/4.x/d3/d05/tutorial_py_table_of_contents_contours.html
+* Segmentation: https://docs.opencv.org/4.x/d3/db4/tutorial_py_watershed.html
+* Template Matching: https://docs.opencv.org/4.x/d4/dc6/tutorial_py_template_matching.html
+
+https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Intellisense D435i
+### Hands On IV: Integrate work into a browser app
 
-<img src="img/image-recognition/d435i.jpg">		
+* convert your model to TF.js
+* load it into the skeleton of the browser app
+* try it out locally
+
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Azure Kinect
+### Agenda
 
-<img src="img/image-recognition/kinect.jpg">		
+1. Our use case
+1. Present: Deep Learning
+1. Past: Classic Computer Vision
+1. _Future: Transformers_
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Setup using Azure Kinect
+### Agenda
 
-<img src="img/image-recognition/kinect-image.jpg">		
+1. Our use case
+1. Present: Deep Learning
+1. Past: Classic Computer Vision
+1. _Future: Transformers_
 	</textarea>
 </section>
 
-
-<!-- <section data-markdown class="todo">
-	<textarea data-template>
-* https://www.kaggle.com/code/odins0n/jax-flax-tf-data-vision-transformers-tutorial
-	</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-### Den Fortgeschrittenen Kram aus 2022-image-recognition.html
-* Transformers
-* GANs
-* DALLE-2 		
-	</textarea>
-</section> -->
 
 <section data-markdown class="fragments">
 	<textarea data-template>
@@ -966,6 +757,22 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 * Distilled models and more compute pave the way to the productive world 
 			</textarea>
 </section>
+
+<section data-markdown class="fragments todo">
+	<textarea data-template>
+## Transformers vs Classic Computing
+
+* approximation of a parallel differentiable turing machine
+* neural turing machine:
+  * content based attention
+  * read write memory accesses guided by a learned controller (lstm)
+  * controller as a bottleneck 
+  * instead a self attention layer has parallel readers with access to the entire previous layer and write to the next layer 
+
+https://twitter.com/cosminnegruseri/status/1584325166909181952
+			</textarea>
+</section>
+
 
 <section data-markdown>
 <textarea data-template>
@@ -1059,111 +866,6 @@ https://twitter.com/ak92501/status/1462970921518514177
 </small>
         </textarea>
 </section> -->
-
-<section data-markdown>
-	<textarea data-template>
-### GANs: Generative Adversarial Networks
-
-* One part of the system (Generator) learns to forge an image....
-* while another (discriminator) gets better and better at detecting the forgery  
-<!-- * Startpunkt ist Training mit realen Daten -->
-
-<img src="img/image-recognition/gan.png" style="height: 400px">
-
-<small>https://poloclub.github.io/ganlab/
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### GANs: State of the Art 2022
-
-<img src="img/image-recognition/GAN-2017-vs-2022.jpg">
-
-<small>https://twitter.com/rasbt/status/1548694310299787264
-<br>
-https://arxiv.org/abs/2206.09479
-</small>
-
-</textarea>
-</section>
-
-
-<section data-markdown>
-	<textarea data-template>
-### What comes after GANs		
-## Diffusion 		
-
-*DALL·E 2 has learned the relationship between images and the text used to describe them. It uses a process called
-“diffusion,” which starts with a pattern of random dots and gradually alters that pattern towards an image when it
-recognizes specific aspects of that image.*
-
-https://openai.com/dall-e-2/
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### DALL·E 2: A chubby green squirrel on the moon
-
-<img src="data/squirrels/2022/DALL-E-squirrels.png" style="height: 500px" class="fragments">
-<br>
-
-<small>
-
-https://labs.openai.com/
-
-</small>
-
-</textarea>
-</section>
-
-
-<section data-markdown>
-	<textarea data-template>
-
-<img src="data/squirrels/2022/DALL·E 2022-07-12 13.55.34 - A chubby green squirrel on the moon.png">		
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-
-<img src="data/squirrels/2022/DALL·E 2022-07-12 13.59.26 - A chubby green squirrel on the moon.png">		
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### DALL·E 2 ist closed source 
-
-only accessible over OpenAI API, but
-
-* Stable Diffusion is free
-  * https://stability.ai/blog/stable-diffusion-public-release
-  * https://github.com/CompVis/stable-diffusion
-* also available over KerasCV
-  * https://keras.io/guides/keras_cv/generate_images_with_stable_diffusion/
-  * https://twitter.com/fchollet/status/1574782176633430017
-
-</textarea>
-</section>
-
-<!-- <section data-markdown class="todo">
-	<textarea data-template>
-
-Today, along with my collaborators at @GoogleAI, we announce DreamBooth! It allows a user to generate a subject of choice (pet, object, etc.) in myriad contexts and with text-guided semantic variations! The options are endless. (Thread 👇)
-webpage: https://t.co/EDpIyalqiK
-1/N https://t.co/FhHFAMtLwS
-(https://twitter.com/natanielruizg/status/1563166568195821569?t=X_u51bmbJ33aMiY_GV9I6A&s=03) 
-</textarea>
-</section> -->
-
 
 <section data-markdown class="fragments">
 	<textarea data-template>
