@@ -193,18 +193,6 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 
 <section data-markdown class="todo">
 	<textarea data-template>
-### Plan		
-- Thema von Tim für Workshop nehmen
-  - Teil I:
-    1. Gesichter aus Bildern heraus lösen
-	1. Alle möglichen anderen Arten der Vorverarbeitung
-  - Teil II:
-    - wie in Tims Notebook die Moods erkennen
-	</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
 ### Tims Kram
 - https://github.com/TimWue/facialExpressionRecognition
 - https://github.com/TimWue/serve.cnn
@@ -270,6 +258,9 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 	<textarea data-template>
 
 TODOs
+
+* TF.js installieren, sodass ich das Modell speichern kann
+  * pip install tensorflowjs
 
 * Story in Folien aufbauen
 * Allgemeine OpenCV Teile aus Folien
@@ -684,14 +675,74 @@ _Objective: Recognize emotional state of user on mobile device_
 
 <section data-markdown>
 	<textarea data-template>
-### Most important techniques of classic computer vision
+### Extracting random objects from an image
+
+Rather academic than solved industrially 
+
+<img src="img/image-recognition/kites_detections_output.jpg">
+
+
+<small>https://github.com/tensorflow/models/tree/master/research/object_detection
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
+</small>
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### But what about faces specifically?
+
+* Can be done
+  * also based on ML, but ML other people have already done for us
+  * requires a good set of bounding boxes as training data
+  * advanced techniques like SSD (https://towardsdatascience.com/ssd-single-shot-detector-for-object-detection-using-multibox-1818603644ca) require a lot of compute to train
+
+* Examples
+  * https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html
+  * https://pyimagesearch.com/2018/02/26/face-detection-with-opencv-and-deep-learning/
+  * https://pyimagesearch.com/2021/04/26/face-detection-tips-suggestions-and-best-practices/
+  * https://pyimagesearch.com/2022/10/24/thermal-vision-fever-detector-with-python-and-opencv-starter-project/
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### But what about faces specifically?
+
+* Can be done
+* also based on ML, but ML other people have already done for us
+* requires a good set of bounding boxes as training data
+* advanced techniques like SSD (https://towardsdatascience.com/ssd-single-shot-detector-for-object-detection-using-multibox-1818603644ca) require a lot of compute to train
+
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Hands On III: Extract faces using OpenCV
+### Our approach: Cascade Classifier
 
+* OpenCV implementation available 
+* error prone, but fast
+* works in browser
+* fast and small model
+* alternatives: https://pyimagesearch.com/2021/04/26/face-detection-tips-suggestions-and-best-practices/
+
+https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html
+
+<!-- * Links
+  * https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html -->
+  <!-- * https://pyimagesearch.com/2021/04/26/face-detection-tips-suggestions-and-best-practices/ -->
+  <!-- * https://pyimagesearch.com/2022/10/24/thermal-vision-fever-detector-with-python-and-opencv-starter-project/
+  * https://pyimagesearch.com/2018/02/26/face-detection-with-opencv-and-deep-learning/ -->
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Hands On III: Extract faces using OpenCV cascade classifier
+
+* tweak detection thresholds
 
 https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/cv/opencv-faces.ipynb
 	</textarea>
@@ -755,24 +806,9 @@ https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
 * Mostly huge training data
 * Require (currently) too much compute to use them productively in a meaningful way
 * Distilled models and more compute pave the way to the productive world 
+* Attention Layer is the most important component
 			</textarea>
 </section>
-
-<section data-markdown class="fragments todo">
-	<textarea data-template>
-## Transformers vs Classic Computing
-
-* approximation of a parallel differentiable turing machine
-* neural turing machine:
-  * content based attention
-  * read write memory accesses guided by a learned controller (lstm)
-  * controller as a bottleneck 
-  * instead a self attention layer has parallel readers with access to the entire previous layer and write to the next layer 
-
-https://twitter.com/cosminnegruseri/status/1584325166909181952
-			</textarea>
-</section>
-
 
 <section data-markdown>
 <textarea data-template>
@@ -799,6 +835,28 @@ https://arxiv.org/pdf/1706.03762.pdf
 
         </textarea>
 </section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+## Transformers vs Classic Computing
+
+* approximation of a parallel differentiable turing machine
+* neural turing machine:
+  * content based attention
+  * read write memory accesses guided by a learned controller (lstm)
+  * controller as a bottleneck 
+  * instead a self attention layer has parallel readers with access to the entire previous layer and write to the next layer
+* Links
+  * Neural Turing Machines: https://arxiv.org/abs/1410.5401
+  * Neural GPUs Learn Algorithms: https://arxiv.org/abs/1511.08228
+  * Attention Is All You Need: https://arxiv.org/abs/1706.03762    
+
+https://twitter.com/cosminnegruseri/status/1584325166909181952
+			</textarea>
+</section>
+
+
 
 <!-- <section data-markdown class="todo">
 	<textarea data-template>
