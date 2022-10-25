@@ -179,17 +179,10 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 
 -->
 
-<section data-markdown class="preparation">
+<!-- <section data-markdown class="preparation">
 	<textarea data-template>
-* Klicker
-* Handy Uhr
-* Internet (Hotspot)
-* Demos laden
-	- keras viz
-	- GANLab
-	- dalle 2
 	</textarea>
-</section>
+</section> -->
 
 <section data-markdown class="todo">
 	<textarea data-template>
@@ -261,6 +254,9 @@ TODOs
 
 * TF.js installieren, sodass ich das Modell speichern kann
   * pip install tensorflowjs
+* Seaborn installieren
+
+* Alle Hands-On Teile so haben, dass die per Default schon zucken
 
 * Story in Folien aufbauen
 * Allgemeine OpenCV Teile aus Folien
@@ -355,7 +351,7 @@ This is not school
 1. Our use case
 1. Present: Deep Learning
 1. Past: Classic Computer Vision
-1. Future: Transformers
+1. Future: Transformers - Bonus Level
 	</textarea>
 </section>
 
@@ -374,15 +370,9 @@ This is not school
 	<textarea data-template>
 ### Use Case: Detecting emotions
 
-* find out what emotion someone shows
-* based on facial expressions
-* restricted to very typical western emotions
-  * "Angry", 
-  * "Happy", 
-  * "Sad", 
-  * "Surprise", 
-  * "Neutral"
-* bring this into production on your mobile phone
+<img src="img/emotions.png">
+
+_we do not just fool around, we want to bring this into production on edge devices_
 
 	</textarea>
 </section>
@@ -598,7 +588,7 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 </section>
 
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Explainability and Check against Overfitting
 
@@ -625,7 +615,7 @@ https://github.com/SeldonIO/alibi-detect#adversarial-detection
 
 </textarea>
 </section>
-
+ -->
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Done?
@@ -785,18 +775,6 @@ https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
 	</textarea>
 </section>
 
-<section data-markdown>
-	<textarea data-template>
-### Agenda
-
-1. Our use case
-1. Present: Deep Learning
-1. Past: Classic Computer Vision
-1. _Future: Transformers_
-	</textarea>
-</section>
-
-
 <section data-markdown class="fragments">
 	<textarea data-template>
 ## Transformers
@@ -905,10 +883,37 @@ The hope: training becomes less complex (and: why not)
 https://arxiv.org/abs/2010.11929
 <br>
 https://huggingface.co/transformers/model_doc/vit.html
-<br>
-https://keras.io/examples/vision/mobilevit/</small>
+</small>
         </textarea>
 </section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### VIT with convolutions
+
+- LeViT, May 2021: https://arxiv.org/abs/2104.01136
+- CvT, March 2021: https://arxiv.org/abs/2103.15808
+- ConvMixer, Jan 2022: https://arxiv.org/abs/2201.09792
+- MobileViT for image classification with combined benefits of convolutions and Transformers: https://keras.io/examples/vision/mobilevit/
+- Overview: 
+  * https://arxiv.org/abs/2111.06091
+  * https://github.com/liuyang-ict/awesome-visual-transformers
+* https://theaisummer.com/transformers-computer-vision/
+        </textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Transformers need a different approach
+
+* need more data to train
+* you rather fine tune a pre-trained model
+* much harder for images than for text, because of the vast amount of data
+* MobileViT does not achieve results close to traditional CNNs when trained with the same effort
+</textarea>
+</section>
+
 
 <!-- <section data-markdown>
 <textarea data-template>
