@@ -186,15 +186,6 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 
 <section data-markdown class="todo">
 	<textarea data-template>
-### Tims Kram
-- https://github.com/TimWue/facialExpressionRecognition
-- https://github.com/TimWue/serve.cnn
-
-	</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
 ### OpenCV
 
 - OpenCV mit interaktivem Notebook nach und nach die Basics machen in Colab
@@ -234,7 +225,7 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown class="todo">	
 	<textarea data-template>
 ### Topic
 
@@ -251,28 +242,11 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 	<textarea data-template>
 ### Jetzt
 
-* Skelett Anwendung bauen, die das Modell lädt und einfach guckt, ob irgendwas geht
-  * modell laden
-  * evtl. einen schwarzen blob einfüttern
-  * camara aufnehmen
-  * SW, größe auf 48, 48
-  * normalisieren
-  * ins Modell kloppen
-  * gucken, wie lange eine Vorhersage braucht
-  * Ausgabe der Klasse direkt in DOM
-  * hier: /home/olli/cv/serve.cnn/tensorflowStuff.js
+* openCV.js updaten auf 4.x
+* Allgemeine OpenCV Teile aus Folien
+* in OpenCV: and remove noise and other artefacts.
 
-  Umsetzen in TF.js
-
-  import cv2 as cv
-
-normalized_image = img.copy()
-
-normalized_image = cv.normalize(img, normalized_image, 0, 1, cv.NORM_MINMAX)
-plt.imshow(normalized_image, cmap='gray')
-normalized_image.max()
-np.unique(normalized_image)
-
+* reference Bild nehmen und gucken, ob es gleich in Dev und in Prod funktioniert
 	</textarea>
 </section>
 
@@ -286,14 +260,6 @@ TODOs
 * Story in Folien aufbauen
 * Allgemeine OpenCV Teile aus Folien
 * in OpenCV: and remove noise and other artefacts.
-* Welches Netzwerk 
-  * https://keras.io/api/applications/
-  Sobald Internet da: mit den Bildern ein Netz trainieren
-  * hier abgucken: /home/olli/cv/facialExpressionRecognition/EmotionDetection.ipynb
-  * und da: https://github.com/joaopdss/FacialExpressionRecognition
-  * ausgewählte Themen aus practical cnn, z.B. Alibi Explain
-  * 2022-scipy-generalization.html	
-  * https://github.com/DJCordhose/ml-resources/blob/main/notebooks/image/generalization.ipynb
 	</textarea>
 </section>
 
@@ -678,17 +644,6 @@ _Objective: Recognize emotional state of user on mobile device_
 
 <section data-markdown>
 	<textarea data-template>
-### Hands On III: Export your CNN
-
-* Save your neural network using tensorflow.js
-* You can try it locally using the skeleton provided
-
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/cv/faces-cnn-export.ipynb?hl=en
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
 ### Agenda
 
 1. Our use case
@@ -793,8 +748,16 @@ https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
 ### Hands On IV: Integrate work into a browser app
 
 * convert your model to TF.js
-* load it into the skeleton of the browser app
-* try it out locally
+* load it into the browser app
+* try it out locally on your machine
+* optional: if you do not have a development environment in place use the app with the default model
+
+https://djcordhose.github.io/ml-resources/app/
+<br>
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/cv/faces-cnn-export.ipynb?hl=en
+	</textarea>
+</section>
+
 
 	</textarea>
 </section>
