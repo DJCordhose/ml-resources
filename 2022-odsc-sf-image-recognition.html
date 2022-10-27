@@ -262,6 +262,17 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
   * Ausgabe der Klasse direkt in DOM
   * hier: /home/olli/cv/serve.cnn/tensorflowStuff.js
 
+  Umsetzen in TF.js
+
+  import cv2 as cv
+
+normalized_image = img.copy()
+
+normalized_image = cv.normalize(img, normalized_image, 0, 1, cv.NORM_MINMAX)
+plt.imshow(normalized_image, cmap='gray')
+normalized_image.max()
+np.unique(normalized_image)
+
 	</textarea>
 </section>
 

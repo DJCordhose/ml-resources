@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CNN</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Facial Expression Recognition</h1>
+    <video class="stream" id="videoElement" width="10%"></video>
+    <button id="takePhoto">Detect</button>
+    <canvas class="hidden" id="hiddenCanvas" width="160" height="120"></canvas>
+    <canvas class="hidden" id="normalizedCanvas" width="48" height="48"></canvas>
+    <div class="classification">
+        <canvas class="image" id="canvasOutput"></canvas>
+        <div class="chart-container">
+        <canvas id="prediction"></canvas>
+            <div id="emoji"></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="detect-face.js"></script>
+<script src="camera.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"></script> -->
+<script src="lib/tf.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.19.0/dist/tf.min.js"></script> -->
+<script src="tensorflowStuff.js"></script>
+<script src="chartStuff.js"></script>
+
+<script>
+    function initClassifier() {
+        console.log("CV loaded.")
+        const haarCascadeFile = "haarcascade_frontalface_default.xml"
+        loadDataFile(haarCascadeFile, haarCascadeFile).then(async () => {
+            let faceCascade = new cv.CascadeClassifier();
+            faceCascade.load(haarCascadeFile);
+            const model = await initializeModel();
+            const chart = initializeChart();
+            startCamera(faceCascade, model, chart)
+        })
+    }
+
+    function initialize() {
+        initClassifier();
+    }
+
+
+</script>
+<!-- <script async src="https://docs.opencv.org/3.4.0/opencv.js" onload="initialize();"></script> -->
+<script async src="lib/opencv.js" onload="initialize();"></script>
+<script src="lib/chart.min.js"></script>
+<script src="lib/chartjs-plugin-datalabels.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.1.0"></script> -->
+
+</body>
+</html>
