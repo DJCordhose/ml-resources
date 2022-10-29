@@ -251,6 +251,7 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 ### Hands-On Integration
 1. Compare your model to the predefined ones
 1. Use images of yourself to try out the system
+1. Use images of actors displaying those emotions
 </textarea>
 </section>
 
@@ -265,7 +266,6 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
    * tweaking the architecture itself to fight overfitting is hard, but you still can adapt
      * batch size, probably larger
      * the optimizer: simple SGD is known to fight to optimize worse because it is more primitive, thus having less overfitting 
-	 * 
 1. For custom architecture
    * use the code provided as a starting point
    * you are free to do whatever you want
@@ -284,59 +284,47 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 
 <section data-markdown class="todo">
 	<textarea data-template>
-* Testset von Hand aufbauen, am besten mit den Ordnern happy, angry, etc. und darin eben die Leute
-* Complete Pipeline 		
-* beide Modelle in git speichern und Code fürs Laden zur Verfügung stellen
-  * ResNet überhaupt erstmal trainieren
-* ordentlichen Zeitplan aufstellen: 
-  * für Integration und Abschluss mindestens 30 Minuten in Summe haben
-	</textarea>
+# Jetzt
+
+* in OpenCV: and remove noise and other artefacts.
+
+</textarea>
 </section>
+
 
 <section data-markdown class="todo">
 	<textarea data-template>
-### Jetzt
+# Finale TODOs 
 
-* openCV.js updaten auf 4.x
+* alles in Notebook knallen?   
+* Kredit an Tim
+* ordentlichen Zeitplan aufstellen: 
+  * für Integration und Abschluss mindestens 30 Minuten in Summe haben
+* Alle Hands-On Teile so haben, dass die per Default schon zucken
+  * von hier oben übernehmen
 * Allgemeine OpenCV Teile aus Folien
-* in OpenCV: and remove noise and other artefacts.
-
-* reference Bild nehmen und gucken, ob es gleich in Dev und in Prod funktioniert
+* Notebook zurück speichern in github
+* Notebook von oben nach unten durchgehen
 
 https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/cv/faces-odsc.ipynb
 https://colab.research.google.com/drive/1dY3JEKz8SRvMVfNnYsRp1YS0mL7H9JmW
 https://github.com/DJCordhose/ml-resources/raw/main/data/emotions.zip
 https://colab.research.google.com/github/xn2333/OpenCV/blob/master/Image_Processing_in_Python_Final.ipynb
-Notebook Ablauf:
-Daten
-CNN
-OpenCV
-Integration Bilder aus OpenCV in trainiertes Modell füttern
-Satz von allen Emotionen bei mir aufnehmen und damit Score berechnen 
+
 
 	</textarea>
 </section>
 
 <section data-markdown class="todo">
 	<textarea data-template>
+### JS Kram
 
-TODOs
+* openCV.js updaten auf 4.x
 
-* Alle Hands-On Teile so haben, dass die per Default schon zucken
+* reference Bild nehmen und gucken, ob es gleich in Dev und in Prod funktioniert
 
-* Story in Folien aufbauen
-* Allgemeine OpenCV Teile aus Folien
-* in OpenCV: and remove noise and other artefacts.
 	</textarea>
 </section>
-
-
-<section data-markdown class="todo">
-	<textarea data-template>
-* bit.ly
-</textarea>
-</section>
-
 
 <section data-markdown>
 	<textarea data-template>
@@ -344,7 +332,7 @@ TODOs
 
 1. Wifi: xxx
 1. These slides: http://bit.ly/odsc-2022-cv
-1. Open https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/cv/faces-odsc.ipynb
+1. Open https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/cv/faces-odsc.ipynb?hl=en
 1. Make sure you are logged in with your Google account (if you do not have one, you can just create one today)
 1. Make a copy of that notebook in your Drive (this is the only notebook you will work in today)
 </textarea>
