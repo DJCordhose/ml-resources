@@ -256,15 +256,29 @@ Solid understanding of Python and Notebooks, basic understanding of TensorFlow
 
 <section data-markdown class="todo">
 	<textarea data-template>
-### Hands-On OpenCV TensorFlow
+### Hands-On Train Model
 
-1. OpenCV processing
-	* Try out the different kinds of processing of the input ROIs
-	* Do they make a difference on the prediction?
-	* Which ones works best for you?
-	* You are free to choose from the proposed ones by just commenting them in or write your own processing from scratch
-1. Compare your model to the predefined ones
-1. Use images of yourself to try out the system
+1. Decide whether you want to use a standard architecture or build a custom built one
+1. For standard architectures 
+   * see https://keras.io/api/applications/ as a reference
+   * check the boilerplate code in the notebook
+   * tweaking the architecture itself to fight overfitting is hard, but you still can adapt
+     * batch size, probably larger
+     * the optimizer: simple SGD is known to fight to optimize worse because it is more primitive, thus having less overfitting 
+	 * 
+1. For custom architecture
+   * use the code provided as a starting point
+   * you are free to do whatever you want
+   * if do want advice, adapt
+     * number of channels
+	 * kernel size
+	 * number of blocks
+	 * dropout rate
+	 * number of neurons in classifier
+	 * batch size
+	 * training epochs
+
+
 </textarea>
 </section>
 
