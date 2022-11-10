@@ -1,3 +1,9 @@
 .ipynb_checkpoints
 *.Identifier
 .DS_Store
+notebooks/cv/fer2013
+notebooks/cv/fer2013.tar.gz
+notebooks/cv/emotions
+notebooks/cv/emotions.zip
+notebooks/cv/resent50.h5
+notebooks/cv/simple-vgg.h5
