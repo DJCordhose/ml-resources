@@ -549,6 +549,22 @@ https://setosa.io/ev/image-kernels/
 	</textarea>
 </section>
 
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Priors in training can help
+
+* The more *priors* you put in, 
+  * the *fewer samples* you require, but also
+  * the greater the chance that the functions you need to learn are *not realizable* (or hard to learn) by your model.
+* So it's a good idea to put priors that you *know* are true, and simultaneously *minimize* the amount of priors you put in.  
+* Using *convolutions* is good when your input data comes in the form of an array, with *strong local
+correlations* & location invariant statistics.
+* For this, making the *architecture translation invariant* will reduce the necessary amount of training data.
+
+https://twitter.com/ylecun/status/1591463668612730880
+	</textarea>
+</section>
+
 
 <section data-markdown>
     <textarea data-template>
