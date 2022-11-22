@@ -160,20 +160,17 @@ In this talk, I take you through the following topics:
 * Handy Uhr
 * Internet (Hotspot)
 * Demos laden
-	- keras viz
-	- GANLab
-	- dalle 2
+	- https://setosa.io/ev/image-kernels/
+	- https://transcranial.github.io/keras-js/#/mnist-cnn
+
 	</textarea>
 </section>
-
+<!-- 
 <section data-markdown class="todo">
 	<textarea data-template>
-* bit.ly
-* kürzen 
-  * war schon bei gleich langem Talk bei Data Summit zu lang und wir haben hier sogar noch Folien dazu gebaut
-* ViT Folien aus ODSC nehmen  
 	</textarea>
 </section>
+-->
 
 			<section data-markdown>
 				<textarea data-template>
@@ -332,9 +329,16 @@ https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
 
 * OpenCV
   * https://docs.opencv.org/4.x/
-  * https://pypi.org/project/opencv-python/ 
+  * https://pypi.org/project/opencv-python/
 * scikit-image
+  * scientific image processing
   * https://scikit-image.org/
+  * https://scikit-image.org/docs/stable/auto_examples/index.html#
+*  Pillow / PIL (Python Imaging Library)
+   * rather general image processing
+   * https://pillow.readthedocs.io
+   * https://pillow.readthedocs.io/en/stable/handbook/overview.html
+   * https://pillow.readthedocs.io/en/stable/about.html#what-about-pil
 </textarea>
 </section>
 
@@ -349,6 +353,7 @@ https://docs.opencv.org/4.x/d4/d70/tutorial_hough_circle.html
 * Contours and Bounding Boxes: https://docs.opencv.org/4.x/d3/d05/tutorial_py_table_of_contents_contours.html
 * Segmentation: https://docs.opencv.org/4.x/d3/db4/tutorial_py_watershed.html
 * Template Matching: https://docs.opencv.org/4.x/d4/dc6/tutorial_py_template_matching.html
+* Back Projection: https://docs.opencv.org/4.x/da/d7f/tutorial_back_projection.html
 
 https://docs.opencv.org/4.x/d2/d96/tutorial_py_table_of_contents_imgproc.html
 	</textarea>
@@ -657,7 +662,7 @@ https://arxiv.org/abs/1605.07678
 	<textarea data-template>
 ### Libraries for Deep Learning
 
-* *PyTorch: Top dog in academia
+* *PyTorch*: Top dog in academia
 	* often has the first implementations of new ideas
 * *TensorFlow / Keras*: Top dog in industrial environment
 	* Models pre-trained on Imagenet for direct use or transfer learning: https://keras.io/applications
@@ -665,7 +670,7 @@ https://arxiv.org/abs/1605.07678
 	</textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### KerasCV
 
@@ -673,7 +678,7 @@ https://arxiv.org/abs/1605.07678
 
 https://keras.io/keras_cv/
 	</textarea>
-</section>
+</section> -->
 
 
 <!-- <section data-markdown>
@@ -722,7 +727,7 @@ https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images
 </textarea>
 </section> -->
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Explainability and Check against Overfitting
 
@@ -768,13 +773,10 @@ https://github.com/SeldonIO/alibi-detect#adversarial-detection
 </div>
 
 
-<!-- https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/autoencoder_outlier_detection.ipynb -->
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/autoencoder_outlier_detection.ipynb
 
 </textarea>
-</section>
-
-
-
+</section> -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -786,7 +788,7 @@ https://github.com/SeldonIO/alibi-detect#adversarial-detection
 	</textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Object Detection
 
@@ -829,7 +831,7 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 
 <img src="img/image-recognition/kinect-image.jpg">		
 	</textarea>
-</section>
+</section> -->
 
 
 <!-- <section data-markdown class="todo">
@@ -847,15 +849,32 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 	</textarea>
 </section> -->
 
+<section data-markdown>
+<textarea data-template>
+### Image recognition can be done with a transformer (encoder)
+
+<img src='img/transformers/vit.jpg'>
+
+<small style="margin-top: -40px; ">
+
+https://arxiv.org/abs/2010.11929
+<br>
+https://huggingface.co/transformers/model_doc/vit.html</small>
+        </textarea>
+</section>
+
+
+
 <section data-markdown class="fragments">
 	<textarea data-template>
-## Transformers
+### Transformers
 
 * Class of very large language models
 * Trained for generality
 * Mostly huge training data
 * Require (currently) too much compute to use them productively in a meaningful way
 * Distilled models and more compute pave the way to the productive world 
+* Attention Layer is the most important component
 			</textarea>
 </section>
 
@@ -884,6 +903,22 @@ https://arxiv.org/pdf/1706.03762.pdf
 
         </textarea>
 </section>
+
+
+<section data-markdown>
+	<textarea data-template>
+	
+### Transformers need a different approach
+
+* need more data to train
+* you rather fine tune a pre-trained model
+* much harder for images than for text, because of the vast amount of data
+* MobileViT does not achieve results close to traditional CNNs when trained with the same effort
+
+https://keras.io/examples/vision/mobilevit/
+</textarea>
+</section>
+
 
 <!-- <section data-markdown class="todo">
 	<textarea data-template>
@@ -919,24 +954,6 @@ https://keras.io/examples/vision/mobilevit/
 </section> -->
 
 
-<section data-markdown>
-<textarea data-template>
-### Image recognition can be done with an encoder
-
-The hope: training becomes less complex (and: why not)
-
-<img src='img/transformers/vit.jpg'>
-
-<small style="margin-top: -40px; ">
-
-https://arxiv.org/abs/2010.11929
-<br>
-https://huggingface.co/transformers/model_doc/vit.html
-<br>
-https://keras.io/examples/vision/mobilevit/</small>
-        </textarea>
-</section>
-
 <!-- <section data-markdown>
 <textarea data-template>
 ### Unified models for Vision
@@ -952,13 +969,13 @@ https://twitter.com/ak92501/status/1462970921518514177
         </textarea>
 </section> -->
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### GANs: Generative Adversarial Networks
 
 * One part of the system (Generator) learns to forge an image....
 * while another (discriminator) gets better and better at detecting the forgery  
-<!-- * Startpunkt ist Training mit realen Daten -->
+* Starting point is training with real data
 
 <img src="img/image-recognition/gan.png" style="height: 400px">
 
@@ -966,9 +983,9 @@ https://twitter.com/ak92501/status/1462970921518514177
 </small>
 
 </textarea>
-</section>
+</section> -->
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### GANs: State of the Art 2022
 
@@ -1044,7 +1061,7 @@ only accessible over OpenAI API, but
   * https://twitter.com/fchollet/status/1574782176633430017
 
 </textarea>
-</section>
+</section> -->
 
 <!-- <section data-markdown class="todo">
 	<textarea data-template>
@@ -1068,10 +1085,7 @@ webpage: https://t.co/EDpIyalqiK
 	* When high flexibility is required
 	* Needs lots of data and lots of computing power, no training without GPU(s).		
 1. Future: Transformers and co.
-	* Recognizing objects in images is much more difficult and less mature.
-	* 3D cameras can detect depth as grayscale
 	* Transformers offer a new approach, but models are (still) hardly practicable
-	* Images can be generated almost realistically from descriptions
 
 	</textarea>
 </section>
