@@ -7,3 +7,6 @@ notebooks/cv/emotions
 notebooks/cv/emotions.zip
 notebooks/cv/resent50.h5
 notebooks/cv/simple-vgg.h5
+data/people/charlie.zip
+data/people/marie.zip
+data/people/hanna.zip
