@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Autoencoders for Anomaly Detection</title>
+
+    <meta name="description" content="Autoencoders for Anomaly Detection">
+    <meta name="author" content="Oliver Zeigermann">
+	<link rel="shortcut icon" href="/img/favicon.ico" >
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+	<link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+	<style>
+		.right-img {
+			margin-left: 10px !important;
+			float: right;
+			height: 500px;
+		}
+
+		.todo:before {
+			content: 'TODO: ';
+		}
+
+		.todo {
+			color: red !important;
+		}
+
+		code span.line-number {
+			color: lightcoral;
+		}
+
+		.reveal pre code {
+			max-height: 1000px !important;
+		}
+
+		img {
+			border: 0 !important;
+			box-shadow: 0 0 0 0 !important;
+			height: 450px;
+		}
+
+		.reveal {
+			-ms-touch-action: auto !important;
+			touch-action: auto !important;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4 {
+			/* letter-spacing: 2px; */
+			font-family: 'Calibri', sans-serif;
+			/* font-family: 'Times New Roman', Times, serif; */
+			/* font-weight: bold; */
+			color: black;
+			/* font-style: italic; */
+			/* letter-spacing: -2px; */
+			text-transform: none !important;
+		}
+
+		.reveal em {
+			font-weight: bold;
+		}
+
+		.reveal section img {
+			background: none;
+		}
+
+		.reveal img.with-border {
+			border: 1px solid #586e75 !important;
+			box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+		}
+
+		.reveal li {
+			margin-bottom: 8px;
+		}
+
+		/* For li's that use FontAwesome icons as bullet-point */
+		.reveal ul.fa-ul li {
+			list-style-type: none;
+		}
+
+		.reveal {
+			/* font-family: 'Work Sans', 'Calibri'; */
+			font-family: 'Calibri';
+			color: black !important;
+			font-size: xx-large;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.col img {
+			height: auto;
+		}
+
+		.col,
+		col-1 {
+			flex: 1;
+		}
+
+		.col-2 {
+			flex: 2;
+		}
+
+	/* https://intranet.openknowledge.de/plugins/servlet/mobile?contentId=18612939#content/view/18612939
+      https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
+      https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
+       */
+       body:after {
+        content: url(img/ok/logo.png) ;
+        position: fixed;
+        bottom: 80px;
+        left: -1080px;
+        transform: scale(.06);
+        height: 10px;
+    }
+
+	</style>
+</head>
+
+<body style="background-color: whitesmoke;">
+
+<div class="reveal">
+    <div class="slides">
+
+
+
+<!-- 
+
+Visual Regression Testing with Neural Networks
+
+Visual testing on an end-to-end basis is the only way to detect errors that have crept into the rendering of a JavaScript application. 
+But what if you had more of a general idea of how an application should look like and see if the new version of the software renders the same way? 
+We humans can do that, but maybe an artificial neural network can do that too?
+
+In the first part of this talk, he will show how to set up and run visual regression tests and how to use them to detect bugs. 
+The second part does the mentioned experiment where we teach a neural network how our application looks in principle. 
+
+He will present and publicly share a working example using React, Testcafé and TensorFlow.
+
+-->
+
+
+<!--
+
+Autoencoder - die magische Netzwerk-Architektur
+
+Autoencoders are fascinating neural networks. 
+
+
+- das geile Notebook mit alles zeigen
+- Dramaturgie, warum auch noch Latent Space abgreifen: What to do if this is not just binary or you have normal data is not the majority?
+- Folien von ODSC West 2022: https://drive.google.com/file/d/1LMaU88hLOFKqs_ni-uMh4-VsD3j_j7j1/view
+
+Konferenzen
+- Workshop ODSC Europe
+- 
+-->
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Sources
+
+* /home/olli/ml-workshop/2020-ae-anomaly.html
+* /home/olli/ml-workshop/2020-ml-essentials-embeddings.html
+* /home/olli/ml-workshop/2019-embeddings.html
+* /home/olli/ml-workshop/2019-unsupervised.html
+* /home/olli/ml-workshop/2021-m3-autoencoder.html
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Autoencoders 
+
+* Smart way of dimensionality reduction to latent space 
+* Can be combined with dimensionality reduction, clustering and outlier detection
+
+<div class="container">
+	<div class="col">
+		<img src="img/autoencoder-latent-space.png">
+	</div>
+	<div class="col">
+		<img src="img/autoencoder-clustering.png">
+	</div>
+
+</div>
+
+
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/autoencoder_outlier_detection.ipynb
+
+</textarea>
+</section>
+
+
+ <section data-markdown class="todo">
+    <textarea data-template>
+
+ Andreas Vollenweider
+So a layman's summary would be:
+We train a NN to be able to reconstruct "correct" screenshots from a compressed state well.
+Then we compress "unknown" screenshots and reconstruct them with the trained NN.
+Then we compare them against their uncompressed state -> if there is little difference, the unknown screenshot was probably a correctly looking one, else, something might be broken?
+</textarea>
+</section>
+
+
+
+<section data-markdown>
+    <textarea data-template>
+# Visual Regression Testing with Neural Networks
+
+TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
+
+Oliver Zeigermann, https://www.embarc.de/oliver-zeigermann/
+
+Slides: https://bit.ly/testcon-regression
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+## TL'DR
+
+- Most people perceive an application on the visual level
+- Running automated tests at this level therefore is an obvious approach
+- Visual regression testing addresses the problem at the right level, but
+    * they are also known to be particularly challenging to develop and also brittle to execute
+- Autoencoders (special neural networks) can learn how an application normally looks like
+- This also allows us to find out when a particular screen "doesn't look normal"  
+- This is a more general form of visual regression testing
+- How this can be done and what kind of bugs it can detect is the topic of this talk
+
+</section>
+
+        
+<section data-markdown>
+# Schedule
+
+1. Visual Regression Testing
+1. Machine Learning with Autoencoders
+1. Visual Regression Testing with Autoencoders (main part)
+</section>
+
+
+<section data-markdown>
+# Schedule
+
+1. _Visual Regression Testing_
+1. Machine Learning with Autoencoders
+1. Visual Regression Testing with Autoencoders (main part)
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Regression testing
+
+__Regression testing (rarely non-regression testing) is re-running functional and non-functional tests to ensure that previously developed and tested software still 
+performs after a change. If not, that would be called a regression. Changes that may require regression testing include bug fixes, software enhancements, configuration changes, 
+and even substitution of electronic components. As regression test suites tend to grow with each found defect, test automation is frequently involved.__
+
+https://en.wikipedia.org/wiki/Regression_testing    
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Styles of Tests on Web Frontends
+
+<img src='img/testing/real-testing-beer-glass.jpg'>
+
+The testing beer glass
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Static testing at code level
+
+<img src='img/testing/real-testing-beer-glass-static.jpg'>
+
+e.g. eslint, TypeScript
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Dynamic testing at code level
+
+<img src='img/testing/real-testing-beer-glass-unit.jpg'>
+
+unit (solitary) and integration (sociable) testing, potentially with mocking
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Manual tests at application level
+
+<img src='img/testing/real-testing-beer-glass-manual.jpg'>
+
+Manual tests on the full stack of the running application
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Automatic tests at application level
+
+<img src='img/testing/real-testing-beer-glass-e2e.jpg'>
+
+E2E and Visual Testing (that's what this talk is about)
+</textarea>
+</section>
+ 
+<section data-markdown>
+<textarea data-template>
+### Our sample application
+
+<img src='img/autoencoder/ML_0801_app.png'>
+
+Simple, but complex enough to show typical error cases
+
+https://djcordhose.github.io/react-showcase/
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Classic Visual Regression Testing
+
+<img src='img/autoencoder/compare.png'>
+
+Comparison with known correct representation
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Images can be automatically compared at the pixel level
+
+<img src='img/autoencoder/diff.png'>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Automatic comparison fails above certain threshold value
+
+<img src='img/autoencoder/report.png' style="height: 100%;">
+
+
+</textarea>
+</section>
+
+<!-- <section data-markdown class="local">
+    <textarea data-template>
+### Demo
+
+https://github.com/DJCordhose/frontend-monorepo
+
+* yarn
+* yarn e2e:visual:compare
+* http://127.0.0.1:5500/regression-report/index.html
+
+</textarea>
+</section> -->
+
+
+<section data-markdown class="fragments">
+### Is this any good?
+
+*Yes, because it tests at the level that the user also sees, but*
+
+* you have to create and maintain a ground truth for each case
+* many false positives: there are quite a few discrepancies that are obviously not errors
+* the test has no general intelligent understanding of a healthy application (unlike you as a developer)
+    </section>
+
+<section data-markdown>
+## What kind of errors can only be found by on a visual level? 
+
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Typical problem case 1: i18n
+
+Ideally, new texts should not cause failure, but this does
+
+<img src='img/autoencoder/ML_0802_bug_i18n.png'>
+
+Not nice, but does not necessarily jeopardize the usability of the application
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Typical problem case 2: Evil overflows
+
+The button is still there, but invisible and therefore not clickable by humans
+
+<img src='img/autoencoder/ML_0803_bug_overflow.png'>
+
+Happens only on certain inputs, but makes the application unusable
+</textarea>
+</section>
+
+<!-- <section data-markdown class="fragments">
+### Und nun?
+
+* Problemfall 1 sollte kein Fehler sein, wenn der Text innerhalb der Box ist, wenn außerhalb, dann schon
+* Das provozieren von Problemfall 2 ist nur durch chaotisches Testen mit Zufallsaktionen oder mit viel Erfahrung möglich
+* ein generelles, intelligentes Verständnis von einer heilen Anwendung hilft in beiden Fällen
+</section>
+ -->
+<!-- <section data-markdown class="fragments">
+### Und nun?
+
+* wir Menschen können in beiden Fällen sehen, was ein Fehler ist und was nicht
+* ein generelles, intelligentes Verständnis von einer heilen Anwendung hilft also in beiden Fällen
+* können wir ein System bauen, dass so ein Verständnis hat?
+</section> -->
+
+<section data-markdown>
+## Challenge
+
+_For any given representation, where do we get the one expected as correct?_
+
+* Can we tell a changed i18n text (correct) from an overflow caused by that text?
+* An overflow like the one shown can only be created by random events, how can we even compare to anything at all? 
+
+</section>
+
+<section data-markdown>
+# Schedule
+
+1. Visual Regression Testing
+1. _Machine Learning with Autoencoders_
+1. Visual Regression Testing with Autoencoders (main part)
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<img src='img/classic-development.jpg' style="height: 600px">
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<img src='img/supervised-ml.jpg' style="height: 600px">
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+#### There is more than Supervised Learning
+
+<img src='img/ML-strategy-helper.png' style="height: 500px">
+<small>
+This decision tree provides guidance on whether machine learning seems possible, and if so, with what approach.
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Autoencoder: formulation as ML problem
+
+* Data
+  * Input: <span class="fragment" style="font-weight: bold;">All kinds of data are possible</span> 
+  * Output: <span class="fragment" style="font-weight: bold;">The same data</span>
+* Learning strategy: <span class="fragment" style="font-weight: bold;">Unsupervised</span>  
+* Model architecture: <span class="fragment" style="font-weight: bold;">Neural network, symmetric with bottleneck</span>
+<!-- * Loss: <span class="fragment" style="font-weight: bold;">typically MSE, all NN losses possible</span> -->
+* Optimization method: <span class="fragment" style="font-weight: bold;">Backpropagation</span>
+* Business metric: <span class="fragment" style="font-weight: bold;">Diverse and difficult to specify, more later</span>
+
+
+<div class="fragment">
+<img src='img/autoencoder_schema.jpg' style="height: 200px">
+<br>
+<small>
+
+https://blog.keras.io/building-autoencoders-in-keras.html
+
+</small>
+</div>
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Why Autoencoder?
+
+_The business metric is derived from the desired benefit_
+
+* Compression
+* Data denoising
+* Dimensionality reduction
+* Building an abstract representation for further use
+* Clustering (also for data visualization)
+* Outlier detection
+
+</textarea>
+</section>
+<!-- 
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Autoencoder haben eine Sonderstellung innerhalb von Dimensionalitätsreduktion
+
+* Dimensionalitätsreduktion fallen sonst in die beiden Bereiche
+  * Matrix-Faktorisierung oder
+  * Nachbarschafts-Graphen 
+* Linearer Autoencoder ist im wesentlichen PCA  
+* Nicht-Lineare Autoencoder sind viel mächtiger und fallen aus allen Kategorien  
+
+A Bluffer's Guide to Dimension Reduction - Leland McInnes: https://youtu.be/9iol3Lk6kyU?t=106
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Anomagram, interaktives Beispiel für Unsupervised Error Detection
+<a href='https://victordibia.github.io/anomagram/#/'>
+<img src='img/embeddings/anomagram-inference.gif' height="450">
+</a>
+<br>
+<small>
+
+https://github.com/victordibia/anomagram        
+https://victordibia.github.io/anomagram/#/
+    
+</small>
+</textarea>
+</section> -->
+
+
+<!-- <section data-markdown class="fragment">
+    <textarea data-template>
+### Was würdest du lieber?
+
+1. Jemandem eine Herzanomalie attestieren, der keine hat
+1. Eine tatsächliche Herz-Anomalie übersehen
+        
+(nichts davon geht leider nicht)
+    </textarea>
+</section>
+
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Referenz: Metrics
+
+* _Genauigkeit (Precision)_: Prozentsatz der positiven Vorhersagen, die korrekt sind
+* _Trefferquote (Recall)_: Anteil der tatsächlich positiven Vorhersagen, die richtig vorhergesagt wurden
+* In einem binären Klassifikator wird oft durch einen Schwellwert zwischen positivem und negativem Ergebnis unterschieden
+* Ein ausreichend niedriger Schwellenwert führt zu einem exzellenten Recall, aber zu einer reduzierten Precision
+* _F1-Score_: harmonische Mittel aus Precision und Recall
+        
+<small>
+
+https://de.wikipedia.org/wiki/Beurteilung_eines_bin%C3%A4ren_Klassifikators
+
+</small>
+</textarea>
+</section> -->
+
+
+<section data-markdown>
+# Schedule
+
+1. Visual Regression Testing
+1. Machine Learning with Autoencoders
+1. _Visual Regression Testing with Autoencoders (main part)_
+</section>
+
+<section data-markdown>
+## Reminder of Challenge
+
+### For any given representation, where do we get the one expected as correct?
+
+Or at least anything to compare it to?
+
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### What we want
+
+Mark parts where the application looks unusual
+
+<img src='img/autoencoder/ML_0808_test_diff.png'>
+
+Very long numbers and weird box on the top right
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+### Error-free representation in comparison
+
+<img src='img/autoencoder/ML_0807_train_diff.png'>
+
+Not perfect as the expected image is generic, but closer to the expectation
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Our approach
+
+* train an autoencoder on mainly correct screenshots
+* autoencoder will reproduce these with small error
+* after training feed in all kinds of screen shots
+* screen shots with a high reproduction error are suspicions
+* choose them for further manual inspection, they might be broken
+
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Our solution: A specific autoencoder
+
+* Input and output: <span class="fragment" style="font-weight: bold;">Screenshots of our application 256x256 as grayscale ranging from 0-1</span>
+* Model architecture: <span class="fragment" style="font-weight: bold;">Stacked convolutional for encoder, deconvolutional for decoder, 8 neurons in bottleneck</span>
+* Business Metric: <span class="fragment" style="font-weight: bold;">Number of matching pixels rounded to black (0) or white (1)</span>
+<!-- * Loss: <span class="fragment" style="font-weight: bold;">Not MSE, because problem is specially formulated, but Binary Cross-Entropy</span> -->
+
+
+<img src='img/autoencoder_schema.jpg' style="height: 100%;">
+
+</textarea>
+
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Encoder
+
+<div class="container">
+
+<div class="col">
+    <img src='img/autoencoder/ML_0804_encoder.png' style="height: 90%;">
+</div>
+
+<div class="col-2 fragments">
+
+1. images have a resolution of 256x256 and a single color channel.
+2. n blocks, halving the resolution of the image with each convolution. 
+   * MaxPooling layer reduces the resolution again after each convolution 
+3. combines the 16 filter inputs of the previous layer into a single output
+  * allows for one more measure point for human understandable output
+4. 8x8 images with grayscale knocked flat as input for the bottleneck
+5. dimensioning of the bottleneck is 8 and subject to our arbitrariness
+
+</div>
+    
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Decoder
+
+<div class="container">
+
+<div class="col">
+    <img src='img/autoencoder/ML_0805_decoder.png' style="height: 55%;">
+</div>
+
+<div class="col fragments" style="font-size: x-large;">
+
+1. output of the encoder is a flat vector with 8 values
+  * we transform it into 8 images with one pixel as resolution
+2. Conv2DTranspose and UpSampling2D reverse convolution and downsampling
+  * from this combination we put as many blocks one after the other as we need to regain the original resolution of the image
+  * the number of filters increases in the opposite direction to the encoder
+3. combines all 64 previous channels into a single channel
+  * Compresses the value space with a sigmoid to the range between 0 and 1 output as gray value
+
+</div>
+    
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Very small bottleneck forces extreme abstraction
+
+Result of stacked convolutional layers directly before bottleneck  
+
+<img src='img/autoencoder/ML_0811_h.png'>
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### The bottleneck...
+
+* has only 8 values
+* is much smaller than the input, i.e. the autoencoder is extremely undercomplete
+
+* has a linear activation
+<!-- * could additionally 
+  * made sparse by L1 regularization
+  * be limited by L2 regularization
+  * be forced into the positive range by ReLU -->
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+<textarea data-template>
+
+### How does the training work?
+
+* Autoencoder is trained with Gold Master (considered correct) (input and output)
+* we assume that before the change the application looked mostly as expected
+  * so Gold Master mainly has correct screen shots
+* validation data set may be the new (minor) release 
+  * probably contains regressions
+* Autoencoder thus learns how the application should normally look like
+
+<img src='img/autoencoder/training_en.png' style="height: 250px;">
+
+
+</textarea>
+</section>
+
+
+<!-- <section data-markdown class="fragments">
+### What would not be in the paper
+    
+* Without the mentioned reformulation of the problem and the Binary Cross-Entropy Loss nothing works at all.
+* Kudos for that to Aurélien Géron and https://learning.oreilly.com/library/view/hands-on-machine-learning/9781491962282/
+* A few other little trial-and-error fiddles that DL never seems to do without.
+    </section> -->
+    
+    
+<section data-markdown>
+<textarea data-template>
+### Learning process
+
+The model learns very well how the application should look like (blue)
+
+<img src='img/autoencoder/acc_curve.png'>
+
+The new release shows significant deviations (orange)
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+### Autoencoder learns to reproduce images with a certain error
+
+Errors for the screenshots of Gold Master - known to be mostly correct
+
+<img src='img/autoencoder/train_acc.png'>
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### On the left you can see unusual, perhaps even broken
+
+* Autoencoder can reproduce only "ordinary" well
+* On the right, we have all the correct images
+* We assume a threshold above which we consider the input to be broken
+
+</textarea>
+</section>
+
+
+<!-- <section data-markdown>
+<textarea data-template>
+## Wie setzt man den Schwellwert?
+
+* Wir haben keine Labels (Ground-Truth), können daher nicht Sensitivität und Spezifität berechnen
+* Wir machen daher Annahmen
+  1. Normalverteilung der Accuracy oder Loss
+  1. die Screenshots des neuen Releases entweder als hauptsächlich falsch oder korrekt 
+  1. Alle mit mehr als x (3?) Standardabweichugnen als fehlerhaft ansehen 
+* Als Mensch kann man das interaktiv einfacher
+  * Teils durch Intuition, meist durch ausprobieren (wir sehen an einem Bild, ob es einen Fehler enthält)
+  * Heuristik: Threshold komplett rechts von allen Traningsdaten
+</textarea>
+</section> -->
+
+
+<section data-markdown>
+<textarea data-template>
+### Autoencoder applied to the new release (red)
+
+Threshold is set arbitrarily, we assume mainly false examples in the new release
+
+<img src='img/autoencoder/threshold.png'>
+
+Screenshots to the left of the threshold should be checked
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+### Examples to the left of the threshold
+
+Above the original, below the reconstruction and the rounded Accuracy
+
+<img src='img/autoencoder/broken.png'>
+
+In fact all shown images are problematic
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### Results
+
+_This is an experiment, not something ready for the market_
+
+* In fact, most of the screenshots of the new release are incorrect
+* Our threshold is reasonable because we have few correct screenshots
+* should be tried in further steps also for mainly correct screenshots   
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+### The results are still not on a human level
+
+* We recognize e.g. long numbers and know if they can make sense
+* We see overflows without even thinking
+* Permantently missing buttons or missing functionality can still only be inferred by humans
+</section>
+
+<section data-markdown class="fragments">
+### Open questions
+
+* How do you actually get good training data
+  * You would have to click through every meaningful state of the application and take a screenshot
+  * is in itself a ML problem
+    * RL with PPO possible, but technically not trivial
+  * random events and inputs (from a given set of known actions) are used for now
+* Or even more radical: what do you actually take for training 
+  * how to distinguish completely new and correct features from bugs?
+  * Major release much more problematic than minor release
+
+</section>
+
+
+<section data-markdown style="font-size: x-large;">
+<textarea data-template>
+### Reference Implementation
+
+Notebook using Google Colab and TensorFlow: https://colab.research.google.com/github/embarced/notebooks/blob/master/deep/autoencoder-outlier-detection.ipynb?hl=en
+
+Project: https://github.com/DJCordhose/frontend-monorepo
+
+<small>
+
+
+
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+## This approch is taken in other domains as well
+### First example: is the ISS working ok?
+
+If the model is able to reconstruct observations of nominal states with a high accuracy, it will have difficulties reconstructing observations of states which deviate from the nominal state. Thus, the reconstruction error of the model is used as an indicator for anomalies during inference, as well as part of the cost function in training.
+
+https://blog.tensorflow.org/2020/04/how-airbus-detects-anomalies-iss-telemetry-data-tfx.html
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Second example: spotting anomalies in ECG signals
+
+<a href='https://victordibia.github.io/anomagram/#/'>
+<img src='img/anomagram-inference.gif' height="450">
+</a>
+<br>
+<small>
+
+https://github.com/victordibia/anomagram        
+https://victordibia.github.io/anomagram/#/
+    
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+# Thanks a lot and time for questions
+
+## Visual Regression Testing with Neural Networks
+
+TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
+
+Slides: https://bit.ly/testcon-regression
+
+Stay in touch if you like
+
+<a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
+
+<a href='https://www.linkedin.com/in/oliver-zeigermann-34989773/'>https://www.linkedin.com/in/oliver-zeigermann-34989773/</a>
+
+    </textarea>
+</section>
+
+</div>
+</div>
+
+<script src="reveal.js/dist/reveal.js"></script>
+<script src="lib/jquery.js"></script>
+<script>
+    const printMode = window.location.search.match(/print-pdf/gi);
+    const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+        window.location.hostname.indexOf('127.0.0.1') !== -1;
+    const isPresentation = isLocal && !printMode;
+    const isPublic = !isPresentation;
+
+    $('.hide').remove();
+
+    if (isPresentation) {
+    } else {
+        // only applies to public version
+        $('.todo').remove();
+        $('.preparation').remove();
+        $('.local').remove();
+    }
+
+    Reveal.addEventListener('ready', function (event) {
+        // applies to all versions
+        $('code').addClass('line-numbers');
+
+        $('.fragments li').addClass('fragment')
+
+        // make all links open in new tab
+        $('a').attr('target', '_blank')
+
+        if (isPresentation) {
+            // only applies to presentation version
+            Reveal.configure({ controls: false });
+        } else {
+            // only applies to public version
+            $('.fragment').removeClass('fragment');
+        }
+
+        // we do not like fragments
+        // $('.fragment').removeClass('fragment');
+
+    });
+
+</script>
+
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script src="reveal.js/plugin/markdown/markdown.js"></script>
+<script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+        slideNumber: true,
+        hideInactiveCursor: false,
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+
+
+</body>
+
+</html>
