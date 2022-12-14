@@ -154,7 +154,78 @@ He will present and publicly share a working example using React, Testcafé and 
 -->
 
 
+Workshop
+
+Long Version
+
+Autoencoders - a magical approach to unsupervised machine learning
+
+Autoencoders are a special kind of neural network architecture. They are trained by reproducing an input as accurately
+as possible in an unsupervised way. This is done by encoding the input into a latent representation that forces the
+network to learn some kind of a abstraction and then reconstructing the original input in a symmetrical decoder.
+The benefit of this is hard to see at first. But we can make use of this approach in at least two ways after training.
+
+First we can take the latent representation that should now contain the abstract pattern of the inputs. Given training
+was successful we can be sure to find something interesting there. This can be used for clustering or visualization.
+Indeed this can be seen as a very powerful way of doing dimensionally reduction and even PCA being a very simple special
+case of an autoencoder.
+
+Second we can use the reconstruction error as a measure of how well something fits the learned concept. This is used
+to find outliers even in the most complex inputs.
+In this workshop we will illustrate both approaches using a consistent single example.
+Even though autoencoders work for all kinds of data, we will use image data as it makes it easiest to understand the
+underlying concepts.
+
+As a last step we will also showcase other typical use cases for autoencoders and how they can even help in supervised
+settings.
+
+In this workshop we will use TensorFlow in a Colab notebooks, so all you need is a recent version of Chrome and a Google login.
+
+---
+
+Short Version
+
+Autoencoders are a special kind of neural network architecture. They are trained by reproducing an input as accurately
+as possible in an unsupervised way. This is done by encoding the input into a latent representation that forces the
+network to learn some kind of a abstraction and then reconstructing the original input in a symmetrical decoder.
+
+The benefit of this is hard to see at first. But we can make use of this approach in at least two ways after training.
+
+First we can take the latent representation that should now contain the abstract pattern of the inputs. 
+
+Second we can use the reconstruction error as a measure of how well something fits the learned concept. 
+
+As a last step we will also showcase other typical use cases for autoencoders and how they can even help in supervised
+settings.
+
+In this workshop we will use TensorFlow in a Colab notebooks, so all you need is a recent version of Chrome and a Google login.
+
+---
+Talk
+
+Abgucken von Testcon
+
+Unsupervised Visual Regression Testing using Autoencoders
+
+In software engineering, a regression test is the repetition of test cases to ensure that modifications in parts of the software already 
+tested do not cause new errors. However, visual regressions, i.e. regressions in how applications display screens to users, are notoriously hard to catch. 
+You can compare screens and look
+for differences, but this gives you a lot of false positives especially when changing details like translations or minor
+changes in layout.
+
+But what if you could rather find the abstract idea of a screen and test against that? Sounds impossible? It actually is
+possible using autoencoders. Autoencoders are a special kind of neural network architecture. They are trained by 
+reproducing an input as accurately
+as possible in an unsupervised way. This is done by encoding the input into a latent representation that forces the
+network to learn some kind of a abstraction and then reconstructing the original input in a symmetrical decoder.
+
+
+I will show two approaches of doing this and leave you with working code using
+TensorFlow.
+
+
 <!--
+
 
 Autoencoder - die magische Netzwerk-Architektur
 
