@@ -183,22 +183,25 @@ In this workshop we will use TensorFlow in a Colab notebooks, so all you need is
 
 ---
 
+Autoencoders - a magical approach to unsupervised machine learning
+
 Short Version
+- MLCon 2023 mit Tim W. eingereicht
+- ODSC Europe Workshop
 
-Autoencoders are a special kind of neural network architecture. They are trained by reproducing an input as accurately
-as possible in an unsupervised way. This is done by encoding the input into a latent representation that forces the
-network to learn some kind of a abstraction and then reconstructing the original input in a symmetrical decoder.
 
-The benefit of this is hard to see at first. But we can make use of this approach in at least two ways after training.
+Autoencoders are a special kind of neural network architecture. They are trained by reproducing an input as accurately as possible in an unsupervised way. This is done by encoding the input into a latent representation that forces the network to learn some kind of a abstraction and then reconstructing the original input from that representation.
 
-First we can take the latent representation that should now contain the abstract pattern of the inputs. 
+The benefit of this is hard to see at first. But we can make use of this approach in at least two ways. First, we can take the latent representation that should now contain the abstract pattern of the inputs. This can be used for dimensionality reduction, clustering, or visualization. Second, we can use the reconstruction error as a measure of how well something fits the learned concept. This is used to find outliers even for the most complex input types.
 
-Second we can use the reconstruction error as a measure of how well something fits the learned concept. 
+In this workshop we will illustrate both approaches using a consistent single example. We will use TensorFlow in a Colab notebooks, so all you need is a recent version of Chrome and a Google login. You will not need prior knowledge with TensorFlow, but need a good understanding of how training neural networks work as a prerequisite.
 
-As a last step we will also showcase other typical use cases for autoencoders and how they can even help in supervised
-settings.
 
-In this workshop we will use TensorFlow in a Colab notebooks, so all you need is a recent version of Chrome and a Google login.
+Level intermediate: Autoencoders are complex. You will need a basic understanding neural networks in order not to be overwhelmed by them.
+Title: Blue Collar ML Architect
+
+Oliver is a software developer and architect from Hamburg, Germany. He has spent the past 40 years developing software using different approaches, hardware and programming languages. In the past decade he mostly returned to the AI approach he left after his studies in the 90s.
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
 ---
 Talk
@@ -233,6 +236,7 @@ Autoencoders are fascinating neural networks.
 
 
 - das geile Notebook mit alles zeigen
+https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/autoencoder_outlier_detection.ipynb
 - Dramaturgie, warum auch noch Latent Space abgreifen: What to do if this is not just binary or you have normal data is not the majority?
 - Folien von ODSC West 2022: https://drive.google.com/file/d/1LMaU88hLOFKqs_ni-uMh4-VsD3j_j7j1/view
 
@@ -273,6 +277,7 @@ Konferenzen
 
 
 https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/autoencoder_outlier_detection.ipynb
+
 
 </textarea>
 </section>
