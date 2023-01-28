@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Autoencoders for Anomaly Detection</title>
+
+    <meta name="description" content="Autoencoders for Anomaly Detection">
+    <meta name="author" content="Oliver Zeigermann">
+	<link rel="shortcut icon" href="/img/favicon.ico" >
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+	<link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+	<style>
+		.right-img {
+			margin-left: 10px !important;
+			float: right;
+			height: 500px;
+		}
+
+		.todo:before {
+			content: 'TODO: ';
+		}
+
+		.todo {
+			color: red !important;
+		}
+
+		code span.line-number {
+			color: lightcoral;
+		}
+
+		.reveal pre code {
+			max-height: 1000px !important;
+		}
+
+		img {
+			border: 0 !important;
+			box-shadow: 0 0 0 0 !important;
+			height: 450px;
+		}
+
+		.reveal {
+			-ms-touch-action: auto !important;
+			touch-action: auto !important;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4 {
+			/* letter-spacing: 2px; */
+			font-family: 'Calibri', sans-serif;
+			/* font-family: 'Times New Roman', Times, serif; */
+			/* font-weight: bold; */
+			color: black;
+			/* font-style: italic; */
+			/* letter-spacing: -2px; */
+			text-transform: none !important;
+		}
+
+		.reveal em {
+			font-weight: bold;
+		}
+
+		.reveal section img {
+			background: none;
+		}
+
+		.reveal img.with-border {
+			border: 1px solid #586e75 !important;
+			box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+		}
+
+		.reveal li {
+			margin-bottom: 8px;
+		}
+
+		/* For li's that use FontAwesome icons as bullet-point */
+		.reveal ul.fa-ul li {
+			list-style-type: none;
+		}
+
+		.reveal {
+			/* font-family: 'Work Sans', 'Calibri'; */
+			font-family: 'Calibri';
+			color: black !important;
+			font-size: xx-large;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.col img {
+			height: auto;
+		}
+
+		.col,
+		col-1 {
+			flex: 1;
+		}
+
+		.col-2 {
+			flex: 2;
+		}
+
+	/* https://intranet.openknowledge.de/plugins/servlet/mobile?contentId=18612939#content/view/18612939
+      https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
+      https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
+       */
+       body:after {
+        content: url(img/ok/logo.png) ;
+        position: fixed;
+        bottom: 80px;
+        left: -1080px;
+        transform: scale(.06);
+        height: 10px;
+    }
+
+	</style>
+</head>
+
+<body style="background-color: whitesmoke;">
+
+<div class="reveal">
+    <div class="slides">
+
+
+<!-- 
+---
+
+Resilient Machine Learning
+- Unwanted Bias
+  - https://www.techtarget.com/searchenterpriseai/definition/machine-learning-bias-algorithm-bias-or-AI-bias
+- Adversarial Attacks
+  - http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture16.pdf
+    - https://www.youtube.com/watch?v=CIfsB_EYsVI&list=PLSVEhWrZWDHQTBmWZufjxpw3s8sveJtnJ
+  - https://github.com/smasis001/mlconf-2022
+  - https://odsc.medium.com/detecting-adversarial-attacks-with-subset-scanning-8a53c360512f
+  * Seldon Alibi Detect: https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
+  * ART
+    * https://developer.ibm.com/articles/applying-the-adversarial-robustness-toolbox/
+    * https://github.com/Trusted-AI/adversarial-robustness-toolbox
+
+- Out-of-distribution Robustness
+  - http://www.gatsby.ucl.ac.uk/~balaji/balaji-odsc-talk.pdf
+- Reliable measure of certainty of prediction  
+  - http://www.gatsby.ucl.ac.uk/~balaji/balaji-odsc-talk.pdf
+- Drift
+- Stability
+  - https://djcordhose.github.io/ai/2019_m3_embeddings.html#/32
+  - https://djcordhose.github.io/ai/2019_m3_embeddings.html#/36
+- Fallbacks / Ensembles
+  - https://danshiebler.com/2022-07-04-resilient-machine-learning/
+
+
+Resilience is known as the ability to adapt to difficult or unexpected situations. Such a phenomenon also exists in the field of machine learning, where we have to deal with adversarial attacks, 
+out-of-distribution robustness, and drift. Model stability must be ensured during retraining and post-training.
+Measures include monitoring machine learning models, detecting outliers, and running with fallbacks and/or multiple models as an ensemble.
+Clever model selection for production can also go a long way. In this talk, I explain the phenomena mentioned and address the appropriate measures for each.
+
+---
+https://dsco.usfdatainstitute.org
+
+Resilient Machine Learning
+
+Resilience is known as the ability to adapt to difficult or unexpected situations. Such a phenomenon also exists in the field of machine learning, where we have to deal with adversarial attacks, out-of-distribution robustness, drift, and unwanted bias. Additionally, model stability must be ensured during retraining and post-training.
+Measures include monitoring machine learning models, detecting outliers, and running with fallbacks and/or multiple models as an ensemble.
+Clever model selection for production can also go a long way. 
+
+In this talk, I explain the phenomena mentioned and address the appropriate measures based on an example in the field of computer vision, which poses additional challenges.
+
+
+Bio: Oliver is a software developer and architect from Hamburg, Germany. He has been developing software with different
+approaches and programming languages for more than 3 decades. Lately, he has been focusing on Machine Learning and its interactions with humans.
+
+Title: Head of AI / AI Strategist
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
+---
+M3
+https://www.m3-konferenz.de/cfp.php
+
+Resilientes Machine Learning
+
+Resilienz ist die Fähigkeit der Anpassung an schwierige oder unerwartete Situationen.
+Eine solche Widerstandskraft kann es bei Menschen geben oder eben auch in Softwaresystemen.
+Bei klassischen Softwaresystemen betrifft Resilienz häufig nur die Ausfallsicherheit.
+Mit der Nutzung von Machine Learning innerhalb der Systeme kommen viele weitere Aspekte hinzu. Eine Besonderheit ist
+hier eine komplexe Geschäftslogik, die als ein abstraktes Artefakt vorliegt. Diese unterliegt nicht mehr vollständig der
+Kontrolle der Entwickler.
+Als Konsequenz müssen wir uns mit Phänomenen wie Adversarial Attacks, Out-of-Distribution Robustness und Drift
+auseinandersetzen.
+Die Stabilität des Modells muss hier bei Neutraining und Nachtraining gewährleistet werden.
+Maßnahmen umfassen das Monitoring von Machine Learning-Modellen, die Erkennung von Ausreißern und den Betrieb mit
+Fallbacks und/oder mehreren Modellen als Ensemble.
+Auch eine geschickte Auswahl des Modells für die Produktion kann schon viel bewirken.
+In diesem Talk erläutere ich die genannten Phänomene und gehe auf die jeweils passenden Maßnahmen ein.
+
+Kurze Version
+
+
+Resilienz ist die Fähigkeit der Anpassung an schwierige oder unerwartete Situationen.
+
+Im Bereich des Machine Learnings müssen wir uns dabei mit Phänomenen wie Adversarial Attacks, Out-of-Distribution Robustness und Drift auseinandersetzen.
+Die Stabilität des Modells muss hier bei Neutraining und Nachtraining gewährleistet werden.
+Maßnahmen umfassen das Monitoring von Machine Learning-Modellen, die Erkennung von Ausreißern und den Betrieb mit Fallbacks und/oder mehreren Modellen als Ensemble.
+Auch eine geschickte Auswahl des Modells für die Produktion kann schon viel bewirken.
+In diesem Talk erläutere ich die genannten Phänomene und gehe auf die jeweils passenden Maßnahmen ein.
+
+Vorkenntnisse
+
+Grundverständnis vom Training von Machine Learning Modellen
+
+Lernziele
+
+Ein Einblick in die Welt des Machine Learnings in Produktion und was man beachten muss, Nachts gut schlafen zu können.
+ -->
+
+
+ <section data-markdown class="todo">
+	<textarea data-template>
+### Enterprise ML: It's all about managing uncertainty
+
+Näschste Version des Talks?
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+## Intro        
+### ML is all about managing uncertainty
+
+- ML comes with a lot of uncertainty
+  - model
+    - score
+    - confidence
+    - training vs test vs out of sample, real world
+  - process
+    - will the approach work at all
+      - depends on what "work" means
+      - what score is good enough?
+      - what about the other requirements
+
+- Uncertainty is hard to bear
+  - Emotionally: Scarf
+  - risk for business
+
+- You need to manage the uncertainty / introduce resilient concepts to handle the stress 
+  - also process
+    - PoC
+    - try and infer life time of model
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Besonders bei LLM: Manage Uncertainty
+
+- Stack Systems
+- Ensemble
+- Make a judgement what you would want to output 
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Besonders bei LLM: Staging
+
+Manage Uncertainty using "staging" / proposals / augmentation and assistance 
+
+https://ai.google/responsibilities/responsible-ai-practices/
+
+---
+
+Software has been basically deterministic until now
+
+Until we fully trust LLM outputs, we will start to see a UX I call "staging"
+
+Here are a few examples
+(https://twitter.com/RealKevinYang/status/1616646347888943104?t=CGNrfDJl_8Zk7Tvq3j2HmA&s=03) 
+
+</textarea>
+</section>
+
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+
+https://github.com/google-research/tuning_playbook
+</textarea>
+</section>
+
+ <section data-markdown class="todo">
+<section data-markdown>
+    <textarea data-template>
+# Visual Regression Testing with Neural Networks
+
+TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
+
+Oliver Zeigermann, https://www.embarc.de/oliver-zeigermann/
+
+Slides: https://bit.ly/testcon-regression
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+## TL'DR
+
+- Most people perceive an application on the visual level
+- Running automated tests at this level therefore is an obvious approach
+- Visual regression testing addresses the problem at the right level, but
+    * they are also known to be particularly challenging to develop and also brittle to execute
+- Autoencoders (special neural networks) can learn how an application normally looks like
+- This also allows us to find out when a particular screen "doesn't look normal"  
+- This is a more general form of visual regression testing
+- How this can be done and what kind of bugs it can detect is the topic of this talk
+
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+# Thanks a lot and time for questions
+
+## Visual Regression Testing with Neural Networks
+
+TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
+
+Slides: https://bit.ly/testcon-regression
+
+Stay in touch if you like
+
+<a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
+
+<a href='https://www.linkedin.com/in/oliver-zeigermann-34989773/'>https://www.linkedin.com/in/oliver-zeigermann-34989773/</a>
+
+    </textarea>
+</section>
+
+</div>
+</div>
+
+<script src="reveal.js/dist/reveal.js"></script>
+<script src="lib/jquery.js"></script>
+<script>
+    const printMode = window.location.search.match(/print-pdf/gi);
+    const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+        window.location.hostname.indexOf('127.0.0.1') !== -1;
+    const isPresentation = isLocal && !printMode;
+    const isPublic = !isPresentation;
+
+    $('.hide').remove();
+
+    if (isPresentation) {
+    } else {
+        // only applies to public version
+        $('.todo').remove();
+        $('.preparation').remove();
+        $('.local').remove();
+    }
+
+    Reveal.addEventListener('ready', function (event) {
+        // applies to all versions
+        $('code').addClass('line-numbers');
+
+        $('.fragments li').addClass('fragment')
+
+        // make all links open in new tab
+        $('a').attr('target', '_blank')
+
+        if (isPresentation) {
+            // only applies to presentation version
+            Reveal.configure({ controls: false });
+        } else {
+            // only applies to public version
+            $('.fragment').removeClass('fragment');
+        }
+
+        // we do not like fragments
+        // $('.fragment').removeClass('fragment');
+
+    });
+
+</script>
+
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script src="reveal.js/plugin/markdown/markdown.js"></script>
+<script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+        slideNumber: true,
+        hideInactiveCursor: false,
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+
+
+</body>
+
+</html>
