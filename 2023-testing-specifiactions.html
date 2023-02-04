@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Autoencoders for Anomaly Detection</title>
+
+    <meta name="description" content="Autoencoders for Anomaly Detection">
+    <meta name="author" content="Oliver Zeigermann">
+	<link rel="shortcut icon" href="/img/favicon.ico" >
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+	<link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+	<style>
+		.right-img {
+			margin-left: 10px !important;
+			float: right;
+			height: 500px;
+		}
+
+		.todo:before {
+			content: 'TODO: ';
+		}
+
+		.todo {
+			color: red !important;
+		}
+
+		code span.line-number {
+			color: lightcoral;
+		}
+
+		.reveal pre code {
+			max-height: 1000px !important;
+		}
+
+		img {
+			border: 0 !important;
+			box-shadow: 0 0 0 0 !important;
+			height: 450px;
+		}
+
+		.reveal {
+			-ms-touch-action: auto !important;
+			touch-action: auto !important;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4 {
+			/* letter-spacing: 2px; */
+			font-family: 'Calibri', sans-serif;
+			/* font-family: 'Times New Roman', Times, serif; */
+			/* font-weight: bold; */
+			color: black;
+			/* font-style: italic; */
+			/* letter-spacing: -2px; */
+			text-transform: none !important;
+		}
+
+		.reveal em {
+			font-weight: bold;
+		}
+
+		.reveal section img {
+			background: none;
+		}
+
+		.reveal img.with-border {
+			border: 1px solid #586e75 !important;
+			box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+		}
+
+		.reveal li {
+			margin-bottom: 8px;
+		}
+
+		/* For li's that use FontAwesome icons as bullet-point */
+		.reveal ul.fa-ul li {
+			list-style-type: none;
+		}
+
+		.reveal {
+			/* font-family: 'Work Sans', 'Calibri'; */
+			font-family: 'Calibri';
+			color: black !important;
+			font-size: xx-large;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.col img {
+			height: auto;
+		}
+
+		.col,
+		col-1 {
+			flex: 1;
+		}
+
+		.col-2 {
+			flex: 2;
+		}
+
+	/* https://intranet.openknowledge.de/plugins/servlet/mobile?contentId=18612939#content/view/18612939
+      https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
+      https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
+       */
+       body:after {
+        content: url(img/ok/logo.png) ;
+        position: fixed;
+        bottom: 80px;
+        left: -1080px;
+        transform: scale(.06);
+        height: 10px;
+    }
+
+	</style>
+</head>
+
+<body style="background-color: whitesmoke;">
+
+<div class="reveal">
+    <div class="slides">
+
+
+<!-- 
+
+Many fallacies influence our thinking and thus the specification of critical business logic
+- https://en.wikipedia.org/wiki/List_of_fallacies
+- Wir versuchen für alles eine Erklärung zu suchen
+- Wenn wir etwas gemacht haben oder etwas gerade passiert ist, glauben wir, dass es einen Zusammenhang gibt
+
+- I've seen a lot of HCI work on ML explainability, but has any of it investigated the question of how to make feature importance measures legible to non-experts? In my experience, showing them top X features leads to many mistaken inferences on their part. (https://twitter.com/struthious/status/1620907429201592321?t=uuFnvHIEmOs8mSvOJXw8YQ&s=03) 
+- Part I: Property based evaluation - what should hold true about your spec? Is it without contradiction
+
+Feature importance
+
+Part II: Data Driven evaluation - and why if you are already doing this, you might just go as well one step further, monitoring for drift
+
+
+---
+
+https://testcon.lt/cfp/
+
+How to test the specification?
+
+We have a lot of mature and useful techniques for testing whole systems in how they work together and testing code
+against specification. But: how do we test a specification and what would that even mean? Such a specification will
+often be implemented in terms of business logic, but tests for that logic are derived from the same specification. 
+Thus a test can show at best if the business logic matches the specification, but not if the specification makes sense.   
+
+Techniques borrowed from data science and machine learning can fill the gap provided there is some data you already have or collect while already being in production.
+Given that data you can compute a metric for the code based on your spec. Such a metric might be as simple as counting wrong and right predictions, but can also 
+be fine tuned to whatever you want to optimize for. Next you can also infer certain properties of your data that can help validating the specification. Such properties might be
+as simple as feature importance, i.e. which of the input parameters has the greatest impact on the result of the code. 
+
+If this is convincing, you might just as well go one step further and add monitoring based on feature drift or even replace your hand written business logic 
+with a machine learning model trained from the same data. 
+
+
+
+
+ -->
+
+ <section data-markdown class="todo">
+<section data-markdown>
+    <textarea data-template>
+# Visual Regression Testing with Neural Networks
+
+TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
+
+Oliver Zeigermann, https://www.embarc.de/oliver-zeigermann/
+
+Slides: https://bit.ly/testcon-regression
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+## TL'DR
+
+- Most people perceive an application on the visual level
+- Running automated tests at this level therefore is an obvious approach
+- Visual regression testing addresses the problem at the right level, but
+    * they are also known to be particularly challenging to develop and also brittle to execute
+- Autoencoders (special neural networks) can learn how an application normally looks like
+- This also allows us to find out when a particular screen "doesn't look normal"  
+- This is a more general form of visual regression testing
+- How this can be done and what kind of bugs it can detect is the topic of this talk
+
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+# Thanks a lot and time for questions
+
+## Visual Regression Testing with Neural Networks
+
+TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
+
+Slides: https://bit.ly/testcon-regression
+
+Stay in touch if you like
+
+<a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
+
+<a href='https://www.linkedin.com/in/oliver-zeigermann-34989773/'>https://www.linkedin.com/in/oliver-zeigermann-34989773/</a>
+
+    </textarea>
+</section>
+
+</div>
+</div>
+
+<script src="reveal.js/dist/reveal.js"></script>
+<script src="lib/jquery.js"></script>
+<script>
+    const printMode = window.location.search.match(/print-pdf/gi);
+    const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+        window.location.hostname.indexOf('127.0.0.1') !== -1;
+    const isPresentation = isLocal && !printMode;
+    const isPublic = !isPresentation;
+
+    $('.hide').remove();
+
+    if (isPresentation) {
+    } else {
+        // only applies to public version
+        $('.todo').remove();
+        $('.preparation').remove();
+        $('.local').remove();
+    }
+
+    Reveal.addEventListener('ready', function (event) {
+        // applies to all versions
+        $('code').addClass('line-numbers');
+
+        $('.fragments li').addClass('fragment')
+
+        // make all links open in new tab
+        $('a').attr('target', '_blank')
+
+        if (isPresentation) {
+            // only applies to presentation version
+            Reveal.configure({ controls: false });
+        } else {
+            // only applies to public version
+            $('.fragment').removeClass('fragment');
+        }
+
+        // we do not like fragments
+        // $('.fragment').removeClass('fragment');
+
+    });
+
+</script>
+
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script src="reveal.js/plugin/markdown/markdown.js"></script>
+<script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+        slideNumber: true,
+        hideInactiveCursor: false,
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+
+
+</body>
+
+</html>
