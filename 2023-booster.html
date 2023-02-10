@@ -216,7 +216,7 @@ What do you think when you think about someone doing architectural work?
 * Maybe used to code
 * Can not go beyond the level of boxes and arrows
 * Can talk, but not act
-* Tires to deflect responsibility
+* Tries to deflect responsibility
 
 _Please be as open as possible_
 </textarea>
@@ -224,10 +224,11 @@ _Please be as open as possible_
 
 <section data-markdown>
 	<textarea data-template>
-### Agenda
+## Agenda
 
 1. What is architecture? (5 min)
-1. Our challenge for today? (10 min)
+1. Our challenge for today? (10 min) 
+1. Machine Learning (5 min)
 1. Why and how to document? (5 min)
 1. Let's make some decisions (45m)
 1. Bingo - optional if time permits (10m)
@@ -329,25 +330,27 @@ _Might not be obvious, but is an architectural decision_
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### Requirements
 
-es gibt eine bevorzugte Lösung
+1. *High Accuracy* - should have 80% or more cases correct
+1. *Explainability* - we need to explain how we come to the conclusion
+1. *Stability* - a new version of the software should not behave totally different
+1. *Resistance Against Hackers* - it should be hard to find out how the software works to resist manipulation
+1. *Ressourcefulness* - should scale well and not use a lot of resources to run
 
 </textarea>
 </section>
-
-
 
 <section data-markdown>
 ### Features to draw conclusion from
 
 * Driver
-  * *training*: 0/1, has the driver completed driver training.
+  * *training*: 0/1, the driver completed driver training
   * *age*: Age of the driver in years
 * vehicle  
-  *emergency_breaking*: 0/1, the vehicle has an emergency braking system 
+  *emergency_braking*: 0/1, the vehicle has an emergency braking system 
   * *braking_distance*: Braking distance from speed 100
   * *power*: Power in KW
 * *miles*: Annual mileage
@@ -400,6 +403,22 @@ _we are probably most familiar with that_
 
 <section data-markdown>
 	<textarea data-template>
+### Machine Learning
+
+<img src="img/architecture/ML-1.png">
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/architecture/ML-2.png">
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
 ### Machine Learning Nuggets explained
   
   <a href='https://ml-playground.com'><img src='img/ml-playground.png' style="height: 400px"></a>
@@ -410,16 +429,55 @@ https://ml-playground.com
   
   <section data-markdown>
 	<textarea data-template>
-### Agenda
+## Agenda
 
 1. *Why and how to document?*
 	</textarea>
 </section>
 
   
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Why document?
+
+1. Making things explicit
+   * making sure proper reasoning has been done in the first place
+   * provide a basis for discussion
+1. Reference
+   * something used by developer roles to actually make the software
+   * for people coming back into the project at a later point
+   * having your back
+1. Requirements change or get more obvious and explicit over time - we can not look into the future
+   * If this happens do we know what decision we took based on what perceived requirement and assumption?
+
+_most of this gets invalidated when documentation is dishonest_   
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### What to document?
+
+<img src="img/architecture/docs.jpg">
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### How to document?
+
+<img src="img/architecture/lightweight-docs.jpg">
+
+Don't make it a legal text - unless you really have to
+
+</textarea>
+</section>
+
+
   <section data-markdown>
 	<textarea data-template>
-### Agenda
+## Agenda
 
 1. *Let's make some decisions*
 	</textarea>
