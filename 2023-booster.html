@@ -154,6 +154,9 @@ There will be exercises on paper to be solved in teams.
 
 <!-- <section data-markdown class="preparation">
 	<textarea data-template>
+- Hausmeister-Kittel blau / grau
+- Metal T-Shirt
+- Badehose		
 	</textarea>
 </section> -->
 
@@ -324,7 +327,7 @@ _Might not be obvious, but is an architectural decision_
 ### Context
 
 * application data contains a set of features
-* we have collected sets of data f
+* we have collected sets of data from existing customers
 * we use a set of features drawn from data points 
 
 </textarea>
@@ -337,9 +340,10 @@ _Might not be obvious, but is an architectural decision_
 1. *High Accuracy* - should have 80% or more cases correct
 1. *Explainability* - we need to explain how we come to the conclusion
 1. *Stability* - a new version of the software should not behave totally different
-1. *Resistance Against Hackers* - it should be hard to find out how the software works to resist manipulation
+1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
 1. *Ressourcefulness* - should scale well and not use a lot of resources to run
 
+_requirements typically are vague, sometimes user stories help making this clearer_
 </textarea>
 </section>
 
@@ -374,60 +378,6 @@ _Might not be obvious, but is an architectural decision_
 </section>
 
 <section data-markdown>
-	<textarea data-template>
-## Sample for Code
-
-```
-if training: 
-    return LOW_RISK
-if age < 30:
-    if power > 130:
-        return HIGH_RISK
-    else:
-        return MEDIUM_RISK
-if age > 50:
-    return HIGH_RISK
-if emergency_braking:
-    return LOW_RISK
-if milage > 50:
-    return HIGH_RISK
-if milage > 30:
-    return MEDIUM_RISK
-# default
-return LOW_RISK
-```
-
-_we are probably most familiar with that_
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Machine Learning
-
-<img src="img/architecture/ML-1.png">
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Machine Learning
-
-<img src="img/architecture/ML-2.png">
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Machine Learning Nuggets explained
-  
-  <a href='https://ml-playground.com'><img src='img/ml-playground.png' style="height: 400px"></a>
-  
-https://ml-playground.com
-	</textarea>
-  </section>
-  
-  <section data-markdown>
 	<textarea data-template>
 ## Agenda
 
@@ -487,13 +437,26 @@ Don't make it a legal text - unless you really have to
 	<textarea data-template>
 ### Hands-On 1: Choose a suitable solution
 
-Pair up in teams of at least two and and most four people
+*Pair up in teams of at least two and and most four people*
+
+* Hint: there is one nugget that looks good, but has serious flaws
+* What information are you lacking?
+* Olli plays be the role of 
+  * the PM detailing the product
+  * the developer giving information about the architectural nuggets
+  * realistically (hopefully) simulating the scarcity and the lack of commitment
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hands-On 1: Choose a suitable solution
 
 <div class="container">
 	<div class="col">
 
 ### Decide
-Choices to make
+_Choices to make_
 1. Code or Data Driven
 1. If data driven, which ML approach?
 
@@ -501,7 +464,7 @@ Choices to make
 	<div class="col">
 		
 ### Document
-Document your decision
+_Document your decision_
 - Assumptions
 - Compromises
 - Inferred priorities
@@ -512,16 +475,189 @@ Choose whatever form you see fit for documentation
 
 </div>
 
-
-
-
-* What information are you lacking?
-* Olli plays be the role of 
-  * the PM detailing the product
-  * the developer giving information about the architectural nuggets
-  * realistically (hopefully) simulating the scarcity and the lack of commitment
 	</textarea>
 </section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today? 
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. *Bingo*
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+  
+<section data-markdown>
+	<textarea data-template>
+### Bingo
+
+_A couple of events happen, how do they affect your decision?_
+
+1. Smartass Lawyer Attack
+1. Attempted Manipulation / Adversarial Attacks
+1. Hacker Attack
+1. CEO rampage
+1. Drift
+1. Investigative Journalism
+
+Does the documentation help?
+- What assumptions have been invalidated?
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Event 1: Smartass Lawyer Attack
+
+- a pensioner gets bad conditions for the insurance
+- the GDPR gives them the right for an explanation
+- can you provide such an explanation?
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hacking the system / Adversarial Attacks
+
+https://www.instagram.com/reel/CkQUhLov9_u/?igshid=MDJmNzVkMjY=
+</textarea>
+</section>
+    
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 2: Attempted Manipulation / Adversarial Attacks
+
+Certain inputs may intentionally cause a grossly incorrect prediction to be made
+* can be used to systematically manipulate the output of the system
+* how sensible a system is to such an attempt is determined by the inner complexity of such a system
+  * often directly contradicting properties like explainability
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 3: Hacker Attack
+
+_people get access to you production servers_
+- 
+
+#### Lessons Learnt
+- some properties of systems require a technical level of understanding 
+- looking at charts and high level check boxes are typically not sufficient
+- as an architect you need to understand the technology used or partner with a dev role you trust
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 4: CEO rampage
+
+_CEO claims your solution is subpar and wants to hire big consultancy to replace your solution_
+- trigger: her wife received a bad score
+- Why does it make mistakes?
+- says it uses too much resources
+
+#### Lessons Learnt
+- properly documenting decision can have your back
+- making honest and best solution without ego can safe your project
+
+	</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large;">
+<textarea data-template>
+### Instability of logic sucks
+
+<div class="container">
+<div class="col">
+<br>
+<br>
+
+
+<img src="img/architecture/twitter-stability-1.png" style="height: 300px;">    
+</div>
+<div class="col">
+	<img src="img/architecture/twitter-stability-2.png" style="height: 550px;">    
+</div>
+
+</div>
+
+<small>
+
+* https://twitter.com/elonmusk/status/1595457703739944976
+* https://twitter.com/elonmusk/status/1593673339826212864
+
+</small>
+
+</textarea>
+</section>
+  
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 5: Drift
+
+Driver assistance becomes prevalent
+
+#### Setting
+
+#### Lessons Learnt
+- 
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 6: Investigative Journalism
+
+_claims there is systematic age bias_
+
+#### Lessons Learnt
+- you can not look into the future
+- even with due diligence there will always be events that mess with your solution
+- use documentation to cover your back (if necessary)
+- act quickly without ego to fix problem
+
+	</textarea>
+</section>
+
+
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today? 
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Bingo
+1. *Reflection*
+
+### Block III - The aftermath (15 min, optional parts)
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+  
+
 
 <section data-markdown>
 	<textarea data-template>
@@ -533,51 +669,114 @@ Choose whatever form you see fit for documentation
 1. How did you feel wile making your decision?
    * Did you feel stressed? What stressed you out?
    * Did you feel up to the task of making a choice in the first place?
+   * Who was lacking deeper technical insights?
+   * who wanted more emotional support
 
+Note:   
+Je nach Stimmung   
+   - Optional dann ML Techniques 
+   - Optional dann die heul Folien
 
 	</textarea>
 </section>
+
 
 <section data-markdown>
 	<textarea data-template>
-### Agenda
+## Agenda
 
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today? 
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (30 min)
 1. Let's make some decisions
-1. Why is that so hard?
-1. Who likes documenting?
-1. *Bingo - optional if time permits*
-1. Conclusion
-	</textarea>
-</section>
+1. Reflection
 
-<section data-markdown class="todo">
-	<textarea data-template>
-### Bingo
-
-A couple of events happen, how do they affect your decision?
-
-1. Ein Event pro 5 Eigenschaften
-
-Does the documentation help?
-- What assumptions have been invalidated?
-
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Agenda
-
-1. Let's make some decisions
-1. Why is that so hard?
-1. Who likes documenting?
+### Block III - The aftermath (30 min, optional parts)
+1. *Understanding Machine Learning*
+1. Why is this so hard?
 1. Bingo
-1. *Conclusion*
 	</textarea>
+</section>
+		
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/architecture/ML-1.png">
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Sample for Code
+
+```
+if training: 
+    return LOW_RISK
+if age < 30:
+    if power > 130:
+        return HIGH_RISK
+    else:
+        return MEDIUM_RISK
+if age > 50:
+    return HIGH_RISK
+if emergency_braking:
+    return LOW_RISK
+if milage > 50:
+    return HIGH_RISK
+if milage > 30:
+    return MEDIUM_RISK
+# default
+return LOW_RISK
+```
+
+_we are probably most familiar with that_
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/architecture/ML-2.png">
+</textarea>
 </section>
 
 
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning Nuggets explained
+  
+  <a href='https://ml-playground.com'><img src='img/ml-playground.png' style="height: 400px"></a>
+  
+https://ml-playground.com
+	</textarea>
+  </section>
+ 
+  <section data-markdown>
+	<textarea data-template>
+## Agenda
 
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today? 
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (30 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (30 min, optional parts)
+1. Understanding Machine Learning
+1. *Why is this so hard?*
+1. Bingo
+	</textarea>
+</section>
+  
 <section data-markdown class="todo">
 	<textarea data-template>
 ### Doing Architecture is challenging
@@ -588,12 +787,9 @@ Does the documentation help?
 		</textarea>
 </section>
 
-
-
-
 <section data-markdown class="fragments">
 	<textarea data-template>
-### Summary
+### Conclusion
 
 
 	</textarea>
