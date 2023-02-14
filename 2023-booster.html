@@ -166,6 +166,8 @@ There will be exercises on paper to be solved in teams.
 	<textarea data-template>
 ### Final Preparations
 
+- clean up Bingo a little
+  - it is sound and complete, but a little rough around the edges
 
 	</textarea>
 </section>
@@ -619,7 +621,7 @@ Does the documentation help?
 	<textarea data-template>
 ### Event 1: Smartass Lawyer Attack
 
-- a pensioner gets bad conditions for the insurance
+- a lawyer gets bad conditions for the insurance
 - the GDPR gives them the right for an explanation
 - can you provide such an explanation?
 
@@ -651,7 +653,8 @@ Certain inputs may intentionally cause a grossly incorrect prediction to be made
 ### Event 3: Hacker Attack
 
 _people get access to you production servers_
-- 
+- this is bad all by itself
+- getting access to raw customer data (required for density based KNN) is a disaster, though
 
 #### Lessons Learnt
 - some properties of systems require a technical level of understanding 
@@ -709,11 +712,9 @@ _CEO claims your solution is subpar and wants to hire big consultancy to replace
 ### Event 5: Drift
 
 Driver assistance becomes prevalent
+- prediction of risk is no longer valid
+- you need to update your model but should not have to rewrite it completely
 
-#### Setting
-
-#### Lessons Learnt
-- 
 
 	</textarea>
 </section>
@@ -723,6 +724,8 @@ Driver assistance becomes prevalent
 ### Event 6: Investigative Journalism
 
 _claims there is systematic age bias_
+- you might have to get rid of that feature even though it might be really predictive
+- KNN might become useless after that
 
 #### Lessons Learnt
 - you can not look into the future
