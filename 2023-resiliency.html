@@ -231,30 +231,158 @@ Ein Einblick in die Welt des Machine Learnings in Produktion und was man beachte
 
  <section data-markdown class="todo">
 	<textarea data-template>
-### Aufbau
 
-- bisschen wie MLOps Talk
-  - MLOps für OOP von diesem hier ableiten
-- 4 Phasen als Überblick
-  - Englische Version von Alisa
-</textarea>
-</section>
-
-
- <section data-markdown class="todo">
-	<textarea data-template>
-### Enterprise ML: It's all about managing uncertainty
-
-Näschste Version des Talks?
+https://github.com/google-research/tuning_playbook
 </textarea>
 </section>
 
 
 <section data-markdown class="todo">
 	<textarea data-template>
-## Intro        
-### ML is all about managing uncertainty
 
+Rex "garbage in" Douglass Ph.D. (@RexDouglass) twitterte um 7:15 PM on Mo., Jan. 30, 2023:
+How to avoid machine learning pitfalls:
+a guide for academic researchers
+https://t.co/UdnvAiYVHU https://t.co/WnmoiKtAFg
+(https://twitter.com/RexDouglass/status/1620123641626382338?t=5-CZHBLw5f7iE0TyHjPfJw&s=03) 
+</textarea>
+</section>
+
+
+ <section data-markdown class="todo">
+	<textarea data-template>
+### Entwicklung
+
+- M3 Talk
+- https://mlconference.ai/machine-learning-advanced-development/resilience-machine-learning/
+- MLOps für OOP von diesem hier ableiten
+- Nächste Version des Talks?
+  - Enterprise ML: It's all about managing uncertainty
+  - ML is all about managing uncertainty
+  
+  
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### TODO für DSCO
+
+- Gauge anpassen auf dieses Thema (ist jetzt noch die Version aus Booster)
+- Agenda bauen
+- Drift kopieren aus: http://127.0.0.1:5501/docs/2022-mad-workshop.html#/27
+- Drift auf Englisch übersetzen
+- TODOs in Folien zuende
+- In this talk, I explain the phenomena mentioned and address the appropriate measures based on an example in the field of computer vision, which poses additional challenges.
+  - Computer Vision: Metrik aus Bild berechnen
+
+</textarea>
+</section>
+
+ <section data-markdown>
+	<textarea data-template>
+# Resilient Machine Learning
+
+Oliver Zeigermann
+
+https://dsco.usfdatainstitute.org
+
+Slides: https://bit.ly/dsco-resiliency-2023
+
+<!-- https://djcordhose.github.io/ml-resources/2023-booster.html -->
+
+<!-- <img src="img/architecture/bit.ly_booster-arch-2023.png" style="height: 200px;"> -->
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+# Resilience
+
+_ability to adapt to difficult or unexpected situations_
+
+* 
+
+https://en.wikipedia.org/wiki/Resilience
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Who is Olli
+
+<div style="display: flex;">
+<div style="flex: 50%;">
+  <img src='img/olli-T.jpg' height="400">
+</div>
+<div style="flex: 50%; font-size: x-large;">
+  <img src='img/olli-opa.jpeg'>
+</div>
+</div>
+
+<p>
+<a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
+Blue Collar Architect(ML)@<a href='https://www.openknowledge.de/'>OPEN KNOWLEDGE</a>
+</p>    
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+Questions and discussions are welcome *at any time* 		
+	</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Gauge by show of hands
+
+What do you think when you think about someone doing architectural work?
+* Probably can't code
+* Maybe used to code
+* Can not go beyond the level of boxes and arrows
+* Can talk, but not act
+* Tries to deflect responsibility
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. adversarial attacks and outlier detection
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. stability
+1. fallbacks and ensembles
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. *managing uncertainty*
+1. adversarial attacks and outlier detection
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. stability
+1. fallbacks and ensembles
+	</textarea>
+</section>
+
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
 - ML comes with a lot of uncertainty
   - model
     - score
@@ -276,6 +404,17 @@ Näschste Version des Talks?
     - try and infer life time of model
 </textarea>
 </section>
+
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+- 4 Phasen als Überblick
+  - Englische Version von Alisa
+</textarea>
+</section>
+
+
 
 <section data-markdown class="todo">
 	<textarea data-template>
@@ -308,72 +447,25 @@ Here are a few examples
 </section>
 
 
-
-<section data-markdown class="todo">
-	<textarea data-template>
-
-https://github.com/google-research/tuning_playbook
-</textarea>
-</section>
-
-
-<section data-markdown class="todo">
-	<textarea data-template>
-
-Rex "garbage in" Douglass Ph.D. (@RexDouglass) twitterte um 7:15 PM on Mo., Jan. 30, 2023:
-How to avoid machine learning pitfalls:
-a guide for academic researchers
-https://t.co/UdnvAiYVHU https://t.co/WnmoiKtAFg
-(https://twitter.com/RexDouglass/status/1620123641626382338?t=5-CZHBLw5f7iE0TyHjPfJw&s=03) 
-</textarea>
-</section>
-
-
- <section data-markdown class="todo">
 <section data-markdown>
-    <textarea data-template>
-# Visual Regression Testing with Neural Networks
+	<textarea data-template>
+# Thanks a lot
+## Software Architecture is not a swearword
 
-TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
+Stay in Contact
 
-Oliver Zeigermann, https://www.embarc.de/oliver-zeigermann/
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
-Slides: https://bit.ly/testcon-regression
+oliver.zeigermann@openknowledge.de
+
+Twitter: @DJCordhose
+
+Slides: https://bit.ly/booster-arch-2023
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
-## TL'DR
 
-- Most people perceive an application on the visual level
-- Running automated tests at this level therefore is an obvious approach
-- Visual regression testing addresses the problem at the right level, but
-    * they are also known to be particularly challenging to develop and also brittle to execute
-- Autoencoders (special neural networks) can learn how an application normally looks like
-- This also allows us to find out when a particular screen "doesn't look normal"  
-- This is a more general form of visual regression testing
-- How this can be done and what kind of bugs it can detect is the topic of this talk
 
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-# Thanks a lot and time for questions
-
-## Visual Regression Testing with Neural Networks
-
-TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
-
-Slides: https://bit.ly/testcon-regression
-
-Stay in touch if you like
-
-<a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
-
-<a href='https://www.linkedin.com/in/oliver-zeigermann-34989773/'>https://www.linkedin.com/in/oliver-zeigermann-34989773/</a>
-
-    </textarea>
-</section>
 
 </div>
 </div>
