@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Autoencoders for Anomaly Detection</title>
+
+    <meta name="description" content="Autoencoders for Anomaly Detection">
+    <meta name="author" content="Oliver Zeigermann">
+	<link rel="shortcut icon" href="/img/favicon.ico" >
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+	<link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+	<style>
+		.right-img {
+			margin-left: 10px !important;
+			float: right;
+			height: 500px;
+		}
+
+		.todo:before {
+			content: 'TODO: ';
+		}
+
+		.todo {
+			color: red !important;
+		}
+
+		code span.line-number {
+			color: lightcoral;
+		}
+
+		.reveal pre code {
+			max-height: 1000px !important;
+		}
+
+		img {
+			border: 0 !important;
+			box-shadow: 0 0 0 0 !important;
+			height: 450px;
+		}
+
+		.reveal {
+			-ms-touch-action: auto !important;
+			touch-action: auto !important;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4 {
+			/* letter-spacing: 2px; */
+			font-family: 'Calibri', sans-serif;
+			/* font-family: 'Times New Roman', Times, serif; */
+			/* font-weight: bold; */
+			color: black;
+			/* font-style: italic; */
+			/* letter-spacing: -2px; */
+			text-transform: none !important;
+		}
+
+		.reveal em {
+			font-weight: bold;
+		}
+
+		.reveal section img {
+			background: none;
+		}
+
+		.reveal img.with-border {
+			border: 1px solid #586e75 !important;
+			box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+		}
+
+		.reveal li {
+			margin-bottom: 8px;
+		}
+
+		/* For li's that use FontAwesome icons as bullet-point */
+		.reveal ul.fa-ul li {
+			list-style-type: none;
+		}
+
+		.reveal {
+			/* font-family: 'Work Sans', 'Calibri'; */
+			font-family: 'Calibri';
+			color: black !important;
+			font-size: xx-large;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.col img {
+			height: auto;
+		}
+
+		.col,
+		col-1 {
+			flex: 1;
+		}
+
+		.col-2 {
+			flex: 2;
+		}
+
+	/* https://intranet.openknowledge.de/plugins/servlet/mobile?contentId=18612939#content/view/18612939
+      https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
+      https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
+       */
+       body:after {
+        content: url(img/ok/logo.png) ;
+        position: fixed;
+        bottom: 80px;
+        left: -1080px;
+        transform: scale(.06);
+        height: 10px;
+    }
+
+	</style>
+</head>
+
+<body style="background-color: whitesmoke;">
+
+<div class="reveal">
+    <div class="slides">
+
+
+<!-- 
+
+https://www.developer-week.de/programm/#/talk/funf-machine-learning-prinzipien-die-nicht-nur-ml-experten-kennen-sollten
+
+ -->
+
+
+ <section data-markdown class="todo">
+	<textarea data-template>
+
+</textarea>
+</section>
+
+
+ <section data-markdown>
+	<textarea data-template>
+# Resilient Machine Learning
+
+Oliver Zeigermann
+
+https://dsco.usfdatainstitute.org
+
+Slides: https://bit.ly/dsco-resiliency-2023
+
+<!-- https://djcordhose.github.io/ml-resources/2023-booster.html -->
+
+<!-- <img src="img/architecture/bit.ly_booster-arch-2023.png" style="height: 200px;"> -->
+
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Who is Olli
+
+<div style="display: flex;">
+<div style="flex: 50%;">
+  <img src='img/olli-T.jpg' height="400">
+</div>
+<div style="flex: 50%; font-size: x-large;">
+  <img src='img/olli-opa.jpeg'>
+</div>
+</div>
+
+<p>
+<a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
+Blue Collar Architect(ML)@<a href='https://www.openknowledge.de/'>OPEN KNOWLEDGE</a>
+</p>    
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+Questions and discussions are welcome *at any time* 		
+	</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Gauge by show of hands
+
+What do you think when you think about someone doing architectural work?
+* Probably can't code
+* Maybe used to code
+* Can not go beyond the level of boxes and arrows
+* Can talk, but not act
+* Tries to deflect responsibility
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. adversarial attacks and outlier detection
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. stability
+1. fallbacks and ensembles
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Thanks a lot
+## Software Architecture is not a swearword
+
+Stay in Contact
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
+
+oliver.zeigermann@openknowledge.de
+
+Twitter: @DJCordhose
+
+Slides: https://bit.ly/booster-arch-2023
+</textarea>
+</section>
+
+
+
+
+</div>
+</div>
+
+<script src="reveal.js/dist/reveal.js"></script>
+<script src="lib/jquery.js"></script>
+<script>
+    const printMode = window.location.search.match(/print-pdf/gi);
+    const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+        window.location.hostname.indexOf('127.0.0.1') !== -1;
+    const isPresentation = isLocal && !printMode;
+    const isPublic = !isPresentation;
+
+    $('.hide').remove();
+
+    if (isPresentation) {
+    } else {
+        // only applies to public version
+        $('.todo').remove();
+        $('.preparation').remove();
+        $('.local').remove();
+    }
+
+    Reveal.addEventListener('ready', function (event) {
+        // applies to all versions
+        $('code').addClass('line-numbers');
+
+        $('.fragments li').addClass('fragment')
+
+        // make all links open in new tab
+        $('a').attr('target', '_blank')
+
+        if (isPresentation) {
+            // only applies to presentation version
+            Reveal.configure({ controls: false });
+        } else {
+            // only applies to public version
+            $('.fragment').removeClass('fragment');
+        }
+
+        // we do not like fragments
+        // $('.fragment').removeClass('fragment');
+
+    });
+
+</script>
+
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script src="reveal.js/plugin/markdown/markdown.js"></script>
+<script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+        slideNumber: true,
+        hideInactiveCursor: false,
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+
+
+</body>
+
+</html>

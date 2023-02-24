@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Autoencoders for Anomaly Detection</title>
+    <title>Resilient Machine Learning</title>
 
-    <meta name="description" content="Autoencoders for Anomaly Detection">
+    <meta name="description" content="Resilient Machine Learning">
     <meta name="author" content="Oliver Zeigermann">
 	<link rel="shortcut icon" href="/img/favicon.ico" >
 
@@ -276,9 +276,48 @@ https://t.co/UdnvAiYVHU https://t.co/WnmoiKtAFg
 - TODOs in Folien zuende
 - In this talk, I explain the phenomena mentioned and address the appropriate measures based on an example in the field of computer vision, which poses additional challenges.
   - Computer Vision: Metrik aus Bild berechnen
+- Ansehen: https://mindfulmodeler.substack.com/p/the-way-of-model-agnostic-machine
 
 </textarea>
 </section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Model stability and adversarial vulnerability
+
+Main question: does slightly perturbing the input data yield a drastically different risk or a different risk group. If so
+- there is an additional attack vector because people could learn decision boundaries and by slightly tweaking features that do not require exact entry (like estimated miles per year) get into a better category, thus being able to hack the system
+- high local variation hints towards undetected overfitting
+- high local variation makes it likely that retraining with new data will yield a completely new model which also requires new interpretation etc. 
+
+Links:
+- https://en.wikipedia.org/wiki/Metamorphic_testing
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Hacking the system is more common than you might think
+
+taxes, laws, regulations, contracts, embargos
+
+- this is actually the job of a lot of people
+- transparency vs hackability
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Generalization and Bias are two sides of the same medal
+
+The notion that the world has a simple structure that, once learned, enables good generalization everywhere is flawed. Many aspects---names of new people, location of potholes in a new city, etc.---are unpredictable. One has to adapt to them when needed by learning continually.
+(https://twitter.com/KhurramJaved_96/status/1628410677101735936?t=HBWvj0f_KcxcTO3-jx4gow&s=03) 
+
+</textarea>
+</section>
+
 
  <section data-markdown>
 	<textarea data-template>
@@ -296,6 +335,8 @@ Slides: https://bit.ly/dsco-resiliency-2023
 
 </textarea>
 </section>
+
+
 
 <section data-markdown class="todo">
 	<textarea data-template>
