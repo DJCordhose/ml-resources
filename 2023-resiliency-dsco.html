@@ -298,7 +298,7 @@ March 2023, San Francisco, https://dsco.usfdatainstitute.org
 
 Oliver Zeigermann
 
-Slides: https://bit.ly/dsco-resiliency-2023
+<!-- Slides: https://bit.ly/dsco-resiliency-2023 -->
 
 <!-- https://djcordhose.github.io/ml-resources/2023-resiliency-dsco.html -->
 
@@ -307,21 +307,14 @@ Slides: https://bit.ly/dsco-resiliency-2023
 
 <section data-markdown class="todo">
 	<textarea data-template>
-### TODO für DSCO
+### TODO
 
-- Drift
- - kürzen
- - auf Englisch übersetzen
-  
- - Fallbacks / Ensembles
+- Fallbacks / Ensembles
    - https://danshiebler.com/2022-07-04-resilient-machine-learning/
 
-- Zusammenfassung
-  - anpassen
-  - auf Englisch übersetzen
-
-- Am Ende kürzen
-  - max. 30 Folien 
+- Endabnahme 
+  - max. 30 Folien
+  - Fluss 
 </textarea>
 </section>
 
@@ -672,17 +665,16 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
 </section>
 
 
-
 <section data-markdown>
   <textarea data-template>
-### ML Systeme sind dynamisch
+### Machine Learning Systems are dynamic in nature
 
-<img src='img/verfall-2.PNG'>
+<img src='img/model-degrade.png'>
 
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<!-- <section data-markdown class="fragments">
   <textarea data-template>
 ### Woher weiß man, dass man ein neues Modell in Produktion braucht?
 
@@ -696,37 +688,53 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
 * *Wenn sich die Verteilung der Daten der Anfragen oder Vorhersagen deutlich von der des Trainings unterscheidet* 
 
 </textarea>
+</section> -->
+
+
+<section data-markdown class="fragments">
+  <textarea data-template>
+### How do you know you need a new model in production?
+
+* Check already in the exploration phase how the model behaves on newer data.
+  * How quickly does performance degrade?
+  * At least once a year, so you know how it's doing at all
+* When the metrics of the model degrade into production.
+  * For that you need the ground truth of the data from production
+  * Sometimes you get this immediately after the prediction by the reaction of a human user
+  * But often only after a significant delay 
+* *When the distribution of the query or prediction data is significantly different from that of training*
+
+</textarea>
 </section>
 
 <section data-markdown>
 <textarea data-template>
-### Verteilung?
+### Distribution?
 
-* die wichtigste: Normalverteilung aka Gauß-Verteilung
-* Histogramme (Binning)
+* most important: Normal distribution aka Gaussian distribution
+* Histograms (Binning)
 
 <img src="img/nobel.svg">
 
 </textarea>
 </section>
 
-
 <section data-markdown class="fragments">
   <textarea data-template>
-### Verteilungen
+### Distribution
 
 <img src="img/causal-insurance/age-reference.png">
 
-Das Alter der Versicherten zum Zeitpunkt des Trainings
+Example: Age of the insured at the time of training
 </textarea>
 </section>
 
 
 <section data-markdown class="fragments">
 <textarea data-template>
-### Zum Zeitpunkt des Trainings?
+### At time of training?
 
-<img src="img/drift_entschlackt.png" style="height: 100%;">
+<img src="img/en/drift.png" style="height: 100%;">
 
 </textarea>
 </section>
@@ -742,7 +750,7 @@ Das Alter der Versicherten zum Zeitpunkt des Trainings
 -->
 <section data-markdown class="fragments">
 <textarea data-template>
-### Driftet das?
+### Does it drift?
 
 <img src="img/causal-insurance/age_no_drift_p75.png">
 
@@ -751,7 +759,7 @@ Das Alter der Versicherten zum Zeitpunkt des Trainings
 
 <section data-markdown class="fragments">
 <textarea data-template>
-### Und das?
+### And this?
 
 <img src="img/causal-insurance/age_drift_p0.png">
 
@@ -760,86 +768,67 @@ Das Alter der Versicherten zum Zeitpunkt des Trainings
 
 <section data-markdown class="fragments">
 <textarea data-template>
-### Wie erkennen wir Drift?
+### How to detect drift automatically?
 
-* Es wird ein statistischer Test auf den Verteilungen ausgeführt
-* Die Anfragen in Produktion werden verglichen mit dem Referenz-Datensatz, den wir zum Training benutzt haben
-
+* We are not great at detecting drift by eye
+* Even if we were, whose job should this be?
+* A statistical test compares distributions
+* Requests from production are compared with the reference dataset we used for training
 </textarea>
 </section>
 
 <section data-markdown class="fragment">
 <textarea data-template>
-## Welcher statistischer Test / welche Metrik?
+## Which statistical test / metric?
 
-es gibt leider nicht den einen passenden Test
+unfortunately there is not one suitable test
 
-* manche passen nur gut für kleine (< 1000) Datenmengen
-* unsere Datenmengen sind größer als 1000
-* manche können nicht nur auf numerischen, sondern auch auf kategorischen Daten arbeiten
-* wir brauchen beides
-<!-- * manche sind zwischen 0 und 1 normiert
-* das ist uns eher egal -->
+* some only fit well for small (< 1000) datasets
+* our data sets are larger than 1000
+* some can work not only on numeric data but also on categorical data
 </textarea>
 </section>
 
 
 <section data-markdown>
 <textarea data-template>
-### Speziell für Drift-Erkennung in Frage kommende Tests
+### Tests specifically suited for drift detection
 
 * Kolmogorov-Smirnov-Test
 * Population Stability Index
-* Kullback-Leibler-Divergenz
-* Jensen-Shannon-Distanz  
-* Wasserstein-Distanz
+* Kullback-Leibler-Divergence
+* Jensen-Shannon-Distance
+* Wasserstein-Distance
 
 https://evidentlyai.com/blog/data-drift-detection-large-datasets
 </textarea>
 </section>
 
-<section data-markdown  class="fragments">
-<textarea data-template>
-### Unser Beispiel: Kolmogorov-Smirnov-Test
-
-* numerisch
-* wird gerne als Default gewählt, kann bei großen Datenmengen aber zu empfindlich sein
-* Vorteil: keine Normalverteilung vorausgesetzt
-* ein 'typischer' statistischer Test mit p als Rückgabewert
-* Nullhypothese: die beiden Verteilungen sind gleich
-* Drift bei p-Wert unter 0.05
-
-*Wann nutzen?* Wenn Drift schnell entdeckt werden muss oder die Datenmengen kleiner ausfallen
-
-</textarea>
-</section>
-
 <section data-markdown class="fragments">
 <textarea data-template>
-### P-Werte
+### Statistical significance and p-value
 
-* die statistische Verteilung der jeweiligen Features
-* weicht diese in Produktion signifikant von der Verteilung im Training ab? (Nullhypothese: nein)
-* diese Abweichung wird über eine Metrik berechnet
-* es kommt eine Konfidenz heraus, ob die Nullhypothese stimmt
-* unter 5% Konfidenz geht man von einer Abweichung aus <span style="font-size: 0.95rem">(1% oder 0.1% auch möglich)</span>
-* das bedeutet, dass es eine 5%-Wahrscheinlichkeit gibt, dass die Verteilungen eigentlich doch gleich sind, man aber nur gerade schlechte Beispiele sieht
-
+* statistical distribution of the respective features
+* does it significantly differ from the distribution in training during production? (null hypothesis: no)
+* this deviation is calculated using a metric
+* a confidence level (p) is determined regarding whether the null hypothesis is true
+* if p is less than 5%, it is assumed that there is a deviation (1% or 0.1% is also possible)
+* this means that there is a 5% probability that the distributions are actually the same, but only poor examples are currently being observed
 </textarea>
 </section>
 
 <section data-markdown>
 <textarea data-template>
-### P-Werte für unsere beiden potentiellen Drifts
+### p-values for our two potential drifts
 
 <div class="container">
 <div class="col">
 <img src="img/causal-insurance/age_no_drift_p75.png" style="height: 100%;">
-<em>p-Wert (Wahrscheinlichkeit der Nullhypothese) = 75%, also kein Drift</em>
+<em>p-value (probability of null hypothesis) = 75%, no drift detected</em>
 </div>
 <div class="col">
 <img src="img/causal-insurance/age_drift_p0.png" style="height: 100%;">
-<em>p-Wert (Wahrscheinlichkeit der Nullhypothese) < 0,1%, also Drift</em>
+<em>p-value (probability of null hypothesis) < 0.1%, drift detected</em>
 
 </div>
 </div>
@@ -849,36 +838,36 @@ https://evidentlyai.com/blog/data-drift-detection-large-datasets
 
 <section data-markdown style="font-size: x-large;">
 	<textarea data-template>
-## Drift erfordert Interpretation
+## Drift requires interpretation
 
-Wenn die Welt sich ändert, ist Drift zu erwarten und damit ok
+If the world changes, drift is expected and might therefore be ok
 
-|   | Positive Interpretation, keine Maßnahme erforderlich  | Negative Interpretation, Maßnahme erforderlich  |
+|   | Positive interpretation, no action required | Negative interpretation, action required |
 |---|---|---|
-| *Data und Prediction Drift*  | wichtige Features haben sich geändert, Modell kommt klar und extrapoliert gut, z.B.: Höheres Alter, mehr Risiko  |  wichtige Features haben sich geändert, Modell extrapoliert nicht sinnvoll |
-| *Data aber kein Prediction Drift*  | keine wichtigen Features geändert, das Modell ist robust genug für den Drift  | wichtige Features geändert, Modell extrapoliert nicht sinnvoll |
-| *Prediction aber kein Data Drift*  | ???  | wahrscheinlich Concept Drift, neue Analyse der Situation notwendig |
+| *Data and Prediction Drift* | important features have changed, model still fine and extrapolates well | important features have changed, model does not extrapolate reasonably |
+| *Data but no prediction drift* | no important features changed, model is robust enough to handle drift | important features changed, model does not extrapolate meaningfully |
+| *Prediction but no Data Drift* | ???  | probably concept drift, new analysis of the situation necessary |
 |   |   |   |
-
 </textarea>
 </section>
 
 <section data-markdown class="fragments">
-## Maßnahmen bei Drift
+## Measures for drift
 
-* *Neue Version des Modells trainieren*
-  * Neue Daten aufnehmen (und labeln)
-  * Neue Features erzeugen
-  * Modell-Architektur ändern (oder fixen) und neu trainieren
-* Schnelle Maßnahme
-  * Pre-/Post-Processing des Modells neu kalibrieren
-  * Schwellwerte für Anwendung anpassen
-  * Bestimmte Bereiche ausklammern 
-* Sehr schnelle Maßnahme: Fallback
-  * Manuell
-  * Heuristik / Baseline
+* * Train new version of the model.
+  * Record (and label) new data
+  * Create new features
+  * Change (or fix) model architecture and re-train
+* Quick action
+  * Recalibrate pre/post processing of model
+  * Adjust thresholds for application
+  * Exclude certain areas 
+* Very fast action: fallback
+  * Manual
+  * Heuristics / Baseline
 </section>
 
+<!-- 
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Ausblick: Drift Detection für Bilder
@@ -928,7 +917,7 @@ Wenn die Welt sich ändert, ist Drift zu erwarten und damit ok
 https://twitter.com/ChristophMolnar/status/1569644089724764160
 </textarea>
 </section>
-
+ -->
 <section data-markdown>
 	<textarea data-template>
 ## Agenda
@@ -940,29 +929,24 @@ https://twitter.com/ChristophMolnar/status/1569644089724764160
 	</textarea>
 </section>
 
-
-
 <section data-markdown>
 	<textarea data-template>
-### Realistischer ist das Deployment eines kompletten Services 
+### You don't just deploy the model 
 
 <img src="img/Typical_Deployment_of_a_Machine_Learning_Service.jpg">
 
-Neues Problem: wir haben in Adapter Code einmal in Python und einmal in Java 
+preprocessing, fallbacks, and ensembles
 </textarea>
 </section>
 
 
 <section data-markdown class="fragments">
 <textarea data-template>
-### Zusammenfassung
+### Summary
 
-1. Machine Learning Projekte können in Phasen gedacht werden
-1. In der ersten Phase macht man möglichst schnelle Experimente
-1. Sollte sich eine Idee als tragfähig erweisen, professionalisiert man die Idee
-1. Dies ist Voraussetzung und Grundlage für Produktion
-1. In Produktion ergeben sich besondere Herausforderung im Bereich Monitoring
-1. Typischerweise müssen Machine Learning Systeme regelmäßig nachtrainiert und gepflegt werden
+1. machine learning projects can be thought of in phases
+1. in production, special challenges arise in the area of monitoring
+1. machine learning systems typically have to be regularly retrained and maintained.
 </textarea>
 </section>
 
@@ -979,7 +963,7 @@ oliver@zeigermann.de
 
 Twitter: @DJCordhose
 
-Slides: https://bit.ly/dsco-resiliency-2023
+<!-- Slides: https://bit.ly/dsco-resiliency-2023 -->
 </textarea>
 </section>
 
