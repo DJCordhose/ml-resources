@@ -494,6 +494,430 @@ Here are a few examples
 </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. *adversarial attacks and outlier detection*
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. stability
+1. fallbacks and ensembles
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hacking the system / Adversarial Attacks
+
+https://www.instagram.com/reel/CkQUhLov9_u/?igshid=MDJmNzVkMjY=
+</textarea>
+</section>
+    
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 2: Attempted Manipulation / Adversarial Attacks
+
+Certain inputs may intentionally cause a grossly incorrect prediction to be made
+* can be used to systematically manipulate the output of the system
+* how sensible a system is to such an attempt is determined by the inner complexity of such a system
+  * often directly contradicting properties like explainability
+
+	</textarea>
+</section>
+
+
+<section data-markdown>
+  <textarea data-template>
+### Adversarial Attacks
+
+* Bestimmte Eingaben können absichtlich eine grob falsche Vorhersage herbei führen 
+  * Solche Eingaben können erkannt und korrigiert werden
+  * Dazu kann z.B. ein Autoencoder benutzt werden, der die Eingabe korrigiert
+* Libs
+  * Seldon Alibi Detect: https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
+  * ART
+    * https://developer.ibm.com/articles/applying-the-adversarial-robustness-toolbox/
+    * https://github.com/Trusted-AI/adversarial-robustness-toolbox
+</textarea>
+</section>
+
+
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### Was kann man sonst noch machen
+
+* Outlier-Detection
+  * Unser Modell wird nicht extrapolieren können
+  * Werte außerhalb des Trainings-Bereichs werden wahrscheinlich unrealistisch sicher vorhergesagt
+  * Ausreißer müssen ohne Ground Truth entdeckt werden 
+* Adversarial Detection
+  * Bestimmte Eingaben können absichtlich eine grob falsche Vorhersage herbei führen 
+  * Solche Eingaben können erkannt und korrigiert werden
+  * Dazu kann z.B. ein Autoencoder benutzt werden, der die Eingabe korrigiert
+
+
+<small>https://docs.seldon.io/projects/alibi-detect/en/stable/od/methods.html
+<br>
+https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. adversarial attacks and outlier detection
+1. out-of-distribution robustness
+1. *drift and monitoring*
+1. unwanted bias
+1. stability
+1. fallbacks and ensembles
+	</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### ML Systeme sind dynamisch
+
+<img src='img/verfall-2.PNG'>
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+  <textarea data-template>
+### Woher weiß man, dass man ein neues Modell in Produktion braucht?
+
+* Schon in der Explorationsphase prüfen, wie sich das Modell auf neueren Daten verhält
+  * Wie schnell degradiert die Performance?
+  * Mindestens einmal im Jahr, damit man überhaupt noch weiß, wie es geht
+* Wenn die Metrik des Modells in Produktion nachlässt
+  * Dafür braucht man die Ground Truth der Daten aus Produktion
+  * Manchmal bekommt man diese unmittelbar nach der Vorhersage durch die Reaktion eines menschlichen Benutzers
+  * Oft aber auch erst nach nennenswerter Verzögerung 
+* *Wenn sich die Verteilung der Daten der Anfragen oder Vorhersagen deutlich von der des Trainings unterscheidet* 
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Verteilung?
+
+* die wichtigste: Normalverteilung aka Gauß-Verteilung
+* Histogramme (Binning)
+
+<img src="img/nobel.svg">
+
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+  <textarea data-template>
+### Verteilungen
+
+<img src="img/causal-insurance/age-reference.png">
+
+Das Alter der Versicherten zum Zeitpunkt des Trainings
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### Zum Zeitpunkt des Trainings?
+
+<img src="img/drift_entschlackt.png" style="height: 100%;">
+
+</textarea>
+</section>
+
+<!-- <section data-markdown class="fragments">
+<textarea data-template>
+### So sieht die Verteilung jetzt aus
+
+<img src="img/causal-insurance/age-current.png">
+
+</textarea>
+</section>
+-->
+<section data-markdown class="fragments">
+<textarea data-template>
+### Driftet das?
+
+<img src="img/causal-insurance/age_no_drift_p75.png">
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### Und das?
+
+<img src="img/causal-insurance/age_drift_p0.png">
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### Wie erkennen wir Drift?
+
+* Es wird ein statistischer Test auf den Verteilungen ausgeführt
+* Die Anfragen in Produktion werden verglichen mit dem Referenz-Datensatz, den wir zum Training benutzt haben
+
+</textarea>
+</section>
+
+<section data-markdown class="fragment">
+<textarea data-template>
+## Welcher statistischer Test / welche Metrik?
+
+es gibt leider nicht den einen passenden Test
+
+* manche passen nur gut für kleine (< 1000) Datenmengen
+* unsere Datenmengen sind größer als 1000
+* manche können nicht nur auf numerischen, sondern auch auf kategorischen Daten arbeiten
+* wir brauchen beides
+<!-- * manche sind zwischen 0 und 1 normiert
+* das ist uns eher egal -->
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+### Speziell für Drift-Erkennung in Frage kommende Tests
+
+* Kolmogorov-Smirnov-Test
+* Population Stability Index
+* Kullback-Leibler-Divergenz
+* Jensen-Shannon-Distanz  
+* Wasserstein-Distanz
+
+https://evidentlyai.com/blog/data-drift-detection-large-datasets
+</textarea>
+</section>
+
+<section data-markdown  class="fragments">
+<textarea data-template>
+### Unser Beispiel: Kolmogorov-Smirnov-Test
+
+* numerisch
+* wird gerne als Default gewählt, kann bei großen Datenmengen aber zu empfindlich sein
+* Vorteil: keine Normalverteilung vorausgesetzt
+* ein 'typischer' statistischer Test mit p als Rückgabewert
+* Nullhypothese: die beiden Verteilungen sind gleich
+* Drift bei p-Wert unter 0.05
+
+*Wann nutzen?* Wenn Drift schnell entdeckt werden muss oder die Datenmengen kleiner ausfallen
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### P-Werte
+
+* die statistische Verteilung der jeweiligen Features
+* weicht diese in Produktion signifikant von der Verteilung im Training ab? (Nullhypothese: nein)
+* diese Abweichung wird über eine Metrik berechnet
+* es kommt eine Konfidenz heraus, ob die Nullhypothese stimmt
+* unter 5% Konfidenz geht man von einer Abweichung aus <span style="font-size: 0.95rem">(1% oder 0.1% auch möglich)</span>
+* das bedeutet, dass es eine 5%-Wahrscheinlichkeit gibt, dass die Verteilungen eigentlich doch gleich sind, man aber nur gerade schlechte Beispiele sieht
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### P-Werte für unsere beiden potentiellen Drifts
+
+<div class="container">
+<div class="col">
+<img src="img/causal-insurance/age_no_drift_p75.png" style="height: 100%;">
+<em>p-Wert (Wahrscheinlichkeit der Nullhypothese) = 75%, also kein Drift</em>
+</div>
+<div class="col">
+<img src="img/causal-insurance/age_drift_p0.png" style="height: 100%;">
+<em>p-Wert (Wahrscheinlichkeit der Nullhypothese) < 0,1%, also Drift</em>
+
+</div>
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large;">
+	<textarea data-template>
+## Drift erfordert Interpretation
+
+Wenn die Welt sich ändert, ist Drift zu erwarten und damit ok
+
+|   | Positive Interpretation, keine Maßnahme erforderlich  | Negative Interpretation, Maßnahme erforderlich  |
+|---|---|---|
+| *Data und Prediction Drift*  | wichtige Features haben sich geändert, Modell kommt klar und extrapoliert gut, z.B.: Höheres Alter, mehr Risiko  |  wichtige Features haben sich geändert, Modell extrapoliert nicht sinnvoll |
+| *Data aber kein Prediction Drift*  | keine wichtigen Features geändert, das Modell ist robust genug für den Drift  | wichtige Features geändert, Modell extrapoliert nicht sinnvoll |
+| *Prediction aber kein Data Drift*  | ???  | wahrscheinlich Concept Drift, neue Analyse der Situation notwendig |
+|   |   |   |
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+## Maßnahmen bei Drift
+
+* *Neue Version des Modells trainieren*
+  * Neue Daten aufnehmen (und labeln)
+  * Neue Features erzeugen
+  * Modell-Architektur ändern (oder fixen) und neu trainieren
+* Schnelle Maßnahme
+  * Pre-/Post-Processing des Modells neu kalibrieren
+  * Schwellwerte für Anwendung anpassen
+  * Bestimmte Bereiche ausklammern 
+* Sehr schnelle Maßnahme: Fallback
+  * Manuell
+  * Heuristik / Baseline
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Ausblick: Drift Detection für Bilder
+
+* Input Drift mit Histogrammen von Low-Level-Features (HSV): https://towardsdatascience.com/detecting-semantic-drift-within-image-data-6a59a0e768c6
+* Input Drift mit Dimensions-Reduktion: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html 
+* Model Drift durch Vergleich mit destilliertem Modell: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_cifar10.html 
+* Ein komplettes Beispiel mit Alibi-Detect: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/alibi_detect_deploy.html#4.-Drift-detection-with-Kolmogorov-Smirnov
+* Anomalien in Bildern: https://29a.ch/photo-forensics
+* Drift kann auch auf Text festgestellt werden: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_text_imdb.html
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Ausblick: Wann liegt Ground Truth vor?
+
+*Menschliche Experten können die Ground Truth*
+* *bestimmen* 
+  * sobald ein Mensch die Entscheidungen nachprüft / revidiert
+  * bei einem Proposal-System kann das sehr schnell sein
+  * bei Dunkelverarbeitung sollte dies in regelmäßigen Abständen passieren
+* *nicht bestimmen*
+  * wir müssen Realitäten abwarten
+  * bei Zeitreihen wird auf die nahe Zukunft vorhergesagt, sobald diese Eintritt kann überprüft werden
+  * oft sind solche Realitäten erst nach einiger Zeit wahrnehmbar und unterliegen statistischen Schwankungen (wie bei uns)
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Ausblick: Unsere Vorhersage selbst erzeugt Drift
+
+* Ein Deployment ändert das unsere Rolle von Beobachter zu Akteur
+* Wir versichern nur Leute mit einer guten Risiko Prognose
+  * Wenn nicht, warum sollten wir dann eine überhaupt eine Prognose machen?
+* Unsere GT wird mehr und mehr gute Fahrer haben
+  * Zumindest ist das unsere Hoffnung (sonst hätte die Prognose nicht geklappt)
+* Falls nicht (False Negative, Type II Fehler)
+  * haben Menschen gelernt, unser System auszutricksen?
+  * "Dann versichert eben meine Tochter den Wagen"
+* Haben wir gute Fahrer aus verstehen nicht versichert (False Positive, Type I Fehler)
+  * Möglichkeit: *epsilon-greedy* meistens der Vorhersage glauben, aber manchmal (epsilon) auch einen Fahrer mit schlechter Prognose versichern 
+  * Vorhersage mit allen Wahrscheinlichkeiten geht in unsere Datenbank ein
+
+https://twitter.com/ChristophMolnar/status/1569644089724764160
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. adversarial attacks and outlier detection
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. *stability*
+1. fallbacks and ensembles
+	</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large;">
+<textarea data-template>
+### Instability of logic sucks
+
+<div class="container">
+<div class="col">
+<br>
+<br>
+
+
+<img src="img/architecture/twitter-stability-1.png" style="height: 300px;">    
+</div>
+<div class="col">
+	<img src="img/architecture/twitter-stability-2.png" style="height: 550px;">    
+</div>
+
+</div>
+
+<small>
+
+* https://twitter.com/elonmusk/status/1595457703739944976
+* https://twitter.com/elonmusk/status/1593673339826212864
+
+</small>
+
+</textarea>
+</section>
+  
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. adversarial attacks and outlier detection
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. stability
+1. *fallbacks and ensembles*
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Realistischer ist das Deployment eines kompletten Services 
+
+<img src="img/Typical_Deployment_of_a_Machine_Learning_Service.jpg">
+
+Neues Problem: wir haben in Adapter Code einmal in Python und einmal in Java 
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### Zusammenfassung
+
+1. Machine Learning Projekte können in Phasen gedacht werden
+1. In der ersten Phase macht man möglichst schnelle Experimente
+1. Sollte sich eine Idee als tragfähig erweisen, professionalisiert man die Idee
+1. Dies ist Voraussetzung und Grundlage für Produktion
+1. In Produktion ergeben sich besondere Herausforderung im Bereich Monitoring
+1. Typischerweise müssen Machine Learning Systeme regelmäßig nachtrainiert und gepflegt werden
+</textarea>
+</section>
 
 <section data-markdown>
 	<textarea data-template>
