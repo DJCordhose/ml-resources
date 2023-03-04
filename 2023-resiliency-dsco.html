@@ -289,12 +289,17 @@ The notion that the world has a simple structure that, once learned, enables goo
 </textarea>
 </section> -->
 
+<!-- <section data-markdown class="preparation">
+	<textarea data-template>
+- Hausmeister-Kittel blau
+	</textarea>
+</section> -->
 
  <section data-markdown>
 	<textarea data-template>
 # Resilient Machine Learning
 
-March 2023, San Francisco, https://dsco.usfdatainstitute.org
+https://dsco.usfdatainstitute.org, March 2023, San Francisco 
 
 Oliver Zeigermann
 
@@ -305,21 +310,40 @@ Oliver Zeigermann
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
 	<textarea data-template>
 ### TODO
-
-- Fallbacks / Ensembles
-   - https://danshiebler.com/2022-07-04-resilient-machine-learning/
 
 - Endabnahme 
   - max. 30 Folien
   - Fluss 
 </textarea>
 </section>
+ -->
+<section data-markdown>
+	<textarea data-template>
+Questions and comments are welcome *at any time* 		
+	</textarea>
+</section>
 
 
-<!-- <section data-markdown>
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Gauge by show of hands
+
+What do you think it most important in a machine learning project?
+* Have a high accuracy (or other relevant metric)
+* Use a novel/fancy approach
+* be able to explain what your model does
+* bringing something meaningful to production
+* know if it makes sense to bring something into production in the first place
+* have a way of knowing if a production model is still good (and knowing how to act upon that insight)
+
+_Please be as open as possible_
+</textarea>
+</section>
+
+<section data-markdown>
   <textarea data-template>
 ### Who is Olli
 
@@ -333,13 +357,13 @@ Oliver Zeigermann
 </div>
 
 <p>
-<a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
+<a target="_blank" href="mailto:oliver@zeigermann.de">Oliver Zeigermann</a>:
 Blue Collar Architect(ML)@<a href='https://www.openknowledge.de/'>OPEN KNOWLEDGE</a>
 </p>    
 
 </textarea>
 </section>
- -->
+
 
 <section data-markdown>
 	<textarea data-template>
@@ -368,6 +392,9 @@ https://en.wikipedia.org/wiki/Resilience
 </textarea>
 </section>
 
+
+
+
 <!--
 More complete agenda for talks longer than 30 minutes
   
@@ -392,9 +419,9 @@ More complete agenda for talks longer than 30 minutes
 ## Agenda
 
 1. managing uncertainty
+1. deploying machine learning services
 1. adversarial attacks and stability
 1. drift and monitoring
-1. fallbacks and ensembles
 	</textarea>
 </section>
 
@@ -404,9 +431,9 @@ More complete agenda for talks longer than 30 minutes
 ## Agenda
 
 1. *managing uncertainty*
+1. deploying machine learning services
 1. adversarial attacks and stability
 1. drift and monitoring
-1. fallbacks and ensembles
 	</textarea>
 </section>
 
@@ -435,23 +462,22 @@ More complete agenda for talks longer than 30 minutes
 - risk for business
 
 - You need to manage the uncertainty / introduce resilient concepts to handle the stress 
-- also process
-  - PoC
+- also relevant for development process
+  - create PoC, work in phases
   - try and infer life time of model
   </textarea>
 </section>
-
 
 <section data-markdown>
   <textarea data-template>
 ### Machine Learning Projects can be structured in phases
 
-<img src='img/sketch/phases-ml.png'>
+<img src='img/sketch/phases-ml.png' style="height: 500px;">
 
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
   <textarea data-template>
 ### What steps would you take when you want to start a new machine learning project
 
@@ -479,7 +505,7 @@ More complete agenda for talks longer than 30 minutes
 
 </textarea>
 </section>
-
+ -->
 <!-- <section data-markdown class="todo">
 	<textarea data-template>
 ### Besonders bei LLM: Manage Uncertainty
@@ -511,14 +537,35 @@ Here are a few examples
 </section>
  -->
 
+ <section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. *deploying machine learning services*
+1. adversarial attacks and stability
+1. drift and monitoring
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### You don't just deploy the model 
+
+<img src="img/Typical_Deployment_of_a_Machine_Learning_Service.jpg">
+
+preprocessing, fallbacks, and ensembles
+</textarea>
+</section>
+
 <section data-markdown>
 	<textarea data-template>
 ## Agenda
 
 1. managing uncertainty
+1. deploying machine learning services
 1. *adversarial attacks and stability*
 1. drift and monitoring
-1. fallbacks and ensembles
 	</textarea>
 </section>
 
@@ -549,7 +596,7 @@ taxes, laws, regulations, contracts, embargoes
 
 Certain inputs may intentionally cause a grossly incorrect prediction to be made
 * can be used to systematically manipulate the output of the system
-* how sensible a system is to such an attempt is determined by the inner complexity of such a system
+* how sensitive a system is to such an attempt is determined by the inner complexity of such a system
   * often directly contradicting properties like explainability
 
 	</textarea>
@@ -566,7 +613,7 @@ https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images
 </section>
  -->
 
-<section data-markdown style="font-size: x-large;">
+<!-- <section data-markdown style="font-size: x-large;">
 <textarea data-template>
 ### Instability
 
@@ -592,21 +639,23 @@ https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images
 </small>
 
 </textarea>
-</section>
+</section> -->
   
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### Model stability and adversarial vulnerability
 
-Main question: does slightly perturbing the input data yield a drastically different risk or a different risk group. If so
+_Main question: does slightly perturbing the input data yield a drastically different risk or a different risk group._
+
+If so
 - there is an additional attack vector because people could learn decision boundaries and by slightly tweaking features that do not require exact entry (like estimated miles per year) get into a better category, thus being able to hack the system
 - high local variation hints towards undetected overfitting
 - high local variation makes it likely that retraining with new data will yield a completely new model which also requires new interpretation etc. 
 
-Links:
+<!-- Links:
 - https://en.wikipedia.org/wiki/Metamorphic_testing
-
+ -->
 </textarea>
 </section>
 
@@ -674,8 +723,8 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
 
 1. managing uncertainty
 1. adversarial attacks and stability
+1. deploying machine learning services
 1. *drift and monitoring*
-1. fallbacks and ensembles
 	</textarea>
 </section>
 
@@ -710,19 +759,19 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
   <textarea data-template>
 ### How do you know you need a new model in production?
 
-* Check already in the exploration phase how the model behaves on newer data.
+* Check already in the exploration phase how the model behaves on newer data
   * How quickly does performance degrade?
   * At least once a year, so you know how it's doing at all
-* When the metrics of the model degrade into production.
+* When the metrics of the model degrade into production
   * For that you need the ground truth of the data from production
   * Sometimes you get this immediately after the prediction by the reaction of a human user
   * But often only after a significant delay 
-* *When the distribution of the query or prediction data is significantly different from that of training*
+* *When the distribution of prediction data is significantly different from that of training*
 
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 <textarea data-template>
 ### Distribution?
 
@@ -733,14 +782,14 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
 
 </textarea>
 </section>
-
+ -->
 <section data-markdown class="fragments">
   <textarea data-template>
 ### Distribution
 
 <img src="img/causal-insurance/age-reference.png">
 
-Example: Age of the insured at the time of training
+Example: Age of insured person at the time of training
 </textarea>
 </section>
 
@@ -767,7 +816,7 @@ Example: Age of the insured at the time of training
 <textarea data-template>
 ### Does it drift?
 
-<img src="img/causal-insurance/age_no_drift_p75.png">
+<img src="img/causal-insurance/age_no_drift_p75_no_clue.png">
 
 </textarea>
 </section>
@@ -776,7 +825,7 @@ Example: Age of the insured at the time of training
 <textarea data-template>
 ### And this?
 
-<img src="img/causal-insurance/age_drift_p0.png">
+<img src="img/causal-insurance/age_drift_p0_no_clue.png">
 
 </textarea>
 </section>
@@ -819,7 +868,7 @@ https://evidentlyai.com/blog/data-drift-detection-large-datasets
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<!-- <section data-markdown class="fragments">
 <textarea data-template>
 ### Statistical significance and p-value
 
@@ -830,20 +879,20 @@ https://evidentlyai.com/blog/data-drift-detection-large-datasets
 * if p is less than 5%, it is assumed that there is a deviation (1% or 0.1% is also possible)
 * this means that there is a 5% probability that the distributions are actually the same, but only poor examples are currently being observed
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
 <textarea data-template>
 ### p-values for our two potential drifts
 
-<div class="container">
+<div class="container fragment">
 <div class="col">
 <img src="img/causal-insurance/age_no_drift_p75.png" style="height: 100%;">
-<em>p-value (probability of null hypothesis) = 75%, no drift detected</em>
+<em>p-value = 75%, no drift detected</em>
 </div>
-<div class="col">
+<div class="col fragment">
 <img src="img/causal-insurance/age_drift_p0.png" style="height: 100%;">
-<em>p-value (probability of null hypothesis) < 0.1%, drift detected</em>
+<em>p-value < 0.1%, drift detected</em>
 
 </div>
 </div>
@@ -851,7 +900,7 @@ https://evidentlyai.com/blog/data-drift-detection-large-datasets
 </textarea>
 </section>
 
-<section data-markdown style="font-size: x-large;">
+<!-- <section data-markdown style="font-size: x-large;">
 	<textarea data-template>
 ## Drift requires interpretation
 
@@ -864,12 +913,12 @@ If the world changes, drift is expected and might therefore be ok
 | *Prediction but no Data Drift* | ???  | probably concept drift, new analysis of the situation necessary |
 |   |   |   |
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown class="fragments">
 ## Measures for drift
 
-* * Train new version of the model.
+* Train new version of the model
   * Record (and label) new data
   * Create new features
   * Change (or fix) model architecture and re-train
@@ -878,7 +927,7 @@ If the world changes, drift is expected and might therefore be ok
   * Adjust thresholds for application
   * Exclude certain areas 
 * Very fast action: fallback
-  * Manual
+  * Manual Classification
   * Heuristics / Baseline
 </section>
 
@@ -933,35 +982,31 @@ https://twitter.com/ChristophMolnar/status/1569644089724764160
 </textarea>
 </section>
  -->
-<section data-markdown>
-	<textarea data-template>
-## Agenda
 
-1. managing uncertainty
-1. adversarial attacks and stability
-1. drift and monitoring
-1. *fallbacks and ensembles*
+ <section data-markdown class="fragments">
+	<textarea data-template>
+### What can also happen when you go into production
+
+* Need for explanation
+  * people sue you over a prediction
+  * CEO wants to know why bad score for spouse
+* Unwanted bias
+  * gender or age are common
+  * investigative journalism a threat
+  * people might again sue
 	</textarea>
 </section>
-
-<section data-markdown>
-	<textarea data-template>
-### You don't just deploy the model 
-
-<img src="img/Typical_Deployment_of_a_Machine_Learning_Service.jpg">
-
-preprocessing, fallbacks, and ensembles
-</textarea>
-</section>
-
 
 <section data-markdown class="fragments">
 <textarea data-template>
 ### Summary
 
-1. machine learning projects can be thought of in phases
-1. in production, special challenges arise in the area of monitoring
-1. machine learning systems typically have to be regularly retrained and maintained.
+* a model that is not in production is useless
+* getting a descent model is already hard, but...
+* bringing a model to production and keeping it there is a whole different story
+* machine learning projects can be thought of in phases
+* in production, special challenges arise in the area of monitoring
+* machine learning systems typically have to be regularly retrained and maintained
 </textarea>
 </section>
 
