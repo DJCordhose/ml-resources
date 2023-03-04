@@ -310,22 +310,15 @@ Oliver Zeigermann
 </textarea>
 </section>
 
-<!-- <section data-markdown class="todo">
+<section data-markdown class="todo">
 	<textarea data-template>
 ### TODO
 
-- Endabnahme 
-  - max. 30 Folien
-  - Fluss 
+- 2 neue Skizzen
+  - 4 Phasen
+  - Prod mit Skalierung (skaliert gut)
 </textarea>
 </section>
- -->
-<section data-markdown>
-	<textarea data-template>
-Questions and comments are welcome *at any time* 		
-	</textarea>
-</section>
-
 
 <section data-markdown class="fragments">
 	<textarea data-template>
@@ -340,6 +333,8 @@ What do you think it most important in a machine learning project?
 * have a way of knowing if a production model is still good (and knowing how to act upon that insight)
 
 _Please be as open as possible_
+<br>
+Questions and comments are welcome *at any time*
 </textarea>
 </section>
 
@@ -364,19 +359,7 @@ Blue Collar Architect(ML)@<a href='https://www.openknowledge.de/'>OPEN KNOWLEDGE
 </textarea>
 </section>
 
-
-<section data-markdown>
-	<textarea data-template>
-## Resilience
-
-### ability to adapt to difficult or unexpected situations
-
-
-https://en.wikipedia.org/wiki/Resilience
-</textarea>
-</section>
-
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ## Objective
 
@@ -390,7 +373,7 @@ https://en.wikipedia.org/wiki/Resilience
 
 ### Comprehensive survey of solutions
 </textarea>
-</section>
+</section> -->
 
 
 
@@ -548,6 +531,16 @@ Here are a few examples
 	</textarea>
 </section>
 
+<section data-markdown class="fragments">
+### Without deployment there is no benefit
+
+* in academic life, often only the score (accuracy) of the model counts
+* this approach has become widespread in the field of data science
+* practice, however, is not a Kaggle Competition
+* In-Sample Evaluation is typically not enough for real life applications
+* Out-Of-Sample evaluation is typically only in production
+</section>
+
 <section data-markdown>
 	<textarea data-template>
 ### You don't just deploy the model 
@@ -557,6 +550,20 @@ Here are a few examples
 preprocessing, fallbacks, and ensembles
 </textarea>
 </section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Typical requirements for Machine Learning Projects
+
+1. *Reasonable Accuracy* - should have 80% or more cases correct
+1. *Explainability* - we need to explain how we come to the conclusion
+1. *Stability* - a new version of the software should not behave totally different
+1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
+1. *Robutness against drift* - the world changes, our model should follow
+
+</textarea>
+</section>
+
 
 <section data-markdown>
 	<textarea data-template>
@@ -722,8 +729,8 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
 ## Agenda
 
 1. managing uncertainty
-1. adversarial attacks and stability
 1. deploying machine learning services
+1. adversarial attacks and stability
 1. *drift and monitoring*
 	</textarea>
 </section>
@@ -759,11 +766,12 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
   <textarea data-template>
 ### How do you know you need a new model in production?
 
-* Check already in the exploration phase how the model behaves on newer data
+* Check how the model behaves on newer data
   * How quickly does performance degrade?
-  * At least once a year, so you know how it's doing at all
-* When the metrics of the model degrade into production
-  * For that you need the ground truth of the data from production
+  * check already in the exploration phase
+* At least once a year, to make sure someone still knows how to even do this  
+* When the metrics degrade in production
+  * ground truth from production data required to even find out
   * Sometimes you get this immediately after the prediction by the reaction of a human user
   * But often only after a significant delay 
 * *When the distribution of prediction data is significantly different from that of training*
@@ -783,18 +791,8 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
 </textarea>
 </section>
  -->
-<section data-markdown class="fragments">
-  <textarea data-template>
-### Distribution
 
-<img src="img/causal-insurance/age-reference.png">
-
-Example: Age of insured person at the time of training
-</textarea>
-</section>
-
-
-<section data-markdown class="fragments">
+ <section data-markdown class="fragments">
 <textarea data-template>
 ### At time of training?
 
@@ -802,6 +800,17 @@ Example: Age of insured person at the time of training
 
 </textarea>
 </section>
+
+<section data-markdown class="fragments">
+  <textarea data-template>
+### Reference Distribution
+
+<img src="img/causal-insurance/age-reference.png">
+
+Example: Age of people seeking for insurance
+</textarea>
+</section>
+
 
 <!-- <section data-markdown class="fragments">
 <textarea data-template>
@@ -838,23 +847,13 @@ Example: Age of insured person at the time of training
 * Even if we were, whose job should this be?
 * A statistical test compares distributions
 * Requests from production are compared with the reference dataset we used for training
-</textarea>
-</section>
-
-<section data-markdown class="fragment">
-<textarea data-template>
-## Which statistical test / metric?
-
-unfortunately there is not one suitable test
-
+* unfortunately there is not one suitable test
 * some only fit well for small (< 1000) datasets
-* our data sets are larger than 1000
 * some can work not only on numeric data but also on categorical data
 </textarea>
 </section>
 
-
-<section data-markdown>
+<!-- <section data-markdown>
 <textarea data-template>
 ### Tests specifically suited for drift detection
 
@@ -866,7 +865,7 @@ unfortunately there is not one suitable test
 
 https://evidentlyai.com/blog/data-drift-detection-large-datasets
 </textarea>
-</section>
+</section> -->
 
 <!-- <section data-markdown class="fragments">
 <textarea data-template>
@@ -883,7 +882,7 @@ https://evidentlyai.com/blog/data-drift-detection-large-datasets
 
 <section data-markdown>
 <textarea data-template>
-### p-values for our two potential drifts
+### p-values for our two potential drifts using Kolmogorov-Smirnov-Test
 
 <div class="container fragment">
 <div class="col">
@@ -990,6 +989,7 @@ https://twitter.com/ChristophMolnar/status/1569644089724764160
 * Need for explanation
   * people sue you over a prediction
   * CEO wants to know why bad score for spouse
+  * contradicts prevention of hacking
 * Unwanted bias
   * gender or age are common
   * investigative journalism a threat
@@ -997,6 +997,14 @@ https://twitter.com/ChristophMolnar/status/1569644089724764160
 	</textarea>
 </section>
 
+<section data-markdown class="todo">
+  <textarea data-template>
+    Davor nochmal die Phasen als Grafik
+
+    Nochmal neu von Hand malen weil wichtig     
+	</textarea>
+</section>
+  
 <section data-markdown class="fragments">
 <textarea data-template>
 ### Summary
@@ -1007,6 +1015,7 @@ https://twitter.com/ChristophMolnar/status/1569644089724764160
 * machine learning projects can be thought of in phases
 * in production, special challenges arise in the area of monitoring
 * machine learning systems typically have to be regularly retrained and maintained
+* Practicioners need statistical skills, but not calculus or linear algebra 
 </textarea>
 </section>
 
