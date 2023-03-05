@@ -260,13 +260,18 @@ https://t.co/UdnvAiYVHU https://t.co/WnmoiKtAFg
 	<textarea data-template>
 ### Entwicklung
 
-- M3 Talk, länger
+- M3 Talk
+  - 15 Min länger, 40 Folien
+  - die Auskommentierten Sachen von Drift Ausblick dazu nehmen
+  - Auf Deutsch zurück übersetzen
+
   - Längere Agenda nutzen
   Mehr auf die Stabilisierung eingehen? (https://djcordhose.github.io/ai/2019_m3_embeddings.html#/29)
 - https://mlconference.ai/machine-learning-advanced-development/resilience-machine-learning/
 - Ansehen: https://mindfulmodeler.substack.com/p/the-way-of-model-agnostic-machine
 
 - MLOps für OOP von diesem hier ableiten
+  - bisschen Übung rein bauen - wie Architektur?
 - Nächste Version des Talks?
   - Enterprise ML: It's all about managing uncertainty
   - ML is all about managing uncertainty
@@ -292,6 +297,11 @@ The notion that the world has a simple structure that, once learned, enables goo
 <!-- <section data-markdown class="preparation">
 	<textarea data-template>
 - Hausmeister-Kittel blau
+- Den AE Kram ansehen
+  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html
+  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/alibi_detect_deploy.html#4.-Drift-detection-with-Kolmogorov-Smirnov
+  - https://arxiv.org/abs/2002.09364
+- Den Fluss noch einmal üben  
 	</textarea>
 </section> -->
 
@@ -310,13 +320,21 @@ Oliver Zeigermann
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
 	<textarea data-template>
 ### TODO
 
-- 2 neue Skizzen
-  - 4 Phasen
-  - Prod mit Skalierung (skaliert gut)
+</textarea>
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+## Resilience
+
+### ability to adapt to difficult or unexpected situations
+
+
+https://en.wikipedia.org/wiki/Resilience
 </textarea>
 </section>
 
@@ -333,8 +351,8 @@ What do you think it most important in a machine learning project?
 * have a way of knowing if a production model is still good (and knowing how to act upon that insight)
 
 _Please be as open as possible_
-<br>
-Questions and comments are welcome *at any time*
+<!-- <br>
+Questions and comments are welcome *at any time* -->
 </textarea>
 </section>
 
@@ -455,7 +473,7 @@ More complete agenda for talks longer than 30 minutes
   <textarea data-template>
 ### Machine Learning Projects can be structured in phases
 
-<img src='img/sketch/phases-ml.png' style="height: 500px;">
+<img src='img/mlops/mlops-phases.jpg' style="height: 500px;">
 
 </textarea>
 </section>
@@ -545,7 +563,7 @@ Here are a few examples
 	<textarea data-template>
 ### You don't just deploy the model 
 
-<img src="img/Typical_Deployment_of_a_Machine_Learning_Service.jpg">
+<img src="img/mlops/ml-system.jpg" style="height: 500px;">
 
 preprocessing, fallbacks, and ensembles
 </textarea>
@@ -668,7 +686,7 @@ If so
 
 <section data-markdown>
 	<textarea data-template>
-### Check against Adversarial Attacks
+### Adversarial AE detector
 
 Adversarial perturbation gives significantly different outputs at x and x'.
 		
@@ -678,7 +696,8 @@ Adversarial perturbation gives significantly different outputs at x and x'.
 
 https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html		
 https://github.com/SeldonIO/alibi-detect#adversarial-detection
-
+<br>
+https://arxiv.org/abs/2002.09364
 </small>
 
 </textarea>
@@ -882,7 +901,7 @@ https://evidentlyai.com/blog/data-drift-detection-large-datasets
 
 <section data-markdown>
 <textarea data-template>
-### p-values for our two potential drifts using Kolmogorov-Smirnov-Test
+### p-values for our two potential drifts using two-sample Kolmogorov-Smirnov (K-S) tests
 
 <div class="container fragment">
 <div class="col">
@@ -997,12 +1016,37 @@ https://twitter.com/ChristophMolnar/status/1569644089724764160
 	</textarea>
 </section>
 
-<section data-markdown class="todo">
-  <textarea data-template>
-    Davor nochmal die Phasen als Grafik
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Drift Detection in Images
 
-    Nochmal neu von Hand malen weil wichtig     
-	</textarea>
+* reduce single low level, e.g.
+  * structure index
+  * mean or std of basic feature 
+* dimensionality reduction to multivariate data
+  * p-values for each feature aggregated
+* drift detection via destilled model
+  * similar to adversarial attack detection
+
+<small>
+
+https://towardsdatascience.com/detecting-semantic-drift-within-image-data-6a59a0e768c6
+<br>
+https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html
+<br>
+https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_cifar10.html
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Machine Learning Projects vs School
+
+<img src='img/mlops/mlops-phases-vs-school.jpg' style="height: 500px;">
+
+</textarea>
 </section>
   
 <section data-markdown class="fragments">
@@ -1015,7 +1059,7 @@ https://twitter.com/ChristophMolnar/status/1569644089724764160
 * machine learning projects can be thought of in phases
 * in production, special challenges arise in the area of monitoring
 * machine learning systems typically have to be regularly retrained and maintained
-* Practicioners need statistical skills, but not calculus or linear algebra 
+* practicioners need statistical skills, but rarely calculus or linear algebra 
 </textarea>
 </section>
 
