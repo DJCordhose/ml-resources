@@ -119,14 +119,14 @@
       https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
       https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
        */
-       body:after {
+       /* body:after {
         content: url(img/ok/logo.png) ;
         position: fixed;
         bottom: 80px;
         left: -1080px;
         transform: scale(.06);
         height: 10px;
-    }
+    } */
 
 	</style>
 </head>
@@ -1124,6 +1124,15 @@ Twitter: @DJCordhose
 
         // we do not like fragments
         // $('.fragment').removeClass('fragment');
+
+        if (printMode) {
+          Reveal.configure({ 
+            controls: false,
+            // slideNumber: false 
+          });
+      
+        }
+
 
     });
 
