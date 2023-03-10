@@ -340,12 +340,12 @@ Oliver Zeigermann
 ### Gauge by show of hands
 
 What do you think it most important in a machine learning project?
-* Have a high accuracy (or other relevant metric)
-* Use a novel/fancy approach
-* be able to explain what your model does
-* bringing something meaningful to production
-* know if it makes sense to bring something into production in the first place
-* have a way of knowing if a production model is still good (and knowing how to act upon that insight)
+1. Have a high accuracy (or other relevant metric)
+1. Use a novel/fancy approach
+1. be able to explain what your model does
+1. bringing something meaningful to production
+1. know if it makes sense to bring something into production in the first place
+1. have a way of knowing if a production model is still good (and knowing how to act upon that insight)
 
 _Please be as open as possible_
 <!-- <br>
@@ -462,11 +462,10 @@ https://en.wikipedia.org/wiki/Resilience
   - score
   - confidence
   - training vs test vs out of sample, real world
-- process
-  - will the approach work at all
-    - depends on what "work" means
-    - what score is good enough?
-    - what about the other requirements
+- will the approach work at all
+  - depends on what "work" means
+  - what score is good enough?
+  - what about the other requirements
 
 </textarea>
 </section>
@@ -571,17 +570,20 @@ Here are a few examples
 * in academic life, often only the score (accuracy) of the model counts
 * this approach has become widespread in the field of data science
 * practice, however, is not a Kaggle Competition
-* In-Sample Evaluation is typically not enough for real life applications
-* Out-Of-Sample evaluation is typically only in production
+* in-sample Evaluation is typically not enough for real life applications
+* out-of-sample evaluation typically only possible in production
 </section>
 
 <section data-markdown>
 	<textarea data-template>
 ### You don't just deploy the model 
 
-<img src="img/mlops/ml-system.jpg" style="height: 500px;">
+<img src="img/mlops/ml-system.jpg" style="height: 550px;">
 
-preprocessing, fallbacks, and ensembles
+<!-- <small>preprocessing, fallbacks, and ensembles -->
+
+</small>
+
 </textarea>
 </section>
 
@@ -687,12 +689,17 @@ https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images
 	<textarea data-template>
 ### Model stability and adversarial vulnerability
 
-_Main question: does slightly perturbing the input data yield a drastically different risk or a different risk group._
+_Main question: does slightly perturbing the input data yield a drastically different prediction?_
 
 If so
-- there is an additional attack vector because people could learn decision boundaries and by slightly tweaking features that do not require exact entry (like estimated miles per year) get into a better category, thus being able to hack the system
+- there is an additional attack vector 
+  - because people could learn decision boundaries
+  - by slightly tweaking features that do not require exact entry get an advantageous prediction
 - high local variation hints towards undetected overfitting
-- high local variation makes it likely that retraining with new data will yield a completely new model which also requires new interpretation etc. 
+- stability
+  - high local variation makes it likely that retraining with new data will yield a completely new model
+  - also requires new interpretation etc.
+  - unwanted disruption for users 
 
 <!-- Links:
 - https://en.wikipedia.org/wiki/Metamorphic_testing
