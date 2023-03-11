@@ -321,7 +321,9 @@ https://dsco.usfdatainstitute.org, March 2023, San Francisco
 
 Oliver Zeigermann
 
-<!-- Slides: https://bit.ly/dsco-resiliency-2023 -->
+Slides: https://bit.ly/dsco-resiliency-2023
+
+<!-- PDF: https://bit.ly/dsco-resiliency-2023 -->
 
 <!-- https://djcordhose.github.io/ml-resources/2023-resiliency-dsco.html -->
 
@@ -343,7 +345,7 @@ What do you think it most important in a machine learning project?
 1. Have a high accuracy (or other relevant metric)
 1. Use a novel/fancy approach
 1. be able to explain what your model does
-1. bringing something meaningful to production
+1. bringing something meaningful into production
 1. know if it makes sense to bring something into production in the first place
 1. have a way of knowing if a production model is still good (and knowing how to act upon that insight)
 
@@ -488,7 +490,7 @@ https://en.wikipedia.org/wiki/Resilience
   <textarea data-template>
 ### Machine Learning Projects can be structured in phases
 
-<img src='img/mlops/mlops-phases.jpg' style="height: 500px;">
+<img src='img/mlops/mlops-phases-simple.jpg' style="height: 100%;">
 
 </textarea>
 </section>
@@ -595,7 +597,7 @@ Here are a few examples
 1. *Explainability* - we need to explain how we come to the conclusion
 1. *Stability* - a new version of the software should not behave totally different
 1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
-1. *Robutness against drift* - the world changes, our model should follow
+1. *Robustness against drift* - the world changes, our model should follow
 
 </textarea>
 </section>
@@ -711,7 +713,8 @@ If so
 	<textarea data-template>
 ### Adversarial AE detector
 
-Adversarial perturbation gives significantly different outputs at x and x'.
+still able to detect the adversarial examples in the case of a white-box attack where the
+attacker has full knowledge of both the model and the defence
 		
 <img src="img/adversarialae.png" style="height:400px;" class="fragment">
 
@@ -1048,7 +1051,7 @@ https://twitter.com/ChristophMolnar/status/1569644089724764160
   * mean or std of basic feature 
 * dimensionality reduction to multivariate data
   * p-values for each feature aggregated
-* drift detection via destilled model
+* drift detection via distilled model
   * similar to adversarial attack detection
 
 <small>
@@ -1078,11 +1081,11 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_
 
 * a model that is not in production is useless
 * getting a descent model is already hard, but...
-* bringing a model to production and keeping it there is a whole different story
+* bringing a model into production and keeping it there is a whole different story
 * machine learning projects can be thought of in phases
 * in production, special challenges arise in the area of monitoring
 * machine learning systems typically have to be regularly retrained and maintained
-* practicioners need statistical skills, but rarely calculus or linear algebra 
+* practitioners need statistical skills, but rarely calculus or linear algebra 
 </textarea>
 </section>
 
