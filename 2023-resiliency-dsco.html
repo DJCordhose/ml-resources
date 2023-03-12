@@ -350,8 +350,8 @@ What do you think it most important in a machine learning project?
 1. have a way of knowing if a production model is still good (and knowing how to act upon that insight)
 
 _Please be as open as possible_
-<br>
-Questions and comments are welcome *at any time*
+<!-- <br>
+Questions and comments are welcome *at any time* -->
 </textarea>
 </section>
 
@@ -486,6 +486,17 @@ https://en.wikipedia.org/wiki/Resilience
 </section>
 
 <section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. *deploying machine learning services*
+1. adversarial attacks and stability
+1. drift and monitoring
+	</textarea>
+</section>
+
+<section data-markdown>
   <textarea data-template>
 ### Machine Learning Projects can be structured in phases
 
@@ -554,26 +565,15 @@ Here are a few examples
 </section>
  -->
 
- <section data-markdown>
-	<textarea data-template>
-## Agenda
-
-1. managing uncertainty
-1. *deploying machine learning services*
-1. adversarial attacks and stability
-1. drift and monitoring
-	</textarea>
-</section>
-
-<section data-markdown class="fragments">
+<!-- <section data-markdown class="fragments">
 ### Without deployment there is no benefit
 
 * in academic life, often only the score (accuracy) of the model counts
 * this approach has become widespread in the field of data science
 * practice, however, is not a Kaggle Competition
-* in-sample Evaluation is typically not enough for real life applications
+* in-sample evaluation is typically not enough for real life applications
 * out-of-sample evaluation typically only possible in production
-</section>
+</section> -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -588,7 +588,7 @@ Here are a few examples
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<!-- <section data-markdown class="fragments">
 	<textarea data-template>
 ### Typical requirements for Machine Learning Projects
 
@@ -600,7 +600,7 @@ Here are a few examples
 
 </textarea>
 </section>
-
+ -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -634,7 +634,7 @@ taxes, laws, regulations, contracts, embargoes
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<!-- <section data-markdown class="fragments">
 	<textarea data-template>
 ### Attempted Manipulation / Adversarial Attacks
 
@@ -645,7 +645,7 @@ Certain inputs may intentionally cause a grossly incorrect prediction to be made
 
 	</textarea>
 </section>
-
+ -->
 <!-- <section data-markdown>
 	<textarea data-template>
 ### Explainability and Check against Overfitting
@@ -711,14 +711,14 @@ If so
 <section data-markdown>
 	<textarea data-template>
 ### Adversarial AE detector
-
-still able to detect the adversarial examples in the case of a white-box attack where the
-attacker has full knowledge of both the model and the defence
 		
 <img src="img/adversarialae.png" style="height:400px;" class="fragment">
 
 <small>
 
+_still able to detect the adversarial examples in the case of a white-box attack where the
+attacker has full knowledge of both the model and the defence_
+  
 https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html		
 https://github.com/SeldonIO/alibi-detect#adversarial-detection
 <br>
@@ -1029,21 +1029,6 @@ https://twitter.com/ChristophMolnar/status/1569644089724764160
 </section>
  -->
 
- <section data-markdown class="fragments">
-	<textarea data-template>
-### What can also happen when you go into production
-
-* Need for explanation
-  * people sue you over a prediction
-  * CEO wants to know why bad score for spouse
-  * contradicts prevention of hacking
-* Unwanted bias
-  * gender or age are common
-  * investigative journalism a threat
-  * people might again sue
-	</textarea>
-</section>
-
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Drift Detection in Images
@@ -1068,6 +1053,22 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_
 </textarea>
 </section>
 
+<section data-markdown class="fragments">
+	<textarea data-template>
+### What can also happen when you go into production
+
+* Need for explanation
+  * people sue you over a prediction
+  * CEO wants to know why bad score for spouse
+  * contradicts prevention of hacking
+* Unwanted bias
+  * gender or age are common
+  * investigative journalism a threat
+  * people might again sue
+	</textarea>
+</section>
+
+
 <!-- <section data-markdown>
   <textarea data-template>
 ### Machine Learning Projects vs School
@@ -1077,6 +1078,7 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_
 </textarea>
 </section>
    -->
+
 <section data-markdown class="fragments">
 <textarea data-template>
 ### Summary
@@ -1084,8 +1086,8 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_
 * a model that is not in production is useless
 * getting a descent model is already hard, but...
 * bringing a model into production and keeping it there is a whole different story
-* machine learning projects can be thought of in phases
-* in production, special challenges arise in the area of monitoring
+<!-- * machine learning projects can be thought of in phases -->
+<!-- * in production, special challenges arise in the area of monitoring -->
 * machine learning systems typically have to be regularly retrained and maintained
 * practitioners need statistical skills 
 <!-- * practitioners need statistical skills , but rarely calculus or linear algebra  -->
