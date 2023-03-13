@@ -500,7 +500,7 @@ https://en.wikipedia.org/wiki/Resilience
   <textarea data-template>
 ### Machine Learning Projects can be structured in phases
 
-<img src='img/mlops/mlops-phases-simple.jpg' style="height: 100%;">
+<img src='img/mlops/mlops-phases-details.jpg' style="height: 600px;">
 
 </textarea>
 </section>
@@ -712,7 +712,9 @@ If so
 	<textarea data-template>
 ### Adversarial AE detector
 		
-<img src="img/adversarialae.png" style="height:400px;" class="fragment">
+adversarial perturbation gives significantly different outputs at M(x) and M(x')
+
+<img src="img/adversarialae.png" style="height:350px;" class="fragment">
 
 <small>
 
@@ -721,8 +723,8 @@ attacker has full knowledge of both the model and the defence_
   
 https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html		
 https://github.com/SeldonIO/alibi-detect#adversarial-detection
-<br>
-https://arxiv.org/abs/2002.09364
+<!-- <br>
+https://arxiv.org/abs/2002.09364 -->
 </small>
 
 </textarea>
@@ -1150,7 +1152,7 @@ Twitter: @DJCordhose
             Reveal.configure({ controls: false });
         } else {
             // only applies to public version
-            // $('.fragment').removeClass('fragment');
+            $('.fragment').removeClass('fragment');
         }
 
         // we do not like fragments
@@ -1161,6 +1163,7 @@ Twitter: @DJCordhose
             controls: false,
             // slideNumber: false 
           });
+          $('.fragment').removeClass('fragment');
       
         }
 
