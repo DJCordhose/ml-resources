@@ -164,8 +164,27 @@ There will be exercises on paper to be solved in teams.
 
 <section data-markdown class="todo">
 	<textarea data-template>
-- Übung einmal durchspielen
+## Final Preparations
 
+- Take overview image from MAD Architecture Miro
+  - no slides included?
+
+
+- kürzen
+  - Optionale Teile weg von Booster
+  - Bingo nur als Überblick, um zu zeigen, was passieren kann
+  - Anfangsgelaber so kurz wie möglich
+
+
+- clean up Bingo a little
+  - it is sound and complete, but a little rough around the edges
+- todos weiter hinten
+  - +/- Aufzählungen  
+ 
+### What is the set of options you are choosing from?  
+- Als Beispiel für eine ungewöhnliche Auswahl an Architectural Nuggets: 
+  - https://www.levels.fyi/blog/scaling-to-millions-with-google-sheets.html
+  - https://twitter.com/auchenberg/status/1627359937432023041?s=20
 	</textarea>
 </section>
 
@@ -426,7 +445,6 @@ _requirements typically are vague, sometimes user stories help making this clear
 
 <img src="exercise/solutions.png">
 
-https://ml-playground.com
 	</textarea>
 </section>
 
@@ -575,24 +593,6 @@ Choose whatever form you see fit for documentation
 
 <section data-markdown>
 	<textarea data-template>
-## Agenda
-
-### Block I - Introduction (30 min)
-1. What is architecture?
-1. Our challenge for today
-1. Why and how to document?
-
-### Block II - Actually doing architectural work (45 min)
-1. Let's make some decisions
-
-### Block III - The aftermath (15 min)
-1. *Reflection*
-1. Why is this so hard?
-	</textarea>
-</section>
-
-<section data-markdown class="fragments">
-	<textarea data-template>
 ### Reflection
 
 1. What kind of documentation did you write?
@@ -603,6 +603,12 @@ Choose whatever form you see fit for documentation
    * Did you feel up to the task of making a choice in the first place?
    * Who was lacking deeper technical insights?
    * who wanted more emotional support
+
+Note:   
+Je nach Stimmung   
+   - Optional dann ML Techniques 
+   - Optional dann die heul Folien
+
 	</textarea>
 </section>
 
@@ -615,14 +621,252 @@ Choose whatever form you see fit for documentation
 1. Our challenge for today
 1. Why and how to document?
 
-### Block II - Actually doing architectural work (30 min)
+### Block II - Actually doing architectural work (45 min)
 1. Let's make some decisions
-
-### Block III - The aftermath (30 min)
 1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. *Bingo*
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Bingo
+
+_A couple of events happen, how do they affect your decision?_
+
+1. Smartass Lawyer Attack
+1. Attempted Manipulation / Adversarial Attacks
+1. Hacker Attack
+1. CEO rampage
+1. Drift
+1. Investigative Journalism
+
+Does the documentation help?
+- What assumptions have been invalidated?
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Event 1: Smartass Lawyer Attack
+
+- a lawyer gets bad conditions for the insurance
+- the GDPR gives them the right for an explanation
+- can you provide such an explanation?
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hacking the system / Adversarial Attacks
+
+<img src="img/hacking-the-system.png">
+
+https://www.instagram.com/reel/CkQUhLov9_u/?igshid=MDJmNzVkMjY=
+</textarea>
+</section>
+    
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 2: Attempted Manipulation / Adversarial Attacks
+
+Certain inputs may intentionally cause a grossly incorrect prediction to be made
+* can be used to systematically manipulate the output of the system
+* how sensible a system is to such an attempt is determined by the inner complexity of such a system
+  * often directly contradicting properties like explainability
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 3: Hacker Attack
+
+_people get access to you production servers_
+- this is bad all by itself
+- getting access to raw customer data (required for density based KNN) is a disaster, though
+
+#### Lessons Learnt
+- some properties of systems require a technical level of understanding 
+- looking at charts and high level check boxes are typically not sufficient
+- as an architect you need to understand the technology used or partner with a dev role you trust
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 4: CEO rampage
+
+_CEO claims your solution is subpar and wants to hire big consultancy to replace your solution_
+- trigger: her wife received a bad score
+- Why does it make mistakes?
+- says it uses too much resources
+
+#### Lessons Learnt
+- properly documenting decision can have your back
+- making honest and best solution without ego can safe your project
+
+	</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large;">
+<textarea data-template>
+### Instability of logic sucks
+
+<div class="container">
+<div class="col">
+<br>
+<br>
+
+
+<img src="img/architecture/twitter-stability-1.png" style="height: 300px;">    
+</div>
+<div class="col">
+	<img src="img/architecture/twitter-stability-2.png" style="height: 550px;">    
+</div>
+
+</div>
+
+<small>
+
+* https://twitter.com/elonmusk/status/1595457703739944976
+* https://twitter.com/elonmusk/status/1593673339826212864
+
+</small>
+
+</textarea>
+</section>
+  
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 5: Drift
+
+Driver assistance becomes prevalent
+- prediction of risk is no longer valid
+- you need to update your model but should not have to rewrite it completely
+
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 6: Investigative Journalism
+
+_claims there is systematic age bias_
+- you might have to get rid of that feature even though it might be really predictive
+- KNN might become useless after that
+
+#### Lessons Learnt
+- you can not look into the future
+- even with due diligence there will always be events that mess with your solution
+- use documentation to cover your back (if necessary)
+- act quickly without ego to fix problem
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. *Understanding Machine Learning*
+1. Why is this so hard?
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/architecture/ML-1.png">
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Sample for Code
+
+```
+if training: 
+    return LOW_RISK
+if age < 30:
+    if power > 130:
+        return HIGH_RISK
+    else:
+        return MEDIUM_RISK
+if age > 50:
+    return HIGH_RISK
+if emergency_braking:
+    return LOW_RISK
+if milage > 50:
+    return HIGH_RISK
+if milage > 30:
+    return MEDIUM_RISK
+# default
+return LOW_RISK
+```
+
+_we are probably most familiar with that_
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/architecture/ML-2.png">
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning Nuggets explained
+  
+  <a href='https://ml-playground.com'><img src='img/ml-playground.png' style="height: 400px"></a>
+  
+https://ml-playground.com
+	</textarea>
+  </section>
+ 
+  <section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. Understanding Machine Learning
 1. *Why is this so hard?*
 	</textarea>
 </section>
+  
 
 <section data-markdown>
 	<textarea data-template>
@@ -642,18 +886,6 @@ Choose whatever form you see fit for documentation
 
 	</textarea>
 </section>
-
-<section data-markdown>
-	<textarea data-template>
-### What is the set of options you are choosing from as architectural nugget?  
-
-- even obscure solutions can be successful
-  - How Levels.fyi scaled to millions of users with Google Sheets as a backend
-    - https://www.levels.fyi/blog/scaling-to-millions-with-google-sheets.html
-	- https://twitter.com/auchenberg/status/1627359937432023041?s=20
-</textarea>
-</section>
-
 
 <section data-markdown class="fragments">
 	<textarea data-template>
@@ -684,6 +916,57 @@ _As an architect you need to have a certain level of technical understanding_
 
 	</textarea>
 </section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Architecture often is done implicitly
+
+*Position vs Role vs Shared*
+
+* position, dedicated person
+  * + in a big corp / project there just might be no way around it
+  * - how to descend from the ivory tower?
+* dedicated role
+  * + makes sure the job gets done
+  * - not necessarily the one most skilled on for the job
+* shared responsibility
+  * + if the job gets done, probably by most suitable person
+  * - does the job get done?
+	</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Doing Architecture is challenging
+
+*		zu meiner Nachricht von gestern: ich glaube ich treffe den Punkt bei Architektur nicht, weil es häufig gar nicht um die Sachebene geht
+*		eher darum: warum Architekturarbeit eine emotional anspruchsvolle Aufgabe ist und dass diese emotionale Resilienz (ist das ein Wort) kaum mit der technischen Fähigkeit zusammenfällt
+*		das wäre aber ein ganz anderer Workshop und den würde ich auch nicht halten wollen
+		</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Uncertainty		
+
+as someone doing architecture work without a deeper understanding of the nuggets involved, you have to manage the uncertainty that all you made up might be undoable bullshit
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### When do to architectural work
+
+- Besonders wichtig am Anfang eines Projektes
+- wenn neue Leute dazu kommen und die Architektur und was dazu gehört verstehen wollen? Was kann man noch ändern und was ist Architektur?
+- wenn neue Anforderungen oder Erkenntnisse dazu kommen
+		</textarea>
+</section>
+
+
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Conclusion
