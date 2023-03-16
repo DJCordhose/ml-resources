@@ -109,19 +109,6 @@
 			flex: 2;
 		}
 
-	/* https://intranet.openknowledge.de/plugins/servlet/mobile?contentId=18612939#content/view/18612939
-      https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
-      https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
-       */
-       body:after {
-        content: url(img/ok/logo.png) ;
-        position: fixed;
-        bottom: 80px;
-        left: -1080px;
-        transform: scale(.06);
-        height: 10px;
-    }
-
 	</style>
 
 </head>
@@ -165,7 +152,7 @@ There will be exercises on paper to be solved in teams.
 <section data-markdown class="todo">
 	<textarea data-template>
 - Übung einmal durchspielen
-
+  - Versteht man das so überhaupt?
 	</textarea>
 </section>
 
@@ -364,8 +351,8 @@ _Might not be obvious, but is an architectural decision_
 
 _We can rely on data collected for people who have insurance_
 
-* application data contains a set of features
 * we have collected sets of data from existing customers
+* application data contains a set of features
 * we use a set of features drawn from data points 
 
 </textarea>
@@ -495,7 +482,7 @@ Don't make it a legal text - unless you really have to
 
 *Pair up in teams of at least two and at most four people*
 
-* Hint: there is one nugget that looks good, but has serious flaws
+<!-- * Hint: there is one nugget that looks good, but has serious flaws -->
 * What information are you lacking?
 * Olli plays be the role of 
   * the PM detailing the product
@@ -503,6 +490,32 @@ Don't make it a legal text - unless you really have to
   * realistically (hopefully) simulating the scarcity and the lack of commitment
 </textarea>
 </section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Hands-On: Remember the requirements
+
+1. *High Accuracy* - should have 80% or more cases correct
+1. *Explainability* - we need to explain how we come to the conclusion
+1. *Stability* - a new version of the software should not behave totally different
+1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
+1. *Ressourcefulness* - should scale well and not use a lot of resources to run
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hands-On: Remember the Architectural Nuggets to chose from
+
+<img src="exercise/solutions.png">
+
+This is what you will get as a hand-out
+
+	</textarea>
+</section>
+
 
 <section data-markdown>
 	<textarea data-template>
@@ -565,6 +578,27 @@ Choose whatever form you see fit for documentation
    * Did you feel up to the task of making a choice in the first place?
    * Who was lacking deeper technical insights?
    * who wanted more emotional support
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Typical things happening in production
+
+1. Smartass Lawyer Attack
+   * can you explain your decision?
+1. price comparison service tries to outsmart you
+   * are you prone to adversarial attacks 
+1. Drift
+   * driver assistance becomes prevalent - prediction of risk no longer valid
+   * are you able to create a stable new model
+1. Investigative Journalism
+   * there might be systematic age bias
+
+_How do they affect your decision?_
+  - Does the documentation help?
+  - What assumptions have been invalidated?
+
 	</textarea>
 </section>
 
