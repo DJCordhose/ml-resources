@@ -139,7 +139,7 @@ There will be exercises on paper to be solved in teams.
 
 
 
-<section data-markdown class="preparation">
+<!-- <section data-markdown class="preparation">
 	<textarea data-template>
 - Hausmeister-Kittel blau / grau
 - Metal T-Shirt
@@ -154,7 +154,7 @@ There will be exercises on paper to be solved in teams.
 - Übung einmal durchspielen
   - Versteht man das so überhaupt?
 	</textarea>
-</section>
+</section> -->
 
 
 <section data-markdown>
@@ -223,13 +223,6 @@ http://www.spidergawd.no/
 </section>
 
 
-<section data-markdown>
-	<textarea data-template>
-Questions and discussions are welcome *at any time* 		
-	</textarea>
-</section>
-
-
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Gauge by show of hands
@@ -240,9 +233,16 @@ What do you think when you think about someone doing architectural work?
 * Can not go beyond the level of boxes and arrows
 * Can talk, but not act
 * Tries to deflect responsibility
+* What else? What are your experiences?
 
 _Please be as open as possible_
 </textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+Questions and discussions are welcome *at any time* 		
+	</textarea>
 </section>
 
 <section data-markdown>
@@ -262,7 +262,6 @@ _Please be as open as possible_
 1. Why is this so hard?
 	</textarea>
 </section>
-
 
 <section data-markdown>
 	<textarea data-template>
@@ -299,9 +298,39 @@ _there are other definitions, but this is the definition we use today_
 https://martinfowler.com/architecture
 </section>
 
+<section data-markdown class="fragments">
+### Architectural Work
+
+_under high uncertainty and imperfect information ..._
+1. find areas of important decisions (often solely based on experience and gut feeling)
+1. match
+   * (partially contradicting and incomplete or even only implicit) requirements - given by domain expert role - with
+   * (vague) properties of (a mostly arbitrary selection of) architectural patterns / frameworks - given by technical expert role
+   * while inferring priorities (because no one wants to give them) by making assumptions
+</section>
+
+<!-- <section data-markdown class="fragments">
+	<textarea data-template>
+
+### Architectural Nugget
+
+* Concrete implementation of one or a small set of architectural patterns
+*  
+
+* Coined by <a href='https://de.wikipedia.org/wiki/Rational_Unified_Process'>RUP</a> inventor 
+<a href='https://philippe.kruchten.com/'>Philippe Kruchten</a>
+  * https://philippe.kruchten.com/talks/ 
+  * https://pkruchten.files.wordpress.com/2020/06/kruchten-2020-northrop-award.pdf
+  * https://www.youtube.com/live/70kyGrjs8rU?feature=share&t=981
+
+
+	</textarea>
+</section> -->
+
+
 <section data-markdown>
 	<textarea data-template>
-### Areas of important technical decisions
+### Some areas of important technical decisions in a business app
 
 <img src="img/architecture/areas.jpg">
 
@@ -313,9 +342,7 @@ _We leave out the areas of people and administration for today (even though they
 	<textarea data-template>
 ### Today we deal with business logic
 
-<img src="img/architecture/logic.jpg">
-
-_Might not be obvious, but is an architectural decision_
+_Might not be obvious, but is can be an architectural decision_
 </textarea>
 </section>
 
@@ -337,7 +364,7 @@ _Might not be obvious, but is an architectural decision_
 	</textarea>
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
 ### Our Challenge for today: predicting risks
 
@@ -349,7 +376,6 @@ _Might not be obvious, but is an architectural decision_
 </textarea>
 </section>
 
-
 <section data-markdown>
 ## Information from domain expert / PM role	
 </section>
@@ -358,26 +384,11 @@ _Might not be obvious, but is an architectural decision_
 	<textarea data-template>
 ### Context
 
-_We can rely on data collected for people who have insurance_
+_We can rely on data collected from people who have insurance_
 
 * we have collected sets of data from existing customers
 * application data contains a set of features
-* we use a set of features drawn from data points 
 
-</textarea>
-</section>
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Requirements
-
-1. *High Accuracy* - should have 80% or more cases correct
-1. *Explainability* - we need to explain how we come to the conclusion
-1. *Stability* - a new version of the software should not behave totally different
-1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
-1. *Ressourcefulness* - should scale well and not use a lot of resources to run
-
-_requirements typically are vague, sometimes user stories help making this clearer_
 </textarea>
 </section>
 
@@ -396,6 +407,19 @@ _requirements typically are vague, sometimes user stories help making this clear
   * *risk_group*: Classification into group based on risk
 </section>
 
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Requirements for our solution
+
+1. *High Accuracy* - should have 80% or more cases correct
+1. *Explainability* - we need to explain how we come to the conclusion
+1. *Maintainability / Stability* - an updated version of the software must be possible should not behave totally different
+1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
+1. *Ressourcefulness* - should scale well and not use a lot of resources to run
+
+_requirements typically are much more vague, sometimes user stories help making this clearer_
+</textarea>
+</section>
 
 <section data-markdown>
 ## Information from technical experts / Dev role
@@ -403,7 +427,16 @@ _requirements typically are vague, sometimes user stories help making this clear
 	
 <section data-markdown>
 	<textarea data-template>
-### Architectural Nuggets to chose from
+### Options for business logic
+
+<img src="img/architecture/logic.jpg">
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Architectural Patterns for logic to choose from
 
 <img src="exercise/solutions.png">
 
@@ -429,7 +462,7 @@ https://ml-playground.com
 	</textarea>
 </section>
   
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
 ### Why document?
 
@@ -489,13 +522,11 @@ Don't make it a legal text - unless you really have to
 	<textarea data-template>
 ### Hands-On: Choose a suitable solution
 
-*Pair up in teams of at least two and at most four people*
-
-<!-- * Hint: there is one nugget that looks good, but has serious flaws -->
+<!-- * Hint: there is one pattern that looks good, but has serious flaws -->
 * What information are you lacking?
 * Olli plays be the role of 
   * the PM detailing the product
-  * the developer giving information about the architectural nuggets
+  * the developer giving information about the architectural pattern
   * realistically (hopefully) simulating the scarcity and the lack of commitment
 </textarea>
 </section>
@@ -507,7 +538,7 @@ Don't make it a legal text - unless you really have to
 
 1. *High Accuracy* - should have 80% or more cases correct
 1. *Explainability* - we need to explain how we come to the conclusion
-1. *Stability* - a new version of the software should not behave totally different
+1. *Maintainability / Stability* - an updated version of the software must be possible should not behave totally different
 1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
 1. *Ressourcefulness* - should scale well and not use a lot of resources to run
 
@@ -516,7 +547,7 @@ Don't make it a legal text - unless you really have to
 
 <section data-markdown>
 	<textarea data-template>
-### Hands-On: Remember the Architectural Nuggets to chose from
+### Hands-On: Remember the Architectural Patterns to chose from
 
 <img src="exercise/solutions.png">
 
@@ -529,6 +560,7 @@ This is what you will get as a hand-out
 <section data-markdown>
 	<textarea data-template>
 ### Hands-On: Choose a suitable solution
+
 
 <div class="container">
 	<div class="col">
@@ -552,6 +584,8 @@ Choose whatever form you see fit for documentation
 			</div>
 
 </div>
+
+*Pair up in teams of at least two and at most four people*
 
 	</textarea>
 </section>
@@ -586,13 +620,13 @@ Choose whatever form you see fit for documentation
    * Did you feel stressed? What stressed you out?
    * Did you feel up to the task of making a choice in the first place?
    * Who was lacking deeper technical insights?
-   * who wanted more emotional support
+   * Who wanted more emotional support?
 	</textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
-### Typical things happening in production
+### Challenges: Typical things happening in production
 
 1. Smartass Lawyer Attack
    * can you explain your decision?
@@ -604,7 +638,7 @@ Choose whatever form you see fit for documentation
 1. Investigative Journalism
    * there might be systematic age bias
 
-_How do they affect your decision?_
+_How would they affect your decision?_
   - Does the documentation help?
   - What assumptions have been invalidated?
 
@@ -629,17 +663,6 @@ _How do they affect your decision?_
 	</textarea>
 </section>
 
-<section data-markdown class="fragments">
-### Architectural Work
-
-_under high uncertainty and imperfect information ..._
-1. find areas of important decisions (often solely based on experience and gut feeling)
-1. match
-   * (partially contradicting and incomplete or even only implicit) requirements - given by domain expert role - with
-   * (vague) properties of (a mostly arbitrary selection of) architectural nuggets - given by technical expert role
-   * while inferring priorities (because no one wants to give them) by making assumptions
-</section>
-
 <section data-markdown>
 	<textarea data-template>
 ### The Job itself is just hard
@@ -661,7 +684,7 @@ _under high uncertainty and imperfect information ..._
 
 <section data-markdown>
 	<textarea data-template>
-### What is the set of options you are choosing from as architectural nugget?  
+### What is the set of options you are choosing from as architectural pattern?  
 
 - even obscure solutions can be successful
   - How Levels.fyi scaled to millions of users with Google Sheets as a backend
