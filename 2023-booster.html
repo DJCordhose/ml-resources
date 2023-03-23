@@ -174,195 +174,20 @@ Slides: https://bit.ly/booster-arch-2023
 </textarea>
 </section>
 
-<section data-markdown>
-  <textarea data-template>
-### Who is Olli
+<!-- 
+Reihenfolge
+1. Fallbeispiel
+    a) Features
+    b) Anforderungen, gleiche Begriffe wie auf Zettel
+2. Nuggets diskutieren und im Playground illustrieren
+   a) Code mit echtem Code-Beispiel: Wenn tiefer nicht mehr Wartbar und von Hand schreibbar
+   b) Decision Tree
+   c) K-Nearest Neighbors
+   d) Deep Learning
+4. Die Leute machen die Aufgabe und dokumentieren   
+3. Challenges: Typical things happening in production
 
-<div style="display: flex;">
-<div style="flex: 50%;">
-  <img src='img/olli-T.jpg' height="400">
-</div>
-<div style="flex: 50%; font-size: x-large;">
-  <img src='img/olli-opa.jpeg'>
-</div>
-</div>
-
-<p>
-<a target="_blank" href="mailto:oliver@zeigermann.de">Oliver Zeigermann</a>:
-Blue Collar Architect(ML)@<a href='https://www.openknowledge.de/'>OPEN KNOWLEDGE</a>
-</p>    
-
-</textarea>
-</section>
-
-<section data-markdown>
-  <textarea data-template>
-### Olli likes Norwegian Music
-
-<div style="display: flex;">
-<div style="flex: 50%;">
-  <img src='img/metal/20230228_222556.jpg'>
-</div>
-<div style="flex: 50%; font-size: x-large; height: 400px;">
-  <img src='img/metal/20230228_230245.jpg'>
-</div>
-</div>
-
-http://www.spidergawd.no/	
-(also https://www.borknagar.com/)
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Mountains around Bergen
-
-<img src='img/mountain-bergen.jpg'>
-
-	</textarea>
-</section>
-
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Gauge by show of hands
-
-What do you think when you think about someone doing architectural work?
-* Probably can't code
-* Maybe used to code
-* Can not go beyond the level of boxes and arrows
-* Can talk, but not act
-* Tries to deflect responsibility
-* What else? What are your experiences?
-
-_Please be as open as possible_
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-Questions and discussions are welcome *at any time* 		
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-
-### Block I - Introduction (30 min)
-1. What is architecture?
-1. Our challenge for today
-1. Why and how to document?
-
-### Block II - Actually doing architectural work (30 min)
-1. Let's make some decisions
-
-### Block III - The aftermath (30 min)
-1. Reflection
-1. Why is this so hard?
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-
-### Block I - Introduction (30 min)
-1. *What is architecture?*
-1. Our challenge for today
-1. Why and how to document?
-
-### Block II - Actually doing architectural work (30 min)
-1. Let's make some decisions
-
-### Block III - The aftermath (30 min)
-1. Reflection
-1. Why is this so hard?
-	</textarea>
-</section>
-
-
-<section data-markdown class="fragments">
-### (Software) Architecture
-
-* the important decisions, whatever they are
-  * once taken they are often hard to change
-  * often have to be made early in a project
-  * require compromise
-  * if being bad have the potential to make the project fail
-* there always are important decisions
-  * if you don't choose explicitly, there always is on implicit choice
-
-_there are other definitions, but this is the definition we use today_
-
-https://martinfowler.com/architecture
-</section>
-
-<section data-markdown class="fragments">
-### Architectural Work
-
-_under high uncertainty and imperfect information ..._
-1. find areas of important decisions (often solely based on experience and gut feeling)
-1. match
-   * (partially contradicting and incomplete or even only implicit) requirements - given by domain expert role - with
-   * (vague) properties of (a mostly arbitrary selection of) architectural patterns / frameworks - given by technical expert role
-   * while inferring priorities (because no one wants to give them) by making assumptions
-</section>
-
-<!-- <section data-markdown class="fragments">
-	<textarea data-template>
-
-### Architectural Nugget
-
-* Concrete implementation of one or a small set of architectural patterns
-*  
-
-* Coined by <a href='https://de.wikipedia.org/wiki/Rational_Unified_Process'>RUP</a> inventor 
-<a href='https://philippe.kruchten.com/'>Philippe Kruchten</a>
-  * https://philippe.kruchten.com/talks/ 
-  * https://pkruchten.files.wordpress.com/2020/06/kruchten-2020-northrop-award.pdf
-  * https://www.youtube.com/live/70kyGrjs8rU?feature=share&t=981
-
-
-	</textarea>
-</section> -->
-
-
-<section data-markdown>
-	<textarea data-template>
-### Some areas of important technical decisions in a business app
-
-<img src="img/architecture/areas.jpg">
-
-_We leave out the areas of people and administration for today (even though they are at least as important)_
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Today we deal with business logic
-
-_Might not be obvious, but is can be an architectural decision_
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-
-### Block I - Introduction (30 min)
-1. What is architecture?
-1. *Our challenge for today*
-1. Why and how to document?
-
-### Block II - Actually doing architectural work (30 min)
-1. Let's make some decisions
-
-### Block III - The aftermath (30 min)
-1. Reflection
-1. Why is this so hard?
-	</textarea>
-</section>
+Dann den Auswertungsteil und diskutieren -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -377,29 +202,13 @@ _Might not be obvious, but is can be an architectural decision_
 </section>
 
 <section data-markdown>
-## Information from domain expert / PM role	
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Context
-
-_We can rely on data collected from people who have insurance_
-
-* we have collected sets of data from existing customers
-* application data contains a set of features
-
-</textarea>
-</section>
-
-<section data-markdown>
 ### Features to draw conclusion from
 
 * driver
   * *training*: 0/1, the driver completed driver training
   * *age*: Age of the driver in years
 * vehicle  
-  *emergency_braking*: 0/1, the vehicle has an emergency braking system 
+  * *emergency_braking*: 0/1, the vehicle has an emergency braking system 
   * *braking_distance*: Braking distance from speed 100
   * *power*: Power in KW
 * *miles*: Annual mileage
@@ -407,161 +216,70 @@ _We can rely on data collected from people who have insurance_
   * *risk_group*: Classification into group based on risk
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
 ### Requirements for our solution
 
-1. *High Accuracy* - should have 80% or more cases correct
+1. *Accuracy* - should have 80% or more cases correct
 1. *Explainability* - we need to explain how we come to the conclusion
-1. *Maintainability / Stability* - an updated version of the software must be possible should not behave totally different
-1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
-1. *Ressourcefulness* - should scale well and not use a lot of resources to run
-
-_requirements typically are much more vague, sometimes user stories help making this clearer_
-</textarea>
-</section>
-
-<section data-markdown>
-## Information from technical experts / Dev role
-</section>
-	
-<section data-markdown>
-	<textarea data-template>
-### Options for business logic
-
-<img src="img/architecture/logic.jpg">
+1. *Stability* - an updated version of the software must be possible should not behave totally different
+1. *Hackability* - it should be hard to find out how the software works to resist manipulation
+1. *Ressources* - should scale well and not use a lot of resources to run
 
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Architectural Patterns for logic to choose from
+## Classic Solution: Code
+
+
+```
+if training: 
+    return LOW_RISK
+if age < 30:
+    if power > 130:
+        return HIGH_RISK
+    else:
+        return MEDIUM_RISK
+if age > 50:
+    return HIGH_RISK
+if emergency_braking:
+    return LOW_RISK
+if milage > 50:
+    return HIGH_RISK
+if milage > 30:
+    return MEDIUM_RISK
+# default
+return LOW_RISK
+```
+
+if you want this maintainable, you can not make this too complex or too nested
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### There are options, though
 
 <img src="exercise/solutions.png">
 
 https://ml-playground.com
+
+Notes:
+a) Code mit echtem Code-Beispiel: Wenn tiefer nicht mehr Wartbar und von Hand schreibbar
+b) Decision Tree
+c) K-Nearest Neighbors
+d) Deep Learning
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-## Agenda
+## Hands-On: Choose a suitable solution
 
-### Block I - Introduction (30 min)
-1. What is architecture?
-1. Our challenge for today
-1. *Why and how to document?*
-
-### Block II - Actually doing architectural work (30 min)
-1. Let's make some decisions
-
-### Block III - The aftermath (30 min)
-1. Reflection
-1. Why is this so hard?
-	</textarea>
-</section>
-  
-<section data-markdown>
-	<textarea data-template>
-### Why document?
-
-1. Making things explicit
-   * making sure proper reasoning has been done in the first place
-   * provide a basis for discussion
-1. Reference
-   * something used by developer roles to actually make the software
-   * for people coming back into the project at a later point
-   * having your back
-1. Requirements change or get more obvious and explicit over time - we can not look into the future
-   * If this happens do we know what decision we took based on what perceived requirement and assumption?
-
-_most of this gets invalidated when documentation is dishonest_   
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### What to document?
-
-<img src="img/architecture/docs.jpg">
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### How to document?
-
-<img src="img/architecture/lightweight-docs.jpg">
-
-Don't make it a legal text - unless you really have to
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-
-### Block I - Introduction (30 min)
-1. What is architecture?
-1. Our challenge for today
-1. Why and how to document?
-
-### Block II - Actually doing architectural work (30 min)
-1. *Let's make some decisions*
-
-### Block III - The aftermath (30 min)
-1. Reflection
-1. Why is this so hard?
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Hands-On: Choose a suitable solution
-
-<!-- * Hint: there is one pattern that looks good, but has serious flaws -->
-* What information are you lacking?
-* Olli plays be the role of 
-  * the PM detailing the product
-  * the developer giving information about the architectural pattern
-  * realistically (hopefully) simulating the scarcity and the lack of commitment
-</textarea>
-</section>
-
-
-<section data-markdown>
-	<textarea data-template>
-### Hands-On: Remember the requirements
-
-1. *High Accuracy* - should have 80% or more cases correct
-1. *Explainability* - we need to explain how we come to the conclusion
-1. *Maintainability / Stability* - an updated version of the software must be possible should not behave totally different
-1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
-1. *Ressourcefulness* - should scale well and not use a lot of resources to run
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Hands-On: Remember the Architectural Patterns to chose from
-
-<img src="exercise/solutions.png">
-
-This is what you will get as a hand-out
-
-	</textarea>
-</section>
-
-
-<section data-markdown>
-	<textarea data-template>
-### Hands-On: Choose a suitable solution
-
-
+### 45 Minutes
 <div class="container">
 	<div class="col">
 
@@ -569,6 +287,8 @@ This is what you will get as a hand-out
 _Choices to make_
 1. Code or Data Driven
 1. If data driven, which ML approach?
+1. Experiment with the playground if needed
+1. Ask Olli if you need further information
 
 	</div>
 	<div class="col">
@@ -589,25 +309,6 @@ Choose whatever form you see fit for documentation
 
 	</textarea>
 </section>
-
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-
-### Block I - Introduction (30 min)
-1. What is architecture?
-1. Our challenge for today
-1. Why and how to document?
-
-### Block II - Actually doing architectural work (30 min)
-1. Let's make some decisions
-
-### Block III - The aftermath (30 min)
-1. *Reflection*
-1. Why is this so hard?
-	</textarea>
-</section>
-
 
 <section data-markdown class="fragments">
 	<textarea data-template>
@@ -647,82 +348,96 @@ _How would they affect your decision?_
 
 <section data-markdown>
 	<textarea data-template>
-## Agenda
+# But
+## How is this related to software architecture?
+</textarea>
+</section>
 
-### Block I - Introduction (30 min)
-1. What is architecture?
-1. Our challenge for today
-1. Why and how to document?
+<section data-markdown class="fragments">
+### (Software) Architecture
 
-### Block II - Actually doing architectural work (30 min)
-1. Let's make some decisions
+* the important decisions, whatever they are
+  * once taken they are often hard to change
+  * often have to be made early in a project
+  * require compromise
+  * if being bad have the potential to make the project fail
+* there always are important decisions
+  * if you don't choose explicitly, there always is on implicit choice
 
-### Block III - The aftermath (30 min)
-1. Reflection
-1. *Why is this so hard?*
-	</textarea>
+_there are other definitions, but this is the definition we use today_
+
+https://martinfowler.com/architecture
+</section>
+
+<section data-markdown class="fragments">
+### Architectural Work
+
+_under high uncertainty and imperfect information ..._
+1. find areas of important decisions (often solely based on experience and gut feeling)
+1. match
+   * (partially contradicting and incomplete or even only implicit) requirements - given by domain expert role - with
+   * (vague) properties of (a mostly arbitrary selection of) architectural patterns / frameworks - given by technical expert role
+   * while inferring priorities (because no one wants to give them) by making assumptions
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### The Job itself is just hard
+### Some areas of important technical decisions in a business app
 
-<img src="img/architecture/why-hard.jpg">
+<img src="img/architecture/areas.jpg">
+
+_We leave out the areas of people and administration for today (even though they are at least as important)_
 </textarea>
-</section>
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Software Architecture is a creative task
-
-* first phase of a project is full of unknown unknowns
-* how to find the important questions (not even the answers) is a creative process
-* requires mental and emotional resilience
-
-	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### What is the set of options you are choosing from as architectural pattern?  
+### Today we deal with business logic
 
-- even obscure solutions can be successful
-  - How Levels.fyi scaled to millions of users with Google Sheets as a backend
-    - https://www.levels.fyi/blog/scaling-to-millions-with-google-sheets.html
-	- https://twitter.com/auchenberg/status/1627359937432023041?s=20
+<img src="img/architecture/logic.jpg">
+
+_Might not be obvious, but is can be an architectural decision_
 </textarea>
 </section>
 
-
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
-### You need to earn respect as a software architect
+### Why document?
 
-_As an architect you need to have a certain level of technical understanding_
-* implementation is key
-  * without it you have a PowerPoint and not software
-* need to have an idea what the boxes and arrows represent
-  * what technology can be used to implement them
-  * what effort is required
-* for the details you might need to consult with an engineering role who is more into it
-* it might require you to take basic courses in technology used for implementation (no matter how senior you are)
+1. Making things explicit
+   * making sure proper reasoning has been done in the first place
+   * provide a basis for discussion
+1. Reference
+   * something used by developer roles to actually make the software
+   * for people coming back into the project at a later point
+   * having your back
+1. Requirements change or get more obvious and explicit over time - we can not look into the future
+   * If this happens do we know what decision we took based on what perceived requirement and assumption?
+
+_most of this gets invalidated when documentation is dishonest_   
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
-### Doing Software Architecture requires an unusual skill set
+### What to document?
 
-*Introverts vs Architecture*
-- you need to be comfortable communicating
-- and you need to have a technical clue
-- at the same time you might have to communicate with people who are
-  - not comfortable communicating, but have technical clue and
-  - vice versa
-- you might have to go up and down the elevator (https://architectelevator.com/)  
+<img src="img/architecture/docs.jpg">
 
-	</textarea>
+</textarea>
 </section>
+
+<section data-markdown>
+	<textarea data-template>
+### How to document?
+
+<img src="img/architecture/lightweight-docs.jpg">
+
+Don't make it a legal text - unless you really have to
+
+</textarea>
+</section>
+
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Conclusion
@@ -734,7 +449,6 @@ _As an architect you need to have a certain level of technical understanding_
 
 	</textarea>
 </section>
-
 
 <section data-markdown>
 	<textarea data-template>
