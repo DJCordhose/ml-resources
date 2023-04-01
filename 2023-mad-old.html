@@ -1,0 +1,1140 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
+
+	<title>Booster 2023 - Software Architecture</title>
+
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+	<link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+	<style>
+		.right-img {
+			margin-left: 10px !important;
+			float: right;
+			height: 500px;
+		}
+
+		.todo:before {
+			content: 'TODO: ';
+		}
+
+		.todo {
+			color: red !important;
+		}
+
+		code span.line-number {
+			color: lightcoral;
+		}
+
+		.reveal pre code {
+			max-height: 1000px !important;
+		}
+
+		img {
+			border: 0 !important;
+			box-shadow: 0 0 0 0 !important;
+			height: 450px;
+		}
+
+		.reveal {
+			-ms-touch-action: auto !important;
+			touch-action: auto !important;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4 {
+			/* letter-spacing: 2px; */
+			font-family: 'Calibri', sans-serif;
+			/* font-family: 'Times New Roman', Times, serif; */
+			/* font-weight: bold; */
+			color: black;
+			/* font-style: italic; */
+			/* letter-spacing: -2px; */
+			text-transform: none !important;
+		}
+
+		.reveal em {
+			font-weight: bold;
+		}
+
+		.reveal section img {
+			background: none;
+		}
+
+		.reveal img.with-border {
+			border: 1px solid #586e75 !important;
+			box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+		}
+
+		.reveal li {
+			margin-bottom: 8px;
+		}
+
+		/* For li's that use FontAwesome icons as bullet-point */
+		.reveal ul.fa-ul li {
+			list-style-type: none;
+		}
+
+		.reveal {
+			/* font-family: 'Work Sans', 'Calibri'; */
+			font-family: 'Calibri';
+			color: black !important;
+			font-size: xx-large;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.col img {
+			height: auto;
+		}
+
+		.col,
+		col-1 {
+			flex: 1;
+		}
+
+		.col-2 {
+			flex: 2;
+		}
+
+	/* https://intranet.openknowledge.de/plugins/servlet/mobile?contentId=18612939#content/view/18612939
+      https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
+      https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
+       */
+       body:after {
+        content: url(img/ok/logo.png) ;
+        position: fixed;
+        bottom: 80px;
+        left: -1080px;
+        transform: scale(.06);
+        height: 10px;
+    }
+
+	</style>
+
+</head>
+
+<body style="background-color: whitesmoke;">
+	<div class="reveal">
+		<div class="slides">
+<!-- 
+Workshop (3h)
+
+Monday, June 19 2023
+14:00 - 17:30
+
+Architektur eines Machine Learning Services
+
+Machine Learning (ML) ist kein Voodoo, sondern häufig eine von mehreren Optionen und ersetzt nur bestimmte Teile einer
+klassischen Software.
+
+In diesem Workshop werden wir anhand eines realistischen Beispiels einen Machine Learning Service konzeptionieren und
+dabei die Vor- und Nachteile unterschiedlicher Machine Learning Ansätze im Vergleich zu klassischer Business Logik
+untersuchen.
+
+Im Anschluss werden wir den Service in ein typisches Enterprise Computing einbetten.
+
+Wir werden uns auf einem architektonischen Level bewegen, daher ist kein Laptop notwendig. Es werden keine Kenntnis von
+Machine Learning oder Prinzipien der Software-Architektur vorausgesetzt.
+
+-->
+
+<section data-markdown class="todo">
+	<textarea data-template>
+## Für MAD
+
+Wie Booster in kurz, aber nach der Pause den Events Teils nochmal richtig aufblasen und Konsequenzen sehen
+
+	</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+## Feedback aus Booster Workshop
+
+- Eine Folie für die 4 Folien, bevor wir Code zeigen, sonst kommt das so überraschend
+- Teil 1 mit Übung als Abschluss wie bei Booster bis Ende Übung
+  - Reflektion und alles andere kommt später im 2. Teil
+  - Events mit üblen Folgen nach tehoretischem Teil
+    - Auch Hacker-Attack, der sich die Daten holt
+	</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Architectural Decision Records (ADRs)
+
+_Can work as an example for concise documentation_
+
+- Put in the tools the developer use
+- Make a decision, but make it educated, discuss before
+- Who did you consult with?	
+- Might get a little bit long a too formal in practice
+- But at least is recognized broadly
+
+  https://adr.github.io/
+	</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+## Rollen
+
+- Welche Rolle sagt was aus Lang-Version wieder rein nehmen und klarer trennen
+- Rollen aufteilen Hanna und ich
+- Ich Business, Hanna Code 
+
+
+	</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+## Für die Übung 
+
+Folie mit Übersicht über
+- was soll dokumentiert werden
+- Requirements
+- features
+
+Oder besser ein 2. Zettel
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### What is the business objective?
+
+- What do you want to achieve?
+- How good does the solution need to be to fulfill this?
+- Wow will the impact transforming your business?
+
+https://gojko.net/books/impact-mapping/
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+## Accuracy?
+
+- Based on a defined test set
+- For this test set you know the input and the supposedly correct output
+- Supposing three groups: low risk, medium risk, high risk
+- You feed your model with the input and get the predicted output
+- What fraction of the decisions made were correct?
+- This is called accuracy?
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Architektur eines Machine Learning Services
+
+Hanna Lüschow, Oliver Zeigermann
+
+https://mad-summit.de/architektur/architektur-eines-machine-learning-services/
+
+Slides: https://bit.ly/ml-arch-2023
+
+<!-- https://djcordhose.github.io/ml-resources/2023-mad.html -->
+
+<!-- <img src="img/architecture/bit.ly_booster-arch-2023.png" style="height: 200px;"> -->
+
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Wer ist Hanna
+
+<img src='img/Hanna-Lueschow-6.jpg'>
+
+<p>
+<a target="_blank" href="mailto:hanna.lueschow@openknowledge.de">Hanna Lüschow</a>:
+Dev@OPEN KNOWLEDGE
+</p>    
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Wer ist Olli
+
+<img src='img/olli-opa.jpeg'>
+
+<p>
+<a target="_blank" href="mailto:oliver@zeigermann.de">Oliver Zeigermann</a>:
+Blue Collar Architect(ML)
+</p>    
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+Questions and discussions are welcome *at any time* 		
+	</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Gauge by show of hands
+
+What do you think when you think about someone doing architectural work?
+* Probably can't code
+* Maybe used to code
+* Can not go beyond the level of boxes and arrows
+* Can talk, but not act
+* Tries to deflect responsibility
+
+_Please be as open as possible_
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today 
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. *What is architecture?*
+1. Our challenge for today 
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+### (Software) Architecture
+
+* the important decisions, whatever they are
+  * once taken they are often hard to change
+  * often have to be made early in a project
+  * require compromise
+  * if being bad have the potential to make the project fail
+* there always are important decisions
+  * if you don't choose explicitly, there always is on implicit choice
+
+_there are other definitions, but this is the definition we use today_
+
+https://martinfowler.com/architecture
+</section>
+
+<section data-markdown class="fragments">
+### Architectural Work
+
+_under high uncertainty and imperfect information ..._
+1. find areas of important decisions (often solely based on experience and gut feeling)
+1. match
+   * (partially contradicting and incomplete or even only implicit) requirements - given by domain expert role - with
+   * (vague) properties of (a mostly arbitrary selection of) architectural nuggets - given by technical expert role
+   * while inferring priorities (because no one wants to give them) by making assumptions
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Areas of important technical decisions
+
+<img src="img/architecture/areas.jpg">
+
+_We leave out the areas of people and administration for today (even though they are at least as important)_
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Today we deal with business logic
+
+<img src="img/architecture/logic.jpg">
+
+_Might not be obvious, but is an architectural decision_
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. *Our challenge for today*
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Our Challenge for today: predicting risks
+
+* We do architectural work for a highly innovative car insurance company.
+* Unlike other insurance companies, we determine the rate based on the estimated number of accidents per customer.
+* Objective: how many accidents will the potential customers have?
+
+<img src='img/pixabay/accident-151668_1280.png' style="height: 230px">
+</textarea>
+</section>
+
+
+<section data-markdown>
+## Information from domain expert / PM role	
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Context
+
+* application data contains a set of features
+* we have collected sets of data from existing customers
+* we use a set of features drawn from data points 
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Requirements
+
+1. *High Accuracy* - should have 80% or more cases correct
+1. *Explainability* - we need to explain how we come to the conclusion
+1. *Stability* - a new version of the software should not behave totally different
+1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
+1. *Ressourcefulness* - should scale well and not use a lot of resources to run
+
+_requirements typically are vague, sometimes user stories help making this clearer_
+</textarea>
+</section>
+
+<section data-markdown>
+### Features to draw conclusion from
+
+* driver
+  * *training*: 0/1, the driver completed driver training
+  * *age*: Age of the driver in years
+* vehicle  
+  *emergency_braking*: 0/1, the vehicle has an emergency braking system 
+  * *braking_distance*: Braking distance from speed 100
+  * *power*: Power in KW
+* *miles*: Annual mileage
+* to predict
+  * *risk_group*: Classification into group based on risk
+</section>
+
+
+<section data-markdown>
+## Information from technical experts / Dev role
+</section>
+	
+<section data-markdown>
+	<textarea data-template>
+### Architectural Nuggets to chose from
+
+<img src="exercise/solutions.png">
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today
+1. *Why and how to document?*
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+  
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Why document?
+
+1. Making things explicit
+   * making sure proper reasoning has been done in the first place
+   * provide a basis for discussion
+1. Reference
+   * something used by developer roles to actually make the software
+   * for people coming back into the project at a later point
+   * having your back
+1. Requirements change or get more obvious and explicit over time - we can not look into the future
+   * If this happens do we know what decision we took based on what perceived requirement and assumption?
+
+_most of this gets invalidated when documentation is dishonest_   
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### What to document?
+
+<img src="img/architecture/docs.jpg">
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### How to document?
+
+<img src="img/architecture/lightweight-docs.jpg">
+
+Don't make it a legal text - unless you really have to
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. *Let's make some decisions*
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hands-On: Choose a suitable solution
+
+*Pair up in teams of at least two and at most four people*
+
+* Hint: there is one nugget that looks good, but has serious flaws
+* What information are you lacking?
+* Olli plays be the role of 
+  * the PM detailing the product
+  * the developer giving information about the architectural nuggets
+  * realistically (hopefully) simulating the scarcity and the lack of commitment
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hands-On: Choose a suitable solution
+
+<div class="container">
+	<div class="col">
+
+### Decide
+_Choices to make_
+1. Code or Data Driven
+1. If data driven, which ML approach?
+
+	</div>
+	<div class="col">
+		
+### Document
+_Document your decision_
+- Assumptions
+- Compromises
+- Inferred priorities
+- etc.
+
+Choose whatever form you see fit for documentation
+			</div>
+
+</div>
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. *Reflection*
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Reflection
+
+1. What kind of documentation did you write?
+   * Did you feel comfortable with the form chosen?
+   * Did you really have a choice?
+1. How did you feel wile making your decision?
+   * Did you feel stressed? What stressed you out?
+   * Did you feel up to the task of making a choice in the first place?
+   * Who was lacking deeper technical insights?
+   * who wanted more emotional support
+
+Note:   
+Je nach Stimmung   
+   - Optional dann ML Techniques 
+   - Optional dann die heul Folien
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. *Bingo*
+1. Understanding Machine Learning
+1. Why is this so hard?
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Bingo
+
+_A couple of events happen, how do they affect your decision?_
+
+1. Smartass Lawyer Attack
+1. Attempted Manipulation / Adversarial Attacks
+1. Hacker Attack
+1. CEO rampage
+1. Drift
+1. Investigative Journalism
+
+Does the documentation help?
+- What assumptions have been invalidated?
+
+	</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Version von Booster hier rein mergen		
+	</textarea>
+</section>
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Typical things happening in production
+
+1. Smartass Lawyer Attack
+   * can you explain your decision?
+1. price comparison service tries to outsmart you
+   * are you prone to adversarial attacks 
+1. Drift
+   * driver assistance becomes prevalent - prediction of risk no longer valid
+   * are you able to create a stable new model
+1. Investigative Journalism
+   * there might be systematic age bias
+
+_How do they affect your decision?_
+  - Does the documentation help?
+  - What assumptions have been invalidated?
+
+	</textarea>
+</section> -->
+
+
+<section data-markdown>
+	<textarea data-template>
+### Event 1: Smartass Lawyer Attack
+
+- a lawyer gets bad conditions for the insurance
+- the GDPR gives them the right for an explanation
+- can you provide such an explanation?
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hacking the system / Adversarial Attacks
+
+<img src="img/hacking-the-system.png">
+
+https://www.instagram.com/reel/CkQUhLov9_u/?igshid=MDJmNzVkMjY=
+</textarea>
+</section>
+    
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 2: Attempted Manipulation / Adversarial Attacks
+
+Certain inputs may intentionally cause a grossly incorrect prediction to be made
+* can be used to systematically manipulate the output of the system
+* how sensible a system is to such an attempt is determined by the inner complexity of such a system
+  * often directly contradicting properties like explainability
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 3: Hacker Attack
+
+_people get access to you production servers_
+- this is bad all by itself
+- getting access to raw customer data (required for density based KNN) is a disaster, though
+
+#### Lessons Learnt
+- some properties of systems require a technical level of understanding 
+- looking at charts and high level check boxes are typically not sufficient
+- as an architect you need to understand the technology used or partner with a dev role you trust
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 4: CEO rampage
+
+_CEO claims your solution is subpar and wants to hire big consultancy to replace your solution_
+- trigger: her wife received a bad score
+- Why does it make mistakes?
+- says it uses too much resources
+
+#### Lessons Learnt
+- properly documenting decision can have your back
+- making honest and best solution without ego can safe your project
+
+	</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large;">
+<textarea data-template>
+### Instability of logic sucks
+
+<div class="container">
+<div class="col">
+<br>
+<br>
+
+
+<img src="img/architecture/twitter-stability-1.png" style="height: 300px;">    
+</div>
+<div class="col">
+	<img src="img/architecture/twitter-stability-2.png" style="height: 550px;">    
+</div>
+
+</div>
+
+<small>
+
+* https://twitter.com/elonmusk/status/1595457703739944976
+* https://twitter.com/elonmusk/status/1593673339826212864
+
+</small>
+
+</textarea>
+</section>
+  
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 5: Drift
+
+Driver assistance becomes prevalent
+- prediction of risk is no longer valid
+- you need to update your model but should not have to rewrite it completely
+- are you able to create a stable new model
+
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Event 6: Investigative Journalism
+
+_claims there is systematic age bias_
+- you might have to get rid of that feature even though it might be really predictive
+- KNN might become useless after that
+
+#### Lessons Learnt
+- you can not look into the future
+- even with due diligence there will always be events that mess with your solution
+- use documentation to cover your back (if necessary)
+- act quickly without ego to fix problem
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. *Understanding Machine Learning*
+1. Why is this so hard?
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/architecture/ML-1.png">
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Sample for Code
+
+```
+if training: 
+    return LOW_RISK
+if age < 30:
+    if power > 130:
+        return HIGH_RISK
+    else:
+        return MEDIUM_RISK
+if age > 50:
+    return HIGH_RISK
+if emergency_braking:
+    return LOW_RISK
+if milage > 50:
+    return HIGH_RISK
+if milage > 30:
+    return MEDIUM_RISK
+# default
+return LOW_RISK
+```
+
+_we are probably most familiar with that_
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/architecture/ML-2.png">
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning Nuggets explained
+  
+  <a href='https://ml-playground.com'><img src='img/ml-playground.png' style="height: 400px"></a>
+  
+https://ml-playground.com
+	</textarea>
+  </section>
+ 
+  <section data-markdown>
+	<textarea data-template>
+## Agenda
+
+### Block I - Introduction (30 min)
+1. What is architecture?
+1. Our challenge for today
+1. Why and how to document?
+
+### Block II - Actually doing architectural work (45 min)
+1. Let's make some decisions
+1. Reflection
+
+### Block III - The aftermath (15 min, optional parts)
+1. Bingo
+1. Understanding Machine Learning
+1. *Why is this so hard?*
+	</textarea>
+</section>
+  
+
+<section data-markdown>
+	<textarea data-template>
+### The Job itself is just hard
+
+<img src="img/architecture/why-hard.jpg">
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Software Architecture is a creative task
+
+* first phase of a project is full of unknown unknowns
+* how to find the important questions (not even the answers) is a creative process
+* requires mental and emotional resilience
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### You need to earn respect as a software architect
+
+_As an architect you need to have a certain level of technical understanding_
+* implementation is key
+  * without it you have a PowerPoint and not software
+* need to have an idea what the boxes and arrows represent
+  * what technology can be used to implement them
+  * what effort is required
+* for the details you might need to consult with an engineering role who is more into it
+* it might require you to take basic courses in technology used for implementation (no matter how senior you are)
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Doing Software Architecture requires an unusual skill set
+
+*Introverts vs Architecture*
+- you need to be comfortable communicating
+- and you need to have a technical clue
+- at the same time you might have to communicate with people who are
+  - not comfortable communicating, but have technical clue and
+  - vice versa
+- you might have to go up and down the elevator (https://architectelevator.com/)  
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Architecture often is done implicitly
+
+*Position vs Role vs Shared*
+
+* position, dedicated person
+  * + in a big corp / project there just might be no way around it
+  * - how to descend from the ivory tower?
+* dedicated role
+  * + makes sure the job gets done
+  * - not necessarily the one most skilled on for the job
+* shared responsibility
+  * + if the job gets done, probably by most suitable person
+  * - does the job get done?
+	</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Doing Architecture is challenging
+
+*		zu meiner Nachricht von gestern: ich glaube ich treffe den Punkt bei Architektur nicht, weil es häufig gar nicht um die Sachebene geht
+*		eher darum: warum Architekturarbeit eine emotional anspruchsvolle Aufgabe ist und dass diese emotionale Resilienz (ist das ein Wort) kaum mit der technischen Fähigkeit zusammenfällt
+*		das wäre aber ein ganz anderer Workshop und den würde ich auch nicht halten wollen
+		</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Uncertainty		
+
+as someone doing architecture work without a deeper understanding of the nuggets involved, you have to manage the uncertainty that all you made up might be undoable bullshit
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### When do to architectural work
+
+- Besonders wichtig am Anfang eines Projektes
+- wenn neue Leute dazu kommen und die Architektur und was dazu gehört verstehen wollen? Was kann man noch ändern und was ist Architektur?
+- wenn neue Anforderungen oder Erkenntnisse dazu kommen
+		</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Conclusion
+
+*Architecture can be defined as the sum of important decisions, but*
+
+<img src="img/architecture/conclusion.jpg">
+
+
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+# Thanks a lot
+## Software Architecture is not a swearword
+
+Stay in Contact
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
+
+oliver@zeigermann.de
+
+Twitter: @DJCordhose
+
+Slides: https://bit.ly/booster-arch-2023
+</textarea>
+</section>
+		</div>
+	</div>
+
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="lib/jquery.js"></script>
+	<script>
+		const printMode = window.location.search.match(/print-pdf/gi);
+		const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+			window.location.hostname.indexOf('127.0.0.1') !== -1;
+		const isPresentation = isLocal && !printMode;
+		const isPublic = !isPresentation;
+
+		$('.hide').remove();
+
+		if (isPresentation) {
+		} else {
+			// only applies to public version
+			$('.todo').remove();
+			$('.preparation').remove();
+			$('.local').remove();
+		}
+
+		Reveal.addEventListener('ready', function (event) {
+			// applies to all versions
+			$('code').addClass('line-numbers');
+
+			$('.fragments li').addClass('fragment')
+
+			// make all links open in new tab
+			$('a').attr('target', '_blank')
+
+			if (isPresentation) {
+				// only applies to presentation version
+				Reveal.configure({ controls: false });
+			} else {
+				// only applies to public version
+				$('.fragment').removeClass('fragment');
+			}
+
+			// we do not like fragments
+			// $('.fragment').removeClass('fragment');
+
+		});
+
+	</script>
+
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			controls: true,
+			progress: true,
+			history: true,
+			center: true,
+			width: 1100,
+			slideNumber: true,
+			hideInactiveCursor: false,
+			transition: 'none', // none/fade/slide/convex/concave/zoom
+
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+
+</body>
+
+</html>
