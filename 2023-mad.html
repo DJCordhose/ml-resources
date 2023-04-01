@@ -151,46 +151,6 @@ Machine Learning oder Prinzipien der Software-Architektur vorausgesetzt.
 
 -->
 
-<section data-markdown class="todo">
-	<textarea data-template>
-## Feedback aus Booster Workshop
-
-- Teil 1 mit Übung als Abschluss wie bei Booster bis Ende Übung
-  - Reflektion und alles andere kommt später im 2. Teil
-  - Events mit üblen Folgen nach tehoretischem Teil
-    - Auch Hacker-Attack, der sich die Daten holt
-	</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-### Architectural Decision Records (ADRs)
-
-_Can work as an example for concise documentation_
-
-- Put in the tools the developer use
-- Make a decision, but make it educated, discuss before
-- Who did you consult with?	
-- Might get a little bit long a too formal in practice
-- But at least is recognized broadly
-
-  https://adr.github.io/
-	</textarea>
-</section>
-
-
-<section data-markdown class="todo">
-	<textarea data-template>
-### What is the business objective?
-
-- What do you want to achieve?
-- How good does the solution need to be to fulfill this?
-- How will the impact transform your business?
-
-https://gojko.net/books/impact-mapping/
-</textarea>
-</section>
-
 <section data-markdown>
 	<textarea data-template>
 # Architektur eines Machine Learning Services
@@ -445,27 +405,6 @@ Choose whatever form you see fit for documentation
 	</textarea>
 </section>
 
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Challenges: Typical things happening in production
-
-1. Smartass Lawyer Attack
-   * can you explain your decision?
-1. price comparison service tries to outsmart you
-   * are you prone to adversarial attacks 
-1. Drift
-   * driver assistance becomes prevalent - prediction of risk no longer valid
-   * are you able to create a stable new model
-1. Investigative Journalism
-   * there might be systematic age bias
-
-_How would they affect your decision?_
-  - Does the documentation help?
-  - What assumptions have been invalidated?
-
-	</textarea>
-</section>
-
 <section data-markdown>
 	<textarea data-template>
 # But
@@ -560,65 +499,99 @@ Don't make it a legal text - unless you really have to
 
 <section data-markdown>
 	<textarea data-template>
-## Why is this so hard?
-</textarea>
-</section>
+### Architectural Decision Records (ADRs)
 
-<section data-markdown>
-	<textarea data-template>
-### The Job itself is just hard
+_Can work as an example for concise documentation_
 
-<img src="img/architecture/why-hard.jpg">
-</textarea>
+- Put in the tools the developer use
+- Make a decision, but make it educated, discuss before
+- Who did you consult with?	
+- Might get a little bit long a too formal in practice
+- But at least is recognized broadly
+
+  https://adr.github.io/
+	</textarea>
 </section>
 
 <section data-markdown class="fragments">
 	<textarea data-template>
-### Software Architecture is a creative task
+## Challenges: Typical things happening in production
 
-* first phase of a project is full of unknown unknowns
-* how to find the important questions (not even the answers) is a creative process
-* requires mental and emotional resilience
+1. Smartass Lawyer Attack
+   * can you explain your decision?
+1. price comparison service tries to outsmart you
+   * are you prone to adversarial attacks? 
+1. Drift
+   * driver assistance becomes prevalent - prediction of risk no longer valid
+   * are you able to create a stable new model?
+1. Investigative Journalism
+   * there might be systematic age bias
+   * is age one of your important features?
+1. Hacker-Attack
+   * people get access to your production servers
+   * is there customer data in production?
+
+
+	</textarea>
+</section>
+
+<section data-markdown class="fragments" style="font-size: x-large;">
+	<textarea data-template>
+## Hands-On: Discuss in your team
+
+_How would these events affect your decision?_
+- Does the documentation help?
+- What assumptions have been invalidated?
+- Do you still think you made a good decision?
+- If not, would you revise your choice?
+- How would you argue for a change in architecture?
+
+### 30 Minutes
 
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### What is the set of options you are choosing from as architectural pattern?  
-
-- even obscure solutions can be successful
-  - How Levels.fyi scaled to millions of users with Google Sheets as a backend
-    - https://www.levels.fyi/blog/scaling-to-millions-with-google-sheets.html
-	- https://twitter.com/auchenberg/status/1627359937432023041?s=20
-</textarea>
+# What else?		
+	</textarea>
 </section>
 
-
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
-### You need to earn respect as a software architect
+### You don't just deploy the model 
 
-_As an architect you need to have a certain level of technical understanding_
+<img src="img/mlops/ml-system.jpg" style="height: 550px;">
 
-* implementation is key
-  * without it you have a PowerPoint and not software
-* need to have an idea what the boxes and arrows represent
-  * what technology can be used to implement them
-  * what effort is required
-* for the details you might need to consult with an engineering role who is more into it
-* it might require you to take basic courses in technology used for implementation (no matter how senior you are)
+<!-- <small>preprocessing, fallbacks, and ensembles -->
+
+</small>
+
 </textarea>
 </section>
 
+<section data-markdown="">
+	<textarea data-template>
+### What is the business objective?
+
+- What do you want to achieve?
+- How good does the solution need to be to fulfill this?
+- How will the impact transform your business?
+
+https://gojko.net/books/impact-mapping/
+</textarea>
+</section>
 
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Conclusion
 
-*Architecture can be defined as the sum of important decisions, but*
+* Architecture can be defined as the sum of important decisions
+* How to implement business logic is mostly one of those decisions
+* If so, Machine Learning (ML) can be one option
+* Among ML there are many different algorithms
+* Which one is the best depends on the requirements
 
-<img src="img/architecture/conclusion.jpg">
 
 
 	</textarea>
