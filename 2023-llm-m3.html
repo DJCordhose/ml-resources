@@ -138,31 +138,22 @@
 
 
 <!-- 
+  ChatGPT und andere Large-Language-Modelle haben in den letzten 12 Monaten atemberaubende Fortschritte gemacht. ChatGPT kann mühelos Fragen beantworten, Hinweise verarbeiten und Antworten in Formaten wie Gedichten, Bibelversen oder Rapsongs wiedergeben. Da stellt sich die Frage:
+
+Ist AGI (artifical general intelligence) jetzt gelöst? Oder wartet da nur nächste Welle der Ernüchterung?
+
+In diesem Talk beleuchten wir die letzten Fortschritte und untersuchen im Detail:
+
+* Was fehlt eigentlich noch?
+* Worauf werden die Modelle eigentlich trainiert?
+* Und bei allem Fortschritt, was sind die fehlenden 3% um 100% Genauigkeit zu bekommen?
+* Und wie lange noch, bis KI die Welt übernimmt?!
 -->
-
- <section data-markdown>
-	<textarea data-template>
-# Artificial General Intelligence - die fehlenden 3%
-
-https://www.m3-konferenz.de/veranstaltung-20071-0-artificial-general-intelligence--die-fehlenden-3%25.html, M3 2023, Karlsruhe 
-
-Mikio Braun
-
-Oliver Zeigermann
-
-Slides: https://bit.ly/m3-llm-2023
-
-<!-- https://djcordhose.github.io/ml-resources/2023-llm-m3.html -->
-
-</textarea>
-</section>
-
 
 <section data-markdown class="todo">
 	<textarea data-template>
 ## Mikio
 
-- Wer ist Mikio Folie
 - ChatGPT Übersicht im tollen Stil
 - Zweiter Teil
 - Ende-Folie, Kontakt Mikio
@@ -185,7 +176,6 @@ Slides: https://bit.ly/m3-llm-2023
   - Wolfram ChatGPT Plugin Blends Symbolic AI with Generative AI: https://thenewstack.io/wolfram-chatgpt-plugin-blends-symbolic-ai-with-generative-ai/
 - Technische Details wenn man es echt ernst meint
   - https://lilianweng.github.io/posts/2023-01-27-the-transformer-family-v2/
-- Wer ist Olli Folie
 - Folie Umfrage Stimmung / Meinung 
   - am Anfang
   - am Ende
@@ -203,21 +193,100 @@ Slides: https://bit.ly/m3-llm-2023
 </textarea>
 </section>
 
+
+ <section data-markdown>
+	<textarea data-template>
+# Artificial General Intelligence - die fehlenden 3%
+
+https://www.m3-konferenz.de/veranstaltung-20071-0-artificial-general-intelligence--die-fehlenden-3%25.html, M3 2023, Karlsruhe 
+
+Mikio Braun
+
+Oliver Zeigermann
+
+Slides: https://bit.ly/m3-llm-2023
+
+<!-- https://djcordhose.github.io/ml-resources/2023-llm-m3.html -->
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+## Gottgleiche KI zerstört die Welt?
+
+https://t3n.de/news/gottgleiche-ki-zerstoerung-der-menschheit-1547175/
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Bisschen viel Drama, eher...
+
+</textarea>
+</section>
+
+
 <section data-markdown class="fragments">
 	<textarea data-template>
-### Steht AI für "Alien Intelligence"?
+<!-- ### Steht AI für "Alien Intelligence"? -->
+### AI für "Alien Intelligence"
 
 * Schachprogramme wie Stockfish spielen nicht übermenschlich, sondern unmenschlich stark
   * nicht wie ein besonders guter Mensch
   * sondern wie eine fremdartige Intelligenz
-* bei Schach Grusel ala Uncanny Valley (https://de.wikipedia.org/wiki/Uncanny_Valley)
+* bei Schach Grusel ala <a href='https://de.wikipedia.org/wiki/Uncanny_Valley'>Uncanny Valley</a>
 * andere Bereiche sind aber sensibler
-* Sprachmodelle
-  * fehlende Empathie
 * autonomes Fahren
   * unvorhersehbare Aktionen
+  * andersartige Fehler
+* Sprachmodelle
+  * fehlende Empathie
+  * abweichende oder fehlende Ethik
+  * dauerhafter "Mount Stupid"
 </textarea>
 </section>
+
+<section data-markdown>
+	<textarea data-template>
+## Heute konzentrieren wir uns auf Sprachmodelle
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+		### Wer ist Olli
+
+		<div style="display: flex;">
+			<div style="flex: 50%;">
+				<a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+				<img src='img/ml-buch-v2.jpg' height="400">
+				</a>
+			</div>
+			<div style="flex: 50%; font-size: x-large;">
+				<img src='img/olli-opa.jpeg'>
+			</div>
+		</div>
+		<p>
+			<a target="_blank" href="mailto:OliverZeigermann@gmail.com">Oliver Zeigermann</a>:
+		Entwickler, Architekt, Berater und Coach für Machine Learning
+		</p>    
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+		### Wer ist Mikio
+		<img src='img/mikio-data.jpeg'>
+
+		<a target="_blank" href="mailto:mikiobraun@gmail.com">Mikio Braun</a>:
+		Ex-ML Researcher, Architekt, Berater und Mentor für Machine Learning
+	</textarea>
+</section>
+
+
 
 <section data-markdown>
 	<textarea data-template>
@@ -241,67 +310,67 @@ Slides: https://bit.ly/m3-llm-2023
 	</textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+## Intelligenz auf Sprache reduzieren
 
- <section data-markdown class="fragments">
-### Issues in Supervised Learning
+_kann man ein Sprach-System trainieren, dass sich intelligent anfühlt?_
 
-* linear effort in labelling data
-* significant error rate to be expected
-  * all standard data sets contain up to 10% of errors
-  * https://labelerrors.com/
-* differences between different labelers
-* change in label definition might require to start all over
 
-_impractical with large data sets_
-</section>
-
- <section data-markdown class="fragments">
-### Foundation Models: Transformer Core ideas
-
-1. have a generalized language model
-1. predict probabilities of sequences of words
-1. train on a very large corpus
-1. zero- or one-shot learning
-1. self-attention for encoding long range dependencies
-1. self-supervision for leveraging large unlabeled datasets (aka unsupervised pre-training)
-1. additional supervised training for downstream tasks, e.g.
-    - translation (lang1 & lang2 pairs)
-    - question answering (Q&A pairs)
-    - sentiment analysis (text & mood pairs) 
-    - etc.
-  
-  <!-- https://www.youtube.com/watch?v=iFhYwEi03Ew -->
-  </section>
-    
-<section data-markdown class="fragments">
-### Transformer Zoo
-
-* the original transformer was meant for translation tasks
-* usage has broadened ever since
-* spawning a whole zoo of transformers
-* some use encoder only
-* some use decoder only
-* some use a combination of encoder/decoder just like the original transformer 
-
-<!-- https://huggingface.co/transformers/model_summary.html
-https://huggingface.co/transformers/#supported-models -->
+	</textarea>
 </section>
 
 <section data-markdown>
+	<textarea data-template>
+### Aber
+## Wie trainiert man das denn?
+
+	</textarea>
+</section>
+
+ <section data-markdown class="fragments">
+### Probleme beim überwachten Lernen
+
+* linearer Aufwand beim labeln von Daten
+* erhebliche Fehlerquote zu erwarten
+  * Standard-Datensätze enthalten bis zu 10% Fehler
+  * https://labelerrors.com/
+* Unterschiede zwischen verschiedenen labelnden Personen
+* Änderung der Labeldefinition könnte erfordern, von vorne zu beginnen
+
+_nicht praktikabel bei großen Datensätzen_
+</section>
+
+ <section data-markdown class="fragments">
+### Foundation Models: Transformer Kernideen
+
+1. Self-Supervision zur Nutzung großer ungelabelter Datensätze (auch bekannt als unüberwachtes Vortraining)
+1. ein verallgemeinertes Sprachmodell haben
+1. Wahrscheinlichkeiten von Wortfolgen vorhersagen
+1. Training auf einem sehr großen Korpus
+1. Self-attention zur Kodierung weitreichender Abhängigkeiten
+1. zusätzliches überwachtes Training für nachgelagerte Aufgaben, z.B.
+    - Übersetzung (lang1 & lang2 Paare)
+    - Beantwortung von Fragen (Q&A-Paare)
+    - Stimmungsanalyse (Text-/Stimmungspaare) 
+    - usw.
+</section>
+    
+<section data-markdown>
 <textarea data-template>
-### Transformer Architecture: Encoder/Decoder
+### Transformer Architektur: Encoder/Decoder
 
 <div style="display: flex; align-items: center; justify-content: space-around;">
   <div>
     <ul>
-      <li>left side is encoder</li>
-      <li>right side is decoder</li>
-      <li>encoder feeds in embeddings of input into decoder</li>
-      <li>decoder needs context to work</li>
+      <li>links: Encoder</li>
+      <li>rechts: Decoder</li>
+      <li>Encoder speist die Embeddings der Eingabe in den Decoder ein</li>
+      <li>Der Decoder benötigt Kontext / initialen Prompt, um zu funktionieren</li>
     </ul>
 </div>
-  <div>
-    <img src='img/transformers/transformer-encoder-decoder.png' >
+  <div style="width: 100%;">
+    <img src='img/transformers/transformer-encoder-decoder.png'>
 </div>
 </div>
 <small>
@@ -311,6 +380,21 @@ https://arxiv.org/pdf/1706.03762.pdf
 
         </textarea>
 </section>
+
+<section data-markdown class="fragments">
+### Transformer Zoo
+
+* der ursprüngliche Transformer war für Übersetzungsaufgaben gedacht
+* die Verwendung hat sich seitdem ausgeweitet
+* es entstand ein ganzer Zoo von Transformatoren
+* einige verwenden nur Encoder
+* einige verwenden nur Decoder
+* einige verwenden eine Kombination aus Encoder/Decoder, genau wie der ursprüngliche Transformator
+
+<!-- https://huggingface.co/transformers/model_summary.html
+https://huggingface.co/transformers/#supported-models -->
+</section>
+
 
 <section data-markdown class="fragments">
 ### Decoder only (GPT-like)
@@ -337,6 +421,74 @@ _also called auto-regressive Transformer models_
   https://huggingface.co/transformers/model_doc/gpt2.html
   </section>
   
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. Idee von Transformern / LLMs
+1. *Was ist daran toll?*
+1. Was ist daran nicht so toll?
+1. Wann übernimmt KI die Welt?
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Fähigkeiten Hui / Wissen Pfui
+
+<img src="img/transformers/Wissen-Faehigkeit.jpg" style="height: 600px">
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. Idee von Transformern / LLMs
+1. Was ist daran toll?
+1. *Was ist daran nicht so toll?*
+1. Wann übernimmt KI die Welt?
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+### Don't forget: Transformers are language models
+
+* No abstract reasoning like it is in our brains takes place
+* The basis is the expression of thoughts in texts and code, etc.
+* That's the way the system is trained
+* Whether this is also intelligent is a pointed question
+* Turing would probably say it doesn't matter
+* One can argue that this system passes his test
+  * https://twitter.com/glouppe/status/1438496208343949318
+</section>
+
+<section data-markdown class="fragments">
+### On the Opportunities and Risks of Foundational Models
+
+* foundational models: trained on broad data at scale and are adaptable to a wide range of downstream tasks
+* ML is undergoing a paradigm shift with the rise of these models
+* their scale results in new emergent capabilities 
+* defects of the foundation model are inherited by all the adapted models downstream
+* lack of clear understanding of how they work, when they fail, and what they are even capable of
+
+https://arxiv.org/abs/2108.07258
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. Idee von Transformern / LLMs
+1. Was ist daran toll?
+1. Was ist daran nicht so toll?
+1. *Wann übernimmt KI die Welt?*
+	</textarea>
+</section>
+
+
 <section data-markdown>
 <textarea data-template>
 <img src='img/transformers/gpt-3-2-years.jpg' style="height: 450px;">
@@ -368,18 +520,6 @@ GPT: Generative Pre-Trained Transformer
 </section>
 
 <section data-markdown>
-<textarea data-template>
-### Typical example for decoder only GPT: completing a text (zero-shot)
-
-<img src='img/transformers/gpt-3-article.png' style="height: 450px;">
-
-<small>
-
-https://arxiv.org/abs/2005.14165</small>
-        </textarea>
-</section>
-    
-<section data-markdown>
   <textarea data-template>
 <img src='img/transformers/twitter-fchollet-one-shot.png'>
 
@@ -388,68 +528,9 @@ https://arxiv.org/abs/2005.14165</small>
   https://twitter.com/fchollet/status/1528069621047128065</small>
         </textarea>
   </section>
+
+
   
-<section data-markdown>
-<textarea data-template>
-### Completion (One-Shot / Few-Shot)
-
-<img src='img/transformers/gpt-few-shot.png' style="height: 450px;">
-
-<small>
-
-https://arxiv.org/abs/2005.14165</small>
-        </textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-### Interactive Teaching
-
-<img src='img/transformers/gpt-math.jpg' style="height: 450px;">
-
-<small>
-
-  https://twitter.com/peterwildeford/status/1522633978305560576
-  <br>
-  https://twitter.com/kaushikpatnaik/status/1522794898805592066
-</small>
-        </textarea>
-</section>
-
-<section data-markdown class="fragments">
-### Don't forget: Transformers are language models
-
-* No abstract reasoning like it is in our brains takes place
-* The basis is the expression of thoughts in texts and code, etc.
-* That's the way the system is trained
-* Whether this is also intelligent is a pointed question
-* Turing would probably say it doesn't matter
-* One can argue that this system passes his test
-  * https://twitter.com/glouppe/status/1438496208343949318
-</section>
-
-<section data-markdown class="fragments">
-### On the Opportunities and Risks of Foundational Models
-
-* foundational models: trained on broad data at scale and are adaptable to a wide range of downstream tasks
-* ML is undergoing a paradigm shift with the rise of these models
-* their scale results in new emergent capabilities 
-* defects of the foundation model are inherited by all the adapted models downstream
-* lack of clear understanding of how they work, when they fail, and what they are even capable of
-
-https://arxiv.org/abs/2108.07258
-</section>
-
-<!-- <section data-markdown>
-### Why it might make sense to study transformers even when you are not into NLP
-  
-So even though I'm technically in vision, papers, people and ideas across all of AI are suddenly extremely relevant. 
-Everyone is working with essentially the same model, so most improvements and ideas can "copy paste" rapidly across all of AI.
-
-https://twitter.com/karpathy/status/1468370611797852161 
-</section> -->
-
-
 
 <section data-markdown>
 	<textarea data-template>
