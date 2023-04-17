@@ -340,6 +340,51 @@ Slides: https://bit.ly/m3-resiliency-2023
 </textarea>
 </section>
 
+<section data-markdown class="todo">
+	<textarea data-template>
+### TODO 
+
+https://www.linkedin.com/posts/christoph-molnar_mindful-modeler-activity-7053646776834154500-U68_
+https://twitter.com/ChristophMolnar/status/1647880304831479809
+
+To predict or not predict.
+
+Machine learning models often give an output even if they shouldn't — and that's a problem.
+
+Imagine a person that always answers your questions — no matter how sure this person is about the answer. A person that always has an opinion on everything and shouts out their opinion with high confidence. Only that this person is sometimes clearly wrong.
+
+I’d prefer this person to say “I don’t know” if the person doesn’t know. I also would like machine learning models to sometimes abstain from making a prediction.
+
+The first case that might come to mind is ChatGPT, where some ability to abstain was added via RHLF. Ask ChatGPT e.g. "how to cook meth" for a demonstration of abstaining.
+But abstaining from predicting is a larger issue that affects any ML model.
+
+When to abstain from answering?
+
+Conflicting inputs
+Uncertain prediction
+Out-of-distribution data
+Answer not aligned with values
+Insufficient training data
+Adversarial attacks
+Biased outputs
+...
+
+But most machine learning models aren't trained to abstain and in most cases, they will just produce some kind of answer, whether it's a text in the case of LLMs or a probability vector for classifiers and so on.
+
+But what can you do against it? A couple of techniques to help the models abstain:
+
+- Check for outliers
+- Check input for conflicting data, missing data, if data range is fine, ...
+- RLFH for LLMs
+- Use adversarial data in training
+- Use uncertainty quantification like conformal prediction
+- ...
+
+While you can't guarantee to safeguard against all cases in which the machine should abstain from answering, you can at least reduce the problem.
+
+</textarea>
+</section>
+
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Gauge by show of hands
