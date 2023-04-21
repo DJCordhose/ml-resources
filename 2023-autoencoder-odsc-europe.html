@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Autoencoders for Anomaly Detection</title>
+    <title>Autoencoders - a magical approach to unsupervised machine learning</title>
 
     <meta name="description" content="Autoencoders for Anomaly Detection">
     <meta name="author" content="Oliver Zeigermann">
@@ -136,133 +136,7 @@
 <div class="reveal">
     <div class="slides">
 
-
-<section data-markdown class="todo">
-	<textarea data-template>
-## Blogpost ODSC dazu bauen
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-- Auch Drift und Adversarial Attack Kram dazu nehmen
-
-  - https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html
-  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html
-  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/alibi_detect_deploy.html#4.-Drift-detection-with-Kolmogorov-Smirnov
-  - https://arxiv.org/abs/2002.09364
-</textarea>
-</section>
-
-
 <!-- 
-
-Visual Regression Testing with Neural Networks
-
-Visual testing on an end-to-end basis is the only way to detect errors that have crept into the rendering of a JavaScript application. 
-But what if you had more of a general idea of how an application should look like and see if the new version of the software renders the same way? 
-We humans can do that, but maybe an artificial neural network can do that too?
-
-In the first part of this talk, he will show how to set up and run visual regression tests and how to use them to detect bugs. 
-The second part does the mentioned experiment where we teach a neural network how our application looks in principle. 
-
-He will present and publicly share a working example using React, Testcafé and TensorFlow.
-
--->
-
-
-Workshop
-
-Long Version
-
-Autoencoders - a magical approach to unsupervised machine learning
-
-Autoencoders are a special kind of neural network architecture. They are trained by reproducing an input as accurately
-as possible in an unsupervised way. This is done by encoding the input into a latent representation that forces the
-network to learn some kind of a abstraction and then reconstructing the original input in a symmetrical decoder.
-The benefit of this is hard to see at first. But we can make use of this approach in at least two ways after training.
-
-First we can take the latent representation that should now contain the abstract pattern of the inputs. Given training
-was successful we can be sure to find something interesting there. This can be used for clustering or visualization.
-Indeed this can be seen as a very powerful way of doing dimensionally reduction and even PCA being a very simple special
-case of an autoencoder.
-
-Second we can use the reconstruction error as a measure of how well something fits the learned concept. This is used
-to find outliers even in the most complex inputs.
-In this workshop we will illustrate both approaches using a consistent single example.
-Even though autoencoders work for all kinds of data, we will use image data as it makes it easiest to understand the
-underlying concepts.
-
-As a last step we will also showcase other typical use cases for autoencoders and how they can even help in supervised
-settings.
-
-In this workshop we will use TensorFlow in a Colab notebooks, so all you need is a recent version of Chrome and a Google login.
-
----
-
-Autoencoders - a magical approach to unsupervised machine learning
-
-Short Version
-- MLCon 2023 mit Tim W. eingereicht
-- ODSC Europe Workshop
-
-
-Autoencoders are a special kind of neural network architecture. They are trained by reproducing an input as accurately as possible in an unsupervised way. This is done by encoding the input into a latent representation that forces the network to learn some kind of a abstraction and then reconstructing the original input from that representation.
-
-The benefit of this is hard to see at first. But we can make use of this approach in at least two ways. First, we can take the latent representation that should now contain the abstract pattern of the inputs. This can be used for dimensionality reduction, clustering, or visualization. Second, we can use the reconstruction error as a measure of how well something fits the learned concept. This is used to find outliers even for the most complex input types.
-
-In this workshop we will illustrate both approaches using a consistent single example. We will use TensorFlow in a Colab notebooks, so all you need is a recent version of Chrome and a Google login. You will not need prior knowledge with TensorFlow, but need a good understanding of how training neural networks work as a prerequisite.
-
-
-Level intermediate: Autoencoders are complex. You will need a basic understanding neural networks in order not to be overwhelmed by them.
-Title: Blue Collar ML Architect
-
-Oliver is a software developer and architect from Hamburg, Germany. He has spent the past 40 years developing software using different approaches, hardware and programming languages. In the past decade he mostly returned to the AI approach he left after his studies in the 90s.
-https://www.linkedin.com/in/oliver-zeigermann-34989773/
-
----
-Talk
-
-Abgucken von Testcon
-
-Unsupervised Visual Regression Testing using Autoencoders
-
-In software engineering, a regression test is the repetition of test cases to ensure that modifications in parts of the software already 
-tested do not cause new errors. However, visual regressions, i.e. regressions in how applications display screens to users, are notoriously hard to catch. 
-You can compare screens and look
-for differences, but this gives you a lot of false positives especially when changing details like translations or minor
-changes in layout.
-
-But what if you could rather find the abstract idea of a screen and test against that? Sounds impossible? It actually is
-possible using autoencoders. Autoencoders are a special kind of neural network architecture. They are trained by 
-reproducing an input as accurately
-as possible in an unsupervised way. This is done by encoding the input into a latent representation that forces the
-network to learn some kind of a abstraction and then reconstructing the original input in a symmetrical decoder.
-
-
-I will show two approaches of doing this and leave you with working code using
-TensorFlow.
-
-
-<!--
-
-
-Autoencoder - die magische Netzwerk-Architektur
-
-Autoencoders are fascinating neural networks. 
-
-
-- das geile Notebook mit alles zeigen
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/autoencoder_outlier_detection.ipynb
-- Dramaturgie, warum auch noch Latent Space abgreifen: What to do if this is not just binary or you have normal data is not the majority?
-- Folien von ODSC West 2022: https://drive.google.com/file/d/1LMaU88hLOFKqs_ni-uMh4-VsD3j_j7j1/view
-
-Konferenzen
-- Workshop ODSC Europe
-- 
--->
-
-
 https://odsc.com/speakers/autoencoders-a-magical-approach-to-unsupervised-machine-learning/
 
 Autoencoders – a Magical Approach to Unsupervised Machine Learning
@@ -279,6 +153,28 @@ well something fits the learned concept. This is used to find outliers even for 
 In this workshop we will illustrate both approaches using a consistent single example. We will use TensorFlow in a Colab
 notebooks, so all you need is a recent version of Chrome and a Google login. You will not need prior knowledge with
 TensorFlow, but need a good understanding of how training neural networks work as a prerequisite.
+ -->
+
+ <section data-markdown class="todo">
+	<textarea data-template>
+- Auch Drift und Adversarial Attack Kram dazu nehmen
+
+  - https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html
+  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html
+  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/alibi_detect_deploy.html#4.-Drift-detection-with-Kolmogorov-Smirnov
+  - https://arxiv.org/abs/2002.09364
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Agenda
+
+1. What is an Autorencoder and why would you want one?
+</textarea>
+</section>
+
 
 <section data-markdown class="todo">
 	<textarea data-template>
