@@ -119,14 +119,14 @@
       https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
       https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
        */
-       body:after {
+       /* body:after {
         content: url(img/ok/logo.png) ;
         position: fixed;
         bottom: 80px;
         left: -1080px;
         transform: scale(.06);
         height: 10px;
-    }
+    } */
 
 	</style>
 </head>
@@ -138,6 +138,8 @@
 
 <!-- 
 https://odsc.com/speakers/autoencoders-a-magical-approach-to-unsupervised-machine-learning/
+
+75 min workshop
 
 Autoencoders – a Magical Approach to Unsupervised Machine Learning
 
@@ -156,60 +158,59 @@ TensorFlow, but need a good understanding of how training neural networks work a
  -->
 
  <section data-markdown class="todo">
-	<textarea data-template>
-- Auch Drift und Adversarial Attack Kram dazu nehmen
+    <textarea data-template>
+- bit.ly        
+    </textarea>
+</section>
 
-  - https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html
-  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html
-  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/alibi_detect_deploy.html#4.-Drift-detection-with-Kolmogorov-Smirnov
-  - https://arxiv.org/abs/2002.09364
+<section data-markdown>
+    <textarea data-template>
+# Autoencoders
+## a Magical Approach to Unsupervised Machine Learning
+
+ODSC Europe 2023, https://odsc.com/speakers/autoencoders-a-magical-approach-to-unsupervised-machine-learning/
+
+Oliver Zeigermann
+
+Slides: https://bit.ly/odsc-europe-autoencoder
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+## TL'DR
+
+* We train a NN to be able to reconstruct "correct" screenshots from a compressed state well.
+* Then we compress "unknown" screenshots and reconstruct them with the trained NN.
+* Then we compare them against their uncompressed state -> if there is little difference, the unknown screenshot was probably a correctly looking one, else, something might be broken
 </textarea>
 </section>
 
 
-<section data-markdown class="todo">
+
+<section data-markdown>
 	<textarea data-template>
-### Agenda
+## Agenda
 
 1. What is an Autorencoder and why would you want one?
+1. Our use case for today
+1. Hands-On / Notebook
+1. What else and Wrap Up
 </textarea>
 </section>
 
-
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
-### Sources
+## Agenda
 
-* /home/olli/ml-workshop/2020-ae-anomaly.html
-* /home/olli/ml-workshop/2020-ml-essentials-embeddings.html
-* /home/olli/ml-workshop/2019-embeddings.html
-* /home/olli/ml-workshop/2019-unsupervised.html
-* /home/olli/ml-workshop/2021-m3-autoencoder.html
+1. *What is an Autorencoder and why would you want one?*
+1. Our use case for today
+1. Hands-On / Notebook
+1. What else and Wrap Up
 </textarea>
 </section>
 
-<section data-markdown class="todo">
-	<textarea data-template>
-### Fitbit für Kühe als Anomalie Detection
-
-https://youtu.be/MtJ5HAEAGFU
-
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-### Anwendungsmöglichkeiten
-
-* Altenbetreuung
-* Maschinen
-* Tiere, Nutztiere, Kühe 
-
-</textarea>
-</section>
-
-
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
 ### Autoencoders 
 
@@ -226,41 +227,151 @@ https://youtu.be/MtJ5HAEAGFU
 
 </div>
 
-
-https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/autoencoder_outlier_detection.ipynb
-
-
 </textarea>
 </section>
-
-
- <section data-markdown class="todo">
-    <textarea data-template>
-
- Andreas Vollenweider
-So a layman's summary would be:
-We train a NN to be able to reconstruct "correct" screenshots from a compressed state well.
-Then we compress "unknown" screenshots and reconstruct them with the trained NN.
-Then we compare them against their uncompressed state -> if there is little difference, the unknown screenshot was probably a correctly looking one, else, something might be broken?
-</textarea>
-</section>
-
 
 
 <section data-markdown>
     <textarea data-template>
-# Visual Regression Testing with Neural Networks
+### Example: spotting anomalies in ECG signals
 
-TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
+<a href='https://victordibia.github.io/anomagram/#/'>
+<img src='img/anomagram-inference.gif' height="450">
+</a>
+<br>
+<small>
 
-Oliver Zeigermann, https://www.embarc.de/oliver-zeigermann/
-
-Slides: https://bit.ly/testcon-regression
+https://github.com/victordibia/anomagram        
+https://victordibia.github.io/anomagram/#/
+    
+</small>
 </textarea>
 </section>
 
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. What is an Autorencoder and why would you want one?
+1. Our use case for today
+1. *Hands-On / Notebook*
+1. What else and Wrap Up
+</textarea>
+</section>
+
+
+<section data-markdown style="font-size: x-large;">
+<textarea data-template>
+### Reference Implementation
+
+Notebook using Google Colab and TensorFlow: https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/notebooks/autoencoder_odsc.ipynb
+
+Project: https://github.com/DJCordhose/frontend-monorepo
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+
+1. What is an Autorencoder and why would you want one?
+1. Our use case for today
+1. Hands-On / Notebook
+1. *What else and Wrap Up*
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Wie vergleicht man Embeddings? 
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+- Autoencoders for Adversarial Attacks
+
+- https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html
+- https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html
+- https://docs.seldon.io/projects/alibi-detect/en/stable/examples/alibi_detect_deploy.html#4.-Drift-detection-with-Kolmogorov-Smirnov
+- https://arxiv.org/abs/2002.09364
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Fitbit für Kühe als Anomalie Detection
+
+https://youtu.be/MtJ5HAEAGFU
+
+</textarea>
+</section>
+
+<section data-markdown>
+## This approch is taken in other domains as well
+### First example: is the ISS working ok?
+
+If the model is able to reconstruct observations of nominal states with a high accuracy, it will have difficulties reconstructing observations of states which deviate from the nominal state. Thus, the reconstruction error of the model is used as an indicator for anomalies during inference, as well as part of the cost function in training.
+
+https://blog.tensorflow.org/2020/04/how-airbus-detects-anomalies-iss-telemetry-data-tfx.html
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Anwendungsmöglichkeiten
+
+* Altenbetreuung
+* Maschinen
+* Tiere, Nutztiere, Kühe 
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+# Thanks a lot and time for questions
+
+## Autoencoders – a Magical Approach to Unsupervised Machine Learning
+
+ODSC Europe 2023
+
+Slides: https://bit.ly/odsc-europe-autoencoder
+
+Stay in touch if you like
+
+<a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
+
+<a href='https://www.linkedin.com/in/oliver-zeigermann-34989773/'>https://www.linkedin.com/in/oliver-zeigermann-34989773/</a>
+
+    </textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+# Von hier an nur Material
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Sources
+
+* /home/olli/ml-workshop/2020-ae-anomaly.html
+* /home/olli/ml-workshop/2020-ml-essentials-embeddings.html
+* /home/olli/ml-workshop/2019-embeddings.html
+* /home/olli/ml-workshop/2019-unsupervised.html
+* /home/olli/ml-workshop/2021-m3-autoencoder.html
+</textarea>
+</section>
+
+
 <section data-markdown class="fragments">
-## TL'DR
 
 - Most people perceive an application on the visual level
 - Running automated tests at this level therefore is an obvious approach
@@ -900,69 +1011,9 @@ _This is an experiment, not something ready for the market_
 </section>
 
 
-<section data-markdown style="font-size: x-large;">
-<textarea data-template>
-### Reference Implementation
-
-Notebook using Google Colab and TensorFlow: https://colab.research.google.com/github/embarced/notebooks/blob/master/deep/autoencoder-outlier-detection.ipynb?hl=en
-
-Project: https://github.com/DJCordhose/frontend-monorepo
-
-<small>
-
-
-
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-## This approch is taken in other domains as well
-### First example: is the ISS working ok?
-
-If the model is able to reconstruct observations of nominal states with a high accuracy, it will have difficulties reconstructing observations of states which deviate from the nominal state. Thus, the reconstruction error of the model is used as an indicator for anomalies during inference, as well as part of the cost function in training.
-
-https://blog.tensorflow.org/2020/04/how-airbus-detects-anomalies-iss-telemetry-data-tfx.html
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Second example: spotting anomalies in ECG signals
-
-<a href='https://victordibia.github.io/anomagram/#/'>
-<img src='img/anomagram-inference.gif' height="450">
-</a>
-<br>
-<small>
-
-https://github.com/victordibia/anomagram        
-https://victordibia.github.io/anomagram/#/
-    
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-# Thanks a lot and time for questions
-
-## Visual Regression Testing with Neural Networks
-
-TestCon Europe 2021, Online Edition, https://testcon.lt/Oliver-Zeigermann/
-
-Slides: https://bit.ly/testcon-regression
-
-Stay in touch if you like
-
-<a href='https://twitter.com/DJCordhose'>@DJCordhose</a>
-
-<a href='https://www.linkedin.com/in/oliver-zeigermann-34989773/'>https://www.linkedin.com/in/oliver-zeigermann-34989773/</a>
-
-    </textarea>
-</section>
-
 </div>
 </div>
+
 
 <script src="reveal.js/dist/reveal.js"></script>
 <script src="lib/jquery.js"></script>
