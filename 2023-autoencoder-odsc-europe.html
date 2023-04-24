@@ -157,7 +157,7 @@ notebooks, so all you need is a recent version of Chrome and a Google login. You
 TensorFlow, but need a good understanding of how training neural networks work as a prerequisite.
  -->
 
- <section data-markdown class="todo">
+ <!-- <section data-markdown class="todo">
 	<textarea data-template>
 ### Sources
 
@@ -168,29 +168,31 @@ TensorFlow, but need a good understanding of how training neural networks work a
 * /home/olli/ml-workshop/2021-m3-autoencoder.html
 </textarea>
 </section>
-
-
- <section data-markdown class="todo">
-    <textarea data-template>
-- bit.ly        
-- Notbook auf schaffbares Minimum reduzieren 
-- Ausblick und Zusammanfassung
-- Autoencoder Theorie am Ende
-    </textarea>
-</section>
+ -->
 
 <section data-markdown>
     <textarea data-template>
 # Autoencoders
-## a Magical Approach to Unsupervised Machine Learning
+### a Magical Approach to Unsupervised Machine Learning
 
 ODSC Europe 2023, https://odsc.com/speakers/autoencoders-a-magical-approach-to-unsupervised-machine-learning/
 
 Oliver Zeigermann
 
+<img src="img/bit.ly_odsc-europe-autoencoder.png" style="height: 200px;">
+
 Slides: https://bit.ly/odsc-europe-autoencoder
+
+<!-- https://djcordhose.github.io/ml-resources/2023-autoencoder-odsc-europe.html -->
 </textarea>
 </section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+- Ausblick und Zusammanfassung (ich habe sowieso genug Material, kann zur Not entfallen)
+    </textarea>
+</section>
+
 
 <section data-markdown class="fragments">
     <textarea data-template>
@@ -201,7 +203,6 @@ Slides: https://bit.ly/odsc-europe-autoencoder
 * Then we compare them against their uncompressed state -> if there is little difference, the unknown screenshot was probably a correctly looking one, else, something might be broken
 </textarea>
 </section>
-
 
 
 <section data-markdown>
@@ -247,6 +248,27 @@ https://blog.keras.io/building-autoencoders-in-keras.html
 
 </small>
 </div>
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Autoencoders for Abstraction
+        
+* assumption: there are underlying concepts that can be used for abstraction
+* project instances to latent representation
+* the less the capacity of the latent representation, the higher the abstraction
+* means to restrict capacity:
+  * _undercomplete_ (capacity of latent representation << dim of inputs)
+    * L2 to further compress latent a bit
+  * _overcomplete_ (capacity of latent representation >= dim of inputs)
+    * use L1 to increase sparsity of embedding when having dim > 2, to have an additional restriction (often gives better results)
+
+
+<small>
+
+https://www.deeplearningbook.org/contents/autoencoders.html</small>
+
 </textarea>
 </section>
 
