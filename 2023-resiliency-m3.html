@@ -277,7 +277,7 @@ The notion that the world has a simple structure that, once learned, enables goo
 </textarea>
 </section> -->
 
-<section data-markdown class="preparation">
+<!-- <section data-markdown class="preparation">
 	<textarea data-template>
 - Hausmeister-Kittel blau
 - Den AE Kram ansehen
@@ -287,7 +287,7 @@ The notion that the world has a simple structure that, once learned, enables goo
 - Den Fluss noch einmal üben  
 	</textarea>
 </section>
-
+ -->
  <section data-markdown>
 	<textarea data-template>
 # Resilientes Machine Learning
@@ -506,7 +506,7 @@ https://en.wikipedia.org/wiki/Resilience
 	</textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### ML comes with a lot of uncertainty
 
@@ -638,6 +638,25 @@ Here are a few examples
 
 </textarea>
 </section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+
+### Why ensemble/fallback?
+
+* A ML model is trained with data of a certain range
+  * some queries are not in that range
+  * most models have no idea when they have no idea
+  * so we need to determine which query is routed where
+* Even after prediction, it can be decided that the confidence is not high enough
+  * Then query another model
+  * Some models are more expensive to run than others, use those rather later on
+* Often a simple heuristic control system is a good alternative / fallback
+* If there are several suitable models, a majority decision is also conceivable
+* More suggestions: https://twitter.com/ChristophMolnar/status/1647881654873063426
+</textarea>
+</section>
+
 
 <section data-markdown>
 	<textarea data-template>
@@ -777,7 +796,7 @@ If so
 
 <section data-markdown>
 	<textarea data-template>
-### Adversarial AE detector
+### Adversarial Auto-Encoder (AE)
 		
 adversarial perturbation gives significantly different outputs for M(x) and M(x')
 
@@ -801,7 +820,7 @@ https://arxiv.org/abs/2002.09364 -->
 	<textarea data-template>
 ### Example for AE in operation
 
-all the AE does it to have same prediction, but not position within decision boundaries
+AE keeps prediction, but not position within decision boundaries
 
 <img src="img/sketch/adversarial-ae.png" style="height:350px;">
 
@@ -1133,21 +1152,52 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
-### What can also happen when you go into production
+## What can also happen when you go into production
 
-* Need for explanation
-  * people sue you over a prediction
-  * CEO wants to know why bad score for spouse
-  * contradicts prevention of hacking
-* Unwanted bias
-  * gender or age are common
-  * investigative journalism a threat
-  * people might again sue
 	</textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+### Need for explanation
+
+* people sue you over a prediction
+* CEO wants to know why bad score for spouse
+* contradicts prevention of hacking
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Unwanted bias
+
+* gender or age are common
+* investigative journalism a threat
+* people might again sue
+* you will always have bias, some is wanted, some is unwanted
+* if you do not have bias, your model ist not generalizing
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Our prediction itself generates drift
+
+* Deployment changes our role from observer to actor
+* Our predictions often have an influence on the system we are working in
+* Often binary decisions have a big impact
+* Merely good cases should enter our system
+  * If not, why should we make a forecast at all?
+* If not (False Negative, Type II error).
+  * Have humans learned to trick our system?
+* Did we miss good cases (False Positive, Type I error).
+  * Possibility: *epsilon-greedy* mostly believe in the prediction, but sometimes (epsilon) allow bad ones to enter our system
+  * prediction with all probabilities goes into our database
+* More on that: https://twitter.com/ChristophMolnar/status/1569644089724764160
+</textarea>
+</section>
 
 <!-- <section data-markdown>
   <textarea data-template>
@@ -1166,11 +1216,11 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_
 * a model that is not in production is useless
 * getting a descent model is already hard, but...
 * bringing a model into production and keeping it there is a whole different story
-<!-- * machine learning projects can be thought of in phases -->
+* machine learning projects can be thought of in phases
 <!-- * in production, special challenges arise in the area of monitoring -->
 * machine learning systems typically have to be regularly retrained and maintained
-* practitioners need statistical skills 
-<!-- * practitioners need statistical skills , but rarely calculus or linear algebra  -->
+<!-- * practitioners need statistical skills  -->
+* practitioners need statistical skills , but rarely calculus or linear algebra 
 </textarea>
 </section>
 
