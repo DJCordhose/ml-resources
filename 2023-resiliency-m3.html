@@ -772,11 +772,21 @@ https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images
 </section> -->
   
 
+<section data-markdown>
+	<textarea data-template>
+### Perturbing input data
+
+<img src="img/pertubation.png">
+
+if _x_ is close to a decision boundary, a slight pertubation _x<sub>p</sub>_ might change the predicted class 
+</textarea>
+</section>
+
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Model stability and adversarial vulnerability
 
-_Main question: does slightly perturbing the input data yield a drastically different prediction?_
+_Main question: does slightly perturbing the input data yield generally a drastically different prediction?_
 
 If so
 - there is an additional attack vector 
