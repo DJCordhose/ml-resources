@@ -452,7 +452,7 @@ More complete agenda for talks longer than 30 minutes
 ## Agenda
 
 1. managing uncertainty
-1. adversarial attacks and stability
+1. meeting more resilient requirements
 1. out-of-distribution robustness
 1. drift and monitoring
 1. unwanted bias
@@ -488,7 +488,7 @@ https://en.wikipedia.org/wiki/Resilience
 
 1. managing uncertainty
 1. deploying machine learning services
-1. adversarial attacks and stability
+1. meeting more resilient requirements
 1. drift and monitoring
 	</textarea>
 </section>
@@ -500,9 +500,23 @@ https://en.wikipedia.org/wiki/Resilience
 
 1. *managing uncertainty*
 1. deploying machine learning services
-1. adversarial attacks and stability
+1. meeting more resilient requirements
 1. drift and monitoring
 	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Uncertainty is hard to bear
+
+- emotionally
+- risk for business
+
+- you need to manage the uncertainty / introduce resilient concepts to handle the stress 
+- also relevant for development process
+  - create PoC, work in phases
+  - try and infer life time of model
+  </textarea>
 </section>
 
 <section data-markdown class="fragments">
@@ -521,27 +535,44 @@ https://en.wikipedia.org/wiki/Resilience
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
-### Uncertainty is hard to bear
+### Typical requirements for Machine Learning Projects
 
-- emotionally
-- risk for business
+1. *Reasonable Accuracy* - should have 80% or more cases correct
+1. *Explainability* - we need to explain how we come to the conclusion
+1. *Stability* - a new version of the software should not behave totally different
+1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
+1. *Robustness against drift* - the world changes, our model should follow
 
-- You need to manage the uncertainty / introduce resilient concepts to handle the stress 
-- also relevant for development process
-  - create PoC, work in phases
-  - try and infer life time of model
-  </textarea>
+</textarea>
 </section>
 
+
+<!-- <section data-markdown class="fragments">
+	<textarea data-template>
+### Challenges: Typical things happening in production
+
+1. Smartass Lawyer Attack
+   * can you explain your decision?
+1. price comparison service tries to outsmart you
+   * are you prone to adversarial attacks 
+1. Drift
+   * driver assistance becomes prevalent - prediction of risk no longer valid
+   * are you able to create a stable new model
+1. Investigative Journalism
+   * there might be systematic age bias
+
+	</textarea>
+</section>
+ -->
 <section data-markdown>
 	<textarea data-template>
 ## Agenda
 
 1. managing uncertainty
 1. *deploying machine learning services*
-1. adversarial attacks and stability
+1. meeting more resilient requirements
 1. drift and monitoring
 	</textarea>
 </section>
@@ -677,21 +708,31 @@ Taken from: Phil Mui: An Embedding Analysis on the Impact of Diversity Awareness
 
 1. managing uncertainty
 1. deploying machine learning services
-1. *adversarial attacks and stability*
+1. *meeting more resilient requirements*
 1. drift and monitoring
 	</textarea>
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
-### Typical requirements for Machine Learning Projects
+### Need for explanation
 
-1. *Reasonable Accuracy* - should have 80% or more cases correct
-1. *Explainability* - we need to explain how we come to the conclusion
-1. *Stability* - a new version of the software should not behave totally different
-1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
-1. *Robustness against drift* - the world changes, our model should follow
+* people sue you over a prediction
+* CEO wants to know why bad score for spouse
+* contradicts prevention of hacking
+	</textarea>
+</section>
 
+
+<section data-markdown>
+	<textarea data-template>
+### Explainability and Check against Overfitting
+
+Using an example from the field of image recognition
+
+<img src="img/alibi-anchor-squirrel.png" style="height:400px;" class="fragment">		
+
+https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images		
 </textarea>
 </section>
 
@@ -722,7 +763,45 @@ Taken from: Phil Mui: An Embedding Analysis on the Impact of Diversity Awareness
 
 </textarea>
 </section>
-  
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### How to improve on stability
+
+* train a new model only if you need to
+* consider using a base model
+  * rarely change it at all
+  * add additional models downstream or
+  * cover certain ranges with additional models
+  * compare to GPT model approach
+* stabilize model when retraining
+  * freeze some weights
+  * add stabilizing loss
+  * stateful (aka online) retraining
+  </textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Stateful vs Stateless retraining?
+
+<img src="img/mlops/stateful-vs-stateless-v2.png">
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Attempted Manipulation / Adversarial Attacks
+
+Certain inputs may intentionally cause a grossly incorrect prediction to be made
+* can be used to systematically manipulate the output of the system
+* how sensitive a system is to such an attempt is determined by the inner complexity of such a system
+  * often directly contradicting properties like explainability
+
+	</textarea>
+</section>
 
 <section data-markdown>
 	<textarea data-template>
@@ -744,30 +823,6 @@ taxes, laws, regulations, contracts, embargoes
 - transparency vs hackability
 </textarea>
 </section>
-
-<!-- <section data-markdown class="fragments">
-	<textarea data-template>
-### Attempted Manipulation / Adversarial Attacks
-
-Certain inputs may intentionally cause a grossly incorrect prediction to be made
-* can be used to systematically manipulate the output of the system
-* how sensitive a system is to such an attempt is determined by the inner complexity of such a system
-  * often directly contradicting properties like explainability
-
-	</textarea>
-</section>
- -->
-<!-- <section data-markdown>
-	<textarea data-template>
-### Explainability and Check against Overfitting
-
-<img src="img/alibi-anchor-squirrel.png" style="height:400px;" class="fragment">		
-
-https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images		
-</textarea>
-</section>
- -->
-
 
 <section data-markdown>
 	<textarea data-template>
@@ -883,7 +938,7 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
 
 1. managing uncertainty
 1. deploying machine learning services
-1. adversarial attacks and stability
+1. meeting more resilient requirements
 1. *drift and monitoring*
 	</textarea>
 </section>
@@ -1167,16 +1222,6 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_
 	<textarea data-template>
 ## What can also happen when you go into production
 
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Need for explanation
-
-* people sue you over a prediction
-* CEO wants to know why bad score for spouse
-* contradicts prevention of hacking
 	</textarea>
 </section>
 
