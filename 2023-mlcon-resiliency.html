@@ -1,0 +1,1391 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Resilient Machine Learning</title>
+
+    <meta name="description" content="Resilient Machine Learning">
+    <meta name="author" content="Oliver Zeigermann">
+	<link rel="shortcut icon" href="/img/favicon.ico" >
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+	<link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+	<style>
+		.right-img {
+			margin-left: 10px !important;
+			float: right;
+			height: 500px;
+		}
+
+		.todo:before {
+			content: 'TODO: ';
+		}
+
+		.todo {
+			color: red !important;
+		}
+
+		code span.line-number {
+			color: lightcoral;
+		}
+
+		.reveal pre code {
+			max-height: 1000px !important;
+		}
+
+		img {
+			border: 0 !important;
+			box-shadow: 0 0 0 0 !important;
+			height: 450px;
+		}
+
+		.reveal {
+			-ms-touch-action: auto !important;
+			touch-action: auto !important;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4 {
+			/* letter-spacing: 2px; */
+			font-family: 'Calibri', sans-serif;
+			/* font-family: 'Times New Roman', Times, serif; */
+			/* font-weight: bold; */
+			color: black;
+			/* font-style: italic; */
+			/* letter-spacing: -2px; */
+			text-transform: none !important;
+		}
+
+		.reveal em {
+			font-weight: bold;
+		}
+
+		.reveal section img {
+			background: none;
+		}
+
+		.reveal img.with-border {
+			border: 1px solid #586e75 !important;
+			box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+		}
+
+		.reveal li {
+			margin-bottom: 8px;
+		}
+
+		/* For li's that use FontAwesome icons as bullet-point */
+		.reveal ul.fa-ul li {
+			list-style-type: none;
+		}
+
+		.reveal {
+			/* font-family: 'Work Sans', 'Calibri'; */
+			font-family: 'Calibri';
+			color: black !important;
+			font-size: xx-large;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.col img {
+			height: auto;
+		}
+
+		.col,
+		col-1 {
+			flex: 1;
+		}
+
+		.col-2 {
+			flex: 2;
+		}
+
+	/* https://intranet.openknowledge.de/plugins/servlet/mobile?contentId=18612939#content/view/18612939
+      https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
+      https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
+       */
+       /* body:after {
+        content: url(img/ok/logo.png) ;
+        position: fixed;
+        bottom: 80px;
+        left: -1080px;
+        transform: scale(.06);
+        height: 10px;
+    } */
+
+	</style>
+</head>
+
+<body style="background-color: whitesmoke;">
+
+<div class="reveal">
+    <div class="slides">
+
+
+<!-- 
+---
+
+Resilient Machine Learning
+- Unwanted Bias
+  - https://www.techtarget.com/searchenterpriseai/definition/machine-learning-bias-algorithm-bias-or-AI-bias
+- Adversarial Attacks
+  - http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture16.pdf
+    - https://www.youtube.com/watch?v=CIfsB_EYsVI&list=PLSVEhWrZWDHQTBmWZufjxpw3s8sveJtnJ
+  - https://github.com/smasis001/mlconf-2022
+  - https://odsc.medium.com/detecting-adversarial-attacks-with-subset-scanning-8a53c360512f
+  * Seldon Alibi Detect: https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
+  * ART
+    * https://developer.ibm.com/articles/applying-the-adversarial-robustness-toolbox/
+    * https://github.com/Trusted-AI/adversarial-robustness-toolbox
+
+- Out-of-distribution Robustness
+  - http://www.gatsby.ucl.ac.uk/~balaji/balaji-odsc-talk.pdf
+- Reliable measure of certainty of prediction  
+  - http://www.gatsby.ucl.ac.uk/~balaji/balaji-odsc-talk.pdf
+- Drift
+- Stability
+  - https://djcordhose.github.io/ai/2019_m3_embeddings.html#/32
+  - https://djcordhose.github.io/ai/2019_m3_embeddings.html#/36
+- Fallbacks / Ensembles
+  - https://danshiebler.com/2022-07-04-resilient-machine-learning/
+
+
+Resilience is known as the ability to adapt to difficult or unexpected situations. Such a phenomenon also exists in the field of machine learning, where we have to deal with adversarial attacks, 
+out-of-distribution robustness, and drift. Model stability must be ensured during retraining and post-training.
+Measures include monitoring machine learning models, detecting outliers, and running with fallbacks and/or multiple models as an ensemble.
+Clever model selection for production can also go a long way. In this talk, I explain the phenomena mentioned and address the appropriate measures for each.
+
+---
+https://dsco.usfdatainstitute.org
+
+Resilient Machine Learning
+
+Resilience is known as the ability to adapt to difficult or unexpected situations. Such a phenomenon also exists in the field of machine learning, where we have to deal with adversarial attacks, out-of-distribution robustness, drift, and unwanted bias. Additionally, model stability must be ensured during retraining and post-training.
+Measures include monitoring machine learning models, detecting outliers, and running with fallbacks and/or multiple models as an ensemble.
+Clever model selection for production can also go a long way. 
+
+In this talk, I explain the phenomena mentioned and address the appropriate measures based on an example in the field of computer vision, which poses additional challenges.
+
+
+Bio: Oliver is a software developer and architect from Hamburg, Germany. He has been developing software with different
+approaches and programming languages for more than 3 decades. Lately, he has been focusing on Machine Learning and its interactions with humans.
+
+Title: Head of AI / AI Strategist
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
+
+
+- Each abstract presentation team will be allocated 25-30 minutes.  
+- You may wish to structure your session as a 20-minute presentation with 5-10 minutes for questions.  
+- That said, you may use the 30 minutes as you best see fit. 
+
+---
+M3
+https://www.m3-konferenz.de/cfp.php
+
+Resilientes Machine Learning
+
+Resilienz ist die Fähigkeit der Anpassung an schwierige oder unerwartete Situationen.
+Eine solche Widerstandskraft kann es bei Menschen geben oder eben auch in Softwaresystemen.
+Bei klassischen Softwaresystemen betrifft Resilienz häufig nur die Ausfallsicherheit.
+Mit der Nutzung von Machine Learning innerhalb der Systeme kommen viele weitere Aspekte hinzu. Eine Besonderheit ist
+hier eine komplexe Geschäftslogik, die als ein abstraktes Artefakt vorliegt. Diese unterliegt nicht mehr vollständig der
+Kontrolle der Entwickler.
+Als Konsequenz müssen wir uns mit Phänomenen wie Adversarial Attacks, Out-of-Distribution Robustness und Drift
+auseinandersetzen.
+Die Stabilität des Modells muss hier bei Neutraining und Nachtraining gewährleistet werden.
+Maßnahmen umfassen das Monitoring von Machine Learning-Modellen, die Erkennung von Ausreißern und den Betrieb mit
+Fallbacks und/oder mehreren Modellen als Ensemble.
+Auch eine geschickte Auswahl des Modells für die Produktion kann schon viel bewirken.
+In diesem Talk erläutere ich die genannten Phänomene und gehe auf die jeweils passenden Maßnahmen ein.
+
+Kurze Version
+
+
+Resilienz ist die Fähigkeit der Anpassung an schwierige oder unerwartete Situationen.
+
+Im Bereich des Machine Learnings müssen wir uns dabei mit Phänomenen wie Adversarial Attacks, Out-of-Distribution Robustness und Drift auseinandersetzen.
+Die Stabilität des Modells muss hier bei Neutraining und Nachtraining gewährleistet werden.
+Maßnahmen umfassen das Monitoring von Machine Learning-Modellen, die Erkennung von Ausreißern und den Betrieb mit Fallbacks und/oder mehreren Modellen als Ensemble.
+Auch eine geschickte Auswahl des Modells für die Produktion kann schon viel bewirken.
+In diesem Talk erläutere ich die genannten Phänomene und gehe auf die jeweils passenden Maßnahmen ein.
+
+Vorkenntnisse
+
+Grundverständnis vom Training von Machine Learning Modellen
+
+Lernziele
+
+Ein Einblick in die Welt des Machine Learnings in Produktion und was man beachten muss, Nachts gut schlafen zu können.
+ -->
+
+<!-- 
+ <section data-markdown class="todo">
+	<textarea data-template>
+
+https://github.com/google-research/tuning_playbook
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Blue Collar Machine Learning
+
+Näschste Version des Talks?
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+
+Rex "garbage in" Douglass Ph.D. (@RexDouglass) twitterte um 7:15 PM on Mo., Jan. 30, 2023:
+How to avoid machine learning pitfalls:
+a guide for academic researchers
+https://t.co/UdnvAiYVHU https://t.co/WnmoiKtAFg
+(https://twitter.com/RexDouglass/status/1620123641626382338?t=5-CZHBLw5f7iE0TyHjPfJw&s=03) 
+</textarea>
+</section>
+
+
+
+
+
+
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Generalization and Bias are two sides of the same medal
+
+The notion that the world has a simple structure that, once learned, enables good generalization everywhere is flawed. Many aspects---names of new people, location of potholes in a new city, etc.---are unpredictable. One has to adapt to them when needed by learning continually.
+(https://twitter.com/KhurramJaved_96/status/1628410677101735936?t=HBWvj0f_KcxcTO3-jx4gow&s=03) 
+
+</textarea>
+</section> -->
+
+<!-- <section data-markdown class="preparation">
+	<textarea data-template>
+- Hausmeister-Kittel blau
+- Den AE Kram ansehen
+  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html
+  - https://docs.seldon.io/projects/alibi-detect/en/stable/examples/alibi_detect_deploy.html#4.-Drift-detection-with-Kolmogorov-Smirnov
+  - https://arxiv.org/abs/2002.09364
+- Den Fluss noch einmal üben  
+	</textarea>
+</section>
+ -->
+
+ <section data-markdown>
+	<textarea data-template>
+# Resilient Machine Learning
+### MLCon, Munich, June 2023
+
+https://mlconference.ai/machine-learning-advanced-development/resilience-machine-learning/
+
+Oliver Zeigermann
+
+<img src="img/bit.ly_mlcon-resiliency-2023.png" style="height: 200px;">
+
+Slides: https://bit.ly/mlcon-resiliency-2023
+
+<!-- https://djcordhose.github.io/ml-resources/2023-mlcon-resiliency.html -->
+
+</textarea>
+</section>
+
+ <!-- <section data-markdown class="todo">
+	<textarea data-template>
+## Entwicklung
+
+### Dealing with Uncertainty
+
+- M3, MLConf Talk
+  - 15 Min länger, 40 Folien
+
+  - Längere Agenda nutzen
+  Mehr auf die Stabilisierung eingehen? (https://djcordhose.github.io/ai/2019_m3_embeddings.html#/29)
+- https://mlconference.ai/machine-learning-advanced-development/resilience-machine-learning/
+- Ansehen: https://mindfulmodeler.substack.com/p/the-way-of-model-agnostic-machine
+
+- MLOps für OOP von diesem hier ableiten
+  - bisschen Übung rein bauen - wie Architektur?
+  - MLOps – wie bringt man ein Machine Learning-Modell in Produktion und hält es dort?
+  - https://www.oop-konferenz.de/oop-2023-muenchen/programm/konferenzprogramm#item-5770 
+- Nächste Version des Talks?
+  - Enterprise ML: It's all about managing uncertainty
+  - ML is all about managing uncertainty
+  
+  
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### TODO
+
+- Ende-Folie
+- Englisch lassen wegen mlconf
+- Folie hinten dazu nehmen: System affecting itself, financial markets
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### TODO 
+
+https://www.linkedin.com/posts/christoph-molnar_mindful-modeler-activity-7053646776834154500-U68_
+https://twitter.com/ChristophMolnar/status/1647880304831479809
+
+To predict or not predict.
+
+Machine learning models often give an output even if they shouldn't — and that's a problem.
+
+Imagine a person that always answers your questions — no matter how sure this person is about the answer. A person that always has an opinion on everything and shouts out their opinion with high confidence. Only that this person is sometimes clearly wrong.
+
+I’d prefer this person to say “I don’t know” if the person doesn’t know. I also would like machine learning models to sometimes abstain from making a prediction.
+
+The first case that might come to mind is ChatGPT, where some ability to abstain was added via RHLF. Ask ChatGPT e.g. "how to cook meth" for a demonstration of abstaining.
+But abstaining from predicting is a larger issue that affects any ML model.
+
+When to abstain from answering?
+
+Conflicting inputs
+Uncertain prediction
+Out-of-distribution data
+Answer not aligned with values
+Insufficient training data
+Adversarial attacks
+Biased outputs
+...
+
+But most machine learning models aren't trained to abstain and in most cases, they will just produce some kind of answer, whether it's a text in the case of LLMs or a probability vector for classifiers and so on.
+
+But what can you do against it? A couple of techniques to help the models abstain:
+
+- Check for outliers
+- Check input for conflicting data, missing data, if data range is fine, ...
+- RLFH for LLMs
+- Use adversarial data in training
+- Use uncertainty quantification like conformal prediction
+- ...
+
+While you can't guarantee to safeguard against all cases in which the machine should abstain from answering, you can at least reduce the problem.
+
+</textarea>
+</section> -->
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Gauge by show of hands
+
+What do you think is most important in a machine learning project?
+1. Have a high accuracy (or other relevant metric)
+1. Use a novel/fancy approach
+1. be able to explain what your model does
+1. bringing something meaningful into production
+1. know if it makes sense to bring something into production in the first place
+1. have a way of knowing if a production model is still good (and knowing how to act upon that insight)
+
+_Please be as open as possible_
+<!-- <br>
+Questions and comments are welcome *at any time* -->
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Who is Olli
+
+<div style="display: flex;">
+<div style="flex: 50%;">
+  <img src='img/olli-T.jpg' height="400">
+</div>
+<div style="flex: 50%; font-size: x-large;">
+  <img src='img/olli-opa.jpeg'>
+</div>
+</div>
+
+<p>
+<a target="_blank" href="mailto:oliver@zeigermann.de">Oliver Zeigermann</a>:
+Blue Collar Architect(ML)
+</p>    
+
+</textarea>
+</section>
+<!-- <section data-markdown>
+	<textarea data-template>
+## Objective
+
+### Raising awareness of real world challenges
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Not an objective
+
+### Comprehensive survey of solutions
+</textarea>
+</section> -->
+
+
+
+
+<!--
+More complete agenda for talks longer than 30 minutes
+  
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. meeting more resilient requirements
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. fallbacks and ensembles
+	</textarea>
+</section>
+
+-->
+
+<section data-markdown>
+	<textarea data-template>
+## Resilience
+
+### ability to adapt to difficult or unexpected situations
+
+https://en.wikipedia.org/wiki/Resilience
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Resilience in the world of Machine Learning
+
+## Dealing with Uncertainty
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. deploying machine learning services
+1. meeting more resilient requirements
+1. drift and monitoring
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. *managing uncertainty*
+1. deploying machine learning services
+1. meeting more resilient requirements
+1. drift and monitoring
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Uncertainty is hard to bear
+
+- emotionally
+- risk for business
+
+- you need to manage the uncertainty / introduce resilient concepts to handle the stress 
+- also relevant for development process
+  - create PoC, work in phases
+  - try and infer life time of model
+  </textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### ML comes with a lot of uncertainty
+
+- model and training
+  - score
+  - confidence
+  - training vs test vs out of sample, real world
+- will the approach work at all
+  - depends on what "work" means
+  - what score is good enough?
+  - what about the other requirements
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Typical requirements for Machine Learning Projects
+
+1. *Reasonable Accuracy* - should have 80% or more cases correct
+1. *Explainability* - we need to explain how we come to the conclusion
+1. *Stability* - a new version of the software should not behave totally different
+1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
+1. *Robustness against drift* - the world changes, our model should follow
+
+</textarea>
+</section>
+
+
+<!-- <section data-markdown class="fragments">
+	<textarea data-template>
+### Challenges: Typical things happening in production
+
+1. Smartass Lawyer Attack
+   * can you explain your decision?
+1. price comparison service tries to outsmart you
+   * are you prone to adversarial attacks 
+1. Drift
+   * driver assistance becomes prevalent - prediction of risk no longer valid
+   * are you able to create a stable new model
+1. Investigative Journalism
+   * there might be systematic age bias
+
+	</textarea>
+</section>
+ -->
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. *deploying machine learning services*
+1. meeting more resilient requirements
+1. drift and monitoring
+	</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Machine Learning Projects can be structured in phases
+
+<img src='img/mlops/mlops-phases-details.jpg' style="height: 600px;">
+
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+  <textarea data-template>
+### What steps would you take when you want to start a new machine learning project
+
+1. Enable your organization 
+1. Identify a reasonable candidate
+1. Enter stage 1 of technical experiments
+
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### How you whish ML projects work
+
+<img src='img/sketch/objective-joke.png'>
+
+</textarea>
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### How ML projects really work
+
+<img src='img/sketch/objective-truth.png'>
+
+</textarea>
+</section>
+ -->
+<!-- <section data-markdown class="todo">
+	<textarea data-template>
+### Besonders bei LLM: Manage Uncertainty
+
+- Stack Systems
+- Ensemble
+- Make a judgement what you would want to output 
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Besonders bei LLM: Staging
+
+Manage Uncertainty using "staging" / proposals / augmentation and assistance 
+
+https://ai.google/responsibilities/responsible-ai-practices/
+
+---
+
+Software has been basically deterministic until now
+
+Until we fully trust LLM outputs, we will start to see a UX I call "staging"
+
+Here are a few examples
+(https://twitter.com/RealKevinYang/status/1616646347888943104?t=CGNrfDJl_8Zk7Tvq3j2HmA&s=03) 
+
+</textarea>
+</section>
+ -->
+
+<!-- <section data-markdown class="fragments">
+### Without deployment there is no benefit
+
+* in academic life, often only the score (accuracy) of the model counts
+* this approach has become widespread in the field of data science
+* practice, however, is not a Kaggle Competition
+* in-sample evaluation is typically not enough for real life applications
+* out-of-sample evaluation typically only possible in production
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+### You don't just deploy the model 
+
+<img src="img/mlops/ml-system.jpg" style="height: 550px;">
+
+<!-- <small>preprocessing, fallbacks, and ensembles -->
+
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+
+### Why ensemble/fallback?
+
+* A ML model is trained with data of a certain range
+  * some queries are not in that range
+  * most models have no idea when they have no idea
+  * so we need to determine which query is routed where
+* Even after prediction, it can be decided that the confidence is not high enough
+  * Then query another model
+  * Some models are more expensive to run than others, use those rather later on
+* Often a simple heuristic control system is a good alternative / fallback
+* If there are several suitable models, a majority decision is also conceivable
+* More suggestions: https://twitter.com/ChristophMolnar/status/1647881654873063426
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Where an ensemble might be helpful
+
+<img src="./img/sketch/ensenble-option.jpg">
+
+<small>
+Taken from: Phil Mui: An Embedding Analysis on the Impact of Diversity Awareness on Diversity of Ideas
+
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. deploying machine learning services
+1. *meeting more resilient requirements*
+1. drift and monitoring
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Need for explanation
+
+* people sue you over a prediction
+* CEO wants to know why bad score for spouse
+* contradicts prevention of hacking
+	</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Explainability and Check against Overfitting
+
+Using an example from the field of image recognition
+
+<img src="img/alibi-anchor-squirrel.png" style="height:400px;" class="fragment">		
+
+https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images		
+</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large;">
+<textarea data-template>
+### Instability of core logic and UI/UX sucks
+
+<div class="container">
+<div class="col">
+<br>
+<br>
+
+
+<img src="img/architecture/twitter-stability-1.png" style="height: 300px;">    
+</div>
+<div class="col">
+	<img src="img/architecture/twitter-stability-2.png" style="height: 550px;">    
+</div>
+
+</div>
+
+<small>
+
+* https://twitter.com/elonmusk/status/1595457703739944976
+* https://twitter.com/elonmusk/status/1593673339826212864
+
+</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### How to improve on stability
+
+* train a new model only if you need to
+* consider using a base model
+  * rarely change it at all
+  * add additional models downstream or
+  * cover certain ranges with additional models
+  * compare to GPT model approach
+* stabilize model when retraining
+  * freeze some weights
+  * add stabilizing loss
+  * stateful (aka online) retraining
+* use simple model
+  * can also help with explainability
+  * might also generalize better  
+  </textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Stateful vs Stateless retraining?
+
+<img src="img/mlops/stateful-vs-stateless-v2.png">
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Attempted Manipulation / Adversarial Attacks
+
+Certain inputs may intentionally cause a grossly incorrect prediction to be made
+* can be used to systematically manipulate the output of the system
+* how sensitive a system is to such an attempt is determined by the inner complexity of such a system
+  * often directly contradicting properties like explainability
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Hacking the system / Adversarial Attacks
+
+<img src="img/hacking-the-system.png">
+
+https://www.instagram.com/reel/CkQUhLov9_u/?igshid=MDJmNzVkMjY=
+</textarea>
+</section>
+    
+<section data-markdown>
+	<textarea data-template>
+### Hacking the system is more common than you might think
+
+taxes, laws, regulations, contracts, embargoes
+
+- this is actually the job of a lot of people
+- transparency vs hackability
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Perturbing input data
+
+<img src="img/pertubation.png">
+
+if _x_ is close to a decision boundary, a slight pertubation _x<sub>p</sub>_ might change the predicted class 
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Model stability and adversarial vulnerability
+
+_Main question: does slightly perturbing the input data yield generally a drastically different prediction?_
+
+If so
+- there is an additional attack vector 
+  - because people could learn decision boundaries
+  - by slightly tweaking features that do not require exact entry get an advantageous prediction
+- high local variation hints towards undetected overfitting
+- stability
+  - high local variation makes it likely that retraining with new data will yield a completely new model
+  - also requires new interpretation etc.
+  - unwanted disruption for users 
+
+<!-- Links:
+- https://en.wikipedia.org/wiki/Metamorphic_testing
+ -->
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Defusing pertubation: Adversarial Auto-Encoder (AE)
+
+<img src="img/adversarialae.png" style="height:350px;" class="fragment">
+
+<div class="fragment">
+adversarial perturbation gives significantly different outputs for M(x) and M(x')
+
+<small>
+
+
+_still able to detect the adversarial examples in the case of a white-box attack where the
+attacker has full knowledge of both the model and the defence_
+  
+https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html		
+https://github.com/SeldonIO/alibi-detect#adversarial-detection
+<!-- <br>
+https://arxiv.org/abs/2002.09364 -->
+
+</div>
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Example for AE in operation
+
+AE keeps prediction, but not position within decision boundaries
+
+<img src="img/sketch/adversarial-ae.png" style="height:350px;">
+
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+  <textarea data-template>
+### Handling Adversarial Attacks
+
+* Bestimmte Eingaben können absichtlich eine grob falsche Vorhersage herbei führen 
+  * Solche Eingaben können erkannt und korrigiert werden
+  * Dazu kann z.B. ein Autoencoder benutzt werden, der die Eingabe korrigiert
+* Libs
+  * Seldon Alibi Detect: https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
+  * ART
+    * https://developer.ibm.com/articles/applying-the-adversarial-robustness-toolbox/
+    * https://github.com/Trusted-AI/adversarial-robustness-toolbox
+</textarea>
+</section>
+
+
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### Was kann man sonst noch machen
+
+* Outlier-Detection
+  * Unser Modell wird nicht extrapolieren können
+  * Werte außerhalb des Trainings-Bereichs werden wahrscheinlich unrealistisch sicher vorhergesagt
+  * Ausreißer müssen ohne Ground Truth entdeckt werden 
+* Adversarial Detection
+  * Bestimmte Eingaben können absichtlich eine grob falsche Vorhersage herbei führen 
+  * Solche Eingaben können erkannt und korrigiert werden
+  * Dazu kann z.B. ein Autoencoder benutzt werden, der die Eingabe korrigiert
+
+
+<small>https://docs.seldon.io/projects/alibi-detect/en/stable/od/methods.html
+<br>
+https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
+</small>
+</textarea>
+</section>
+ -->
+
+ <section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. managing uncertainty
+1. deploying machine learning services
+1. meeting more resilient requirements
+1. *drift and monitoring*
+	</textarea>
+</section>
+
+
+<section data-markdown>
+  <textarea data-template>
+### Machine Learning Systems are dynamic in nature
+
+<img src='img/model-degrade.png'>
+
+</textarea>
+</section>
+
+<!-- <section data-markdown class="fragments">
+  <textarea data-template>
+### Woher weiß man, dass man ein neues Modell in Produktion braucht?
+
+* Schon in der Explorationsphase prüfen, wie sich das Modell auf neueren Daten verhält
+  * Wie schnell degradiert die Performance?
+  * Mindestens einmal im Jahr, damit man überhaupt noch weiß, wie es geht
+* Wenn die Metrik des Modells in Produktion nachlässt
+  * Dafür braucht man die Ground Truth der Daten aus Produktion
+  * Manchmal bekommt man diese unmittelbar nach der Vorhersage durch die Reaktion eines menschlichen Benutzers
+  * Oft aber auch erst nach nennenswerter Verzögerung 
+* *Wenn sich die Verteilung der Daten der Anfragen oder Vorhersagen deutlich von der des Trainings unterscheidet* 
+
+</textarea>
+</section> -->
+
+
+<section data-markdown class="fragments">
+  <textarea data-template>
+### How do you know you need a new model in production?
+
+* At least once a year, to make sure someone still knows how to even do this  
+* When there is an obvious change in the world covered by your model
+* Check how the model behaves on newer data
+  * How quickly does performance degrade?
+  * check already in the exploration phase
+* When the metrics degrade in production
+  * ground truth from production data required to even find out
+  * Sometimes you get this immediately after the prediction by the reaction of a human user
+  * But often only after a significant delay 
+* *When the distribution of prediction data is significantly different from that of training*
+
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+<textarea data-template>
+### Distribution?
+
+* most important: Normal distribution aka Gaussian distribution
+* Histograms (Binning)
+
+<img src="img/nobel.svg">
+
+</textarea>
+</section>
+ -->
+
+ <section data-markdown class="fragments">
+<textarea data-template>
+### At time of training?
+
+<img src="img/en/drift.png" style="height: 100%;">
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+  <textarea data-template>
+### Reference Distribution
+
+<img src="img/causal-insurance/age-reference.png">
+
+Example: Age of people seeking for insurance
+</textarea>
+</section>
+
+
+<!-- <section data-markdown class="fragments">
+<textarea data-template>
+### So sieht die Verteilung jetzt aus
+
+<img src="img/causal-insurance/age-current.png">
+
+</textarea>
+</section>
+-->
+<section data-markdown class="fragments">
+<textarea data-template>
+### Does it drift?
+
+<img src="img/causal-insurance/age_no_drift_p75_no_clue.png">
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### And this?
+
+<img src="img/causal-insurance/age_drift_p0_no_clue.png">
+
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### How to detect drift automatically?
+
+* We are not great at detecting drift by eye
+* Even if we were, whose job should this be?
+* A statistical test compares distributions
+* Requests from production are compared with the reference dataset we used for training
+* unfortunately there is not one suitable test
+* some only fit well for small (< 1000) datasets
+* some can work not only on numeric data but also on categorical data
+* different tests result in different kind of scores
+* scores, like p-values often are not very intuitive
+
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+<textarea data-template>
+### Tests specifically suited for drift detection
+
+* Kolmogorov-Smirnov-Test
+* Population Stability Index
+* Kullback-Leibler-Divergence
+* Jensen-Shannon-Distance
+* Wasserstein-Distance
+
+https://evidentlyai.com/blog/data-drift-detection-large-datasets
+</textarea>
+</section> -->
+
+<!-- <section data-markdown class="fragments">
+<textarea data-template>
+### Statistical significance and p-value
+
+* statistical distribution of the respective features
+* does it significantly differ from the distribution in training during production? (null hypothesis: no)
+* this deviation is calculated using a metric
+* a confidence level (p) is determined regarding whether the null hypothesis is true
+* if p is less than 5%, it is assumed that there is a deviation (1% or 0.1% is also possible)
+* this means that there is a 5% probability that the distributions are actually the same, but only poor examples are currently being observed
+</textarea>
+</section> -->
+
+<section data-markdown>
+<textarea data-template>
+### p-values for our two potential drifts using two-sample Kolmogorov-Smirnov (K-S) tests
+
+<div class="container fragment">
+<div class="col">
+<img src="img/causal-insurance/age_no_drift_p75.png" style="height: 100%;">
+<em>p-value = .75, no drift detected</em>
+</div>
+<div class="col fragment">
+<img src="img/causal-insurance/age_drift_p0.png" style="height: 100%;">
+<em>p-value < 0.001, drift detected</em>
+
+</div>
+</div>
+
+</textarea>
+</section>
+
+<!-- <section data-markdown style="font-size: x-large;">
+	<textarea data-template>
+## Drift requires interpretation
+
+If the world changes, drift is expected and might therefore be ok
+
+|   | Positive interpretation, no action required | Negative interpretation, action required |
+|---|---|---|
+| *Data and Prediction Drift* | important features have changed, model still fine and extrapolates well | important features have changed, model does not extrapolate reasonably |
+| *Data but no prediction drift* | no important features changed, model is robust enough to handle drift | important features changed, model does not extrapolate meaningfully |
+| *Prediction but no Data Drift* | ???  | probably concept drift, new analysis of the situation necessary |
+|   |   |   |
+</textarea>
+</section> -->
+
+<section data-markdown class="fragments">
+## Counter-Measures for drift
+
+* Train new version of the model
+  * Record (and label) new data
+  * Create new features
+  * Change (or fix) model architecture and re-train
+* Quick action
+  * Recalibrate pre/post processing of model
+  * Adjust thresholds for application
+  * Exclude certain areas 
+* Very fast action: fallback
+  * Manual Classification
+  * Heuristics / Baseline
+</section>
+
+<!-- 
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Ausblick: Drift Detection für Bilder
+
+* Input Drift mit Histogrammen von Low-Level-Features (HSV): https://towardsdatascience.com/detecting-semantic-drift-within-image-data-6a59a0e768c6
+* Input Drift mit Dimensions-Reduktion: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html 
+* Model Drift durch Vergleich mit destilliertem Modell: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_cifar10.html 
+* Ein komplettes Beispiel mit Alibi-Detect: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/alibi_detect_deploy.html#4.-Drift-detection-with-Kolmogorov-Smirnov
+* Anomalien in Bildern: https://29a.ch/photo-forensics
+* Drift kann auch auf Text festgestellt werden: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_text_imdb.html
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Ausblick: Wann liegt Ground Truth vor?
+
+*Menschliche Experten können die Ground Truth*
+* *bestimmen* 
+  * sobald ein Mensch die Entscheidungen nachprüft / revidiert
+  * bei einem Proposal-System kann das sehr schnell sein
+  * bei Dunkelverarbeitung sollte dies in regelmäßigen Abständen passieren
+* *nicht bestimmen*
+  * wir müssen Realitäten abwarten
+  * bei Zeitreihen wird auf die nahe Zukunft vorhergesagt, sobald diese Eintritt kann überprüft werden
+  * oft sind solche Realitäten erst nach einiger Zeit wahrnehmbar und unterliegen statistischen Schwankungen (wie bei uns)
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Ausblick: Unsere Vorhersage selbst erzeugt Drift
+
+* Ein Deployment ändert das unsere Rolle von Beobachter zu Akteur
+* Wir versichern nur Leute mit einer guten Risiko Prognose
+  * Wenn nicht, warum sollten wir dann eine überhaupt eine Prognose machen?
+* Unsere GT wird mehr und mehr gute Fahrer haben
+  * Zumindest ist das unsere Hoffnung (sonst hätte die Prognose nicht geklappt)
+* Falls nicht (False Negative, Type II Fehler)
+  * haben Menschen gelernt, unser System auszutricksen?
+  * "Dann versichert eben meine Tochter den Wagen"
+* Haben wir gute Fahrer aus verstehen nicht versichert (False Positive, Type I Fehler)
+  * Möglichkeit: *epsilon-greedy* meistens der Vorhersage glauben, aber manchmal (epsilon) auch einen Fahrer mit schlechter Prognose versichern 
+  * Vorhersage mit allen Wahrscheinlichkeiten geht in unsere Datenbank ein
+
+https://twitter.com/ChristophMolnar/status/1569644089724764160
+</textarea>
+</section>
+ -->
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Drift Detection in Images
+
+* reduce single low level, e.g.
+  * structure index
+  * mean or std of basic feature 
+* dimensionality reduction to multivariate data
+  * p-values for each feature aggregated
+* drift detection via distilled model
+  * similar to adversarial attack detection
+
+<small>
+
+https://towardsdatascience.com/detecting-semantic-drift-within-image-data-6a59a0e768c6
+<br>
+https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html
+<br>
+https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_cifar10.html
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## What can also happen when you go into production
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Unwanted bias
+
+* gender or age are common
+* investigative journalism a threat
+* people might again sue
+* you will always have bias, some is wanted, some is unwanted
+* if you do not have bias, your model ist not generalizing
+	</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Our prediction itself generates drift
+
+* Deployment changes our role from observer to actor
+* Our predictions often have an influence on the system we are working in
+* Often binary decisions have a big impact
+* Merely good cases should enter our system
+  * If not, why should we make a forecast at all?
+* If not (False Negative, Type II error).
+  * Have humans learned to trick our system?
+* Did we miss good cases (False Positive, Type I error).
+  * Possibility: *epsilon-greedy* mostly believe in the prediction, but sometimes (epsilon) allow bad ones to enter our system
+  * prediction with all probabilities goes into our database
+* More on that: https://twitter.com/ChristophMolnar/status/1569644089724764160
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+  <textarea data-template>
+### Machine Learning Projects vs School
+
+<img src='img/mlops/mlops-phases-vs-school.jpg' style="height: 500px;">
+
+</textarea>
+</section>
+   -->
+
+<section data-markdown class="fragments">
+<textarea data-template>
+### Summary
+
+* a model that is not in production is useless
+* getting a descent model is already hard, but...
+* bringing a model into production and keeping it there is a whole different story
+* machine learning projects can be thought of in phases
+<!-- * in production, special challenges arise in the area of monitoring -->
+* machine learning systems typically have to be regularly retrained and maintained
+<!-- * practitioners need statistical skills  -->
+* practitioners need statistical skills , but rarely calculus or linear algebra 
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Vielen Dank
+## Resilientes Machine Learning
+
+Bleibt gern im Kontakt
+
+https://www.linkedin.com/in/oliver-zeigermann-34989773/
+
+oliver@zeigermann.de
+
+Twitter: @DJCordhose
+
+Slides: https://bit.ly/m3-resiliency-2023
+</textarea>
+</section>
+
+
+
+
+</div>
+</div>
+
+<script src="reveal.js/dist/reveal.js"></script>
+<script src="lib/jquery.js"></script>
+<script>
+    const printMode = window.location.search.match(/print-pdf/gi);
+    const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+        window.location.hostname.indexOf('127.0.0.1') !== -1;
+    const isPresentation = isLocal && !printMode;
+    const isPublic = !isPresentation;
+
+    $('.hide').remove();
+
+    if (isPresentation) {
+    } else {
+        // only applies to public version
+        $('.todo').remove();
+        $('.preparation').remove();
+        $('.local').remove();
+    }
+
+    Reveal.addEventListener('ready', function (event) {
+        // applies to all versions
+        $('code').addClass('line-numbers');
+
+        $('.fragments li').addClass('fragment')
+
+        // make all links open in new tab
+        $('a').attr('target', '_blank')
+
+        if (isPresentation) {
+            // only applies to presentation version
+            Reveal.configure({ controls: false });
+        } else {
+            // only applies to public version
+            $('.fragment').removeClass('fragment');
+        }
+
+        // we do not like fragments
+        // $('.fragment').removeClass('fragment');
+
+        if (printMode) {
+          Reveal.configure({ 
+            controls: false,
+            // slideNumber: false 
+          });
+          $('.fragment').removeClass('fragment');
+      
+        }
+
+
+    });
+
+</script>
+
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script src="reveal.js/plugin/markdown/markdown.js"></script>
+<script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+        slideNumber: true,
+        hideInactiveCursor: false,
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+
+
+</body>
+
+</html>
