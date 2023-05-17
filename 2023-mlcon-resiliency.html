@@ -244,14 +244,6 @@ https://github.com/google-research/tuning_playbook
 
 <section data-markdown class="todo">
 	<textarea data-template>
-### Blue Collar Machine Learning
-
-Näschste Version des Talks?
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
 
 Rex "garbage in" Douglass Ph.D. (@RexDouglass) twitterte um 7:15 PM on Mo., Jan. 30, 2023:
 How to avoid machine learning pitfalls:
@@ -288,6 +280,45 @@ The notion that the world has a simple structure that, once learned, enables goo
 	</textarea>
 </section>
  -->
+ 
+<!-- 
+Resilience is known as the ability to adapt to difficult or unexpected situations. Such a phenomenon also exists in the
+field of machine learning, where we have to deal with adversarial attacks, out-of-distribution robustness, drift, and
+unwanted bias.
+
+Additionally, model stability must be ensured during retraining and post-training. Measures include monitoring machine
+learning models, detecting outliers, and running with fallbacks and/or multiple models as an ensemble. Clever model
+selection for production can also go a long way.
+
+In this talk, I explain the phenomena mentioned and address the appropriate measures based on an example in the field of
+computer vision, which poses additional challenges. 
+-->
+
+
+
+ <section data-markdown class="todo">
+	<textarea data-template>
+### ODSC - Blue Collar Machine Learning
+
+Nächste Version des Talks?
+* eine Zeichnung pro Use Case
+* Szenarien und jeweils mit einem Comic motivieren 
+</textarea>
+</section>
+
+<section data-markdown class="preparation">
+	<textarea data-template>
+* Blue Collar Machine Learning - Daher blauen Kittel anziehen
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+* Aus den Szenarien die Agenda ableiten und den Inhalt so aufbereiten
+* den AE kann man so nicht geben, ganz anderes Niveau an Komplexität 
+</textarea>
+</section>
+
 
  <section data-markdown>
 	<textarea data-template>
@@ -446,24 +477,6 @@ Blue Collar Architect(ML)
 
 
 
-<!--
-More complete agenda for talks longer than 30 minutes
-  
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-
-1. managing uncertainty
-1. meeting more resilient requirements
-1. out-of-distribution robustness
-1. drift and monitoring
-1. unwanted bias
-1. fallbacks and ensembles
-	</textarea>
-</section>
-
--->
-
 <section data-markdown>
 	<textarea data-template>
 ## Resilience
@@ -474,86 +487,9 @@ https://en.wikipedia.org/wiki/Resilience
 </textarea>
 </section>
 
-<section data-markdown>
-	<textarea data-template>
-### Resilience in the world of Machine Learning
-
-## Dealing with Uncertainty
-
-</textarea>
-</section>
-
-
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-
-1. managing uncertainty
-1. deploying machine learning services
-1. meeting more resilient requirements
-1. drift and monitoring
-	</textarea>
-</section>
-
-
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-
-1. *managing uncertainty*
-1. deploying machine learning services
-1. meeting more resilient requirements
-1. drift and monitoring
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Uncertainty is hard to bear
-
-- emotionally
-- risk for business
-
-- you need to manage the uncertainty / introduce resilient concepts to handle the stress 
-- also relevant for development process
-  - create PoC, work in phases
-  - try and infer life time of model
-  </textarea>
-</section>
-
 <section data-markdown class="fragments">
 	<textarea data-template>
-### ML comes with a lot of uncertainty
-
-- model and training
-  - score
-  - confidence
-  - training vs test vs out of sample, real world
-- will the approach work at all
-  - depends on what "work" means
-  - what score is good enough?
-  - what about the other requirements
-
-</textarea>
-</section>
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Typical requirements for Machine Learning Projects
-
-1. *Reasonable Accuracy* - should have 80% or more cases correct
-1. *Explainability* - we need to explain how we come to the conclusion
-1. *Stability* - a new version of the software should not behave totally different
-1. *Resistance Against Manipulation* - it should be hard to find out how the software works to resist manipulation
-1. *Robustness against drift* - the world changes, our model should follow
-
-</textarea>
-</section>
-
-
-<!-- <section data-markdown class="fragments">
-	<textarea data-template>
-### Challenges: Typical things happening in production
+### What might be those difficult or unexpected situations?
 
 1. Smartass Lawyer Attack
    * can you explain your decision?
@@ -564,10 +500,26 @@ https://en.wikipedia.org/wiki/Resilience
    * are you able to create a stable new model
 1. Investigative Journalism
    * there might be systematic age bias
+1. You need to bring out a new version of your model
+   * can you guarantee stability?
+   * a new version of the software should not behave totally different
 
 	</textarea>
 </section>
- -->
+
+<section data-markdown>
+	<textarea data-template>
+## Agenda
+
+1. meeting more resilient requirements
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. fallbacks and ensembles
+	</textarea>
+</section>
+
+
 <section data-markdown>
 	<textarea data-template>
 ## Agenda
@@ -692,20 +644,6 @@ Here are a few examples
 
 <section data-markdown>
 	<textarea data-template>
-### Where an ensemble might be helpful
-
-<img src="./img/sketch/ensenble-option.jpg">
-
-<small>
-Taken from: Phil Mui: An Embedding Analysis on the Impact of Diversity Awareness on Diversity of Ideas
-
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
 ## Agenda
 
 1. managing uncertainty
@@ -787,14 +725,14 @@ https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images
   </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<!-- <section data-markdown class="fragments">
 	<textarea data-template>
 ### Stateful vs Stateless retraining?
 
 <img src="img/mlops/stateful-vs-stateless-v2.png">
 
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown class="fragments">
 	<textarea data-template>
