@@ -119,14 +119,14 @@
       https://intranet.openknowledge.de/pages/viewpage.action?pageId=16157867
       https://openknowledgede.sharepoint.com/:p:/s/slides/EYWbMPz2ejhBprBrP8BYGxsBA3BrPNhDxJBrTXXvHi3-ZQ?e=jMZihi
        */
-       body:after {
+       /* body:after {
         content: url(img/ok/logo.png) ;
         position: fixed;
         bottom: 80px;
         left: -1080px;
         transform: scale(.06);
         height: 10px;
-    }
+    } */
 
 	</style>
 </head>
@@ -153,11 +153,19 @@ Methoden aus dem Machine Learning profitieren?
 Diese Session gibt die Antwort auf diese Fragen, indem sie fünf grundlegenden Prinzipien des Machine Learnings für
 jede(n) verständlich vorstellt und erläutert.
 
-Eigentlich eher
-
+Eigentlich eher :D
 - "Olli sammelnt mal vom Schrottplatz was er da als erstes findet und sagt: voll wichtig"
 - 5 willkürliche Einfälle, die niemanden interessieren müssen
 
+Punkte aus anderen Tals
+1. managing uncertainty
+1. adversarial attacks and outlier detection
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. stability
+1. fallbacks and ensembles
+  
 
  -->
 
@@ -175,7 +183,7 @@ https://www.developer-week.de/programm/#/talk/funf-machine-learning-prinzipien-d
 
 <img src="img/bit.ly_5-prinzipien-2023.png" style="height: 200px;">
 
-Slides: https://bit.ly/5-prinzipien-2023
+Folien: https://bit.ly/5-prinzipien-2023
 
 </textarea>
 </section>
@@ -211,6 +219,67 @@ Slides: https://bit.ly/5-prinzipien-2023
 
 <section data-markdown>
 	<textarea data-template>
+### Machine Learning
+
+<img src="img/ml-vs-dev-1.png">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning
+
+<img src="img/ml-vs-dev-2.png">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KI vs Machine Learning vs Deep Learning
+
+<img src="img/KI_ML_Skizzen/Folie12.PNG">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KI vs Machine Learning vs Deep Learning
+
+<img src="img/KI_ML_Skizzen/Folie13.PNG">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KI vs Machine Learning vs Deep Learning
+
+<img src="img/KI_ML_Skizzen/Folie14.PNG">		
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Wozu machen wir ML?
+	
+<img src="img/KI_ML_Skizzen/ml-muster-aktion.png">		
+	</textarea>
+  </section>
+  
+  <section data-markdown class="fragments">
+	<textarea data-template>
+  ### Wann ist KI/ML sinnvoll?
+  
+  * Die Lösung des vorliegenden Problems ist unbekannt oder _schwer zu spezifizieren_
+  * Es liegen _Daten_ mit einer klaren, einfachen Eingabe und bestenfalls auch passender Ausgabe vor
+  * Es gibt _Muster_ in der Eingabe, auf die reagiert werden kann
+  * Die Lösung des Problems kann Fehler oder _Unsicherheiten_ tolerieren
+	* _80% Genauigkeit_ werden selten übertroffen
+  * Wir sind bereit und in der Lage, in einer initialen Phase _Experimente mit offenem Ausgang_ durchzuführen
+  </textarea>
+  </section>
+  
+<section data-markdown>
+	<textarea data-template>
 ### Agenda
 		
 1. Was ist Machine Learning eigentlich? 
@@ -221,6 +290,15 @@ Slides: https://bit.ly/5-prinzipien-2023
 </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+  ### Machine Learning Projeke können in Phasen gedacht werden
+  
+  <img src='img/mlops/mlops-phases-details.jpg' style="height: 600px;">
+  
+  </textarea>
+  </section>
+  
 
 <section data-markdown class="todo">
 	<textarea data-template>
@@ -289,52 +367,108 @@ Auch von woanders aufnehmen
 </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+### Agenda
+		
+1. Was ist Machine Learning eigentlich? 
+1. Wie geht man in einem Machine-Learning-Projekt vor? 
+1. *Wie unterscheidet sich ein ML-System von klassischer Software?* 
+1. Welche Architekturprinzipien erfordern besondere Beachtung? 
+1. Warum kann fast jedes Projekt von Methoden aus dem Machine Learning profitieren?
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Aus Resilience und MLOps die einzelnen Folien übernehmen
+
+- Die überraschenden Eigenschaften
+  - Mainstream
+  - Stabilität
+  - Alien Intelligence
+
+
+- Stability
+  - https://twitter.com/BrianRoemmele/status/1660410789940060163
+  - wenn sich Modelle verändern gehen die Prompts nicht mehr so wie vorher, das ist klar
+  - ich glaube das meint sie
+  - gab ein Update des Default-Modells bei ChatGPT, zuerst war das alte nur deprecated, jetzt aber ganz weg, glaube ich
+  - Prompt Engineering gilt im Detail also auch immer nur für eine spezielle Version eines speziellen Models
+  - der ganze ML Kram ist voll von überraschenden Eigenschaften, an die man sich gewöhnen muss
+  - und sowas wie mangelnde Stabilität ist ein großes Problem
+  - nicht nur bei ChatGPT
+  - diese Modelle haben so viele Freiheitsgrade, da kann schon jedes neue Training ein deutlich anderes Verhalten haben
+
+</textarea>
+</section>
+
+
+
 
 <section data-markdown>
-  <textarea data-template>
-### Who is Olli
-
-<div style="display: flex;">
-<div style="flex: 50%;">
-  <img src='img/olli-T.jpg' height="400">
-</div>
-<div style="flex: 50%; font-size: x-large;">
-  <img src='img/olli-opa.jpeg'>
-</div>
-</div>
-
-<p>
-<a target="_blank" href="mailto:oliver.zeigermann@openknowledge.de">Oliver Zeigermann</a>:
-Blue Collar Architect(ML)@<a href='https://www.openknowledge.de/'>OPEN KNOWLEDGE</a>
-</p>    
-
+	<textarea data-template>
+### Agenda
+		
+1. Was ist Machine Learning eigentlich? 
+1. Wie geht man in einem Machine-Learning-Projekt vor? 
+1. Wie unterscheidet sich ein ML-System von	klassischer Software? 
+1. *Welche Architekturprinzipien erfordern besondere Beachtung?* 
+1. Warum kann fast jedes Projekt von Methoden aus dem Machine Learning profitieren?
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-Questions and discussions are welcome *at any time* 		
-	</textarea>
-</section>
+### Ein ML Modell geht nicht für sich allein in Produktion
 
+<img src="img/ml-system.jpg" style="height: 550px;">
+
+</textarea>
+</section>
 
 <section data-markdown class="fragments">
 	<textarea data-template>
-### Gauge by show of hands
+### Warum Ensemble/Fallback?
 
-What do you think when you think about someone doing architectural work?
-* Probably can't code
-* Maybe used to code
-* Can not go beyond the level of boxes and arrows
-* Can talk, but not act
-* Tries to deflect responsibility
+* Ein ML Modell ist mit Daten eines bestimmten Bereichs trainiert
+  * manche Anfragen sind nicht in diesem Bereich
+  * die meisten Modelle haben keine Ahnung wann sie keine Ahnung haben
+  * daher müssen wir festlegen, welche Anfrage wohin geleitet wird
+* Auch nach der Vorhersage kann entschieden werden, dass die Wahrscheinlichkeit nicht hoch genug ist
+  * Dann ein anderes Modell befragen
+  * Manche Modelle sind teurer im Betrieb als andere, diese eher später nutzen
+* Oft ist ein einfaches heuristisches Regelsystem eine gute Alternative / Fallback
+* Bei mehreren passenden Modellen ist auch eine Mehrheitsentscheidung denkbar
+* Mehr Vorschläge: https://twitter.com/ChristophMolnar/status/1647881654873063426
 
 </textarea>
 </section>
 
+
 <section data-markdown>
 	<textarea data-template>
-## Agenda
+### Agenda
+		
+1. Was ist Machine Learning eigentlich? 
+1. Wie geht man in einem Machine-Learning-Projekt vor? 
+1. Wie unterscheidet sich ein ML-System von	klassischer Software? 
+1. Welche Architekturprinzipien erfordern besondere Beachtung? 
+1. *Warum kann fast jedes Projekt von Methoden aus dem Machine Learning profitieren?*
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Business-Metriken
+
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+	<textarea data-template>
+### Und diese Punkte, die standardmäßig in ML Projekten betrachtet werden
 
 1. managing uncertainty
 1. adversarial attacks and outlier detection
@@ -342,24 +476,23 @@ What do you think when you think about someone doing architectural work?
 1. drift and monitoring
 1. unwanted bias
 1. stability
-1. fallbacks and ensembles
-	</textarea>
+</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-# Thanks a lot
-## Software Architecture is not a swearword
+# Vielen Dank
+## Fünf Machine-Learning-Prinzipien, die nicht nur ML-Experten kennen sollten
 
-Stay in Contact
+Bleibt gern im Kontakt
 
 https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
-oliver.zeigermann@openknowledge.de
+oliver@zeigermann.de
 
 Twitter: @DJCordhose
 
-Slides: https://bit.ly/booster-arch-2023
+Folien: https://bit.ly/5-prinzipien-2023
 </textarea>
 </section>
 
