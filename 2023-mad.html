@@ -196,11 +196,11 @@ Blue Collar Architect(ML)
 
 <section data-markdown>
 	<textarea data-template>
-### Our Challenge for today: predicting risks
+### Our challenge for today: predicting risks
 
 * We do architectural work for a highly innovative car insurance company.
 * Unlike other insurance companies, we determine the rate based on the estimated number of accidents per customer.
-* Objective: how many accidents will the potential customers have?
+* Objective: How many accidents will the potential customers have?
 
 <img src='img/pixabay/accident-151668_1280.png' style="height: 230px">
 </textarea>
@@ -221,21 +221,21 @@ Blue Collar Architect(ML)
 
 _We can rely on data collected from people who have insurance_
 
-* we have collected sets of data from existing customers
-* application data contains a set of features
+* We have collected sets of data from existing customers
+* Application data contains a set of features
 
 </textarea>
 </section>
 
 
 <section data-markdown>
-### Features to draw conclusion from
+### Features to draw conclusions from
 
 * driver
-  * *training*: 0/1, the driver completed driver training
+  * *training*: 0/1, whether the driver completed driver training
   * *age*: Age of the driver in years
 * vehicle  
-  * *emergency_braking*: 0/1, the vehicle has an emergency braking system 
+  * *emergency_braking*: 0/1, whether the vehicle has an emergency braking system 
   * *braking_distance*: Braking distance from speed 100
   * *power*: Power in KW
 * *miles*: Annual mileage
@@ -249,7 +249,7 @@ _We can rely on data collected from people who have insurance_
 
 1. *Accuracy* - should have 80% or more cases correct
 1. *Explainability* - we need to explain how we come to the conclusion
-1. *Stability* - an updated version of the software must be possible should not behave totally different
+1. *Stability* - an updated version of the software must be possible and should not behave totally different
 1. *Hackability* - it should be hard to find out how the software works to resist manipulation
 1. *Resources* - should scale well and not use a lot of resources to run
 
@@ -386,7 +386,7 @@ d) Deep Learning
 
 1. *Accuracy* - should have 80% or more cases correct
 1. *Explainability* - we need to explain how we come to the conclusion
-1. *Stability* - an updated version of the software must be possible should not behave totally different
+1. *Stability* - an updated version of the software must be possible and should not behave totally different
 1. *Hackability* - it should be hard to find out how the software works to resist manipulation
 1. *Resources* - should scale well and not use a lot of resources to run
 
@@ -445,7 +445,7 @@ Choose whatever form you see fit for documentation
   * require compromise
   * if being bad have the potential to make the project fail
 * there always are important decisions
-  * if you don't choose explicitly, there always is on implicit choice
+  * if you don't choose explicitly, there always is one implicit choice
 * sources 
   * https://martinfowler.com/architecture
   * "The Rational Unified Process. An Introduction.“ Addison-Wesley 2004,  3rd Edition, Philippe Kruchten, chapter 5, p. 84 
@@ -494,7 +494,7 @@ _We leave out the areas of people and administration for today (even though they
 
 <img src="img/architecture/logic.jpg">
 
-_Might not be obvious, but is can be an architectural decision_
+_Might not be obvious, but this can be an architectural decision_
 </textarea>
 </section>
 
@@ -545,7 +545,7 @@ _Can work as an example for concise documentation_
 - Put in the tools the developer use
 - Make a decision, but make it educated, discuss before
 - Who did you consult with?	
-- Might get a little bit long a too formal in practice
+- Might get a little bit long and too formal in practice
 - But at least is recognized broadly
 
 https://adr.github.io/
@@ -597,18 +597,18 @@ https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.
 ## Challenges: Typical things happening in production
 
 1. Smartass Lawyer Attack
-   * can you explain your decision?
-1. price comparison service tries to outsmart you
-   * are you prone to adversarial attacks? 
+   * Can you explain your decision?
+1. Price comparison service tries to outsmart you
+   * Are you prone to Adversarial Attacks? 
 1. Drift
-   * driver assistance becomes prevalent - prediction of risk no longer valid
-   * are you able to create a stable new model?
+   * Driver assistance becomes prevalent - prediction of risk no longer valid
+   * Are you able to create a stable new model?
 1. Investigative Journalism
-   * there might be systematic age bias
-   * is age one of your important features?
-1. Hacker-Attack
-   * people get access to your production servers
-   * is there customer data in production?
+   * There might be systematic age bias
+   * Is age one of your important features?
+1. Hacker Attack
+   * People get access to your production servers
+   * Is there customer data in production?
 
 	</textarea>
 </section>
