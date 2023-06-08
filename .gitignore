@@ -12,3 +12,8 @@ data/people/marie.zip
 data/people/hanna.zip
 data/emotions
 .vscode/settings.json
+notebooks/test
+notebooks/train
+notebooks/golden-master.zip
+notebooks/regression.zip
+notebooks/model.png
