@@ -167,7 +167,7 @@ In this talk, I take you through the following topics:
 	</textarea>
 </section>
 
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
 	<textarea data-template>
 ### A ConvNet for the 2020s
 
@@ -191,20 +191,6 @@ https://arxiv.org/abs/2201.03545
 	<textarea data-template>
 ### Face Detection
 https://opencv.org/opencv-face-detection-cascade-classifier-vs-yunet/
-</textarea>
-</section>
-
-
-
-
-
-<section data-markdown class="todo">
-	<textarea data-template>
-### CV entdeckt Bär in Toblerone Logo    
-
-<img src="img/bear-toblerone.jpeg">
-
-https://www.linkedin.com/posts/ralph-aboujaoude-diaz-40838313_technology-tech-ai-activity-7020763833812058112-_5O9?utm_source=share&utm_medium=member_android
 </textarea>
 </section>
 
@@ -245,7 +231,7 @@ Drift von Bildern einbauen bei Zukunft?
 </textarea>
 </section>
 
-
+ -->
 			<section data-markdown>
 				<textarea data-template>
 ## Image Recognition: Past, Present and Future
@@ -284,13 +270,24 @@ Blue Collar Architect(ML)
 </textarea>
 </section>
 
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Who are you?
+
+* Have done some computer vision before
+* Know what a convolution is
+* Have used a CNN before
+* Have trained a CNN before
+</textarea>
+</section>
+  
 <section data-markdown>
 	<textarea data-template>
 ### Agenda
 
 1. Past: Classic Computer Vision
 1. Present: Deep Learning
-1. Future: Transformers & Co
+1. Future: Transfer Learning, Object Detection, Vision Transfomer
 	</textarea>
 </section>
 			
@@ -300,7 +297,7 @@ Blue Collar Architect(ML)
 
 1. _Past: Classic Computer Vision_
 1. Present: Deep Learning
-1. Future: Transformers & Co
+1. Future: Transfer Learning, Object Detection, Vision Transfomer
 
 	</textarea>
 </section>
@@ -475,7 +472,7 @@ Or at least not with classical approaches alone
 
 1. Past: Classic Computer Vision
 1. _Present: Deep Learning_
-1. Future: Transformers & Co
+1. Future: Transfer Learning, Object Detection, Vision Transfomer
 	</textarea>
 </section>
 			
@@ -538,13 +535,13 @@ Grundlage dafür
 	</textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### AI vs Machine Learning vs Deep Learning
 
 <img src="img/AI.png">		
 	</textarea>
-</section>
+</section> -->
 
 <section data-markdown class="fragments">
 	<textarea data-template>
@@ -725,13 +722,13 @@ https://arxiv.org/abs/1605.07678
 	* often has the first implementations of new ideas
 * *TensorFlow / Keras*: Top dog in industrial environment
 	* Models pre-trained on Imagenet for direct use or transfer learning: https://keras.io/applications
-	* Special building blocks for computer vision (augmentation, object detection, stable diffusion): https://keras.io/keras_cv/ 
+	* Special building blocks for computer vision: https://keras.io/keras_cv/ 
 	</textarea>
 </section>
 
 <!-- <section data-markdown>
 	<textarea data-template>
-### KerasCV
+### KerasCV Augmentation
 
 <img src="img/image-recognition/keras-cv-augmentations.gif">
 
@@ -740,51 +737,6 @@ https://keras.io/keras_cv/
 </section> -->
 
 
-<!-- <section data-markdown>
-	<textarea data-template>
-### Wann macht ML Sinn?
-
-_Die Lösung des vorliegenden Problems ist unbekannt oder schwer zu spezifizieren_
-
-_Und_
-
-* Es liegen Daten mit einer klaren, einfache Eingabe und bestenfalls auch passender Ausgabe vor 
-* Es gibt Muster in der Eingabe, die zur Vorhersage verwendet werden können
-* Die Lösung des Problems kann Fehler oder Unsicherheiten tolerieren
-* Wir sind bereit und in der Lage, in einer initialen Phase Experimente mit offenem Ausgang durchzuführen
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
-	<textarea data-template>
-### Machine Learning Projekte laufen anders ab als klassische Projekte
-
-<img src="img/sketch/phases-ml.png">
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Künstliche Intelligenz (KI) vs Machine Learning (ML)
-
-<img src='img/se_ai_and_architecure.pptx.png'>
-
-Wir lösen nur einzelne, gut abgehangene Teile, wollen keine generelle KI bauen
-</textarea>
-</section> -->
-
-
- <!-- <section data-markdown>
-	<textarea data-template>
-### Erklärbarkeit und Check gegen Overfitting
-
-<img src="img/Alibi_Explain_Logo_rgb.png" style="height:400px;">
-
-https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images		
-
-</textarea>
-</section> -->
 
 <!-- <section data-markdown>
 	<textarea data-template>
@@ -843,21 +795,61 @@ https://colab.research.google.com/github/DJCordhose/ml-resources/blob/main/noteb
 
 1. Past: Classic Computer Vision
 1. Present: Deep Learning
-1. _Future: Transformers & Co_
+1. _Future: Transfer Learning, Object Detection, Vision Transfomer_
 	</textarea>
 </section>
 
-<!-- <section data-markdown>
+<section data-markdown>
+	<textarea data-template>
+## Transfer / Few Shot Learning
+_use a pretrained network and replace the classifier_
+
+<img src="https://djcordhose.github.io/ml-workshop/img/vgg-no-classifier.png">
+
+Might be helpful if you do not have a lot of data
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Few Shot Learning is not solved yet
+* Freeze all the feature extraction layers? Some? None?
+* Learning Rate? Probably smaller than usual
+* How many epochs? Probably less than usual
+* Batch Size? Probably smaller than usual
+* transfer learning often does not work
+  * If a pre-trained network is helpful depends on whether your data looks similar to the data it has been pre-trained on
+  * might only work if your image data is similar to ImageNet
+  * default pretrained models might use a wider variety of data in the future
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Did you know there was a bear in the Toblerone Logo?
+
+<img src="img/bear-toblerone.jpeg">
+
+<small>https://www.linkedin.com/posts/ralph-aboujaoude-diaz-40838313_technology-tech-ai-activity-7020763833812058112-_5O9?utm_source=share&utm_medium=member_android
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
 	<textarea data-template>
 ### Object Detection
-
-Rather academic than solved industrially 
 
 <img src="img/image-recognition/kites_detections_output.jpg">
 
 
 <small>https://github.com/tensorflow/models/tree/master/research/object_detection
 https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
+<br>
+Yolo: https://docs.ultralytics.com
+<br>
+https://keras.io/guides/keras_cv/object_detection_keras_cv/
 </small>
 	</textarea>
 </section>
@@ -865,14 +857,21 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 <section data-markdown>
 	<textarea data-template>
 ## Depth Images		
-	</textarea>
+
+<img src="img/image-recognition/depth-example.png">
+
+https://twitter.com/pathak2206/status/1540357312703090695
+</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Intellisense D435i
+### Intellisense (D435i)
 
-<img src="img/image-recognition/d435i.jpg">		
+<img src="img/image-recognition/d435i.jpg">
+
+Stereo Infra-Red, plus RGB
+https://dev.intelrealsense.com
 	</textarea>
 </section>
 
@@ -880,33 +879,22 @@ https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc
 	<textarea data-template>
 ### Azure Kinect
 
-<img src="img/image-recognition/kinect.jpg">		
+<img src="img/image-recognition/kinect.jpg">
+
+IR Time-of-Flight, plus RGB
+
+https://learn.microsoft.com/en-us/azure/kinect-dk/depth-camera
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-### Setup using Azure Kinect
+### Sample Setup using Azure Kinect
 
 <img src="img/image-recognition/kinect-image.jpg">		
 	</textarea>
-</section> -->
-
-
-<!-- <section data-markdown class="todo">
-	<textarea data-template>
-* https://www.kaggle.com/code/odins0n/jax-flax-tf-data-vision-transformers-tutorial
-	</textarea>
 </section>
 
-<section data-markdown class="todo">
-	<textarea data-template>
-### Den Fortgeschrittenen Kram aus 2022-image-recognition.html
-* Transformers
-* GANs
-* DALLE-2 		
-	</textarea>
-</section> -->
 
 <section data-markdown>
 <textarea data-template>
@@ -922,7 +910,7 @@ https://huggingface.co/transformers/model_doc/vit.html</small>
         </textarea>
 </section>
 
-
+<!-- 
 
 <section data-markdown class="fragments">
 	<textarea data-template>
@@ -961,7 +949,7 @@ https://arxiv.org/pdf/1706.03762.pdf
 </small>
 
         </textarea>
-</section>
+</section> -->
 
 
 <section data-markdown>
@@ -1143,7 +1131,9 @@ webpage: https://t.co/EDpIyalqiK
 1. Present: Deep Learning
 	* When high flexibility is required
 	* Needs lots of data and lots of computing power, no training without GPU(s).		
-1. Future: Transformers and co.
+1. Future: Transfer Learning, Object Detection, Vision Transfomer
+	* Transfer / Few Shot Learning might not be the solution
+	* Object Detection is harder than Image Recognition
 	* Transformers offer a new approach, but models are (still) hardly practicable
 
 	</textarea>
