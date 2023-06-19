@@ -306,22 +306,6 @@ Nächste Version des Talks?
 </textarea>
 </section> -->
 
-<section data-markdown class="preparation">
-	<textarea data-template>
-* Blue Collar Machine Learning - Daher blauen Kittel anziehen
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-* Aus den Szenarien die Agenda ableiten und den Inhalt so aufbereiten
-  * MAD hat die Szenarien weit besser aufgebaut und in jeweils eigener Folie, hier übernehmen
-  * Am Anfang Übersicht, dann die einzelnen Szenarien
-* den AE kann man so nicht geben, ganz anderes Niveau an Komplexität 
-</textarea>
-</section>
-
-
  <section data-markdown>
 	<textarea data-template>
 # Resilient Machine Learning
@@ -422,24 +406,6 @@ While you can't guarantee to safeguard against all cases in which the machine sh
 </textarea>
 </section> -->
 
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Gauge by show of hands
-
-What do you think is most important in a machine learning project?
-1. Have a high accuracy (or other relevant metric)
-1. Use a novel/fancy approach
-1. be able to explain what your model does
-1. bringing something meaningful into production
-1. know if it makes sense to bring something into production in the first place
-1. have a way of knowing if a production model is still good (and knowing how to act upon that insight)
-
-_Please be as open as possible_
-<!-- <br>
-Questions and comments are welcome *at any time* -->
-</textarea>
-</section>
-
 <section data-markdown>
   <textarea data-template>
 ### Who is Olli
@@ -460,24 +426,6 @@ Blue Collar Architect(ML)
 
 </textarea>
 </section>
-<!-- <section data-markdown>
-	<textarea data-template>
-## Objective
-
-### Raising awareness of real world challenges
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## Not an objective
-
-### Comprehensive survey of solutions
-</textarea>
-</section> -->
-
-
-
 
 <section data-markdown>
 	<textarea data-template>
@@ -491,72 +439,22 @@ https://en.wikipedia.org/wiki/Resilience
 
 <section data-markdown class="fragments">
 	<textarea data-template>
-### What might be those difficult or unexpected situations?
+### What might be those difficult or unexpected situations in a Machine Learning project?
 
-1. Smartass Lawyer Attack
-   * can you explain your decision?
-1. price comparison service tries to outsmart you
-   * are you prone to adversarial attacks 
-1. Drift
-   * driver assistance becomes prevalent - prediction of risk no longer valid
-   * are you able to create a stable new model
-1. Investigative Journalism
-   * there might be systematic age bias
-1. You need to bring out a new version of your model
-   * can you guarantee stability?
-   * a new version of the software should not behave totally different
+1. Requirements might not be met: You can not guarantee success
+1. Methuselah: Out-of-distribution Robustness
+1. Smartass Lawyer Attack: Explainability
+1. Price comparison service tries to outsmart you: Adversarial Attack
+1. The world changes: Drift
 
-	</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-## Hie die Agenda vernünftig aus den Szenarien der vorherigen Folie aufbauen und die beiden Skizzen in den nächsten Folien ersetzen    
 	</textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-## Agenda
-
-1. meeting more resilient requirements
-1. out-of-distribution robustness
-1. drift and monitoring
-1. unwanted bias
-1. fallbacks and ensembles
+# Challenge 1    
+## Requirements might not be met: You can not guarantee success
 	</textarea>
-</section>
-
-
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-
-1. managing uncertainty
-1. *deploying machine learning services*
-1. meeting more resilient requirements
-1. drift and monitoring
-	</textarea>
-</section>
-
-<section data-markdown>
-  <textarea data-template>
-### Machine Learning Projects can be structured in phases
-
-<img src='img/mlops/mlops-phases-details.jpg' style="height: 600px;">
-
-</textarea>
-</section>
-
-<!-- <section data-markdown>
-  <textarea data-template>
-### What steps would you take when you want to start a new machine learning project
-
-1. Enable your organization 
-1. Identify a reasonable candidate
-1. Enter stage 1 of technical experiments
-
-</textarea>
 </section>
 
 <section data-markdown>
@@ -576,39 +474,17 @@ https://en.wikipedia.org/wiki/Resilience
 
 </textarea>
 </section>
- -->
-<!-- <section data-markdown class="todo">
-	<textarea data-template>
-### Besonders bei LLM: Manage Uncertainty
 
-- Stack Systems
-- Ensemble
-- Make a judgement what you would want to output 
-</textarea>
-</section>
+<section data-markdown>
+  <textarea data-template>
+### Solution: Make the process resilient
 
-<section data-markdown class="todo">
-	<textarea data-template>
-### Besonders bei LLM: Staging
-
-Manage Uncertainty using "staging" / proposals / augmentation and assistance 
-
-https://ai.google/responsibilities/responsible-ai-practices/
-
----
-
-Software has been basically deterministic until now
-
-Until we fully trust LLM outputs, we will start to see a UX I call "staging"
-
-Here are a few examples
-(https://twitter.com/RealKevinYang/status/1616646347888943104?t=CGNrfDJl_8Zk7Tvq3j2HmA&s=03) 
+<img src='img/mlops/mlops-phases-details.jpg' style="height: 600px;">
 
 </textarea>
 </section>
- -->
 
-<!-- <section data-markdown class="fragments">
+<section data-markdown class="fragments">
 ### Without deployment there is no benefit
 
 * in academic life, often only the score (accuracy) of the model counts
@@ -616,22 +492,28 @@ Here are a few examples
 * practice, however, is not a Kaggle Competition
 * in-sample evaluation is typically not enough for real life applications
 * out-of-sample evaluation typically only possible in production
-</section> -->
+</section>
+
 
 <section data-markdown>
 	<textarea data-template>
-### You don't just deploy the model 
-
-<img src="img/mlops/ml-system.jpg" style="height: 550px;">
-
-<!-- <small>preprocessing, fallbacks, and ensembles -->
-
-</small>
-
+# Challenge 2
+## Methuselah: Out-of-distribution Robustness
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown>
+	<textarea data-template>
+
+### An ML model is trained with data of a certain range
+
+* some queries are not in that range
+* most models have no idea when they have no idea
+* even after prediction, it can be decided that the confidence is not high enough
+</textarea>
+</section>
+
+<!-- <section data-markdown class="fragments">
 	<textarea data-template>
 
 ### Why ensemble/fallback?
@@ -647,17 +529,24 @@ Here are a few examples
 * If there are several suitable models, a majority decision is also conceivable
 * More suggestions: https://twitter.com/ChristophMolnar/status/1647881654873063426
 </textarea>
-</section>
+</section> -->
 
 
 <section data-markdown>
 	<textarea data-template>
-## Agenda
+### Solution: Deploy a service, not a raw model 
 
-1. managing uncertainty
-1. deploying machine learning services
-1. *meeting more resilient requirements*
-1. drift and monitoring
+<img src="img/mlops/ml-system.jpg" style="height: 550px;">
+
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Challenge 3
+## Smartass Lawyer Attack: Explainability    
 	</textarea>
 </section>
 
@@ -665,16 +554,17 @@ Here are a few examples
 	<textarea data-template>
 ### Need for explanation
 
+_ML Models often are black boxes_
+
 * people sue you over a prediction
 * CEO wants to know why bad score for spouse
-* contradicts prevention of hacking
+* contradicts prevention of Adversarial Attack
 	</textarea>
 </section>
 
-
 <section data-markdown>
 	<textarea data-template>
-### Explainability and Check against Overfitting
+### Solution: Explainability and Check against Overfitting
 
 Using an example from the field of image recognition
 
@@ -684,73 +574,24 @@ https://docs.seldon.io/projects/alibi/en/stable/methods/Anchors.html#Images
 </textarea>
 </section>
 
-<section data-markdown style="font-size: x-large;">
-<textarea data-template>
-### Instability of core logic and UI/UX sucks
+<section data-markdown>
+	<textarea data-template>
+### Solution: Visualize locally or globally
 
-<div class="container">
-<div class="col">
-<br>
-<br>
+Prediction path explanations in Tabular Data / Decision Tree 
 
+<img src="img/prediction_path_explanation.png" style="height:400px;" class="fragment">		
 
-<img src="img/architecture/twitter-stability-1.png" style="height: 300px;">    
-</div>
-<div class="col">
-	<img src="img/architecture/twitter-stability-2.png" style="height: 550px;">    
-</div>
-
-</div>
-
-<small>
-
-* https://twitter.com/elonmusk/status/1595457703739944976
-* https://twitter.com/elonmusk/status/1593673339826212864
-
-</small>
-
+https://github.com/parrt/dtreeviz#prediction-path-explanations		
 </textarea>
 </section>
 
 
-<section data-markdown class="fragments">
+
+<section data-markdown>
 	<textarea data-template>
-### How to improve on stability
-
-* train a new model only if you need to
-* consider using a base model
-  * rarely change it at all
-  * add additional models downstream or
-  * cover certain ranges with additional models
-  * compare to GPT model approach
-* stabilize model when retraining
-  * freeze some weights
-  * add stabilizing loss
-  * stateful (aka online) retraining
-* use simple model
-  * can also help with explainability
-  * might also generalize better  
-  </textarea>
-</section>
-
-<!-- <section data-markdown class="fragments">
-	<textarea data-template>
-### Stateful vs Stateless retraining?
-
-<img src="img/mlops/stateful-vs-stateless-v2.png">
-
-</textarea>
-</section> -->
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Attempted Manipulation / Adversarial Attacks
-
-Certain inputs may intentionally cause a grossly incorrect prediction to be made
-* can be used to systematically manipulate the output of the system
-* how sensitive a system is to such an attempt is determined by the inner complexity of such a system
-  * often directly contradicting properties like explainability
-
+# Challenge 4
+## Price comparison service tries to outsmart you: Adversarial Attack    
 	</textarea>
 </section>
 
@@ -777,123 +618,36 @@ taxes, laws, regulations, contracts, embargoes
 
 <section data-markdown>
 	<textarea data-template>
-### Perturbing input data
+### Adversarial Attacks by Perturbing input data
 
-<img src="img/pertubation.png">
+<img src="img/sketch/adversarial-pertubation.png" style="height:350px;">
 
 if _x_ is close to a decision boundary, a slight pertubation _x<sub>p</sub>_ might change the predicted class 
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown>
 	<textarea data-template>
-### Model stability and adversarial vulnerability
+### Solution: Adversarial Auto-Encoder keeps prediction, but not position within decision boundaries
 
-_Main question: does slightly perturbing the input data yield generally a drastically different prediction?_
+<!-- <img src="img/sketch/adversarial-ae.png" style="height:350px;"> -->
+<img src="img/adversarialae.png" style="height:350px;">
 
-If so
-- there is an additional attack vector 
-  - because people could learn decision boundaries
-  - by slightly tweaking features that do not require exact entry get an advantageous prediction
-- high local variation hints towards undetected overfitting
-- stability
-  - high local variation makes it likely that retraining with new data will yield a completely new model
-  - also requires new interpretation etc.
-  - unwanted disruption for users 
 
-<!-- Links:
-- https://en.wikipedia.org/wiki/Metamorphic_testing
- -->
+<small>https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html		
+https://arxiv.org/abs/2002.09364</small>
+
 </textarea>
 </section>
+
+
 
 <section data-markdown>
 	<textarea data-template>
-### Defusing pertubation: Adversarial Auto-Encoder (AE)
-
-<img src="img/adversarialae.png" style="height:350px;" class="fragment">
-
-<div class="fragment">
-adversarial perturbation gives significantly different outputs for M(x) and M(x')
-
-<small>
-
-
-_still able to detect the adversarial examples in the case of a white-box attack where the
-attacker has full knowledge of both the model and the defence_
-  
-https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods/adversarialae.html		
-https://github.com/SeldonIO/alibi-detect#adversarial-detection
-<!-- <br>
-https://arxiv.org/abs/2002.09364 -->
-
-</div>
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Example for AE in operation
-
-AE keeps prediction, but not position within decision boundaries
-
-<img src="img/sketch/adversarial-ae.png" style="height:350px;">
-
-</textarea>
-</section>
-
-<!-- <section data-markdown>
-  <textarea data-template>
-### Handling Adversarial Attacks
-
-* Bestimmte Eingaben können absichtlich eine grob falsche Vorhersage herbei führen 
-  * Solche Eingaben können erkannt und korrigiert werden
-  * Dazu kann z.B. ein Autoencoder benutzt werden, der die Eingabe korrigiert
-* Libs
-  * Seldon Alibi Detect: https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
-  * ART
-    * https://developer.ibm.com/articles/applying-the-adversarial-robustness-toolbox/
-    * https://github.com/Trusted-AI/adversarial-robustness-toolbox
-</textarea>
-</section>
-
-
-
-<section data-markdown class="fragments">
-<textarea data-template>
-### Was kann man sonst noch machen
-
-* Outlier-Detection
-  * Unser Modell wird nicht extrapolieren können
-  * Werte außerhalb des Trainings-Bereichs werden wahrscheinlich unrealistisch sicher vorhergesagt
-  * Ausreißer müssen ohne Ground Truth entdeckt werden 
-* Adversarial Detection
-  * Bestimmte Eingaben können absichtlich eine grob falsche Vorhersage herbei führen 
-  * Solche Eingaben können erkannt und korrigiert werden
-  * Dazu kann z.B. ein Autoencoder benutzt werden, der die Eingabe korrigiert
-
-
-<small>https://docs.seldon.io/projects/alibi-detect/en/stable/od/methods.html
-<br>
-https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
-</small>
-</textarea>
-</section>
- -->
-
- <section data-markdown>
-	<textarea data-template>
-## Agenda
-
-1. managing uncertainty
-1. deploying machine learning services
-1. meeting more resilient requirements
-1. *drift and monitoring*
+# Challenge 5
+## The world changes: Drift
 	</textarea>
 </section>
-
 
 <section data-markdown>
   <textarea data-template>
@@ -904,26 +658,29 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
 </textarea>
 </section>
 
-<!-- <section data-markdown class="fragments">
-  <textarea data-template>
-### Woher weiß man, dass man ein neues Modell in Produktion braucht?
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Deploying a new model might challenge stability
 
-* Schon in der Explorationsphase prüfen, wie sich das Modell auf neueren Daten verhält
-  * Wie schnell degradiert die Performance?
-  * Mindestens einmal im Jahr, damit man überhaupt noch weiß, wie es geht
-* Wenn die Metrik des Modells in Produktion nachlässt
-  * Dafür braucht man die Ground Truth der Daten aus Produktion
-  * Manchmal bekommt man diese unmittelbar nach der Vorhersage durch die Reaktion eines menschlichen Benutzers
-  * Oft aber auch erst nach nennenswerter Verzögerung 
-* *Wenn sich die Verteilung der Daten der Anfragen oder Vorhersagen deutlich von der des Trainings unterscheidet* 
-
-</textarea>
-</section> -->
-
+* train a new model only if you need to
+* consider using a base model
+  * rarely change it at all
+  * add additional models downstream or
+  * cover certain ranges with additional models
+  * compare to GPT model approach
+* stabilize model when retraining
+  * freeze some weights
+  * add stabilizing loss
+  * stateful (aka online) retraining
+* use simple model
+  * can also help with explainability
+  * might also generalize better  
+  </textarea>
+</section>
 
 <section data-markdown class="fragments">
   <textarea data-template>
-### How do you know you need a new model in production?
+### Solution: Have an idea when you need a new model in production?
 
 * At least once a year, to make sure someone still knows how to even do this  
 * When there is an obvious change in the world covered by your model
@@ -932,141 +689,16 @@ https://docs.seldon.io/projects/alibi-detect/en/stable/ad/methods.html
   * check already in the exploration phase
 * When the metrics degrade in production
   * ground truth from production data required to even find out
-  * Sometimes you get this immediately after the prediction by the reaction of a human user
-  * But often only after a significant delay 
-* *When the distribution of prediction data is significantly different from that of training*
+  * sometimes you get this immediately after the prediction by the reaction of a human user
+  * but often only after a significant delay 
+* Drift: When the distribution of prediction data is significantly different from that of training 
 
 </textarea>
 </section>
 
-<!-- <section data-markdown>
-<textarea data-template>
-### Distribution?
-
-* most important: Normal distribution aka Gaussian distribution
-* Histograms (Binning)
-
-<img src="img/nobel.svg">
-
-</textarea>
-</section>
- -->
-
- <section data-markdown class="fragments">
-<textarea data-template>
-### At time of training?
-
-<img src="img/en/drift.png" style="height: 100%;">
-
-</textarea>
-</section>
-
-<section data-markdown class="fragments">
-  <textarea data-template>
-### Reference Distribution
-
-<img src="img/causal-insurance/age-reference.png">
-
-Example: Age of people seeking for insurance
-</textarea>
-</section>
-
-
-<!-- <section data-markdown class="fragments">
-<textarea data-template>
-### So sieht die Verteilung jetzt aus
-
-<img src="img/causal-insurance/age-current.png">
-
-</textarea>
-</section>
--->
-<section data-markdown class="fragments">
-<textarea data-template>
-### Does it drift?
-
-<img src="img/causal-insurance/age_no_drift_p75_no_clue.png">
-
-</textarea>
-</section>
-
-<section data-markdown class="fragments">
-<textarea data-template>
-### And this?
-
-<img src="img/causal-insurance/age_drift_p0_no_clue.png">
-
-</textarea>
-</section>
-
-<section data-markdown class="fragments">
-<textarea data-template>
-### How to detect drift automatically?
-
-* We are not great at detecting drift by eye
-* Even if we were, whose job should this be?
-* A statistical test compares distributions
-* Requests from production are compared with the reference dataset we used for training
-* unfortunately there is not one suitable test
-* some only fit well for small (< 1000) datasets
-* some can work not only on numeric data but also on categorical data
-* different tests result in different kind of scores
-* scores, like p-values often are not very intuitive
-
-</textarea>
-</section>
-
-<!-- <section data-markdown>
-<textarea data-template>
-### Tests specifically suited for drift detection
-
-* Kolmogorov-Smirnov-Test
-* Population Stability Index
-* Kullback-Leibler-Divergence
-* Jensen-Shannon-Distance
-* Wasserstein-Distance
-
-https://evidentlyai.com/blog/data-drift-detection-large-datasets
-</textarea>
-</section> -->
-
-<!-- <section data-markdown class="fragments">
-<textarea data-template>
-### Statistical significance and p-value
-
-* statistical distribution of the respective features
-* does it significantly differ from the distribution in training during production? (null hypothesis: no)
-* this deviation is calculated using a metric
-* a confidence level (p) is determined regarding whether the null hypothesis is true
-* if p is less than 5%, it is assumed that there is a deviation (1% or 0.1% is also possible)
-* this means that there is a 5% probability that the distributions are actually the same, but only poor examples are currently being observed
-</textarea>
-</section> -->
-
-<section data-markdown>
-<textarea data-template>
-### p-values for our two potential drifts using two-sample Kolmogorov-Smirnov (K-S) tests
-
-<div class="container fragment">
-<div class="col">
-<img src="img/causal-insurance/age_no_drift_p75.png" style="height: 100%;">
-<em>p-value = .75, no drift detected</em>
-</div>
-<div class="col fragment">
-<img src="img/causal-insurance/age_drift_p0.png" style="height: 100%;">
-<em>p-value < 0.001, drift detected</em>
-
-</div>
-</div>
-
-</textarea>
-</section>
-
-<!-- <section data-markdown style="font-size: x-large;">
+<!-- <section data-markdown style="font-size: xx-large;">
 	<textarea data-template>
 ## Drift requires interpretation
-
-If the world changes, drift is expected and might therefore be ok
 
 |   | Positive interpretation, no action required | Negative interpretation, action required |
 |---|---|---|
@@ -1075,8 +707,8 @@ If the world changes, drift is expected and might therefore be ok
 | *Prediction but no Data Drift* | ???  | probably concept drift, new analysis of the situation necessary |
 |   |   |   |
 </textarea>
-</section> -->
-
+</section>
+ -->
 <section data-markdown class="fragments">
 ## Counter-Measures for drift
 
@@ -1093,150 +725,25 @@ If the world changes, drift is expected and might therefore be ok
   * Heuristics / Baseline
 </section>
 
-<!-- 
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Ausblick: Drift Detection für Bilder
-
-* Input Drift mit Histogrammen von Low-Level-Features (HSV): https://towardsdatascience.com/detecting-semantic-drift-within-image-data-6a59a0e768c6
-* Input Drift mit Dimensions-Reduktion: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html 
-* Model Drift durch Vergleich mit destilliertem Modell: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_cifar10.html 
-* Ein komplettes Beispiel mit Alibi-Detect: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/alibi_detect_deploy.html#4.-Drift-detection-with-Kolmogorov-Smirnov
-* Anomalien in Bildern: https://29a.ch/photo-forensics
-* Drift kann auch auf Text festgestellt werden: https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_text_imdb.html
-</textarea>
-</section>
-
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Ausblick: Wann liegt Ground Truth vor?
-
-*Menschliche Experten können die Ground Truth*
-* *bestimmen* 
-  * sobald ein Mensch die Entscheidungen nachprüft / revidiert
-  * bei einem Proposal-System kann das sehr schnell sein
-  * bei Dunkelverarbeitung sollte dies in regelmäßigen Abständen passieren
-* *nicht bestimmen*
-  * wir müssen Realitäten abwarten
-  * bei Zeitreihen wird auf die nahe Zukunft vorhergesagt, sobald diese Eintritt kann überprüft werden
-  * oft sind solche Realitäten erst nach einiger Zeit wahrnehmbar und unterliegen statistischen Schwankungen (wie bei uns)
-</textarea>
-</section>
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Ausblick: Unsere Vorhersage selbst erzeugt Drift
-
-* Ein Deployment ändert das unsere Rolle von Beobachter zu Akteur
-* Wir versichern nur Leute mit einer guten Risiko Prognose
-  * Wenn nicht, warum sollten wir dann eine überhaupt eine Prognose machen?
-* Unsere GT wird mehr und mehr gute Fahrer haben
-  * Zumindest ist das unsere Hoffnung (sonst hätte die Prognose nicht geklappt)
-* Falls nicht (False Negative, Type II Fehler)
-  * haben Menschen gelernt, unser System auszutricksen?
-  * "Dann versichert eben meine Tochter den Wagen"
-* Haben wir gute Fahrer aus verstehen nicht versichert (False Positive, Type I Fehler)
-  * Möglichkeit: *epsilon-greedy* meistens der Vorhersage glauben, aber manchmal (epsilon) auch einen Fahrer mit schlechter Prognose versichern 
-  * Vorhersage mit allen Wahrscheinlichkeiten geht in unsere Datenbank ein
-
-https://twitter.com/ChristophMolnar/status/1569644089724764160
-</textarea>
-</section>
- -->
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Drift Detection in Images
-
-* reduce single low level, e.g.
-  * structure index
-  * mean or std of basic feature 
-* dimensionality reduction to multivariate data
-  * p-values for each feature aggregated
-* drift detection via distilled model
-  * similar to adversarial attack detection
-
-<small>
-
-https://towardsdatascience.com/detecting-semantic-drift-within-image-data-6a59a0e768c6
-<br>
-https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_ks_cifar10.html
-<br>
-https://docs.seldon.io/projects/alibi-detect/en/stable/examples/cd_distillation_cifar10.html
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-## What can also happen when you go into production
-
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Unwanted bias
-
-* gender or age are common
-* investigative journalism a threat
-* people might again sue
-* you will always have bias, some is wanted, some is unwanted
-* if you do not have bias, your model ist not generalizing
-	</textarea>
-</section>
-
-<section data-markdown class="fragments">
-	<textarea data-template>
-### Our prediction itself generates drift
-
-* Deployment changes our role from observer to actor
-* Our predictions often have an influence on the system we are working in
-* Often binary decisions have a big impact
-* Merely good cases should enter our system
-  * If not, why should we make a forecast at all?
-* If not (False Negative, Type II error).
-  * Have humans learned to trick our system?
-* Did we miss good cases (False Positive, Type I error).
-  * Possibility: *epsilon-greedy* mostly believe in the prediction, but sometimes (epsilon) allow bad ones to enter our system
-  * prediction with all probabilities goes into our database
-* More on that: https://twitter.com/ChristophMolnar/status/1569644089724764160
-</textarea>
-</section>
-
-<!-- <section data-markdown>
-  <textarea data-template>
-### Machine Learning Projects vs School
-
-<img src='img/mlops/mlops-phases-vs-school.jpg' style="height: 500px;">
-
-</textarea>
-</section>
-   -->
 
 <section data-markdown class="fragments">
 <textarea data-template>
 ### Summary
 
-* a model that is not in production is useless
-* getting a descent model is already hard, but...
-* bringing a model into production and keeping it there is a whole different story
-* machine learning projects can be thought of in phases
-<!-- * in production, special challenges arise in the area of monitoring -->
-* machine learning systems typically have to be regularly retrained and maintained
-<!-- * practitioners need statistical skills  -->
-* practitioners need statistical skills , but rarely calculus or linear algebra 
+1. You can not guarantee success: Make the process resilient
+1. Out-of-distribution Robustness: Deploy a service, not a raw model
+1. Explainability: Visualize Model (global) or prediction path (local)
+1. Adversarial Attack: Mess with decision boundaries when you sense fraud
+1. Drift: Monitoring
 </textarea>
 </section>
 
 <section data-markdown>
 	<textarea data-template>
-# Vielen Dank
-## Resilientes Machine Learning
+# Thanks a lot
+## Resilient Machine Learning
 
-Bleibt gern im Kontakt
+Stay in Contact
 
 https://www.linkedin.com/in/oliver-zeigermann-34989773/
 
@@ -1244,12 +751,9 @@ oliver@zeigermann.de
 
 Twitter: @DJCordhose
 
-Slides: https://bit.ly/m3-resiliency-2023
+Slides: https://bit.ly/mlcon-resiliency-2023
 </textarea>
 </section>
-
-
-
 
 </div>
 </div>
