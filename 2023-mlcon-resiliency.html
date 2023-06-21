@@ -427,6 +427,24 @@ Blue Collar Architect(ML)
 </textarea>
 </section>
 
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Gauge by show of hands
+
+What do you think is most important in a machine learning project?
+1. Have a high accuracy (or other relevant metric)
+1. Use a novel/fancy approach
+1. be able to explain what your model does
+1. bringing something meaningful into production
+1. know if it makes sense to bring something into production in the first place
+1. have a way of knowing if a production model is still good (and knowing how to act upon that insight)
+
+_Please be as open as possible_
+<br>
+Questions and comments are welcome *at any time*
+</textarea>
+</section>
+
 <section data-markdown>
 	<textarea data-template>
 ## Resilience
@@ -513,25 +531,6 @@ https://en.wikipedia.org/wiki/Resilience
 </textarea>
 </section>
 
-<!-- <section data-markdown class="fragments">
-	<textarea data-template>
-
-### Why ensemble/fallback?
-
-* A ML model is trained with data of a certain range
-  * some queries are not in that range
-  * most models have no idea when they have no idea
-  * so we need to determine which query is routed where
-* Even after prediction, it can be decided that the confidence is not high enough
-  * Then query another model
-  * Some models are more expensive to run than others, use those rather later on
-* Often a simple heuristic control system is a good alternative / fallback
-* If there are several suitable models, a majority decision is also conceivable
-* More suggestions: https://twitter.com/ChristophMolnar/status/1647881654873063426
-</textarea>
-</section> -->
-
-
 <section data-markdown>
 	<textarea data-template>
 ### Solution: Deploy a service, not a raw model 
@@ -542,6 +541,21 @@ https://en.wikipedia.org/wiki/Resilience
 
 </textarea>
 </section>
+
+<section data-markdown>
+	<textarea data-template>
+
+### Why ensemble/fallback?
+
+* Even after prediction, it can be decided that the confidence is not high enough
+  * Then query another model
+  * Some models are more expensive to run than others, use those rather later on
+* Often a simple heuristic control system is a good alternative / fallback
+* If there are several suitable models, a majority decision is also conceivable
+* More suggestions: https://twitter.com/ChristophMolnar/status/1647881654873063426
+</textarea>
+</section>
+
 
 <section data-markdown>
 	<textarea data-template>
