@@ -199,16 +199,10 @@ Folien: https://bit.ly/5-prinzipien-2023
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
 	<textarea data-template>
-* In Summe 35-45 Folien
-
-Jetzt
-- Anforderungen
-- Drift
-- Gemeinsamkeiten
 	</textarea>
-</section>
+</section> -->
 
 <section data-markdown>
 	<textarea data-template>
@@ -488,19 +482,23 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### Besondere Anforderungen an ML Projekte
 
-1. *Accuracy* - should have 80% or more cases correct
-1. *Explainability* - we need to explain how we come to the conclusion
-1. *Stability* - an updated version of the software must be possible and should not behave totally different
-1. *Hackability* - it should be hard to find out how the software works to resist manipulation
+_ML Systeme sind häufig der Kern schlauer Business Logik, daraus ergeben sich spezielle Anforderungen_
+
+1. *Genauigkeit* - 100% Korrektheit ist nicht möglich, aber wie korrekt muss das System sein, um sinnvoll nutzbar zu sein 
+1. *Erklärbarkeit/ Alien Intelligence* - ML Systeme ticken nicht wie Menschen, kann man gewisse Entscheidungen nachvollziehen?
+1. *Stabilität* - eine aktualisierte Version der Software muss möglich sein und sollte sich nicht völlig anders verhalten
+1. *Hackbarkeit* - es sollte schwer sein herauszufinden wie die Software funktioniert um Manipulation zu verhindern
+
+	</textarea>
 
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
 	<textarea data-template>
 ### Aus Resilience und MLOps die einzelnen Folien übernehmen
 
@@ -522,7 +520,7 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
   - diese Modelle haben so viele Freiheitsgrade, da kann schon jedes neue Training ein deutlich anderes Verhalten haben
 
 </textarea>
-</section>
+</section> -->
 
 
 <section data-markdown>
@@ -560,8 +558,67 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
 
 </textarea>
   </section>
-  
-  
+
+  <section data-markdown>
+	<textarea data-template>
+## Wann sollte man ein neues Modell in Produktion bringen?
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Wann sollte man ein neues Modell in Produktion bringen?
+
+## Mindestens einmal im Jahr, um sicherzustellen, dass überhaupt noch jemand weiß, wie das geht
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Wann sollte man ein neues Modell in Produktion bringen?
+
+## Nach Abschätzung, wie sich das Modell auf neueren Daten verhält
+* Wie schnell verschlechtert sich die Leistung?
+* bereits in der Exploration-Phase überprüfen
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Wann sollte man ein neues Modell in Produktion bringen?
+
+## Wenn die Metriken in der Produktion herunter gehen
+* Gesicherte Vorhersagen (Ground Truth) aus Produktionsdaten sind erforderlich, um das überhaupt herauszufinden
+* Manchmal können menschliche Experten die auszugsweise beisteuern
+* Manchmal erhält man diese sofort nach der Vorhersage
+* Aber oft erst nach einer erheblichen Verzögerung
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Wann sollte man ein neues Modell in Produktion bringen?
+
+## Wenn die Verteilung der Vorhersagedaten signifikant von der des Trainings abweicht
+
+Hier braucht man Statistisches Wissen im Team, aber keine Analysis oder Lineare Algebra
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Zusammenfassung: Welche Architekturprinzipien erfordern besondere Beachtung? 
+
+* ML Systeme sind häufig der Kern schlauer Business Logik, daraus ergeben sich spezielle Anforderungen
+* Modelle gehen nicht für sich allein in Produktion, sondern sind Teil eines Systems
+* Modelle müssen regelmäßig aktualisiert werden
+  * Aber nicht zu oft, um die Stabilität zu gewährleisten
+  * Den richtigen Zeitpunkt zu finden, ist eine Herausforderung
+
+</textarea>
+</section>
 
 <section data-markdown>
 	<textarea data-template>
@@ -575,21 +632,7 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
 </textarea>
 </section>
 
-<section data-markdown class="todo">
-	<textarea data-template>
-# Inspiration		
-### What might be those difficult or unexpected situations in a Machine Learning project?
-
-1. Requirements might not be met: You can not guarantee success
-1. Methuselah: Out-of-distribution Robustness
-1. Smartass Lawyer Attack: Explainability
-1. Price comparison service tries to outsmart you: Adversarial Attack
-1. The world changes: Drift
-
-	</textarea>
-</section>
-
-<section data-markdown class="todo">
+<section data-markdown class="fragments">
 	<textarea data-template>
 ### Business-Metriken
 
@@ -602,16 +645,21 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
-### Stabilität
+### Stabilität - UX
 
+Werden immer nur die wirklich notwendigen Teile deiner Software geändert?
+
+Oder mutest du deinem Benutzer unnötige Mentale Last zu?
+
+Dies ist bei Neudesign des UI oft der Fall 
 
 </textarea>
 </section>
 
 
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
 ### Erklärbarkeit
 
@@ -620,26 +668,45 @@ Kannst du dem Kunden erklären, was dein Algorithmus macht
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
 ### Testing
 
-Kennst du die Properties, auf die du testen musst?
+Kennst du die entscheidenden Eigenschaften deiner Software?
+
+Was muss nach jeder Änderungen immer noch gelten?
 
 </textarea>
 </section>
 
-
-<section data-markdown class="todo">
+<section data-markdown>
 	<textarea data-template>
-### Und diese Punkte, die standardmäßig in ML Projekten betrachtet werden
+### Unerwünschter Bias
 
-1. managing uncertainty
-1. adversarial attacks and outlier detection
-1. out-of-distribution robustness
-1. drift and monitoring
-1. unwanted bias
-1. stability
+Gibt es eine Nutzergruppe, die benachteiligt wird?
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Unsicherheiten
+
+Wo gibt in es in der Software Unsicherheiten?
+
+Wie übersetzt du diese für den Benutzer? Wie schaffst du Transparenz?
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Zusammenfassung
+
+* Mathematik gehört nicht zu den Fähigkeiten, die du aufbauen müsstest
+  * Der Bussfahrer muss kein Motor entwerfen können
+* Insbesondere weil ML Projekte häufig nicht durchführbar sind, ist ein spezieller Prozess ratsam  
+* ML Systeme sind häufig der Kern schlauer Business Logik, daraus ergeben sich spezielle Anforderungen
+* Modelle müssen regelmäßig aktualisiert werden
+* Aus der Beschäftigung mit Machine Learning kann man auch viel für klassische Software Entwicklung lernen
 </textarea>
 </section>
 
@@ -659,9 +726,6 @@ Twitter: @DJCordhose
 Folien: https://bit.ly/5-prinzipien-2023
 </textarea>
 </section>
-
-
-
 
 </div>
 </div>
