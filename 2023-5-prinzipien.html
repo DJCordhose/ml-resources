@@ -201,11 +201,9 @@ Folien: https://bit.ly/5-prinzipien-2023
 
 <section data-markdown class="todo">
 	<textarea data-template>
-### Mehr Leben rein bringen		
-- Drift Demo mit k8s
-- Unterschiedliche ML Ansätze sind unterschiedlich gut für unterschiedliche Requirements
-- Kurz 1-2 zeigen in ML Playground aus MAD
-- Fragen auch zulassen, Material deutlich kürzen
+### Mehr interaktiv machen		
+- Fragen explizit zulassen, 
+- Material deutlich kürzen
 	</textarea>
 </section>
 
@@ -351,6 +349,49 @@ Folien: https://bit.ly/5-prinzipien-2023
   </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+## Beispiel: Code für Business Logik ohne klare Spezifikation
+
+```
+if training: 
+    return LOW_RISK
+if age < 30:
+    if power > 130:
+        return HIGH_RISK
+    else:
+        return MEDIUM_RISK
+if age > 50:
+    return HIGH_RISK
+if emergency_braking:
+    return LOW_RISK
+if milage > 50:
+    return HIGH_RISK
+if milage > 30:
+    return MEDIUM_RISK
+# default
+return LOW_RISK
+```
+
+Wenn tiefer kaum mehr Wartbar und von Hand schreibbar
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Demo I: Typische ML Algorithmen
+
+1. Decision Tree
+1. K-Nearest Neighbors
+1. Deep Learning
+
+https://ml-playground.com
+
+	</textarea>
+</section>
+
+
 
 <section data-markdown>
 	<textarea data-template>
@@ -395,7 +436,7 @@ Folien: https://bit.ly/5-prinzipien-2023
 *kann überwiegende Mehrheit sein, positiven Aspekt betonen* 
 
 * Fail Fast: Aufwand für die späteren aufwändigen Phasen gespart
-* Lernerfolg dokumentieren und in teilen
+* Lernerfolg dokumentieren und teilen
 * Eventuelle Analyseergebnisse als Einsichten zweitverwerten
 * _In Phase 0 vorbereiten und in die Fehlerkultur übernehmen_
   
@@ -525,6 +566,14 @@ _ML Systeme sind häufig der Kern schlauer Business Logik, daraus ergeben sich s
 </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+### ML Algorithmen haben unterschiedliche Stärken
+
+<img src="exercise/solutions.png" style="height: 600px;">
+	</textarea>
+</section>
+
 <!-- <section data-markdown class="todo">
 	<textarea data-template>
 ### Aus Resilience und MLOps die einzelnen Folien übernehmen
@@ -633,6 +682,15 @@ Hier braucht man Statistisches Wissen im Team, aber keine Analysis oder Lineare 
 </textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+## Demo II		
+### Drift-Erkennung mit Prometheus, Evidently und Grafana
+
+<img src="img/mlops/evidently_grafana_service.png">
+
+</textarea>
+</section>
 
 <section data-markdown class="fragments">
 	<textarea data-template>
