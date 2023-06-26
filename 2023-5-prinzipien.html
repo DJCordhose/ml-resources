@@ -181,6 +181,27 @@ Das hier ausbeuten: https://mindfulmodeler.substack.com/p/a-pragmatic-view-on-un
  -->
 
 
+ <section data-markdown class="preparation" style="font-size: x-large;">
+	<textarea data-template>
+### Demos vorbereiten		
+1. ML Playground starten: https://ml-playground.com
+1. /home/olli/mlops/insurance-prediction
+   1. Falls notwendig Volumes platt machen 
+   1. docker compose up
+   * ML Service 
+	 * Swagger http://localhost:8080
+	 * Metrics: http://localhost:8080/metrics/
+   * Prometheus
+	 * Query: http://localhost:9090/
+	 * Drift Gauge: http://localhost:9090/graph?g0.expr=drift_score_by_columns&g0.tab=1&g0.stacked=0&g0.show_exemplars=0&g0.range_input=1h
+	 * Scrape Targets: http://localhost:9090/targets
+   * Grafana Dashboard: http://localhost:3000/d/U54hsxv7k/evidently-data-drift-dashboard?orgId=1&refresh=5s
+   * Simulate Production requests without need for local installation: ./scripts/curl-drift.sh localhost:8080
+   </textarea>
+   
+	</textarea>
+</section>
+
  <section data-markdown>
 	<textarea data-template>
 ## Fünf Machine-Learning-Prinzipien, die nicht nur ML-Experten kennen sollten
@@ -196,36 +217,6 @@ https://www.developer-week.de/programm/#/talk/funf-machine-learning-prinzipien-d
 
 Folien: https://bit.ly/5-prinzipien-2023
 
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-### Mehr interaktiv machen		
-- Fragen explizit zulassen, 
-- Material deutlich kürzen
-	</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-### Darbietung / Story
-
-- Stringenz in der Story / therefor and but, not and then: https://www.instagram.com/reel/CtxLMBDA35H/?igshid=MTc4MmM1YmI2Ng%3D%3D
-- Für die Zusammenfassung B drücken und mich nach vorn stellen
-
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-	<textarea data-template>
-### Was kann man von ML Lernen
-
-- Viele klassische Systeme, insbesondere Legacy Systeme sind blackbox. 
-- Das ist bei ML meistens so. Aber dadurch werden sie nicht unwartbar
-- Man kann lernen, Kontrolle loszulassen 
-  - Und man sollte auch, hauptsächlich ein emotionales Problem 
-- Zudem: vieles ist eben Trial and Error, We pack Build zum laufen bringen, etwas auf Kubernetes deployen, CSS  
 </textarea>
 </section>
 
@@ -256,8 +247,7 @@ Folien: https://bit.ly/5-prinzipien-2023
 	<textarea data-template>
 ## Agenda
 		
-1. Was ist Machine Learning eigentlich? 
-1. Wie unterscheidet sich ein ML-System von	klassischer Software? 
+1. Was ist Machine Learning eigentlich und wie unterscheidet sich ein ML-System von klassischer Software? _(zwei Fragen, gehören zusammen)_
 1. Wie geht man in einem Machine-Learning-Projekt vor? 
 1. Welche Architekturprinzipien erfordern besondere Beachtung? 
 1. Warum kann fast jedes Projekt von Methoden aus dem Machine Learning profitieren?
@@ -268,52 +258,7 @@ Folien: https://bit.ly/5-prinzipien-2023
 	<textarea data-template>
 ## Agenda
 		
-1. *Was ist Machine Learning eigentlich?* 
-1. Wie unterscheidet sich ein ML-System von	klassischer Software? 
-1. Wie geht man in einem Machine-Learning-Projekt vor? 
-1. Welche Architekturprinzipien erfordern besondere Beachtung? 
-1. Warum kann fast jedes Projekt von Methoden aus dem Machine Learning profitieren?
-</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### KI vs Machine Learning vs Deep Learning
-
-<img src="img/KI_ML_Skizzen/Folie12.PNG">
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### KI vs Machine Learning vs Deep Learning
-
-<img src="img/KI_ML_Skizzen/Folie13.PNG">		
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### KI vs Machine Learning vs Deep Learning
-
-<img src="img/KI_ML_Skizzen/Folie14.PNG">		
-	</textarea>
-</section>
-
-<section data-markdown>
-	<textarea data-template>
-### Wozu machen wir ML?
-	
-<img src="img/KI_ML_Skizzen/ml-muster-aktion.png">		
-	</textarea>
-  </section>
-  
-<section data-markdown>
-	<textarea data-template>
-## Agenda
-		
-1. Was ist Machine Learning eigentlich? 
-1. *Wie unterscheidet sich ein ML-System von klassischer Software?* 
+1. *Was ist Machine Learning eigentlich und wie unterscheidet sich ein ML-System von klassischer Software?* 
 1. Wie geht man in einem Machine-Learning-Projekt vor? 
 1. Welche Architekturprinzipien erfordern besondere Beachtung? 
 1. Warum kann fast jedes Projekt von Methoden aus dem Machine Learning profitieren?
@@ -336,6 +281,14 @@ Folien: https://bit.ly/5-prinzipien-2023
 	</textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+### Wozu machen wir ML?
+	
+<img src="img/KI_ML_Skizzen/ml-muster-aktion.png">		
+	</textarea>
+  </section>
+  
 <section data-markdown class="fragments">
 	<textarea data-template>
   ### Wann ist KI/ML sinnvoll?
@@ -348,6 +301,23 @@ Folien: https://bit.ly/5-prinzipien-2023
   * Wir sind bereit und in der Lage, in einer initialen Phase _Experimente mit offenem Ausgang_ durchzuführen
   </textarea>
 </section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Was ist eine gute Metrik?
+
+- Die Welt ist verrauscht
+- 100% Metrik auf Trainingsdaten ist 
+  - möglich (wenn man das Modell groß genug macht), aber
+  - weder gewollt 
+  - noch notwendig
+- Wir wollen nicht das Rauchen lernen, und damit overfitten
+- Wir wollen den Kern, die abstrakte Idee lernen, also auch auf neue Problemstellungen anwendbar sein
+
+https://mindfulmodeler.substack.com/p/a-pragmatic-view-on-uncertainty-in
+  </textarea>
+</section>
+
 
 <section data-markdown>
 	<textarea data-template>
@@ -391,9 +361,7 @@ https://ml-playground.com
 	</textarea>
 </section>
 
-
-
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Machine Learning vs Dev
 
@@ -405,15 +373,14 @@ https://ml-playground.com
 1. Man kann keinen Erfolg versprechen
 
 	</textarea>
-</section>
+</section> -->
 
 
 <section data-markdown>
 	<textarea data-template>
 ## Agenda
 		
-1. Was ist Machine Learning eigentlich? 
-1. Wie unterscheidet sich ein ML-System von	klassischer Software? 
+1. Was ist Machine Learning eigentlich und wie unterscheidet sich ein ML-System von klassischer Software? 
 1. *Wie geht man in einem Machine-Learning-Projekt vor?* 
 1. Welche Architekturprinzipien erfordern besondere Beachtung? 
 1. Warum kann fast jedes Projekt von Methoden aus dem Machine Learning profitieren?
@@ -477,14 +444,16 @@ Forschungsprojekte vermeiden
 </section>
 
 
-<section data-markdown>
+<section data-markdown class="fragments">
     <textarea data-template>
 ### Make or Buy
 
 * buy: du kannst nicht viel beeinflussen, aber du musst auch nicht
 * make: du kannst viel beeinflussen, aber du musst auch
+* Make or Buy ist oft keine binäre Entscheidung
+* Es gibt verschiedene Grade der Vorfertigung
 
-https://medium.com/swlh/build-vs-buy-decision-619414efafc4
+<!-- https://medium.com/swlh/build-vs-buy-decision-619414efafc4 -->
     </textarea>
 </section>
 
@@ -523,7 +492,7 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
 </textarea>
 </section>
     
-<section data-markdown class="fragments">
+<!-- <section data-markdown class="fragments">
     <textarea data-template>
 ### Vorfertigungsgrad von ML
 
@@ -537,13 +506,12 @@ https://medium.com/swlh/build-vs-buy-decision-619414efafc4
   1. Eigene Architektur
 </textarea>
 </section>
-
+ -->
 <section data-markdown>
 	<textarea data-template>
 ## Agenda
 		
-1. Was ist Machine Learning eigentlich? 
-1. Wie geht man in einem Machine-Learning-Projekt vor? 
+1. Was ist Machine Learning eigentlich und wie unterscheidet sich ein ML-System von klassischer Software? 
 1. Wie unterscheidet sich ein ML-System von	klassischer Software? 
 1. *Welche Architekturprinzipien erfordern besondere Beachtung?* 
 1. Warum kann fast jedes Projekt von Methoden aus dem Machine Learning profitieren?
@@ -689,7 +657,6 @@ Hier braucht man Statistisches Wissen im Team, aber keine Analysis oder Lineare 
 
 <img src="img/mlops/evidently_grafana_service.png">
 
-</textarea>
 </section>
 
 <section data-markdown class="fragments">
@@ -709,8 +676,7 @@ Hier braucht man Statistisches Wissen im Team, aber keine Analysis oder Lineare 
 	<textarea data-template>
 ## Agenda
 		
-1. Was ist Machine Learning eigentlich? 
-1. Wie geht man in einem Machine-Learning-Projekt vor? 
+1. Was ist Machine Learning eigentlich und wie unterscheidet sich ein ML-System von klassischer Software? 
 1. Wie unterscheidet sich ein ML-System von	klassischer Software? 
 1. Welche Architekturprinzipien erfordern besondere Beachtung? 
 1. *Warum kann fast jedes Projekt von Methoden aus dem Machine Learning profitieren?*
@@ -782,6 +748,26 @@ Wo gibt in es in der Software Unsicherheiten?
 Wie übersetzt du diese für den Benutzer? Wie schaffst du Transparenz?
 	</textarea>
 </section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Embrace Blackbox
+
+- Viele klassische Systeme, insbesondere Legacy Systeme sind blackbox. 
+- Das ist bei ML meistens so. 
+- Aber dadurch werden sie nicht unwartbar
+- Man kann lernen, Kontrolle loszulassen, wenn es wirklich nicht anders geht
+  <!-- - Und man sollte auch, hauptsächlich ein emotionales Problem -->
+   
+- Vieles ist eben Trial and Error
+  - ein Neuronales Netz trainieren 
+  - Webpack Build zum laufen bringen
+  - etwas auf Kubernetes deployen
+  - CSS
+  - ...  
+</textarea>
+</section>
+
 
 <section data-markdown class="fragments">
 	<textarea data-template>
