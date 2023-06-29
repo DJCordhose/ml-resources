@@ -181,7 +181,7 @@ Das hier ausbeuten: https://mindfulmodeler.substack.com/p/a-pragmatic-view-on-un
  -->
 
 
- <section data-markdown class="preparation" style="font-size: x-large;">
+ <!-- <section data-markdown class="preparation" style="font-size: x-large;">
 	<textarea data-template>
 ### Demos vorbereiten		
 1. ML Playground starten: https://ml-playground.com
@@ -200,7 +200,7 @@ Das hier ausbeuten: https://mindfulmodeler.substack.com/p/a-pragmatic-view-on-un
    </textarea>
    
 	</textarea>
-</section>
+</section> -->
 
  <section data-markdown>
 	<textarea data-template>
@@ -242,6 +242,26 @@ Folien: https://bit.ly/5-prinzipien-2023
 	</textarea>
 </section>
 
+<section data-markdown>
+	<textarea data-template>
+		### Wer ist Olli
+
+		<div style="display: flex;">
+			<div style="flex: 50%;">
+				<a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+				<img src='img/ml-buch-v2.jpg' height="400">
+				</a>
+			</div>
+			<div style="flex: 50%; font-size: x-large;">
+				<img src='img/olli-opa.jpeg'>
+			</div>
+		</div>
+		<p>
+			<a target="_blank" href="mailto:OliverZeigermann@gmail.com">Oliver Zeigermann</a>:
+		Entwickler, Architekt, Berater und Coach für Machine Learning
+		</p>    
+	</textarea>
+</section>
 
 <section data-markdown>
 	<textarea data-template>
@@ -281,14 +301,14 @@ Folien: https://bit.ly/5-prinzipien-2023
 	</textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ### Wozu machen wir ML?
 	
 <img src="img/KI_ML_Skizzen/ml-muster-aktion.png">		
 	</textarea>
   </section>
-  
+   -->
 <section data-markdown class="fragments">
 	<textarea data-template>
   ### Wann ist KI/ML sinnvoll?
@@ -319,48 +339,6 @@ https://mindfulmodeler.substack.com/p/a-pragmatic-view-on-uncertainty-in
 </section>
 
 
-<section data-markdown>
-	<textarea data-template>
-## Beispiel: Code für Business Logik ohne klare Spezifikation
-
-```
-if training: 
-    return LOW_RISK
-if age < 30:
-    if power > 130:
-        return HIGH_RISK
-    else:
-        return MEDIUM_RISK
-if age > 50:
-    return HIGH_RISK
-if emergency_braking:
-    return LOW_RISK
-if milage > 50:
-    return HIGH_RISK
-if milage > 30:
-    return MEDIUM_RISK
-# default
-return LOW_RISK
-```
-
-Wenn tiefer kaum mehr Wartbar und von Hand schreibbar
-</textarea>
-</section>
-
-
-<section data-markdown>
-	<textarea data-template>
-### Demo I: Typische ML Algorithmen
-
-1. Decision Tree
-1. K-Nearest Neighbors
-1. Deep Learning
-
-https://ml-playground.com
-
-	</textarea>
-</section>
-
 <!-- <section data-markdown>
 	<textarea data-template>
 ### Machine Learning vs Dev
@@ -375,6 +353,59 @@ https://ml-playground.com
 	</textarea>
 </section> -->
 
+<section data-markdown>
+	<textarea data-template>
+## Was fehlt zur Allgemeinen KI (AGI)?
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KI kann nicht kochen
+
+<img src="img/ki-kochen.jpg" style="height: 430px;">
+
+* Kein noch so kluges System hat nennenswerte motorische Fähigkeiten
+* die "einfachen" Tätigkeiten sind nicht annähernd erreicht (https://de.wikipedia.org/wiki/Moravecsches_Paradox)
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### LLMs - next level machine learning?
+
+* Wir brauchen nicht mehr viele technische Details
+* Stattdessen geben wir den Kontext und und schreiben einen schlauen Prompt
+* Wie der Umbruch von Assembler zu Hochsprachen vermittels schlauer Compiler
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### LLMs als letzter Sprung in der Entwicklung der Menschheit
+
+* *Schrift* - nicht nur die Natur, sondern auch wir Menschen können Dinge für die Nachwelt festhalten
+* *Druckerpresse* - Demokratisierung des Wissens beginnt
+* *Internet* - Auflösung physikalischer Grenzen
+* *LLMs* - Konzentrat / Essenz der Inhalte des Internets
+
+Marshall McLuhan in https://philosophygeek.substack.com/p/wrapping-my-head-around-ai
+	</textarea>
+</section>
+
+<section data-markdown>
+### Braucht echte AGI nicht einen Körper?
+
+- Ein KI System kann nicht aktiv Erfahrungen sammeln
+- Reinforcement Learning als eine Art, Erfahrungen in der Welt zu machen?
+- Aber in der physischen Welt kann sich auch so ein System immer noch nicht bewegen
+- Kann zum Teil zurückgeführt werden auf das ungelöste Leib-Seele-Problem 
+  - https://de.wikipedia.org/wiki/Philosophie_des_Geistes#Das_Leib-Seele-Problem
+  - https://bigthink.com/thinking/the-mind-body-problem/
+
+</section>
 
 <section data-markdown>
 	<textarea data-template>
@@ -457,7 +488,7 @@ Forschungsprojekte vermeiden
     </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Buy
 
@@ -491,7 +522,7 @@ Forschungsprojekte vermeiden
   * https://keras.io/examples/
 </textarea>
 </section>
-    
+     -->
 <!-- <section data-markdown class="fragments">
     <textarea data-template>
 ### Vorfertigungsgrad von ML
@@ -541,6 +572,49 @@ _ML Systeme sind häufig der Kern schlauer Business Logik, daraus ergeben sich s
 <img src="exercise/solutions.png" style="height: 600px;">
 	</textarea>
 </section>
+
+<section data-markdown>
+	<textarea data-template>
+## Beispiel: Code für Business Logik ohne klare Spezifikation
+
+```
+if training: 
+    return LOW_RISK
+if age < 30:
+    if power > 130:
+        return HIGH_RISK
+    else:
+        return MEDIUM_RISK
+if age > 50:
+    return HIGH_RISK
+if emergency_braking:
+    return LOW_RISK
+if milage > 50:
+    return HIGH_RISK
+if milage > 30:
+    return MEDIUM_RISK
+# default
+return LOW_RISK
+```
+
+Wenn tiefer kaum mehr Wartbar und von Hand schreibbar
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Optionales Demo: Typische ML Algorithmen
+
+1. Decision Tree
+1. K-Nearest Neighbors
+1. Deep Learning
+
+https://ml-playground.com
+
+	</textarea>
+</section>
+
 
 <!-- <section data-markdown class="todo">
 	<textarea data-template>
@@ -650,7 +724,7 @@ Hier braucht man Statistisches Wissen im Team, aber keine Analysis oder Lineare 
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 	<textarea data-template>
 ## Demo II		
 ### Drift-Erkennung mit Prometheus, Evidently und Grafana
@@ -658,7 +732,7 @@ Hier braucht man Statistisches Wissen im Team, aber keine Analysis oder Lineare 
 <img src="img/mlops/evidently_grafana_service.png">
 
 </section>
-
+ -->
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Zusammenfassung: Welche Architekturprinzipien erfordern besondere Beachtung? 
@@ -703,7 +777,7 @@ Hier braucht man Statistisches Wissen im Team, aber keine Analysis oder Lineare 
 
 Werden immer nur die wirklich notwendigen Teile deiner Software geändert?
 
-Oder mutest du deinem Benutzer unnötige Mentale Last zu?
+Oder mutest du deinem Benutzer unnötige mentale Last zu?
 
 Dies ist bei Neudesign des UI oft der Fall 
 
@@ -748,7 +822,7 @@ Wo gibt in es in der Software Unsicherheiten?
 Wie übersetzt du diese für den Benutzer? Wie schaffst du Transparenz?
 	</textarea>
 </section>
-
+<!-- 
 <section data-markdown class="fragments">
 	<textarea data-template>
 ### Embrace Blackbox
@@ -757,7 +831,6 @@ Wie übersetzt du diese für den Benutzer? Wie schaffst du Transparenz?
 - Das ist bei ML meistens so. 
 - Aber dadurch werden sie nicht unwartbar
 - Man kann lernen, Kontrolle loszulassen, wenn es wirklich nicht anders geht
-  <!-- - Und man sollte auch, hauptsächlich ein emotionales Problem -->
    
 - Vieles ist eben Trial and Error
   - ein Neuronales Netz trainieren 
@@ -767,7 +840,7 @@ Wie übersetzt du diese für den Benutzer? Wie schaffst du Transparenz?
   - ...  
 </textarea>
 </section>
-
+ -->
 
 <section data-markdown class="fragments">
 	<textarea data-template>
