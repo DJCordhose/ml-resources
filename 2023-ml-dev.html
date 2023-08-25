@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Was man als Software Entwickler über Machine Learning wissen sollte</title>
+
+    <meta name="description" content="Was man als Software Entwickler über Machine Learning wissen sollte">
+    <meta name="author" content="Oliver Zeigermann">
+	<link rel="shortcut icon" href="/img/favicon.ico" >
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<!-- <link rel="stylesheet" href="reveal.js/dist/theme/black.css"> -->
+	<link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<!-- <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css"> -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css">
+	<style>
+		.right-img {
+			margin-left: 10px !important;
+			float: right;
+			height: 500px;
+		}
+
+		.todo:before {
+			content: 'TODO: ';
+		}
+
+		.todo {
+			color: red !important;
+		}
+
+		code span.line-number {
+			color: lightcoral;
+		}
+
+		.reveal pre code {
+			max-height: 1000px !important;
+		}
+
+		img {
+			border: 0 !important;
+			box-shadow: 0 0 0 0 !important;
+			height: 450px;
+		}
+
+		.reveal {
+			-ms-touch-action: auto !important;
+			touch-action: auto !important;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4 {
+			/* letter-spacing: 2px; */
+			font-family: 'Calibri', sans-serif;
+			/* font-family: 'Times New Roman', Times, serif; */
+			/* font-weight: bold; */
+			color: black;
+			/* font-style: italic; */
+			/* letter-spacing: -2px; */
+			text-transform: none !important;
+		}
+
+		.reveal em {
+			font-weight: bold;
+		}
+
+		.reveal section img {
+			background: none;
+		}
+
+		.reveal img.with-border {
+			border: 1px solid #586e75 !important;
+			box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+		}
+
+		.reveal li {
+			margin-bottom: 8px;
+		}
+
+		/* For li's that use FontAwesome icons as bullet-point */
+		.reveal ul.fa-ul li {
+			list-style-type: none;
+		}
+
+		.reveal {
+			/* font-family: 'Work Sans', 'Calibri'; */
+			font-family: 'Calibri';
+			color: black !important;
+			font-size: xx-large;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.col img {
+			height: auto;
+		}
+
+		.col,
+		col-1 {
+			flex: 1;
+		}
+
+		.col-2 {
+			flex: 2;
+		}
+
+	</style>
+</head>
+
+<body style="background-color: whitesmoke;">
+
+<div class="reveal">
+    <div class="slides">
+
+
+<!-- 
+https://www.developer-week.de/programm/#/talk/funf-machine-learning-prinzipien-die-nicht-nur-ml-experten-kennen-sollten
+DO., 29. JUNI 2023, 11:45 - 12:45
+60 min
+
+Fünf Machine-Learning-Prinzipien, die nicht nur ML-Experten kennen sollten
+
+Machine Learning (ML) schwankt in der Wahrnehmung vieler Projektmitarbeiter zwischen starker Über- und Unterschätzung.
+Missverständnisse entstehen dabei oft aus der Unkenntnis der Grundlagen. Typische Fragen sind dabei: Was ist Machine
+Learning eigentlich? Wie geht man in einem Machine-Learning-Projekt vor? Wie unterscheidet sich ein ML-System von
+klassischer Software? Welche Architekturprinzipien erfordern besondere Beachtung? Warum kann fast jedes Projekt von
+Methoden aus dem Machine Learning profitieren?
+
+Diese Session gibt die Antwort auf diese Fragen, indem sie fünf grundlegenden Prinzipien des Machine Learnings für
+jede(n) verständlich vorstellt und erläutert.
+
+Eigentlich eher :D
+- "Olli sammelnt mal vom Schrottplatz was er da als erstes findet und sagt: voll wichtig"
+- 5 willkürliche Einfälle, die niemanden interessieren müssen
+
+Punkte aus anderen Tals
+1. managing uncertainty
+1. adversarial attacks and outlier detection
+1. out-of-distribution robustness
+1. drift and monitoring
+1. unwanted bias
+1. stability
+1. fallbacks and ensembles
+  
+Das hier ausbeuten: https://mindfulmodeler.substack.com/p/a-pragmatic-view-on-uncertainty-in
+- Die Welt ist verrauscht
+- 100% Metrik auf Trainingsdaten ist 
+  - möglich (wenn man das Modell groß genug macht), aber
+  - weder gewollt 
+  - noch notwendig
+- Wir wollen nicht das Rauchen lernen, und damit overfitten
+  - aleatoric uncertainty or irreducible error
+- Und
+- Wir wollen den Kern, die abstrakte Idee lernen, also auch auf neue Problemstellungen anwendbar sein: 
+  - epistemic uncertainty or reducible error
+- aleatoric uncertainty has something to do with true randomness and epistemic uncertainty with shortcoming of the model. Got it.
+ -->
+
+
+ <!-- <section data-markdown class="preparation" style="font-size: x-large;">
+	<textarea data-template>
+### Demos vorbereiten		
+1. ML Playground starten: https://ml-playground.com
+1. /home/olli/mlops/insurance-prediction
+   1. Falls notwendig Volumes platt machen 
+   1. docker compose up
+   * ML Service 
+	 * Swagger http://localhost:8080
+	 * Metrics: http://localhost:8080/metrics/
+   * Prometheus
+	 * Query: http://localhost:9090/
+	 * Drift Gauge: http://localhost:9090/graph?g0.expr=drift_score_by_columns&g0.tab=1&g0.stacked=0&g0.show_exemplars=0&g0.range_input=1h
+	 * Scrape Targets: http://localhost:9090/targets
+   * Grafana Dashboard: http://localhost:3000/d/U54hsxv7k/evidently-data-drift-dashboard?orgId=1&refresh=5s
+   * Simulate Production requests without need for local installation: ./scripts/curl-drift.sh localhost:8080
+   </textarea>
+   
+	</textarea>
+</section> -->
+
+ <section data-markdown>
+	<textarea data-template>
+## Was man als Software Entwickler über Machine Learning wissen sollte
+
+Oliver Zeigermann
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+## Was man als Software Entwickler über Machine Learning wissen sollte
+
+Machine Learning (ML) schwankt in der Wahrnehmung vieler Beobachter zwischen starker Über- und Unterschätzung.
+
+Dieser Talk hilft bei der Einordnung der folgenden Fragen:
+1. Was unterscheidet Machine Learning von der klassischen Software Entwicklung?
+1. Wie funktioniert Machine Learning?
+1. Wann ist der Einsatz von Machine Learning sinnvoll (und wann nicht)?
+1. Wie läuft ein Maschine Learning Projekt ab? Welche Phasen werden durchlaufen?
+1. Was sind die besonderen architektonischen Anforderungen an Machine Learning Projekte?
+1. Was ist mit den großen Sprachmodellen?
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+	<textarea data-template>
+### Für ML braucht man viel Mathematik, oder?
+
+<img src="img/inspiration/matematica.jpg" style="height: 530px;">		
+
+<small>Sapienza Università di Roma - https://www.ing.uniroma1.it/
+</small>
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Tatsächliche Herausforderungen im Bereich Machine Learning
+
+<img src="img/biggest_challenges_ML_MLCon_2023.jpg" style="height: 530px;" class="fragment">
+
+<small>Umfrage aus MLConf Berlin 2023</small>
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+		### Wer ist Olli
+
+		<div style="display: flex;">
+			<div style="flex: 50%;">
+				<a href='https://oreilly.de/produkt/machine-learning-kurz-gut-2/'>
+				<img src='img/ml-buch-v2.jpg' height="400">
+				</a>
+			</div>
+			<div style="flex: 50%; font-size: x-large;">
+				<img src='img/olli-opa.jpeg'>
+			</div>
+		</div>
+		<p>
+			<a target="_blank" href="mailto:oliver@zeigermann.de">Oliver Zeigermann</a>:
+		KI Squad
+		</p>    
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Klassische Entwicklung vs Machine Learning
+
+<div style="display: flex;">
+	<div style="flex: 50%;" class="fragment">
+Klassische Entwicklung
+<img src='img/ml_vs_dev_1.jpg' height="400">
+<small>inkl. Copilot etc.</small>
+	</div>
+	<div style="flex: 50%" class="fragment">
+Machine Learning
+<img src='img/ml_vs_dev_2.jpg'>
+	</div>
+</div>
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### Demo: Wie funktioniert Machine Learning?
+
+1. Decision Tree
+1. K-Nearest Neighbors
+1. Deep Learning
+
+https://ml-playground.com
+
+	</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+  ### Wann ist KI/ML sinnvoll?
+  
+  * Die Lösung des vorliegenden Problems ist unbekannt oder _schwer zu spezifizieren_
+  * Es liegen _Daten_ mit einer klaren, einfachen Eingabe und bestenfalls auch passender Ausgabe vor
+  * Es gibt _Muster_ in der Eingabe, auf die reagiert werden kann
+  * Die Lösung des Problems kann Fehler oder _Unsicherheiten_ tolerieren
+	* _80% Genauigkeit_ werden selten übertroffen
+  * Wir sind bereit und in der Lage, in einer initialen Phase _Experimente mit offenem Ausgang_ durchzuführen
+  </textarea>
+</section>
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Wozu machen wir ML?
+	
+<img src="img/KI_ML_Skizzen/ml-muster-aktion.png">		
+	</textarea>
+  </section> -->
+  
+
+<!-- <section data-markdown class="fragments">
+	<textarea data-template>
+### Was ist eine gute Metrik?
+
+- Die Welt ist verrauscht
+- 100% Metrik auf Trainingsdaten ist 
+  - möglich (wenn man das Modell groß genug macht), aber
+  - weder gewollt 
+  - noch notwendig
+- Wir wollen nicht das Rauschen lernen, und damit overfitten
+- Wir wollen den Kern, die abstrakte Idee lernen, also auch auf neue Problemstellungen anwendbar sein
+
+https://mindfulmodeler.substack.com/p/a-pragmatic-view-on-uncertainty-in
+  </textarea>
+</section> -->
+
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Machine Learning vs Dev
+
+1. Es ist eine Art Software zu entwickeln
+1. Du "codest" implizit, also brauchst du eine Möglichkeit zu sagen, wie gut du bist
+1. Du brauchst Daten oder eine Möglichkeit, diese Daten zu generieren
+1. Der *Prozess* und die Werkzeuge zur Entwicklung von ML-Software unterscheiden sich sehr von dem traditionellen Ansatz
+1. Sobald du jedoch in der Produktion bist, ist es viel ähnlicher
+1. Man kann keinen Erfolg versprechen
+
+	</textarea>
+</section> -->
+
+<!-- <section data-markdown>
+	<textarea data-template>
+## Was fehlt zur Allgemeinen KI (AGI)?
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KI kann nicht kochen
+
+<img src="img/ki-kochen.jpg" style="height: 430px;">
+
+* Kein noch so kluges System hat nennenswerte motorische Fähigkeiten
+* die "einfachen" Tätigkeiten sind nicht annähernd erreicht (https://de.wikipedia.org/wiki/Moravecsches_Paradox)
+
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### LLMs - next level machine learning?
+
+* Wir brauchen nicht mehr viele technische Details
+* Stattdessen geben wir den Kontext und und schreiben einen schlauen Prompt
+* Wie der Umbruch von Assembler zu Hochsprachen vermittels schlauer Compiler
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### LLMs als letzter Sprung in der Entwicklung der Menschheit
+
+* *Schrift* - nicht nur die Natur, sondern auch wir Menschen können Dinge für die Nachwelt festhalten
+* *Druckerpresse* - Demokratisierung des Wissens beginnt
+* *Internet* - Auflösung physikalischer Grenzen
+* *LLMs* - Konzentrat / Essenz der Inhalte des Internets
+
+Marshall McLuhan in https://philosophygeek.substack.com/p/wrapping-my-head-around-ai
+	</textarea>
+</section>
+
+<section data-markdown>
+### Braucht echte AGI nicht einen Körper?
+
+- Ein KI System kann nicht aktiv Erfahrungen sammeln
+- Reinforcement Learning als eine Art, Erfahrungen in der Welt zu machen?
+- Aber in der physischen Welt kann sich auch so ein System immer noch nicht bewegen
+- Kann zum Teil zurückgeführt werden auf das ungelöste Leib-Seele-Problem 
+  - https://de.wikipedia.org/wiki/Philosophie_des_Geistes#Das_Leib-Seele-Problem
+  - https://bigthink.com/thinking/the-mind-body-problem/
+
+</section> -->
+
+<section data-markdown>
+	<textarea data-template>
+  ### Machine Learning Projeke können in Phasen gedacht werden
+  
+  <img src='img/Prozess/phasen1.jpg' style="height: 100%;">
+  <!-- <img src='img/ml-prozess.jpg' style="height: 650px;"> -->
+  
+  </textarea>
+  </section>
+  
+<section data-markdown class="todo">
+<textarea data-template>
+## Werkzeuge in den unterschiedlichen Phasen
+
+</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Was tun wenn ein Ansatz nicht erfolgversprechend ist
+  
+*kann überwiegende Mehrheit sein, positiven Aspekt betonen* 
+
+* Fail Fast: Aufwand für die späteren aufwändigen Phasen gespart
+* Lernerfolg dokumentieren und teilen
+* Eventuelle Analyseergebnisse als Einsichten zweitverwerten
+* _In Phase 0 vorbereiten und in die Fehlerkultur übernehmen_
+  
+  </textarea>
+</section>
+
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### When all the white sneakers you see are white
+
+<img src="img/inspiration/20230409_131604.jpg">		
+
+Confirmation Bias
+	</textarea>
+</section>
+ -->
+<section data-markdown>
+	<textarea data-template>
+### ML Vorhaben müssen machbar sein
+
+Forschungsprojekte vermeiden
+
+<div class="container">
+	<div class="col">
+		<img src="img/inspiration/20230412_122703.jpg">		
+	</div>
+	<div class="col">
+		<img src="img/inspiration/20230412_122440.jpg">		
+	</div>
+
+</div>
+
+<small>https://technikmuseum.berlin/
+</small>
+
+	</textarea>
+</section>
+
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### Make or Buy
+
+* buy: du kannst nicht viel beeinflussen, aber du musst auch nicht
+* make: du kannst viel beeinflussen, aber du musst auch
+* Make or Buy ist oft keine binäre Entscheidung
+* Es gibt verschiedene Grade der Vorfertigung
+
+<!-- https://medium.com/swlh/build-vs-buy-decision-619414efafc4 -->
+    </textarea>
+</section>
+
+<!-- <section data-markdown>
+    <textarea data-template>
+### Buy
+
+* AWS: https://aws.amazon.com/machine-learning/ai-services/
+* Azure
+  * https://azure.microsoft.com/en-us/overview/ai-platform
+  * https://azure.microsoft.com/en-us/product-categories/applied-ai-services
+  * https://docs.microsoft.com/en-us/azure/machine-learning/concept-deep-learning-vs-machine-learning
+* Google Cloud: https://cloud.google.com/solutions/ai
+* IBM: https://www.ibm.com/cloud/ai
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Make
+
+* Classic Machine Learning: https://scikit-learn.org
+* High Level Neural Networks / Deep Learning
+  * https://www.tensorflow.org
+  * https://keras.io/
+* Low Level Neural networks
+  * https://pytorch.org/
+  * https://github.com/google/jax
+* Base Models
+  * Language: https://huggingface.co/transformers/
+  * Recommendation: https://github.com/tensorflow/recommenders
+* Assorted
+  * https://www.tensorflow.org/hub
+  * https://keras.io/examples/
+</textarea>
+</section>
+     -->
+<!-- <section data-markdown class="fragments">
+    <textarea data-template>
+### Vorfertigungsgrad von ML
+
+* Make or Buy ist oft keine binäre Entscheidung
+* Es gibt verschiedene Grade der Vorfertigung
+  1. Fertiges Modell über API
+  1. Nachtrainiertes Modell über API
+  1. Klassisches ML
+  1. Standardarchitektur, vortrainiert
+  1. Standardarchitektur
+  1. Eigene Architektur
+</textarea>
+</section>
+ -->
+<section data-markdown class="fragments">
+	<textarea data-template>
+### Besondere Anforderungen an ML Projekte
+
+_ML Systeme sind häufig der Kern schlauer Business Logik, daraus ergeben sich spezielle Anforderungen_
+
+1. *Genauigkeit* - 100% Korrektheit ist nicht möglich, aber wie korrekt muss das System sein, um sinnvoll nutzbar zu sein 
+1. *Erklärbarkeit/ Alien Intelligence* - ML Systeme ticken nicht wie Menschen, kann man gewisse Entscheidungen nachvollziehen?
+1. *Stabilität* - eine aktualisierte Version der Software muss möglich sein und sollte sich nicht völlig anders verhalten
+<!-- 1. *Hackbarkeit* - es sollte schwer sein herauszufinden wie die Software funktioniert um Manipulation zu verhindern -->
+
+	</textarea>
+
+</textarea>
+</section>
+
+<!-- <section data-markdown class="todo">
+	<textarea data-template>
+### Aus Resilience und MLOps die einzelnen Folien übernehmen
+
+- Die überraschenden Eigenschaften
+  - Mainstream
+  - Stabilität
+  - Alien Intelligence
+
+
+- Stability
+  - https://twitter.com/BrianRoemmele/status/1660410789940060163
+  - wenn sich Modelle verändern gehen die Prompts nicht mehr so wie vorher, das ist klar
+  - ich glaube das meint sie
+  - gab ein Update des Default-Modells bei ChatGPT, zuerst war das alte nur deprecated, jetzt aber ganz weg, glaube ich
+  - Prompt Engineering gilt im Detail also auch immer nur für eine spezielle Version eines speziellen Models
+  - der ganze ML Kram ist voll von überraschenden Eigenschaften, an die man sich gewöhnen muss
+  - und sowas wie mangelnde Stabilität ist ein großes Problem
+  - nicht nur bei ChatGPT
+  - diese Modelle haben so viele Freiheitsgrade, da kann schon jedes neue Training ein deutlich anderes Verhalten haben
+
+</textarea>
+</section> -->
+
+
+<!-- <section data-markdown>
+	<textarea data-template>
+### Ein ML Modell geht nicht für sich allein in Produktion
+
+<img src="img/ml-system.jpg" style="height: 550px;">
+
+</textarea>
+</section> -->
+
+<!-- <section data-markdown class="fragments">
+	<textarea data-template>
+### Warum Ensemble/Fallback?
+
+* Ein ML Modell ist mit Daten eines bestimmten Bereichs trainiert
+  * manche Anfragen sind nicht in diesem Bereich
+  * die meisten Modelle haben keine Ahnung wann sie keine Ahnung haben
+  * daher müssen wir festlegen, welche Anfrage wohin geleitet wird
+* Auch nach der Vorhersage kann entschieden werden, dass die Wahrscheinlichkeit nicht hoch genug ist
+  * Dann ein anderes Modell befragen
+  * Manche Modelle sind teurer im Betrieb als andere, diese eher später nutzen
+* Oft ist ein einfaches heuristisches Regelsystem eine gute Alternative / Fallback
+* Bei mehreren passenden Modellen ist auch eine Mehrheitsentscheidung denkbar
+* Mehr Vorschläge: https://twitter.com/ChristophMolnar/status/1647881654873063426
+
+</textarea>
+</section>
+ -->
+<section data-markdown>
+	<textarea data-template>
+### Machine Learning Systeme müssen dauerhaft gewartet werden
+
+<!-- <img src='img/model-degrade.png'> -->
+
+<div style="display: flex;">
+	<div style="flex: 50%;">
+		<img src='img/ml_degrade_1.jpg' height="400" class="fragment">
+	</div>
+	<div style="flex: 50%; font-size: x-large;" class="fragment">
+		<img src='img/ml_degrade_2.jpg'>
+	</div>
+</div>
+
+</textarea>
+  </section>
+
+  <section data-markdown class="fragments">
+	<textarea data-template>
+### LLMs als letzter Sprung in der Entwicklung der Menschheit?
+
+* *Schrift* - nicht nur die Natur, sondern auch wir Menschen können Dinge für die Nachwelt festhalten
+* *Druckerpresse* - Demokratisierung des Wissens beginnt
+* *Internet* - Auflösung physikalischer Grenzen
+* *LLMs* - Konzentrat / Essenz der Inhalte des Internets
+
+Marshall McLuhan in https://philosophygeek.substack.com/p/wrapping-my-head-around-ai
+	</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### LLMs - next level machine learning?
+
+* Wir brauchen nicht mehr viele technische Details
+* Stattdessen geben wir den Kontext und und schreiben einen schlauen Prompt
+* Wie der Umbruch von Assembler zu Hochsprachen vermittels schlauer Compiler
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+### KI kann nicht kochen
+
+<img src="img/ki-kochen.jpg" style="height: 430px;">
+
+* Kein noch so kluges System hat nennenswerte motorische Fähigkeiten
+* die "einfachen" Tätigkeiten sind nicht annähernd erreicht (https://de.wikipedia.org/wiki/Moravecsches_Paradox)
+
+	</textarea>
+</section>
+	
+<section data-markdown class="fragments">
+	<textarea data-template>
+## Zusammenfassung
+
+* Mathematik gehört nicht zu den Fähigkeiten, die du aufbauen müsstest
+  * Der Bussfahrer muss keinen Motor entwerfen können
+* Insbesondere weil ML Projekte häufig nicht durchführbar sind, ist ein spezieller Prozess ratsam  
+* ML Systeme sind häufig der Kern schlauer Business Logik, daraus ergeben sich spezielle Anforderungen
+* Modelle müssen regelmäßig aktualisiert werden
+* LLMs haben das Zeug für ein Paradigmenwechsel
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+# Vielen Dank
+## Was man als Software Entwickler über Machine Learning wissen sollte
+
+Bleibt gern im Kontakt
+
+Oliver Zeigermann
+
+oliver@zeigermann.de
+
+</textarea>
+</section>
+
+</div>
+</div>
+
+<script src="reveal.js/dist/reveal.js"></script>
+<script src="lib/jquery.js"></script>
+<script>
+    const printMode = window.location.search.match(/print-pdf/gi);
+    const isLocal = window.location.hostname.indexOf('localhost') !== -1 ||
+        window.location.hostname.indexOf('127.0.0.1') !== -1;
+    const isPresentation = isLocal && !printMode;
+    const isPublic = !isPresentation;
+
+    $('.hide').remove();
+
+    if (isPresentation) {
+    } else {
+        // only applies to public version
+        $('.todo').remove();
+        $('.preparation').remove();
+        $('.local').remove();
+    }
+
+    Reveal.addEventListener('ready', function (event) {
+        // applies to all versions
+        $('code').addClass('line-numbers');
+
+        $('.fragments li').addClass('fragment')
+
+        // make all links open in new tab
+        $('a').attr('target', '_blank')
+
+        if (isPresentation) {
+            // only applies to presentation version
+            Reveal.configure({ controls: false });
+        } else {
+            // only applies to public version
+            $('.fragment').removeClass('fragment');
+        }
+
+        // we do not like fragments
+        // $('.fragment').removeClass('fragment');
+
+    });
+
+</script>
+
+<script src="reveal.js/plugin/notes/notes.js"></script>
+<script src="reveal.js/plugin/markdown/markdown.js"></script>
+<script src="reveal.js/plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+        slideNumber: true,
+        hideInactiveCursor: false,
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+
+
+</body>
+
+</html>
